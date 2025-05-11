@@ -1,0 +1,459 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-pencil-square-o" style="color: #ff7043"></i> Đăng ký thi lại
+</h1>
+
+<!-- Thông tin đợt đăng ký thi lại -->
+<div class="registration-info">
+  <div class="info-header">
+    <h2 class="section-title">
+      Thông tin đợt đăng ký thi lại học kỳ 1, năm học 2023-2024
+    </h2>
+    <div class="registration-status">
+      <span class="status-active">Đang mở</span>
+    </div>
+  </div>
+
+  <div class="info-details">
+    <div class="info-item">
+      <div class="info-label">Thời gian bắt đầu:</div>
+      <div class="info-value">08:00, 20/06/2024</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Thời gian kết thúc:</div>
+      <div class="info-value">17:00, 30/06/2024</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Thời gian còn lại:</div>
+      <div class="info-value countdown">5 ngày 08 giờ 45 phút</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Số môn tối đa được đăng ký:</div>
+      <div class="info-value">5 môn</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Số môn đã đăng ký:</div>
+      <div class="info-value">0 môn</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <p>
+      <strong>Lưu ý:</strong> Sinh viên cần thanh toán lệ phí thi lại đúng hạn
+      sau khi đăng ký. Đăng ký sẽ bị hủy nếu không thanh toán trước ngày
+      05/07/2024. Lệ phí thi lại là 150.000 VNĐ/môn.
+    </p>
+  </div>
+</div>
+
+<!-- Danh sách học phần có thể đăng ký thi lại -->
+<div class="retake-exam-list">
+  <h2 class="section-title">Danh sách học phần có thể đăng ký thi lại</h2>
+
+  <div class="course-table-container">
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th width="5%">STT</th>
+          <th width="10%">Mã học phần</th>
+          <th width="25%">Tên học phần</th>
+          <th width="8%">Số TC</th>
+          <th width="10%">Lần học gần nhất</th>
+          <th width="10%">Điểm</th>
+          <th width="15%">Lịch thi dự kiến</th>
+          <th width="10%">Lệ phí (VNĐ)</th>
+          <th width="7%">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>CNPM100</td>
+          <td>Nhập môn Công nghệ phần mềm</td>
+          <td>3</td>
+          <td>HK1 2023-2024</td>
+          <td class="failed-score">4.5</td>
+          <td>10/07/2024 (08:00)</td>
+          <td>150,000</td>
+          <td>
+            <button
+              class="register-btn"
+              onclick="registerRetakeExam('CNPM100')"
+            >
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>CSDL200</td>
+          <td>Cơ sở dữ liệu nâng cao</td>
+          <td>3</td>
+          <td>HK1 2023-2024</td>
+          <td class="failed-score">3.8</td>
+          <td>12/07/2024 (13:30)</td>
+          <td>150,000</td>
+          <td>
+            <button
+              class="register-btn"
+              onclick="registerRetakeExam('CSDL200')"
+            >
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>MMT100</td>
+          <td>Mạng máy tính cơ bản</td>
+          <td>2</td>
+          <td>HK1 2023-2024</td>
+          <td class="failed-score">4.0</td>
+          <td>15/07/2024 (08:00)</td>
+          <td>150,000</td>
+          <td>
+            <button class="register-btn" onclick="registerRetakeExam('MMT100')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>ATTT100</td>
+          <td>An toàn thông tin cơ bản</td>
+          <td>2</td>
+          <td>HK1 2023-2024</td>
+          <td class="failed-score">4.2</td>
+          <td>17/07/2024 (13:30)</td>
+          <td>150,000</td>
+          <td>
+            <button
+              class="register-btn"
+              onclick="registerRetakeExam('ATTT100')"
+            >
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>KTPM100</td>
+          <td>Kiểm thử phần mềm cơ bản</td>
+          <td>3</td>
+          <td>HK1 2023-2024</td>
+          <td class="failed-score">4.8</td>
+          <td>19/07/2024 (08:00)</td>
+          <td>150,000</td>
+          <td>
+            <button
+              class="register-btn"
+              onclick="registerRetakeExam('KTPM100')"
+            >
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Danh sách học phần đã đăng ký thi lại -->
+<div class="registered-retake-exams">
+  <h2 class="section-title">Danh sách học phần đã đăng ký thi lại</h2>
+
+  <div class="registered-table-container">
+    <table class="registered-table">
+      <thead>
+        <tr>
+          <th width="5%">STT</th>
+          <th width="10%">Mã học phần</th>
+          <th width="25%">Tên học phần</th>
+          <th width="8%">Số TC</th>
+          <th width="15%">Lịch thi dự kiến</th>
+          <th width="10%">Phòng thi</th>
+          <th width="10%">Lệ phí (VNĐ)</th>
+          <th width="10%">Trạng thái</th>
+          <th width="7%">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="registered-retake-exams-list">
+        <!-- Danh sách trống, sẽ được cập nhật bằng JavaScript -->
+        <tr class="empty-row">
+          <td colspan="9" class="text-center">
+            Chưa có học phần nào được đăng ký thi lại
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6" class="text-right"><strong>Tổng cộng:</strong></td>
+          <td id="total-fee">0 VNĐ</td>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="registration-actions">
+    <button class="cancel-btn" onclick="cancelAllRetakeExams()">
+      Hủy tất cả
+    </button>
+    <button class="save-btn" onclick="saveRetakeExamRegistration()">
+      Lưu đăng ký
+    </button>
+  </div>
+</div>
+
+<!-- Xác nhận đăng ký thi lại -->
+<div id="confirm-retake-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Xác nhận đăng ký thi lại</h3>
+      <span class="close-modal" onclick="closeRetakeConfirmModal()"
+        >&times;</span
+      >
+    </div>
+    <div class="modal-body">
+      <p>Bạn có chắc chắn muốn đăng ký thi lại học phần này?</p>
+      <div class="course-info">
+        <div class="info-row">
+          <div class="info-label">Mã học phần:</div>
+          <div class="info-value" id="confirm-retake-course-code">CNPM100</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Tên học phần:</div>
+          <div class="info-value" id="confirm-retake-course-name">
+            Nhập môn Công nghệ phần mềm
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Số tín chỉ:</div>
+          <div class="info-value" id="confirm-retake-credits">3</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Lịch thi dự kiến:</div>
+          <div class="info-value" id="confirm-retake-schedule">
+            10/07/2024 (08:00)
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Lệ phí:</div>
+          <div class="info-value" id="confirm-retake-fee">150,000 VNĐ</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="closeRetakeConfirmModal()">
+        Hủy
+      </button>
+      <button class="confirm-btn" onclick="confirmRetakeExamRegistration()">
+        Xác nhận
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Thêm CSS cho trang đăng ký thi lại -->
+<style>
+  .failed-score {
+    color: #f44336;
+    font-weight: bold;
+  }
+
+  .registered-retake-exams {
+    margin-top: 30px;
+  }
+
+  /* Thêm các style đặc thù cho trang đăng ký thi lại nếu cần */
+</style>
+
+<script>
+  // Biến lưu trữ thông tin học phần đã đăng ký thi lại
+  let registeredRetakeExams = [];
+  let currentRetakeExam = null;
+
+  // Hàm đăng ký thi lại
+  function registerRetakeExam(courseCode) {
+    // Tìm thông tin học phần từ bảng
+    const row = Array.from(
+      document.querySelectorAll(".course-table tbody tr")
+    ).find((row) => {
+      return row.querySelector("td:nth-child(2)").textContent === courseCode;
+    });
+
+    if (row) {
+      const courseName = row.querySelector("td:nth-child(3)").textContent;
+      const credits = parseInt(
+        row.querySelector("td:nth-child(4)").textContent
+      );
+      const schedule = row.querySelector("td:nth-child(7)").textContent;
+      const fee = row.querySelector("td:nth-child(8)").textContent;
+
+      // Lưu thông tin học phần hiện tại
+      currentRetakeExam = {
+        code: courseCode,
+        name: courseName,
+        credits: credits,
+        schedule: schedule,
+        fee: fee,
+        room: "Chưa phân công", // Mặc định chưa phân công phòng thi
+        status: "Chờ thanh toán",
+      };
+
+      // Hiển thị modal xác nhận
+      const modal = document.getElementById("confirm-retake-modal");
+      document.getElementById("confirm-retake-course-code").textContent =
+        courseCode;
+      document.getElementById("confirm-retake-course-name").textContent =
+        courseName;
+      document.getElementById("confirm-retake-credits").textContent = credits;
+      document.getElementById("confirm-retake-schedule").textContent = schedule;
+      document.getElementById("confirm-retake-fee").textContent = fee;
+
+      modal.style.display = "block";
+    }
+  }
+
+  // Hàm đóng modal xác nhận
+  function closeRetakeConfirmModal() {
+    document.getElementById("confirm-retake-modal").style.display = "none";
+    currentRetakeExam = null;
+  }
+
+  // Hàm xác nhận đăng ký thi lại
+  function confirmRetakeExamRegistration() {
+    if (currentRetakeExam) {
+      // Kiểm tra xem đã đăng ký học phần này chưa
+      const existingIndex = registeredRetakeExams.findIndex(
+        (exam) => exam.code === currentRetakeExam.code
+      );
+
+      if (existingIndex === -1) {
+        // Thêm vào danh sách đã đăng ký
+        registeredRetakeExams.push(currentRetakeExam);
+
+        // Cập nhật giao diện
+        updateRegisteredRetakeExams();
+
+        // Hiển thị thông báo thành công
+        alert(
+          `Đã đăng ký thi lại học phần ${currentRetakeExam.code} thành công!`
+        );
+      } else {
+        alert("Học phần này đã được đăng ký thi lại!");
+      }
+    }
+
+    // Đóng modal
+    closeRetakeConfirmModal();
+  }
+
+  // Hàm cập nhật danh sách học phần đã đăng ký thi lại
+  function updateRegisteredRetakeExams() {
+    const tableBody = document.getElementById("registered-retake-exams-list");
+    const totalFeeElement = document.getElementById("total-fee");
+
+    // Xóa nội dung cũ
+    tableBody.innerHTML = "";
+
+    if (registeredRetakeExams.length === 0) {
+      // Hiển thị hàng trống nếu không có học phần nào
+      tableBody.innerHTML = `
+        <tr class="empty-row">
+          <td colspan="9" class="text-center">
+            Chưa có học phần nào được đăng ký thi lại
+          </td>
+        </tr>
+      `;
+      totalFeeElement.textContent = "0 VNĐ";
+    } else {
+      // Tính tổng lệ phí
+      let totalFee = 0;
+
+      // Thêm các học phần đã đăng ký vào bảng
+      registeredRetakeExams.forEach((exam, index) => {
+        // Chuyển đổi chuỗi lệ phí thành số
+        const fee = parseInt(exam.fee.replace(/[^0-9]/g, ""));
+        totalFee += fee;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${exam.code}</td>
+          <td>${exam.name}</td>
+          <td>${exam.credits}</td>
+          <td>${exam.schedule}</td>
+          <td>${exam.room}</td>
+          <td>${exam.fee}</td>
+          <td><span class="status-pending">${exam.status}</span></td>
+          <td>
+            <button class="delete-btn" onclick="cancelRetakeExam(${index})">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+
+      // Cập nhật tổng lệ phí
+      totalFeeElement.textContent = totalFee.toLocaleString() + " VNĐ";
+    }
+  }
+
+  // Hàm hủy đăng ký thi lại một học phần
+  function cancelRetakeExam(index) {
+    if (confirm("Bạn có chắc chắn muốn hủy đăng ký thi lại học phần này?")) {
+      registeredRetakeExams.splice(index, 1);
+      updateRegisteredRetakeExams();
+    }
+  }
+
+  // Hàm hủy tất cả đăng ký thi lại
+  function cancelAllRetakeExams() {
+    if (registeredRetakeExams.length === 0) {
+      alert("Chưa có học phần nào được đăng ký thi lại!");
+      return;
+    }
+
+    if (confirm("Bạn có chắc chắn muốn hủy tất cả đăng ký thi lại?")) {
+      registeredRetakeExams = [];
+      updateRegisteredRetakeExams();
+    }
+  }
+
+  // Hàm lưu đăng ký thi lại
+  function saveRetakeExamRegistration() {
+    if (registeredRetakeExams.length === 0) {
+      alert("Chưa có học phần nào được đăng ký thi lại!");
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để lưu đăng ký
+    alert(
+      "Đã lưu đăng ký thi lại thành công! Vui lòng thanh toán lệ phí trước ngày 05/07/2024."
+    );
+
+    // Cập nhật trạng thái
+    registeredRetakeExams.forEach((exam) => {
+      exam.status = "Đã đăng ký";
+    });
+
+    updateRegisteredRetakeExams();
+  }
+
+  // Cập nhật thời gian đếm ngược
+  function updateCountdown() {
+    // Trong thực tế, đây sẽ là tính toán thời gian còn lại dựa trên thời gian hiện tại
+    // và thời gian kết thúc đăng ký
+  }
+
+  // Khởi tạo trang
+  document.addEventListener("DOMContentLoaded", function () {
+    // Cập nhật đếm ngược
+    updateCountdown();
+
+    // Cập nhật danh sách đã đăng ký
+    updateRegisteredRetakeExams();
+  });
+</script>

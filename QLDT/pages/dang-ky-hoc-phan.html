@@ -1,0 +1,611 @@
+<link rel="stylesheet" href="../css/course-registration-styles.css" />
+
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-edit" style="color: #2196f3"></i> Đăng ký học phần
+</h1>
+
+<!-- Thông tin đợt đăng ký -->
+<div class="registration-info">
+  <div class="info-header">
+    <h2 class="section-title">
+      Thông tin đợt đăng ký học kỳ 1, năm học 2024-2025
+    </h2>
+    <div class="registration-status">
+      <span class="status-active">Đang mở</span>
+    </div>
+  </div>
+
+  <div class="info-details">
+    <div class="info-item">
+      <div class="info-label">Thời gian bắt đầu:</div>
+      <div class="info-value">08:00, 15/07/2024</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Thời gian kết thúc:</div>
+      <div class="info-value">17:00, 30/07/2024</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Thời gian còn lại:</div>
+      <div class="info-value countdown">10 ngày 05 giờ 30 phút</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Số tín chỉ tối đa:</div>
+      <div class="info-value">24 tín chỉ</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Số tín chỉ đã đăng ký:</div>
+      <div class="info-value">0 tín chỉ</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Số tín chỉ còn lại:</div>
+      <div class="info-value">24 tín chỉ</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <p>
+      <strong>Lưu ý:</strong> Sinh viên cần thanh toán học phí đúng hạn sau khi
+      đăng ký học phần. Học phần sẽ bị hủy nếu không thanh toán trước ngày
+      15/08/2024.
+    </p>
+  </div>
+</div>
+
+<!-- Bộ lọc tìm kiếm học phần -->
+<div class="course-search">
+  <h2 class="section-title">Tìm kiếm học phần</h2>
+
+  <div class="search-filters">
+    <div class="form-row">
+      <div class="form-column">
+        <label for="course-department">Khoa/Bộ môn:</label>
+        <select id="course-department" onchange="filterCourses()">
+          <option value="">-- Tất cả --</option>
+          <option value="cntt">Công nghệ thông tin</option>
+          <option value="dtvt">Điện tử viễn thông</option>
+          <option value="ktdl">Kỹ thuật điện</option>
+          <option value="cokhi">Cơ khí</option>
+          <option value="xaydung">Xây dựng</option>
+          <option value="kinhte">Kinh tế</option>
+          <option value="ngoaingu">Ngoại ngữ</option>
+        </select>
+      </div>
+      <div class="form-column">
+        <label for="course-type">Loại học phần:</label>
+        <select id="course-type" onchange="filterCourses()">
+          <option value="">-- Tất cả --</option>
+          <option value="required">Bắt buộc</option>
+          <option value="elective">Tự chọn</option>
+          <option value="general">Đại cương</option>
+          <option value="specialized">Chuyên ngành</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-column">
+        <label for="course-search">Tìm kiếm:</label>
+        <div class="search-input">
+          <input
+            type="text"
+            id="course-search"
+            placeholder="Nhập mã học phần hoặc tên học phần..."
+            onkeyup="filterCourses()"
+          />
+          <button onclick="filterCourses()">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-column">
+        <label for="course-status">Trạng thái lớp:</label>
+        <select id="course-status" onchange="filterCourses()">
+          <option value="">-- Tất cả --</option>
+          <option value="open">Còn chỗ</option>
+          <option value="full">Đã đầy</option>
+          <option value="almost-full">Sắp đầy</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Danh sách học phần -->
+<div class="course-list">
+  <h2 class="section-title">Danh sách học phần có thể đăng ký</h2>
+
+  <div class="course-table-container">
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th width="5%">STT</th>
+          <th width="10%">Mã học phần</th>
+          <th width="25%">Tên học phần</th>
+          <th width="8%">Số TC</th>
+          <th width="10%">Lớp</th>
+          <th width="15%">Lịch học</th>
+          <th width="10%">Phòng học</th>
+          <th width="10%">Sĩ số</th>
+          <th width="7%">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>CNPM101</td>
+          <td>Công nghệ phần mềm nâng cao</td>
+          <td>3</td>
+          <td>CNPM101.1</td>
+          <td>Thứ 2 (7:00 - 9:30)</td>
+          <td>A305</td>
+          <td>45/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('CNPM101.1')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>CNPM101</td>
+          <td>Công nghệ phần mềm nâng cao</td>
+          <td>3</td>
+          <td>CNPM101.2</td>
+          <td>Thứ 3 (7:00 - 9:30)</td>
+          <td>A306</td>
+          <td>58/60</td>
+          <td>
+            <button
+              class="register-btn almost-full"
+              onclick="registerCourse('CNPM101.2')"
+            >
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>CNPM101</td>
+          <td>Công nghệ phần mềm nâng cao</td>
+          <td>3</td>
+          <td>CNPM101.3</td>
+          <td>Thứ 4 (7:00 - 9:30)</td>
+          <td>A307</td>
+          <td>60/60</td>
+          <td>
+            <button class="register-btn full" disabled>Đã đầy</button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>TTNT201</td>
+          <td>Trí tuệ nhân tạo</td>
+          <td>3</td>
+          <td>TTNT201.1</td>
+          <td>Thứ 2 (13:00 - 15:30)</td>
+          <td>B203</td>
+          <td>40/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('TTNT201.1')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>TTNT201</td>
+          <td>Trí tuệ nhân tạo</td>
+          <td>3</td>
+          <td>TTNT201.2</td>
+          <td>Thứ 3 (13:00 - 15:30)</td>
+          <td>B204</td>
+          <td>35/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('TTNT201.2')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>HTTT301</td>
+          <td>Hệ thống thông tin doanh nghiệp</td>
+          <td>3</td>
+          <td>HTTT301.1</td>
+          <td>Thứ 4 (13:00 - 15:30)</td>
+          <td>A401</td>
+          <td>30/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('HTTT301.1')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>HTTT301</td>
+          <td>Hệ thống thông tin doanh nghiệp</td>
+          <td>3</td>
+          <td>HTTT301.2</td>
+          <td>Thứ 5 (13:00 - 15:30)</td>
+          <td>A402</td>
+          <td>25/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('HTTT301.2')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>MMT202</td>
+          <td>Mạng máy tính nâng cao</td>
+          <td>3</td>
+          <td>MMT202.1</td>
+          <td>Thứ 6 (7:00 - 9:30)</td>
+          <td>B303</td>
+          <td>50/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('MMT202.1')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>ATTT301</td>
+          <td>An toàn thông tin nâng cao</td>
+          <td>3</td>
+          <td>ATTT301.1</td>
+          <td>Thứ 5 (7:00 - 9:30)</td>
+          <td>B304</td>
+          <td>40/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('ATTT301.1')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>KTPM301</td>
+          <td>Kiểm thử phần mềm nâng cao</td>
+          <td>3</td>
+          <td>KTPM301.1</td>
+          <td>Thứ 4 (9:45 - 12:15)</td>
+          <td>A305</td>
+          <td>35/60</td>
+          <td>
+            <button class="register-btn" onclick="registerCourse('KTPM301.1')">
+              Đăng ký
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">&raquo;</a>
+  </div>
+</div>
+
+<!-- Danh sách học phần đã đăng ký -->
+<div class="registered-courses">
+  <h2 class="section-title">Danh sách học phần đã đăng ký</h2>
+
+  <div class="registered-table-container">
+    <table class="registered-table">
+      <thead>
+        <tr>
+          <th width="5%">STT</th>
+          <th width="10%">Mã học phần</th>
+          <th width="25%">Tên học phần</th>
+          <th width="8%">Số TC</th>
+          <th width="10%">Lớp</th>
+          <th width="15%">Lịch học</th>
+          <th width="10%">Phòng học</th>
+          <th width="10%">Trạng thái</th>
+          <th width="7%">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="registered-courses-list">
+        <!-- Danh sách trống, sẽ được cập nhật bằng JavaScript -->
+        <tr class="empty-row">
+          <td colspan="9" class="text-center">
+            Chưa có học phần nào được đăng ký
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-right"><strong>Tổng cộng:</strong></td>
+          <td id="total-credits">0</td>
+          <td colspan="5"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="registration-actions">
+    <button class="cancel-btn" onclick="cancelAllCourses()">Hủy tất cả</button>
+    <button class="save-btn" onclick="saveRegistration()">Lưu đăng ký</button>
+  </div>
+</div>
+
+<!-- Xác nhận đăng ký học phần -->
+<div id="confirm-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Xác nhận đăng ký học phần</h3>
+      <span class="close-modal" onclick="closeConfirmModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>Bạn có chắc chắn muốn đăng ký học phần này?</p>
+      <div class="course-info">
+        <div class="info-row">
+          <div class="info-label">Mã học phần:</div>
+          <div class="info-value" id="confirm-course-code">CNPM101</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Tên học phần:</div>
+          <div class="info-value" id="confirm-course-name">
+            Công nghệ phần mềm nâng cao
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Lớp:</div>
+          <div class="info-value" id="confirm-class">CNPM101.1</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Số tín chỉ:</div>
+          <div class="info-value" id="confirm-credits">3</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Lịch học:</div>
+          <div class="info-value" id="confirm-schedule">
+            Thứ 2 (7:00 - 9:30)
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Phòng học:</div>
+          <div class="info-value" id="confirm-room">A305</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="closeConfirmModal()">Hủy</button>
+      <button class="confirm-btn" onclick="confirmRegistration()">
+        Xác nhận
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Biến lưu trữ thông tin học phần đã đăng ký
+  let registeredCourses = [];
+  let currentCourse = null;
+
+  // Hàm lọc danh sách học phần
+  function filterCourses() {
+    const department = document.getElementById("course-department").value;
+    const type = document.getElementById("course-type").value;
+    const search = document.getElementById("course-search").value.toLowerCase();
+    const status = document.getElementById("course-status").value;
+
+    console.log("Lọc học phần:", { department, type, search, status });
+
+    // Trong thực tế, đây sẽ là API call để lọc học phần
+    // fetchFilteredCourses(department, type, search, status);
+  }
+
+  // Hàm đăng ký học phần
+  function registerCourse(classId) {
+    // Tìm thông tin học phần từ bảng
+    const row = Array.from(
+      document.querySelectorAll(".course-table tbody tr")
+    ).find((row) => {
+      return row.querySelector("td:nth-child(5)").textContent === classId;
+    });
+
+    if (row) {
+      const courseCode = row.querySelector("td:nth-child(2)").textContent;
+      const courseName = row.querySelector("td:nth-child(3)").textContent;
+      const credits = parseInt(
+        row.querySelector("td:nth-child(4)").textContent
+      );
+      const schedule = row.querySelector("td:nth-child(6)").textContent;
+      const room = row.querySelector("td:nth-child(7)").textContent;
+
+      // Lưu thông tin học phần hiện tại
+      currentCourse = {
+        id: classId,
+        code: courseCode,
+        name: courseName,
+        credits: credits,
+        class: classId,
+        schedule: schedule,
+        room: room,
+        status: "Chờ xác nhận",
+      };
+
+      // Hiển thị modal xác nhận
+      document.getElementById("confirm-course-code").textContent = courseCode;
+      document.getElementById("confirm-course-name").textContent = courseName;
+      document.getElementById("confirm-class").textContent = classId;
+      document.getElementById("confirm-credits").textContent = credits;
+      document.getElementById("confirm-schedule").textContent = schedule;
+      document.getElementById("confirm-room").textContent = room;
+
+      document.getElementById("confirm-modal").style.display = "block";
+    }
+  }
+
+  // Hàm xác nhận đăng ký học phần
+  function confirmRegistration() {
+    if (currentCourse) {
+      // Kiểm tra xem học phần đã được đăng ký chưa
+      const existingIndex = registeredCourses.findIndex(
+        (course) => course.id === currentCourse.id
+      );
+
+      if (existingIndex === -1) {
+        // Thêm vào danh sách đã đăng ký
+        registeredCourses.push(currentCourse);
+
+        // Cập nhật giao diện
+        updateRegisteredCoursesList();
+
+        // Hiển thị thông báo
+        alert("Đăng ký học phần thành công!");
+      } else {
+        alert("Học phần này đã được đăng ký!");
+      }
+
+      // Đóng modal
+      closeConfirmModal();
+    }
+  }
+
+  // Hàm đóng modal xác nhận
+  function closeConfirmModal() {
+    document.getElementById("confirm-modal").style.display = "none";
+    currentCourse = null;
+  }
+
+  // Hàm hủy đăng ký học phần
+  function cancelCourse(classId) {
+    // Xác nhận hủy
+    if (confirm("Bạn có chắc chắn muốn hủy đăng ký học phần này?")) {
+      // Tìm và xóa học phần khỏi danh sách
+      const index = registeredCourses.findIndex(
+        (course) => course.id === classId
+      );
+
+      if (index !== -1) {
+        registeredCourses.splice(index, 1);
+
+        // Cập nhật giao diện
+        updateRegisteredCoursesList();
+
+        // Hiển thị thông báo
+        alert("Hủy đăng ký học phần thành công!");
+      }
+    }
+  }
+
+  // Hàm hủy tất cả học phần
+  function cancelAllCourses() {
+    if (registeredCourses.length === 0) {
+      alert("Chưa có học phần nào được đăng ký!");
+      return;
+    }
+
+    // Xác nhận hủy tất cả
+    if (confirm("Bạn có chắc chắn muốn hủy tất cả học phần đã đăng ký?")) {
+      // Xóa tất cả học phần
+      registeredCourses = [];
+
+      // Cập nhật giao diện
+      updateRegisteredCoursesList();
+
+      // Hiển thị thông báo
+      alert("Hủy tất cả học phần thành công!");
+    }
+  }
+
+  // Hàm lưu đăng ký học phần
+  function saveRegistration() {
+    if (registeredCourses.length === 0) {
+      alert("Chưa có học phần nào được đăng ký!");
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để lưu đăng ký
+    // saveRegisteredCourses(registeredCourses);
+
+    // Hiển thị thông báo
+    alert("Lưu đăng ký học phần thành công!");
+
+    // Cập nhật trạng thái học phần
+    registeredCourses.forEach((course) => {
+      course.status = "Đã xác nhận";
+    });
+
+    // Cập nhật giao diện
+    updateRegisteredCoursesList();
+  }
+
+  // Hàm cập nhật danh sách học phần đã đăng ký
+  function updateRegisteredCoursesList() {
+    const tableBody = document.getElementById("registered-courses-list");
+    const totalCreditsElement = document.getElementById("total-credits");
+
+    // Tính tổng số tín chỉ
+    const totalCredits = registeredCourses.reduce(
+      (sum, course) => sum + course.credits,
+      0
+    );
+
+    // Cập nhật tổng số tín chỉ
+    totalCreditsElement.textContent = totalCredits;
+
+    // Xóa nội dung cũ
+    tableBody.innerHTML = "";
+
+    // Nếu không có học phần nào
+    if (registeredCourses.length === 0) {
+      tableBody.innerHTML =
+        '<tr class="empty-row"><td colspan="9" class="text-center">Chưa có học phần nào được đăng ký</td></tr>';
+      return;
+    }
+
+    // Thêm các học phần đã đăng ký
+    registeredCourses.forEach((course, index) => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${course.code}</td>
+        <td>${course.name}</td>
+        <td>${course.credits}</td>
+        <td>${course.class}</td>
+        <td>${course.schedule}</td>
+        <td>${course.room}</td>
+        <td class="status-${
+          course.status === "Đã xác nhận" ? "completed" : "processing"
+        }">${course.status}</td>
+        <td>
+          <button class="cancel-course-btn" onclick="cancelCourse('${
+            course.id
+          }')"><i class="fa fa-times"></i></button>
+        </td>
+      `;
+
+      tableBody.appendChild(row);
+    });
+  }
+
+  // Đóng modal khi click bên ngoài
+  window.onclick = function (event) {
+    const modal = document.getElementById("confirm-modal");
+    if (event.target == modal) {
+      closeConfirmModal();
+    }
+  };
+
+  // Cập nhật đồng hồ đếm ngược
+  function updateCountdown() {
+    // Trong thực tế, đây sẽ là tính toán thời gian còn lại
+    // const remainingTime = calculateRemainingTime();
+    // document.querySelector('.countdown').textContent = remainingTime;
+  }
+
+  // Cập nhật đồng hồ đếm ngược mỗi giây
+  setInterval(updateCountdown, 1000);
+</script>

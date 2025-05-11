@@ -1,0 +1,455 @@
+tiêiê<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-th-large" style="color: #ff5722"></i> Khung chương trình theo
+  kỳ
+</h1>
+
+<!-- Thông tin chung -->
+<div class="program-info">
+  <div class="info-item">
+    <div class="info-label">Ngành học:</div>
+    <div class="info-value">Công nghệ thông tin</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Chuyên ngành:</div>
+    <div class="info-value">Kỹ thuật phần mềm</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Khóa học:</div>
+    <div class="info-value">2020-2024</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Học kỳ hiện tại:</div>
+    <div class="info-value">Học kỳ 2, năm học 2023-2024</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="semester-controls">
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="loadSemesterPlan()">
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+      <option value="2021-2022-2">Học kỳ 2, năm học 2021-2022</option>
+      <option value="2021-2022-1">Học kỳ 1, năm học 2021-2022</option>
+      <option value="2020-2021-2">Học kỳ 2, năm học 2020-2021</option>
+      <option value="2020-2021-1">Học kỳ 1, năm học 2020-2021</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printSemesterPlan()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportSemesterPlan()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Thống kê học kỳ -->
+<div class="semester-stats">
+  <div class="stat-item">
+    <div class="stat-value">22</div>
+    <div class="stat-label">Tổng số tín chỉ</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">14</div>
+    <div class="stat-label">Bắt buộc</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">8</div>
+    <div class="stat-label">Tự chọn</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">2</div>
+    <div class="stat-label">Đại cương</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">20</div>
+    <div class="stat-label">Chuyên ngành</div>
+  </div>
+</div>
+
+<!-- Kế hoạch học tập học kỳ -->
+<div class="semester-plan">
+  <h2 class="section-title">Kế hoạch học tập học kỳ 2, năm học 2023-2024</h2>
+
+  <!-- Học phần bắt buộc -->
+  <div class="course-section">
+    <h3 class="subsection-title">Học phần bắt buộc</h3>
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Mã học phần</th>
+          <th>Tên học phần</th>
+          <th>Số tín chỉ</th>
+          <th>Học phần tiên quyết</th>
+          <th>Học phần học trước</th>
+          <th>Học phần song hành</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="course-row required">
+          <td>1</td>
+          <td>COMP3006</td>
+          <td>Kiểm thử phần mềm</td>
+          <td>3</td>
+          <td>COMP3001</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr class="course-row required">
+          <td>2</td>
+          <td>COMP3007</td>
+          <td>Quản lý dự án phần mềm</td>
+          <td>3</td>
+          <td>COMP3001</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr class="course-row required">
+          <td>3</td>
+          <td>COMP3011</td>
+          <td>Thực tập doanh nghiệp</td>
+          <td>3</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa đăng ký</span></td>
+        </tr>
+        <tr class="course-row required">
+          <td>4</td>
+          <td>POLI3002</td>
+          <td>Lịch sử Đảng Cộng sản Việt Nam</td>
+          <td>2</td>
+          <td>POLI3001</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Học phần tự chọn -->
+  <div class="course-section">
+    <h3 class="subsection-title">Học phần tự chọn (chọn ít nhất 9 tín chỉ)</h3>
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Mã học phần</th>
+          <th>Tên học phần</th>
+          <th>Số tín chỉ</th>
+          <th>Học phần tiên quyết</th>
+          <th>Học phần học trước</th>
+          <th>Học phần song hành</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="course-row elective">
+          <td>1</td>
+          <td>COMP3008</td>
+          <td>Học máy</td>
+          <td>3</td>
+          <td>COMP3002</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr class="course-row elective">
+          <td>2</td>
+          <td>COMP3009</td>
+          <td>Phát triển game</td>
+          <td>3</td>
+          <td>COMP2002</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr class="course-row elective">
+          <td>3</td>
+          <td>COMP3010</td>
+          <td>Điện toán đám mây</td>
+          <td>3</td>
+          <td>COMP2005</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr class="course-row elective">
+          <td>4</td>
+          <td>COMP3012</td>
+          <td>Phát triển ứng dụng đa nền tảng</td>
+          <td>3</td>
+          <td>COMP3004</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge not-available">Không mở lớp</span></td>
+        </tr>
+        <tr class="course-row elective">
+          <td>5</td>
+          <td>COMP3013</td>
+          <td>Phân tích dữ liệu lớn</td>
+          <td>3</td>
+          <td>COMP2001</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="status-badge not-registered">Chưa đăng ký</span></td>
+        </tr>
+        <tr class="course-row elective">
+          <td>6</td>
+          <td>COMP3014</td>
+          <td>Thiết kế giao diện người dùng</td>
+          <td>3</td>
+          <td>-</td>
+          <td>COMP2007</td>
+          <td>-</td>
+          <td><span class="status-badge not-registered">Chưa đăng ký</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Lộ trình học tập -->
+<div class="learning-roadmap">
+  <h2 class="section-title">Lộ trình học tập</h2>
+
+  <div class="roadmap-container">
+    <div class="roadmap-timeline">
+      <!-- Học kỳ 1, năm học 2020-2021 -->
+      <div class="timeline-item completed">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 1</div>
+          <div class="semester-year">2020-2021</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Đã hoàn thành</div>
+          <div class="timeline-credits">18/18 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">MATH1001</span>
+            <span class="course-code">MATH1002</span>
+            <span class="course-code">PHYS1001</span>
+            <span class="course-code">COMP1001</span>
+            <span class="course-code">COMP1002</span>
+            <span class="course-code">ENGL1001</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Học kỳ 2, năm học 2020-2021 -->
+      <div class="timeline-item completed">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 2</div>
+          <div class="semester-year">2020-2021</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Đã hoàn thành</div>
+          <div class="timeline-credits">18/18 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">MATH1003</span>
+            <span class="course-code">MATH1004</span>
+            <span class="course-code">COMP1003</span>
+            <span class="course-code">COMP1004</span>
+            <span class="course-code">ENGL1002</span>
+            <span class="course-code">POLI1001</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Học kỳ 1, năm học 2021-2022 -->
+      <div class="timeline-item completed">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 1</div>
+          <div class="semester-year">2021-2022</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Đã hoàn thành</div>
+          <div class="timeline-credits">17/17 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">COMP2001</span>
+            <span class="course-code">COMP2002</span>
+            <span class="course-code">COMP2003</span>
+            <span class="course-code">COMP2004</span>
+            <span class="course-code">ENGL2001</span>
+            <span class="course-code">POLI2001</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Học kỳ 2, năm học 2021-2022 -->
+      <div class="timeline-item completed">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 2</div>
+          <div class="semester-year">2021-2022</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Đã hoàn thành</div>
+          <div class="timeline-credits">17/17 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">COMP2005</span>
+            <span class="course-code">COMP2006</span>
+            <span class="course-code">COMP2007</span>
+            <span class="course-code">COMP2008</span>
+            <span class="course-code">ENGL2002</span>
+            <span class="course-code">POLI2002</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Học kỳ 1, năm học 2022-2023 -->
+      <div class="timeline-item completed">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 1</div>
+          <div class="semester-year">2022-2023</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Đã hoàn thành</div>
+          <div class="timeline-credits">17/17 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">COMP3001</span>
+            <span class="course-code">COMP3002</span>
+            <span class="course-code">COMP3003</span>
+            <span class="course-code">COMP3004</span>
+            <span class="course-code">COMP3005</span>
+            <span class="course-code">POLI3001</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Học kỳ 2, năm học 2022-2023 -->
+      <div class="timeline-item current">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 2</div>
+          <div class="semester-year">2022-2023</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Đang học</div>
+          <div class="timeline-credits">17/22 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">COMP3006</span>
+            <span class="course-code">COMP3007</span>
+            <span class="course-code">COMP3008</span>
+            <span class="course-code">COMP3009</span>
+            <span class="course-code">COMP3010</span>
+            <span class="course-code">POLI3002</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Học kỳ 1, năm học 2023-2024 -->
+      <div class="timeline-item future">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 1</div>
+          <div class="semester-year">2023-2024</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Sắp tới</div>
+          <div class="timeline-credits">0/18 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">COMP4001</span>
+            <span class="course-code">COMP4002</span>
+            <span class="course-code">COMP4003</span>
+            <span class="course-code">COMP4004</span>
+            <span class="course-code">COMP4005</span>
+            <span class="course-code">COMP4006</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Học kỳ 2, năm học 2023-2024 -->
+      <div class="timeline-item future">
+        <div class="timeline-semester">
+          <div class="semester-name">Học kỳ 2</div>
+          <div class="semester-year">2023-2024</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-status">Sắp tới</div>
+          <div class="timeline-credits">0/10 tín chỉ</div>
+          <div class="timeline-courses">
+            <span class="course-code">COMP4007</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ghi chú -->
+<div class="semester-notes">
+  <h3 class="notes-title">Ghi chú</h3>
+  <ul class="notes-list">
+    <li>
+      Sinh viên phải hoàn thành tất cả các học phần bắt buộc trong học kỳ.
+    </li>
+    <li>
+      Sinh viên cần đăng ký ít nhất 9 tín chỉ học phần tự chọn trong học kỳ này.
+    </li>
+    <li>
+      Học phần COMP3011 (Thực tập doanh nghiệp) có thể đăng ký vào cuối học kỳ
+      và thực hiện trong kỳ hè.
+    </li>
+    <li>
+      Sinh viên cần đảm bảo đã hoàn thành các học phần tiên quyết trước khi đăng
+      ký học phần mới.
+    </li>
+    <li>
+      Thời gian đăng ký học phần cho học kỳ tiếp theo: 15/05/2023 - 30/05/2023.
+    </li>
+  </ul>
+</div>
+
+<script>
+  // Hàm tải kế hoạch học tập theo học kỳ
+  function loadSemesterPlan() {
+    const selectedSemester = document.getElementById("semester-select").value;
+    console.log("Đang tải kế hoạch học tập cho học kỳ: " + selectedSemester);
+
+    // Trong thực tế, đây sẽ là API call để lấy dữ liệu kế hoạch học tập
+    // fetchSemesterPlan(selectedSemester);
+
+    // Cập nhật tiêu đề
+    let semesterTitle = "";
+    if (selectedSemester === "2023-2024-2") {
+      semesterTitle = "Học kỳ 2, năm học 2023-2024";
+    } else if (selectedSemester === "2023-2024-1") {
+      semesterTitle = "Học kỳ 1, năm học 2023-2024";
+    } else if (selectedSemester === "2022-2023-2") {
+      semesterTitle = "Học kỳ 2, năm học 2022-2023";
+    } else if (selectedSemester === "2022-2023-1") {
+      semesterTitle = "Học kỳ 1, năm học 2022-2023";
+    } else if (selectedSemester === "2021-2022-2") {
+      semesterTitle = "Học kỳ 2, năm học 2021-2022";
+    } else if (selectedSemester === "2021-2022-1") {
+      semesterTitle = "Học kỳ 1, năm học 2021-2022";
+    } else if (selectedSemester === "2020-2021-2") {
+      semesterTitle = "Học kỳ 2, năm học 2020-2021";
+    } else if (selectedSemester === "2020-2021-1") {
+      semesterTitle = "Học kỳ 1, năm học 2020-2021";
+    }
+
+    document.querySelector(".section-title").textContent =
+      "Kế hoạch học tập " + semesterTitle;
+  }
+
+  // Hàm in kế hoạch học tập
+  function printSemesterPlan() {
+    window.print();
+  }
+
+  // Hàm xuất file kế hoạch học tập
+  function exportSemesterPlan() {
+    alert("Đang xuất file kế hoạch học tập...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+</script>

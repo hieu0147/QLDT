@@ -1,0 +1,597 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-tasks" style="color: #4caf50"></i> Dịch vụ một cửa
+</h1>
+
+<!-- Giới thiệu dịch vụ -->
+<div class="service-intro">
+  <p>
+    Dịch vụ một cửa giúp sinh viên dễ dàng đăng ký và theo dõi các thủ tục hành
+    chính, giấy tờ trong quá trình học tập tại trường. Sinh viên có thể đăng ký
+    trực tuyến và nhận thông báo khi hồ sơ được xử lý.
+  </p>
+</div>
+
+<!-- Tìm kiếm và lọc -->
+<div class="filter-section">
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm dịch vụ..." />
+    <button><i class="fa fa-search"></i></button>
+  </div>
+  <div class="filter-options">
+    <select>
+      <option value="">Tất cả dịch vụ</option>
+      <option value="giay-to">Giấy tờ, xác nhận</option>
+      <option value="chung-chi">Chứng chỉ</option>
+      <option value="hoc-phi">Học phí, miễn giảm</option>
+      <option value="khac">Dịch vụ khác</option>
+    </select>
+  </div>
+</div>
+
+<!-- Thống kê dịch vụ -->
+<div class="service-stats">
+  <div class="stat-item">
+    <div class="stat-value">2</div>
+    <div class="stat-label">Đang xử lý</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Đã hoàn thành</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">1</div>
+    <div class="stat-label">Cần bổ sung</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">8</div>
+    <div class="stat-label">Tổng số</div>
+  </div>
+</div>
+
+<!-- Danh sách dịch vụ -->
+<div class="service-categories">
+  <!-- Giấy tờ, xác nhận -->
+  <div class="service-category">
+    <h2 class="category-title">
+      <i class="fa fa-file-text"></i> Giấy tờ, xác nhận
+    </h2>
+    <div class="service-list">
+      <div class="service-item" onclick="showServiceForm('lam-the-sinh-vien')">
+        <div class="service-icon"><i class="fa fa-id-card"></i></div>
+        <div class="service-name">Làm lại thẻ sinh viên</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('giay-xac-nhan-sv')">
+        <div class="service-icon"><i class="fa fa-file"></i></div>
+        <div class="service-name">Xin giấy xác nhận sinh viên</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('xac-nhan-lich-hoc')">
+        <div class="service-icon">
+          <i class="fa fa-calendar-check-o"></i>
+        </div>
+        <div class="service-name">Xác nhận lịch học</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('giay-hoan-thanh-chuong-trinh')"
+      >
+        <div class="service-icon">
+          <i class="fa fa-check-square-o"></i>
+        </div>
+        <div class="service-name">Xin cấp giấy hoàn thành chương trình học</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('giay-chung-nhan-tot-nghiep')"
+      >
+        <div class="service-icon">
+          <i class="fa fa-graduation-cap"></i>
+        </div>
+        <div class="service-name">
+          Xin cấp giấy chứng nhận tốt nghiệp tạm thời
+        </div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('ban-sao-van-bang')">
+        <div class="service-icon"><i class="fa fa-copy"></i></div>
+        <div class="service-name">Cấp bản sao văn bằng chứng chỉ</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('bang-diem-qua-trinh')"
+      >
+        <div class="service-icon"><i class="fa fa-list-alt"></i></div>
+        <div class="service-name">Cấp bảng điểm quá trình</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chứng chỉ -->
+  <div class="service-category">
+    <h2 class="category-title"><i class="fa fa-certificate"></i> Chứng chỉ</h2>
+    <div class="service-list">
+      <div class="service-item" onclick="showServiceForm('chung-chi-tin-hoc')">
+        <div class="service-icon"><i class="fa fa-desktop"></i></div>
+        <div class="service-name">Xin cấp chứng chỉ Tin học</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('chung-chi-ngoai-ngu')"
+      >
+        <div class="service-icon"><i class="fa fa-language"></i></div>
+        <div class="service-name">Xin cấp chứng chỉ Ngoại ngữ</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('chung-chi-ky-nang-mem')"
+      >
+        <div class="service-icon"><i class="fa fa-users"></i></div>
+        <div class="service-name">Xin cấp chứng chỉ Kỹ năng mềm</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('chung-chi-gdqp')">
+        <div class="service-icon"><i class="fa fa-shield"></i></div>
+        <div class="service-name">Xin cấp chứng chỉ Giáo dục Quốc phòng</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('chung-chi-du-lich')">
+        <div class="service-icon"><i class="fa fa-plane"></i></div>
+        <div class="service-name">Xin cấp chứng chỉ nghiệp vụ Du lịch</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Học phí, miễn giảm -->
+  <div class="service-category">
+    <h2 class="category-title">
+      <i class="fa fa-money"></i> Học phí, miễn giảm
+    </h2>
+    <div class="service-list">
+      <div class="service-item" onclick="showServiceForm('xac-nhan-vay-von')">
+        <div class="service-icon"><i class="fa fa-bank"></i></div>
+        <div class="service-name">Xác nhận vay vốn</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('cap-bu-mien-giam-hoc-phi')"
+      >
+        <div class="service-icon"><i class="fa fa-dollar"></i></div>
+        <div class="service-name">Xác nhận cấp bù tiền miễn giảm học phí</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('so-uu-dai-giao-duc')">
+        <div class="service-icon"><i class="fa fa-book"></i></div>
+        <div class="service-name">Xác nhận sổ ưu đãi trong giáo dục</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dịch vụ khác -->
+  <div class="service-category">
+    <h2 class="category-title">
+      <i class="fa fa-ellipsis-h"></i> Dịch vụ khác
+    </h2>
+    <div class="service-list">
+      <div class="service-item" onclick="showServiceForm('phuc-khao-diem')">
+        <div class="service-icon"><i class="fa fa-search"></i></div>
+        <div class="service-name">Phúc khảo điểm thi kết thúc học phần</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('dang-ky-hoc-lai')">
+        <div class="service-icon"><i class="fa fa-refresh"></i></div>
+        <div class="service-name">
+          Đăng ký học lại (đối với sinh viên liên thông)
+        </div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('kiem-tra-tieng-anh')">
+        <div class="service-icon"><i class="fa fa-language"></i></div>
+        <div class="service-name">Kiểm tra năng lực tiếng Anh</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('sao-y-ly-lich')">
+        <div class="service-icon"><i class="fa fa-user"></i></div>
+        <div class="service-name">
+          Sao y bản chính hoặc xác nhận lý lịch nội bộ
+        </div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('xac-nhan-diem-gdtc-gdqp')"
+      >
+        <div class="service-icon">
+          <i class="fa fa-check-circle"></i>
+        </div>
+        <div class="service-name">Xác nhận điểm GDTC/ GDQP</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('sao-y-giay-bao-nhap-hoc')"
+      >
+        <div class="service-icon"><i class="fa fa-envelope"></i></div>
+        <div class="service-name">Đề nghị sao y Giấy báo nhập học</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('the-gui-xe')">
+        <div class="service-icon"><i class="fa fa-motorcycle"></i></div>
+        <div class="service-name">Đăng ký thẻ gửi xe tự động</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('le-phi-thi-lai')">
+        <div class="service-icon"><i class="fa fa-repeat"></i></div>
+        <div class="service-name">Lệ phí thi lại</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('phi-kich-hoat-the-gui-xe')"
+      >
+        <div class="service-icon">
+          <i class="fa fa-credit-card"></i>
+        </div>
+        <div class="service-name">Phí kích hoạt thẻ gửi xe tự động</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('phi-gui-xe-ktx')">
+        <div class="service-icon"><i class="fa fa-motorcycle"></i></div>
+        <div class="service-name">Phí gửi xe máy theo tháng KTX</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('the-gui-xe-cap-lai')">
+        <div class="service-icon"><i class="fa fa-id-card-o"></i></div>
+        <div class="service-name">Đăng ký thẻ gửi xe tự động (cấp lại)</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="service-item" onclick="showServiceForm('le-phi-xet-tuyen')">
+        <div class="service-icon">
+          <i class="fa fa-file-text-o"></i>
+        </div>
+        <div class="service-name">
+          Lệ phí xét tuyển (chuyên ngành và cơ sở ngành)
+        </div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div
+        class="service-item"
+        onclick="showServiceForm('le-tot-nghiep-sau-dai-hoc')"
+      >
+        <div class="service-icon">
+          <i class="fa fa-graduation-cap"></i>
+        </div>
+        <div class="service-name">Tham gia lễ tốt nghiệp (Sau đại học)</div>
+        <div class="service-arrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form đăng ký dịch vụ (mặc định ẩn) -->
+<div id="service-form-container" class="service-form-container">
+  <div class="service-form">
+    <div class="form-header">
+      <h3 id="form-title">Đăng ký dịch vụ</h3>
+      <button class="close-form-btn" onclick="hideServiceForm()">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="form-content">
+      <div class="form-group">
+        <label for="student-id">Mã sinh viên:</label>
+        <input type="text" id="student-id" value="SV12345" readonly />
+      </div>
+      <div class="form-group">
+        <label for="student-name">Họ và tên:</label>
+        <input type="text" id="student-name" value="Nguyễn Văn A" readonly />
+      </div>
+      <div class="form-group">
+        <label for="student-class">Lớp:</label>
+        <input type="text" id="student-class" value="CNTT2020" readonly />
+      </div>
+      <div class="form-group">
+        <label for="service-reason">Lý do:</label>
+        <textarea
+          id="service-reason"
+          placeholder="Nhập lý do đăng ký dịch vụ..."
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="service-note">Ghi chú:</label>
+        <textarea
+          id="service-note"
+          placeholder="Ghi chú thêm (nếu có)..."
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="service-file">Tài liệu đính kèm:</label>
+        <input type="file" id="service-file" />
+        <small>Định dạng hỗ trợ: PDF, JPG, PNG (tối đa 5MB)</small>
+      </div>
+      <div class="form-group service-fee">
+        <label>Lệ phí:</label>
+        <span id="service-fee">30,000 VNĐ</span>
+      </div>
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="hideServiceForm()">Hủy</button>
+        <button class="submit-btn" onclick="submitServiceForm()">
+          Đăng ký
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Danh sách đăng ký dịch vụ của sinh viên -->
+<div class="my-services">
+  <h2 class="section-title">Dịch vụ đã đăng ký</h2>
+  <div class="service-table-container">
+    <table class="service-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên dịch vụ</th>
+          <th>Ngày đăng ký</th>
+          <th>Trạng thái</th>
+          <th>Lệ phí</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Xin giấy xác nhận sinh viên</td>
+          <td>15/05/2024</td>
+          <td><span class="status-completed">Đã hoàn thành</span></td>
+          <td>20,000 VNĐ</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="action-btn download-btn" title="Tải xuống">
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Cấp bảng điểm quá trình</td>
+          <td>10/05/2024</td>
+          <td><span class="status-processing">Đang xử lý</span></td>
+          <td>30,000 VNĐ</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Xin cấp chứng chỉ Tin học</td>
+          <td>05/05/2024</td>
+          <td><span class="status-completed">Đã hoàn thành</span></td>
+          <td>100,000 VNĐ</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="action-btn download-btn" title="Tải xuống">
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Phúc khảo điểm thi kết thúc học phần</td>
+          <td>01/05/2024</td>
+          <td><span class="status-need-info">Cần bổ sung</span></td>
+          <td>50,000 VNĐ</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="action-btn edit-btn" title="Chỉnh sửa">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Xác nhận vay vốn</td>
+          <td>28/04/2024</td>
+          <td><span class="status-completed">Đã hoàn thành</span></td>
+          <td>Miễn phí</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="action-btn download-btn" title="Tải xuống">
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Xác nhận lịch học</td>
+          <td>25/04/2024</td>
+          <td><span class="status-completed">Đã hoàn thành</span></td>
+          <td>20,000 VNĐ</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="action-btn download-btn" title="Tải xuống">
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Đăng ký thẻ gửi xe tự động</td>
+          <td>20/04/2024</td>
+          <td><span class="status-completed">Đã hoàn thành</span></td>
+          <td>50,000 VNĐ</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Kiểm tra năng lực tiếng Anh</td>
+          <td>15/04/2024</td>
+          <td><span class="status-processing">Đang xử lý</span></td>
+          <td>200,000 VNĐ</td>
+          <td>
+            <button class="action-btn view-btn" title="Xem chi tiết">
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Phân trang -->
+  <div class="pagination">
+    <a href="#"><i class="fa fa-angle-double-left"></i></a>
+    <a href="#"><i class="fa fa-angle-left"></i></a>
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#"><i class="fa fa-angle-right"></i></a>
+    <a href="#"><i class="fa fa-angle-double-right"></i></a>
+  </div>
+</div>
+
+<script>
+  // Hàm hiển thị form đăng ký dịch vụ
+  function showServiceForm(serviceId) {
+    const formContainer = document.getElementById("service-form-container");
+    const formTitle = document.getElementById("form-title");
+
+    // Cập nhật tiêu đề form theo dịch vụ được chọn
+    switch (serviceId) {
+      case "lam-the-sinh-vien":
+        formTitle.textContent = "Đăng ký làm lại thẻ sinh viên";
+        document.getElementById("service-fee").textContent = "50,000 VNĐ";
+        break;
+      case "giay-xac-nhan-sv":
+        formTitle.textContent = "Đăng ký xin giấy xác nhận sinh viên";
+        document.getElementById("service-fee").textContent = "20,000 VNĐ";
+        break;
+      // Các trường hợp khác...
+      default:
+        formTitle.textContent = "Đăng ký dịch vụ";
+        document.getElementById("service-fee").textContent = "30,000 VNĐ";
+    }
+
+    // Hiển thị form
+    formContainer.style.display = "flex";
+  }
+
+  // Hàm ẩn form đăng ký dịch vụ
+  function hideServiceForm() {
+    const formContainer = document.getElementById("service-form-container");
+    formContainer.style.display = "none";
+  }
+
+  // Hàm xử lý khi submit form
+  function submitServiceForm() {
+    alert(
+      'Đăng ký dịch vụ thành công! Bạn có thể theo dõi trạng thái xử lý trong danh sách "Dịch vụ đã đăng ký".'
+    );
+    hideServiceForm();
+  }
+</script>

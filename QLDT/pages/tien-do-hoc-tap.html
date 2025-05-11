@@ -1,0 +1,1119 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-tasks" style="color: #4caf50"></i> Tiến độ học tập
+</h1>
+
+<!-- Thông tin chung -->
+<div class="progress-info">
+  <div class="info-item">
+    <div class="info-label">Ngành học:</div>
+    <div class="info-value">Công nghệ thông tin</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Chuyên ngành:</div>
+    <div class="info-value">Kỹ thuật phần mềm</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Khóa học:</div>
+    <div class="info-value">2020-2024</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Tổng số tín chỉ yêu cầu:</div>
+    <div class="info-value">150</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Số tín chỉ đã tích lũy:</div>
+    <div class="info-value">100</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Tiến độ hoàn thành:</div>
+    <div class="info-value">66.7%</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="progress-controls">
+  <div class="control-group">
+    <label for="view-type">Chế độ xem:</label>
+    <select id="view-type" onchange="changeView()">
+      <option value="summary">Tổng quan</option>
+      <option value="detail">Chi tiết</option>
+      <option value="chart">Biểu đồ</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printProgress()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportProgress()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Thanh tiến độ tổng thể -->
+<div class="overall-progress">
+  <div class="progress-bar-container">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 66.7%">66.7%</div>
+    </div>
+    <div class="progress-labels">
+      <span>0%</span>
+      <span>25%</span>
+      <span>50%</span>
+      <span>75%</span>
+      <span>100%</span>
+    </div>
+  </div>
+</div>
+
+<!-- Chế độ xem tổng quan -->
+<div id="summary-view" class="progress-view active">
+  <h2 class="section-title">Tổng quan tiến độ học tập</h2>
+
+  <!-- Thống kê tín chỉ -->
+  <div class="credit-summary">
+    <div class="summary-item">
+      <div class="summary-value">100/150</div>
+      <div class="summary-label">Tổng số tín chỉ</div>
+      <div class="progress-mini">
+        <div class="progress-fill" style="width: 66.7%"></div>
+      </div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-value">85/120</div>
+      <div class="summary-label">Bắt buộc</div>
+      <div class="progress-mini">
+        <div class="progress-fill" style="width: 70.8%"></div>
+      </div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-value">15/30</div>
+      <div class="summary-label">Tự chọn</div>
+      <div class="progress-mini">
+        <div class="progress-fill" style="width: 50%"></div>
+      </div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-value">45/45</div>
+      <div class="summary-label">Đại cương</div>
+      <div class="progress-mini">
+        <div class="progress-fill" style="width: 100%"></div>
+      </div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-value">55/105</div>
+      <div class="summary-label">Chuyên ngành</div>
+      <div class="progress-mini">
+        <div class="progress-fill" style="width: 52.4%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tiến độ theo năm học -->
+  <div class="year-progress">
+    <h3 class="subsection-title">Tiến độ theo năm học</h3>
+
+    <div class="year-progress-items">
+      <div class="year-item">
+        <div class="year-header">
+          <div class="year-title">Năm thứ nhất</div>
+          <div class="year-status completed">Hoàn thành</div>
+        </div>
+        <div class="year-body">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%">36/36 tín chỉ</div>
+          </div>
+          <div class="year-details">
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 1:</div>
+              <div class="detail-value">18/18 tín chỉ</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 2:</div>
+              <div class="detail-value">18/18 tín chỉ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-item">
+        <div class="year-header">
+          <div class="year-title">Năm thứ hai</div>
+          <div class="year-status completed">Hoàn thành</div>
+        </div>
+        <div class="year-body">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%">36/36 tín chỉ</div>
+          </div>
+          <div class="year-details">
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 1:</div>
+              <div class="detail-value">17/17 tín chỉ</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 2:</div>
+              <div class="detail-value">19/19 tín chỉ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-item">
+        <div class="year-header">
+          <div class="year-title">Năm thứ ba</div>
+          <div class="year-status in-progress">Đang học</div>
+        </div>
+        <div class="year-body">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 71.8%">28/39 tín chỉ</div>
+          </div>
+          <div class="year-details">
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 1:</div>
+              <div class="detail-value">17/17 tín chỉ</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 2:</div>
+              <div class="detail-value">11/22 tín chỉ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-item">
+        <div class="year-header">
+          <div class="year-title">Năm thứ tư</div>
+          <div class="year-status not-started">Chưa học</div>
+        </div>
+        <div class="year-body">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%">0/39 tín chỉ</div>
+          </div>
+          <div class="year-details">
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 1:</div>
+              <div class="detail-value">0/18 tín chỉ</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Học kỳ 2:</div>
+              <div class="detail-value">0/21 tín chỉ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Học phần còn thiếu -->
+  <div class="missing-courses">
+    <h3 class="subsection-title">Học phần còn thiếu</h3>
+
+    <div class="missing-count">
+      <div class="count-value">50</div>
+      <div class="count-label">Tín chỉ còn thiếu</div>
+    </div>
+
+    <div class="missing-categories">
+      <div class="category-item">
+        <div class="category-header">
+          <div class="category-title">Học phần bắt buộc</div>
+          <div class="category-count">35 tín chỉ</div>
+        </div>
+        <div class="category-list">
+          <div class="course-item">
+            <div class="course-code">COMP3006</div>
+            <div class="course-name">Kiểm thử phần mềm</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP3007</div>
+            <div class="course-name">Quản lý dự án phần mềm</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP3011</div>
+            <div class="course-name">Thực tập doanh nghiệp</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP4001</div>
+            <div class="course-name">Đồ án chuyên ngành</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP4007</div>
+            <div class="course-name">Khóa luận tốt nghiệp</div>
+            <div class="course-credits">10 tín chỉ</div>
+          </div>
+          <div class="more-courses">
+            <a href="#" onclick="showAllMissingCourses('required')"
+              >Xem thêm 5 học phần...</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="category-item">
+        <div class="category-header">
+          <div class="category-title">Học phần tự chọn</div>
+          <div class="category-count">15 tín chỉ</div>
+        </div>
+        <div class="category-list">
+          <div class="course-item">
+            <div class="course-code">COMP3008</div>
+            <div class="course-name">Học máy</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP3009</div>
+            <div class="course-name">Phát triển game</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP3010</div>
+            <div class="course-name">Điện toán đám mây</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP4002</div>
+            <div class="course-name">Phát triển phần mềm hướng dịch vụ</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+          <div class="course-item">
+            <div class="course-code">COMP4003</div>
+            <div class="course-name">Blockchain và ứng dụng</div>
+            <div class="course-credits">3 tín chỉ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Khuyến nghị -->
+  <div class="recommendations">
+    <h3 class="subsection-title">Khuyến nghị</h3>
+
+    <div class="recommendation-list">
+      <div class="recommendation-item">
+        <div class="recommendation-icon"><i class="fa fa-lightbulb-o"></i></div>
+        <div class="recommendation-content">
+          <div class="recommendation-title">
+            Đăng ký học phần COMP3006 và COMP3007 trong học kỳ tới
+          </div>
+          <div class="recommendation-description">
+            Các học phần này là tiên quyết cho các học phần năm thứ tư.
+          </div>
+        </div>
+      </div>
+
+      <div class="recommendation-item">
+        <div class="recommendation-icon"><i class="fa fa-lightbulb-o"></i></div>
+        <div class="recommendation-content">
+          <div class="recommendation-title">
+            Hoàn thành ít nhất 15 tín chỉ tự chọn
+          </div>
+          <div class="recommendation-description">
+            Bạn cần hoàn thành ít nhất 15 tín chỉ tự chọn để đủ điều kiện tốt
+            nghiệp.
+          </div>
+        </div>
+      </div>
+
+      <div class="recommendation-item">
+        <div class="recommendation-icon"><i class="fa fa-lightbulb-o"></i></div>
+        <div class="recommendation-content">
+          <div class="recommendation-title">
+            Chuẩn bị cho thực tập doanh nghiệp
+          </div>
+          <div class="recommendation-description">
+            Bạn nên chuẩn bị hồ sơ và kỹ năng cho học phần thực tập doanh nghiệp
+            vào học kỳ tới.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chế độ xem chi tiết -->
+<div id="detail-view" class="progress-view">
+  <h2 class="section-title">Chi tiết tiến độ học tập</h2>
+
+  <!-- Bộ lọc học phần -->
+  <div class="course-filters">
+    <div class="filter-group">
+      <label for="status-filter">Trạng thái:</label>
+      <select id="status-filter" onchange="filterDetailCourses()">
+        <option value="all">Tất cả</option>
+        <option value="completed">Đã hoàn thành</option>
+        <option value="in-progress">Đang học</option>
+        <option value="not-started">Chưa học</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="year-filter">Năm học:</label>
+      <select id="year-filter" onchange="filterDetailCourses()">
+        <option value="all">Tất cả</option>
+        <option value="1">Năm thứ nhất</option>
+        <option value="2">Năm thứ hai</option>
+        <option value="3">Năm thứ ba</option>
+        <option value="4">Năm thứ tư</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="type-filter">Loại học phần:</label>
+      <select id="type-filter" onchange="filterDetailCourses()">
+        <option value="all">Tất cả</option>
+        <option value="required">Bắt buộc</option>
+        <option value="elective">Tự chọn</option>
+        <option value="general">Đại cương</option>
+        <option value="specialized">Chuyên ngành</option>
+      </select>
+    </div>
+
+    <div class="search-group">
+      <input
+        type="text"
+        id="course-search"
+        placeholder="Tìm kiếm học phần..."
+        onkeyup="searchDetailCourses()"
+      />
+      <button class="search-btn"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+
+  <!-- Bảng học phần chi tiết -->
+  <div class="course-table-container">
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Mã học phần</th>
+          <th>Tên học phần</th>
+          <th>Số tín chỉ</th>
+          <th>Loại học phần</th>
+          <th>Năm học</th>
+          <th>Học kỳ</th>
+          <th>Điểm</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Năm thứ nhất - Học kỳ 1 -->
+        <tr class="course-row completed general required year-1 semester-1">
+          <td>1</td>
+          <td>MATH1001</td>
+          <td>Giải tích 1</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>1</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-1 semester-1">
+          <td>2</td>
+          <td>MATH1002</td>
+          <td>Đại số tuyến tính</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>1</td>
+          <td>7.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-1 semester-1">
+          <td>3</td>
+          <td>PHYS1001</td>
+          <td>Vật lý đại cương</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>1</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-1 semester-1">
+          <td>4</td>
+          <td>COMP1001</td>
+          <td>Nhập môn lập trình</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>1</td>
+          <td>9.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-1 semester-1">
+          <td>5</td>
+          <td>COMP1002</td>
+          <td>Nhập môn công nghệ thông tin</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>1</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-1 semester-1">
+          <td>6</td>
+          <td>ENGL1001</td>
+          <td>Tiếng Anh 1</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>1</td>
+          <td>7.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+
+        <!-- Năm thứ nhất - Học kỳ 2 -->
+        <tr class="course-row completed general required year-1 semester-2">
+          <td>7</td>
+          <td>MATH1003</td>
+          <td>Giải tích 2</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>2</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-1 semester-2">
+          <td>8</td>
+          <td>MATH1004</td>
+          <td>Xác suất thống kê</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>2</td>
+          <td>7.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-1 semester-2">
+          <td>9</td>
+          <td>COMP1003</td>
+          <td>Kỹ thuật lập trình</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>2</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-1 semester-2">
+          <td>10</td>
+          <td>COMP1004</td>
+          <td>Cấu trúc dữ liệu và giải thuật</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>2</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-1 semester-2">
+          <td>11</td>
+          <td>ENGL1002</td>
+          <td>Tiếng Anh 2</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>2</td>
+          <td>7.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-1 semester-2">
+          <td>12</td>
+          <td>POLI1001</td>
+          <td>Triết học Mác-Lênin</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>1</td>
+          <td>2</td>
+          <td>7.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+
+        <!-- Năm thứ hai - Học kỳ 1 -->
+        <tr class="course-row completed specialized required year-2 semester-1">
+          <td>13</td>
+          <td>COMP2001</td>
+          <td>Cơ sở dữ liệu</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>1</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-2 semester-1">
+          <td>14</td>
+          <td>COMP2002</td>
+          <td>Lập trình hướng đối tượng</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>1</td>
+          <td>9.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-2 semester-1">
+          <td>15</td>
+          <td>COMP2003</td>
+          <td>Kiến trúc máy tính</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>1</td>
+          <td>7.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-2 semester-1">
+          <td>16</td>
+          <td>COMP2004</td>
+          <td>Hệ điều hành</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>1</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-2 semester-1">
+          <td>17</td>
+          <td>ENGL2001</td>
+          <td>Tiếng Anh 3</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>1</td>
+          <td>7.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-2 semester-1">
+          <td>18</td>
+          <td>POLI2001</td>
+          <td>Kinh tế chính trị Mác-Lênin</td>
+          <td>2</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>1</td>
+          <td>7.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+
+        <!-- Năm thứ hai - Học kỳ 2 -->
+        <tr class="course-row completed specialized required year-2 semester-2">
+          <td>19</td>
+          <td>COMP2005</td>
+          <td>Mạng máy tính</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>2</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-2 semester-2">
+          <td>20</td>
+          <td>COMP2006</td>
+          <td>Phân tích và thiết kế hệ thống</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>2</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-2 semester-2">
+          <td>21</td>
+          <td>COMP2007</td>
+          <td>Lập trình Web</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>2</td>
+          <td>9.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-2 semester-2">
+          <td>22</td>
+          <td>COMP2008</td>
+          <td>Lập trình Java</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>2</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-2 semester-2">
+          <td>23</td>
+          <td>ENGL2002</td>
+          <td>Tiếng Anh 4</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>2</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-2 semester-2">
+          <td>24</td>
+          <td>POLI2002</td>
+          <td>Chủ nghĩa xã hội khoa học</td>
+          <td>2</td>
+          <td>Bắt buộc</td>
+          <td>2</td>
+          <td>2</td>
+          <td>7.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+
+        <!-- Năm thứ ba - Học kỳ 1 -->
+        <tr class="course-row completed specialized required year-3 semester-1">
+          <td>25</td>
+          <td>COMP3001</td>
+          <td>Công nghệ phần mềm</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>1</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-3 semester-1">
+          <td>26</td>
+          <td>COMP3002</td>
+          <td>Trí tuệ nhân tạo</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>1</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized required year-3 semester-1">
+          <td>27</td>
+          <td>COMP3003</td>
+          <td>An toàn thông tin</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>1</td>
+          <td>7.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized elective year-3 semester-1">
+          <td>28</td>
+          <td>COMP3004</td>
+          <td>Lập trình di động</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>3</td>
+          <td>1</td>
+          <td>8.5</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed specialized elective year-3 semester-1">
+          <td>29</td>
+          <td>COMP3005</td>
+          <td>Lập trình Web nâng cao</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>3</td>
+          <td>1</td>
+          <td>9.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+        <tr class="course-row completed general required year-3 semester-1">
+          <td>30</td>
+          <td>POLI3001</td>
+          <td>Tư tưởng Hồ Chí Minh</td>
+          <td>2</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>1</td>
+          <td>8.0</td>
+          <td><span class="status-badge completed">Đã hoàn thành</span></td>
+        </tr>
+
+        <!-- Năm thứ ba - Học kỳ 2 -->
+        <tr
+          class="course-row in-progress specialized required year-3 semester-2"
+        >
+          <td>31</td>
+          <td>COMP3006</td>
+          <td>Kiểm thử phần mềm</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr
+          class="course-row in-progress specialized required year-3 semester-2"
+        >
+          <td>32</td>
+          <td>COMP3007</td>
+          <td>Quản lý dự án phần mềm</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr
+          class="course-row in-progress specialized elective year-3 semester-2"
+        >
+          <td>33</td>
+          <td>COMP3008</td>
+          <td>Học máy</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>3</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr
+          class="course-row in-progress specialized elective year-3 semester-2"
+        >
+          <td>34</td>
+          <td>COMP3009</td>
+          <td>Phát triển game</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>3</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr
+          class="course-row in-progress specialized elective year-3 semester-2"
+        >
+          <td>35</td>
+          <td>COMP3010</td>
+          <td>Điện toán đám mây</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>3</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr class="course-row in-progress general required year-3 semester-2">
+          <td>36</td>
+          <td>POLI3002</td>
+          <td>Lịch sử Đảng Cộng sản Việt Nam</td>
+          <td>2</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge in-progress">Đang học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized required year-3 semester-2"
+        >
+          <td>37</td>
+          <td>COMP3011</td>
+          <td>Thực tập doanh nghiệp</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>3</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+
+        <!-- Năm thứ tư - Học kỳ 1 -->
+        <tr
+          class="course-row not-started specialized required year-4 semester-1"
+        >
+          <td>38</td>
+          <td>COMP4001</td>
+          <td>Đồ án chuyên ngành</td>
+          <td>3</td>
+          <td>Bắt buộc</td>
+          <td>4</td>
+          <td>1</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-1"
+        >
+          <td>39</td>
+          <td>COMP4002</td>
+          <td>Phát triển phần mềm hướng dịch vụ</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>4</td>
+          <td>1</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-1"
+        >
+          <td>40</td>
+          <td>COMP4003</td>
+          <td>Blockchain và ứng dụng</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>4</td>
+          <td>1</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-1"
+        >
+          <td>41</td>
+          <td>COMP4004</td>
+          <td>Internet of Things</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>4</td>
+          <td>1</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-1"
+        >
+          <td>42</td>
+          <td>COMP4005</td>
+          <td>Xử lý ngôn ngữ tự nhiên</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>4</td>
+          <td>1</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-1"
+        >
+          <td>43</td>
+          <td>COMP4006</td>
+          <td>Thị giác máy tính</td>
+          <td>3</td>
+          <td>Tự chọn</td>
+          <td>4</td>
+          <td>1</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+
+        <!-- Năm thứ tư - Học kỳ 2 -->
+        <tr
+          class="course-row not-started specialized required year-4 semester-2"
+        >
+          <td>44</td>
+          <td>COMP4007</td>
+          <td>Khóa luận tốt nghiệp</td>
+          <td>10</td>
+          <td>Bắt buộc</td>
+          <td>4</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-2"
+        >
+          <td>45</td>
+          <td>COMP4008</td>
+          <td>Chuyên đề tốt nghiệp 1</td>
+          <td>3</td>
+          <td>Tự chọn thay thế khóa luận</td>
+          <td>4</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-2"
+        >
+          <td>46</td>
+          <td>COMP4009</td>
+          <td>Chuyên đề tốt nghiệp 2</td>
+          <td>3</td>
+          <td>Tự chọn thay thế khóa luận</td>
+          <td>4</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+        <tr
+          class="course-row not-started specialized elective year-4 semester-2"
+        >
+          <td>47</td>
+          <td>COMP4010</td>
+          <td>Chuyên đề tốt nghiệp 3</td>
+          <td>4</td>
+          <td>Tự chọn thay thế khóa luận</td>
+          <td>4</td>
+          <td>2</td>
+          <td>-</td>
+          <td><span class="status-badge not-started">Chưa học</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Chế độ xem biểu đồ -->
+<div id="chart-view" class="progress-view">
+  <h2 class="section-title">Biểu đồ tiến độ học tập</h2>
+
+  <div class="chart-container">
+    <div class="chart-section">
+      <h3 class="subsection-title">Tiến độ tích lũy tín chỉ</h3>
+      <div class="chart-wrapper">
+        <canvas id="credits-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <h3 class="subsection-title">Điểm trung bình theo học kỳ</h3>
+      <div class="chart-wrapper">
+        <canvas id="gpa-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <h3 class="subsection-title">Phân bố điểm số</h3>
+      <div class="chart-wrapper">
+        <canvas id="grade-distribution-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <h3 class="subsection-title">Tỷ lệ hoàn thành theo loại học phần</h3>
+      <div class="chart-wrapper">
+        <canvas id="course-type-chart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm chuyển đổi chế độ xem
+  function changeView() {
+    const viewType = document.getElementById("view-type").value;
+    const views = document.querySelectorAll(".progress-view");
+
+    // Ẩn tất cả các chế độ xem
+    views.forEach((view) => {
+      view.classList.remove("active");
+    });
+
+    // Hiển thị chế độ xem được chọn
+    document.getElementById(viewType + "-view").classList.add("active");
+
+    // Nếu là chế độ xem biểu đồ, vẽ biểu đồ
+    if (viewType === "chart") {
+      drawCharts();
+    }
+  }
+
+  // Hàm lọc học phần trong chế độ xem chi tiết
+  function filterDetailCourses() {
+    const statusFilter = document.getElementById("status-filter").value;
+    const yearFilter = document.getElementById("year-filter").value;
+    const typeFilter = document.getElementById("type-filter").value;
+
+    const courseRows = document.querySelectorAll(".course-row");
+
+    courseRows.forEach((row) => {
+      let showRow = true;
+
+      // Lọc theo trạng thái
+      if (statusFilter !== "all") {
+        if (!row.classList.contains(statusFilter)) {
+          showRow = false;
+        }
+      }
+
+      // Lọc theo năm học
+      if (yearFilter !== "all" && showRow) {
+        if (!row.classList.contains("year-" + yearFilter)) {
+          showRow = false;
+        }
+      }
+
+      // Lọc theo loại học phần
+      if (typeFilter !== "all" && showRow) {
+        if (!row.classList.contains(typeFilter)) {
+          showRow = false;
+        }
+      }
+
+      // Hiển thị hoặc ẩn hàng
+      row.style.display = showRow ? "" : "none";
+    });
+  }
+
+  // Hàm tìm kiếm học phần trong chế độ xem chi tiết
+  function searchDetailCourses() {
+    const searchText = document
+      .getElementById("course-search")
+      .value.toLowerCase();
+    const courseRows = document.querySelectorAll(".course-row");
+
+    courseRows.forEach((row) => {
+      const courseCode = row
+        .querySelector("td:nth-child(2)")
+        .textContent.toLowerCase();
+      const courseName = row
+        .querySelector("td:nth-child(3)")
+        .textContent.toLowerCase();
+
+      if (courseCode.includes(searchText) || courseName.includes(searchText)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  // Hàm hiển thị tất cả học phần còn thiếu
+  function showAllMissingCourses(type) {
+    alert("Hiển thị tất cả học phần " + type + " còn thiếu");
+    // Trong thực tế, đây sẽ là mở modal hoặc chuyển đến chế độ xem chi tiết với bộ lọc phù hợp
+  }
+
+  // Hàm in tiến độ học tập
+  function printProgress() {
+    window.print();
+  }
+
+  // Hàm xuất file tiến độ học tập
+  function exportProgress() {
+    alert("Đang xuất file tiến độ học tập...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+
+  // Hàm vẽ biểu đồ
+  function drawCharts() {
+    // Trong thực tế, đây sẽ sử dụng thư viện Chart.js hoặc tương tự để vẽ biểu đồ
+    console.log("Vẽ biểu đồ tiến độ học tập");
+  }
+
+  // Khởi tạo trang
+  document.addEventListener("DOMContentLoaded", function () {
+    // Mặc định hiển thị chế độ xem tổng quan
+    document.getElementById("view-type").value = "summary";
+    document.getElementById("summary-view").classList.add("active");
+  });
+</script>

@@ -1,0 +1,1221 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-comments" style="color: #673ab7"></i> Góp ý
+</h1>
+
+<!-- Thông tin giới thiệu -->
+<div class="feedback-intro">
+  <p>
+    Trường Đại học Công nghệ Đồng Nai luôn mong muốn lắng nghe ý kiến đóng góp
+    từ sinh viên để không ngừng cải thiện chất lượng đào tạo và dịch vụ. Mọi ý
+    kiến đóng góp của bạn đều được ghi nhận và xem xét một cách nghiêm túc.
+  </p>
+  <p>
+    Vui lòng sử dụng biểu mẫu dưới đây để gửi góp ý, phản hồi hoặc báo cáo vấn
+    đề bạn gặp phải.
+  </p>
+</div>
+
+<!-- Biểu mẫu góp ý -->
+<div class="feedback-form-container">
+  <h2 class="section-title">Biểu mẫu góp ý</h2>
+
+  <div class="feedback-form">
+    <div class="form-group">
+      <label for="feedback-category"
+        >Danh mục góp ý <span class="required">*</span></label
+      >
+      <select id="feedback-category" required>
+        <option value="">-- Chọn danh mục --</option>
+        <option value="academic">Chương trình đào tạo</option>
+        <option value="teaching">Giảng dạy</option>
+        <option value="facility">Cơ sở vật chất</option>
+        <option value="service">Dịch vụ sinh viên</option>
+        <option value="system">Hệ thống thông tin</option>
+        <option value="website">Website/Ứng dụng</option>
+        <option value="other">Khác</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-title"
+        >Tiêu đề <span class="required">*</span></label
+      >
+      <input
+        type="text"
+        id="feedback-title"
+        placeholder="Nhập tiêu đề góp ý"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-content"
+        >Nội dung góp ý <span class="required">*</span></label
+      >
+      <textarea
+        id="feedback-content"
+        placeholder="Mô tả chi tiết góp ý của bạn..."
+        rows="6"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-suggestion">Đề xuất giải pháp (nếu có)</label>
+      <textarea
+        id="feedback-suggestion"
+        placeholder="Nếu bạn có đề xuất giải pháp, vui lòng chia sẻ ở đây..."
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="feedback-priority">Mức độ ưu tiên</label>
+        <select id="feedback-priority">
+          <option value="normal">Bình thường</option>
+          <option value="important">Quan trọng</option>
+          <option value="urgent">Khẩn cấp</option>
+        </select>
+      </div>
+
+      <div class="form-group half">
+        <label for="feedback-visibility">Hiển thị</label>
+        <select id="feedback-visibility">
+          <option value="private">Riêng tư (chỉ nhà trường xem)</option>
+          <option value="public">Công khai (mọi người có thể xem)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-attachment">Đính kèm tệp (nếu có)</label>
+      <div class="file-upload">
+        <input type="file" id="feedback-attachment" class="file-input" />
+        <label for="feedback-attachment" class="file-label">
+          <i class="fa fa-cloud-upload"></i> Chọn tệp
+        </label>
+        <span class="file-info">Chưa có tệp nào được chọn</span>
+      </div>
+      <div class="file-hint">
+        Hỗ trợ các định dạng: JPG, PNG, PDF, DOC, DOCX. Kích thước tối đa: 5MB
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="checkbox-label">
+        <input type="checkbox" id="feedback-anonymous" />
+        <span class="checkbox-text"
+          >Gửi ẩn danh (thông tin cá nhân của bạn sẽ không được hiển thị)</span
+        >
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="button"
+        class="action-btn submit-btn"
+        onclick="submitFeedback()"
+      >
+        <i class="fa fa-paper-plane"></i> Gửi góp ý
+      </button>
+      <button
+        type="button"
+        class="action-btn reset-btn"
+        onclick="resetFeedbackForm()"
+      >
+        <i class="fa fa-refresh"></i> Làm mới
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Lịch sử góp ý -->
+<div class="feedback-history">
+  <h2 class="section-title">Lịch sử góp ý</h2>
+
+  <div class="history-filter">
+    <div class="filter-group">
+      <label for="filter-status">Trạng thái:</label>
+      <select id="filter-status" onchange="filterFeedback()">
+        <option value="all">Tất cả</option>
+        <option value="pending">Đang xử lý</option>
+        <option value="processing">Đang giải quyết</option>
+        <option value="resolved">Đã giải quyết</option>
+        <option value="closed">Đã đóng</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-date">Thời gian:</label>
+      <select id="filter-date" onchange="filterFeedback()">
+        <option value="all">Tất cả</option>
+        <option value="week">7 ngày qua</option>
+        <option value="month">30 ngày qua</option>
+        <option value="quarter">3 tháng qua</option>
+        <option value="year">1 năm qua</option>
+      </select>
+    </div>
+
+    <div class="filter-group search">
+      <input type="text" id="search-feedback" placeholder="Tìm kiếm góp ý..." />
+      <button class="search-btn" onclick="searchFeedback()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="history-table-container">
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th width="5%">STT</th>
+          <th width="15%">Ngày gửi</th>
+          <th width="25%">Tiêu đề</th>
+          <th width="15%">Danh mục</th>
+          <th width="15%">Trạng thái</th>
+          <th width="10%">Phản hồi</th>
+          <th width="15%">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>20/05/2024</td>
+          <td>Đề xuất cải thiện hệ thống đăng ký học phần</td>
+          <td>Hệ thống thông tin</td>
+          <td><span class="status-processing">Đang giải quyết</span></td>
+          <td>1</td>
+          <td>
+            <button class="action-btn view-btn" onclick="viewFeedback(1)">
+              <i class="fa fa-eye"></i> Xem
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>15/05/2024</td>
+          <td>Góp ý về thời gian mở cửa thư viện</td>
+          <td>Cơ sở vật chất</td>
+          <td><span class="status-resolved">Đã giải quyết</span></td>
+          <td>2</td>
+          <td>
+            <button class="action-btn view-btn" onclick="viewFeedback(2)">
+              <i class="fa fa-eye"></i> Xem
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>10/05/2024</td>
+          <td>Phản ánh về tình trạng máy chiếu phòng C2.05</td>
+          <td>Cơ sở vật chất</td>
+          <td><span class="status-resolved">Đã giải quyết</span></td>
+          <td>1</td>
+          <td>
+            <button class="action-btn view-btn" onclick="viewFeedback(3)">
+              <i class="fa fa-eye"></i> Xem
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>05/05/2024</td>
+          <td>Đề xuất thêm môn học tự chọn ngành CNTT</td>
+          <td>Chương trình đào tạo</td>
+          <td><span class="status-pending">Đang xử lý</span></td>
+          <td>0</td>
+          <td>
+            <button class="action-btn view-btn" onclick="viewFeedback(4)">
+              <i class="fa fa-eye"></i> Xem
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>01/05/2024</td>
+          <td>Góp ý về quy trình đăng ký xét tốt nghiệp</td>
+          <td>Dịch vụ sinh viên</td>
+          <td><span class="status-closed">Đã đóng</span></td>
+          <td>3</td>
+          <td>
+            <button class="action-btn view-btn" onclick="viewFeedback(5)">
+              <i class="fa fa-eye"></i> Xem
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <button class="page-btn active">1</button>
+    <button class="page-btn">2</button>
+    <button class="page-btn">3</button>
+    <button class="page-btn next">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Góp ý thường gặp -->
+<div class="common-feedback">
+  <h2 class="section-title">Góp ý thường gặp</h2>
+
+  <div class="common-feedback-list">
+    <div class="common-feedback-item">
+      <div class="feedback-question" onclick="toggleFeedback(1)">
+        <i class="fa fa-question-circle"></i>
+        <span>Làm thế nào để theo dõi trạng thái góp ý của tôi?</span>
+        <i class="fa fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="feedback-answer" id="feedback-answer-1">
+        <p>
+          Bạn có thể theo dõi trạng thái góp ý của mình trong phần "Lịch sử góp
+          ý" trên trang này. Mỗi góp ý sẽ có một trạng thái cụ thể như "Đang xử
+          lý", "Đang giải quyết", "Đã giải quyết" hoặc "Đã đóng". Ngoài ra, bạn
+          cũng sẽ nhận được thông báo qua email khi có cập nhật về góp ý của
+          mình.
+        </p>
+      </div>
+    </div>
+
+    <div class="common-feedback-item">
+      <div class="feedback-question" onclick="toggleFeedback(2)">
+        <i class="fa fa-question-circle"></i>
+        <span>Ai sẽ xem và phản hồi góp ý của tôi?</span>
+        <i class="fa fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="feedback-answer" id="feedback-answer-2">
+        <p>
+          Góp ý của bạn sẽ được chuyển đến bộ phận phụ trách tương ứng với danh
+          mục bạn đã chọn. Ví dụ, góp ý về chương trình đào tạo sẽ được chuyển
+          đến Phòng Đào tạo, góp ý về cơ sở vật chất sẽ được chuyển đến Phòng
+          Quản trị Thiết bị. Mỗi góp ý sẽ được xem xét và phản hồi trong thời
+          gian sớm nhất, thường là trong vòng 3-5 ngày làm việc.
+        </p>
+      </div>
+    </div>
+
+    <div class="common-feedback-item">
+      <div class="feedback-question" onclick="toggleFeedback(3)">
+        <i class="fa fa-question-circle"></i>
+        <span>Tôi có thể gửi góp ý ẩn danh không?</span>
+        <i class="fa fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="feedback-answer" id="feedback-answer-3">
+        <p>
+          Có, bạn có thể chọn tùy chọn "Gửi ẩn danh" khi gửi góp ý. Khi đó,
+          thông tin cá nhân của bạn sẽ không được hiển thị trong nội dung góp ý.
+          Tuy nhiên, hệ thống vẫn lưu thông tin người gửi để có thể liên hệ khi
+          cần thiết, nhưng thông tin này chỉ được sử dụng nội bộ và không được
+          công khai.
+        </p>
+      </div>
+    </div>
+
+    <div class="common-feedback-item">
+      <div class="feedback-question" onclick="toggleFeedback(4)">
+        <i class="fa fa-question-circle"></i>
+        <span>Làm thế nào để biết góp ý của tôi đã được giải quyết?</span>
+        <i class="fa fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="feedback-answer" id="feedback-answer-4">
+        <p>
+          Khi góp ý của bạn được giải quyết, trạng thái sẽ được cập nhật thành
+          "Đã giải quyết" trong phần "Lịch sử góp ý". Đồng thời, bạn sẽ nhận
+          được thông báo qua email và trên hệ thống thông tin sinh viên. Bạn có
+          thể xem chi tiết phản hồi bằng cách nhấp vào nút "Xem" bên cạnh góp ý
+          đó.
+        </p>
+      </div>
+    </div>
+
+    <div class="common-feedback-item">
+      <div class="feedback-question" onclick="toggleFeedback(5)">
+        <i class="fa fa-question-circle"></i>
+        <span
+          >Tôi có thể cập nhật hoặc bổ sung thông tin cho góp ý đã gửi
+          không?</span
+        >
+        <i class="fa fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="feedback-answer" id="feedback-answer-5">
+        <p>
+          Bạn không thể chỉnh sửa trực tiếp góp ý đã gửi, nhưng bạn có thể bổ
+          sung thông tin bằng cách thêm bình luận vào góp ý đó. Để làm điều này,
+          hãy vào phần "Lịch sử góp ý", nhấp vào nút "Xem" bên cạnh góp ý cần bổ
+          sung, sau đó sử dụng phần "Thêm bình luận" ở cuối trang chi tiết góp
+          ý.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chi tiết góp ý (Hiển thị khi nhấp vào nút Xem) -->
+<div id="feedback-detail-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Chi tiết góp ý</h2>
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="feedback-detail">
+        <div class="detail-header">
+          <h3 id="detail-title">Đề xuất cải thiện hệ thống đăng ký học phần</h3>
+          <div class="detail-meta">
+            <span class="detail-date"
+              ><i class="fa fa-calendar"></i> Ngày gửi: 20/05/2024</span
+            >
+            <span class="detail-category"
+              ><i class="fa fa-folder"></i> Danh mục: Hệ thống thông tin</span
+            >
+            <span class="detail-status"
+              ><i class="fa fa-info-circle"></i> Trạng thái:
+              <span class="status-processing">Đang giải quyết</span></span
+            >
+          </div>
+        </div>
+
+        <div class="detail-content">
+          <h4>Nội dung góp ý:</h4>
+          <p id="detail-content">
+            Hệ thống đăng ký học phần hiện tại thường xuyên bị quá tải vào thời
+            điểm đăng ký, dẫn đến việc nhiều sinh viên không thể đăng nhập hoặc
+            bị đẩy ra khỏi hệ thống giữa quá trình đăng ký. Điều này gây khó
+            khăn và mất nhiều thời gian cho sinh viên, đặc biệt là khi các lớp
+            học phần có giới hạn số lượng.
+          </p>
+
+          <h4>Đề xuất giải pháp:</h4>
+          <p id="detail-suggestion">
+            Tôi đề xuất nhà trường có thể cải thiện hệ thống bằng cách: 1. Nâng
+            cấp hạ tầng máy chủ để đáp ứng lượng truy cập lớn 2. Phân chia thời
+            gian đăng ký theo khoa/ngành để giảm tải hệ thống 3. Thêm tính năng
+            "đặt chỗ tạm thời" để sinh viên có thể giữ chỗ trong một khoảng thời
+            gian ngắn trước khi xác nhận đăng ký 4. Cải thiện giao diện người
+            dùng để dễ sử dụng hơn trên các thiết bị di động
+          </p>
+        </div>
+
+        <div class="detail-responses">
+          <h4>Phản hồi (1):</h4>
+
+          <div class="response-item admin">
+            <div class="response-avatar">
+              <i class="fa fa-user-circle"></i>
+            </div>
+            <div class="response-content">
+              <div class="response-header">
+                <span class="response-name">Phòng Đào tạo</span>
+                <span class="response-date">22/05/2024</span>
+              </div>
+              <div class="response-text">
+                <p>
+                  Cảm ơn bạn đã gửi góp ý về hệ thống đăng ký học phần. Chúng
+                  tôi đã ghi nhận vấn đề này và đang phối hợp với Trung tâm CNTT
+                  để nâng cấp hệ thống. Hiện tại, chúng tôi đang lên kế hoạch
+                  phân chia thời gian đăng ký theo khoa/ngành cho đợt đăng ký
+                  học phần học kỳ tới và dự kiến sẽ nâng cấp máy chủ trong tháng
+                  6/2024.
+                </p>
+                <p>Chúng tôi sẽ cập nhật thông tin khi có tiến triển mới.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="add-response">
+          <h4>Thêm bình luận:</h4>
+          <textarea
+            id="response-text"
+            placeholder="Nhập bình luận của bạn..."
+          ></textarea>
+          <button class="action-btn submit-btn" onclick="addResponse()">
+            <i class="fa fa-paper-plane"></i> Gửi bình luận
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Định dạng cho trang Góp ý */
+  .feedback-intro {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+
+  .feedback-intro p {
+    margin: 0 0 15px 0;
+    color: #555;
+  }
+
+  .feedback-intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Biểu mẫu góp ý */
+  .feedback-form-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .feedback-form {
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+
+  .form-group.half {
+    flex: 1;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .required {
+    color: #f44336;
+    margin-left: 3px;
+  }
+
+  .form-group select,
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+
+  .form-group select:focus,
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #673ab7;
+    outline: none;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  /* File upload */
+  .file-upload {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .file-label {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background 0.3s;
+  }
+
+  .file-label:hover {
+    background: #e0e0e0;
+  }
+
+  .file-info {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .file-hint {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+  }
+
+  /* Checkbox */
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .checkbox-label input {
+    margin-right: 10px;
+    width: auto;
+  }
+
+  .checkbox-text {
+    font-size: 14px;
+    color: #555;
+  }
+
+  /* Form actions */
+  .form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .action-btn i {
+    margin-right: 8px;
+  }
+
+  .submit-btn {
+    background: #673ab7;
+    color: white;
+  }
+
+  .reset-btn {
+    background: #f5f5f5;
+    color: #333;
+  }
+
+  .submit-btn:hover {
+    background: #5e35b1;
+  }
+
+  .reset-btn:hover {
+    background: #e0e0e0;
+  }
+
+  /* Lịch sử góp ý */
+  .feedback-history {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .history-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .filter-group label {
+    margin-right: 10px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .filter-group select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .filter-group.search {
+    flex: 1;
+    display: flex;
+    position: relative;
+  }
+
+  .filter-group.search input {
+    width: 100%;
+    padding: 8px 12px;
+    padding-right: 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+  }
+
+  .search-btn:hover {
+    color: #333;
+  }
+
+  .history-table-container {
+    overflow-x: auto;
+  }
+
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .history-table th {
+    background: #f5f5f5;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .history-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .history-table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  .status-pending {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #e3f2fd;
+    color: #2196f3;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .status-processing {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #fff8e1;
+    color: #ffc107;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .status-resolved {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #e8f5e9;
+    color: #4caf50;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .status-closed {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #f5f5f5;
+    color: #9e9e9e;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .view-btn {
+    background: #f5f5f5;
+    color: #333;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .view-btn:hover {
+    background: #e0e0e0;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+  }
+
+  .page-btn {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .page-btn.active {
+    background: #673ab7;
+    color: white;
+  }
+
+  .page-btn:hover {
+    background: #e0e0e0;
+  }
+
+  .page-btn.active:hover {
+    background: #5e35b1;
+  }
+
+  /* Góp ý thường gặp */
+  .common-feedback {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .common-feedback-list {
+    margin-top: 20px;
+  }
+
+  .common-feedback-item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+  }
+
+  .feedback-question {
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+  }
+
+  .feedback-question:hover {
+    background: #f9f9f9;
+  }
+
+  .feedback-question i.fa-question-circle {
+    color: #673ab7;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  .feedback-question span {
+    flex: 1;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .toggle-icon {
+    transition: transform 0.3s;
+  }
+
+  .feedback-question.active .toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .feedback-answer {
+    padding: 0 15px 15px 45px;
+    display: none;
+  }
+
+  .feedback-answer p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    background: #fff;
+    margin: 5% auto;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s;
+  }
+
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 20px;
+  }
+
+  .close-modal {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close-modal:hover {
+    color: #333;
+  }
+
+  .modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  /* Feedback Detail */
+  .feedback-detail {
+  }
+
+  .detail-header {
+    margin-bottom: 20px;
+  }
+
+  .detail-header h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 18px;
+  }
+
+  .detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .detail-meta span {
+    display: flex;
+    align-items: center;
+  }
+
+  .detail-meta i {
+    margin-right: 5px;
+  }
+
+  .detail-content {
+    margin-bottom: 30px;
+  }
+
+  .detail-content h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 16px;
+    border-left: 3px solid #673ab7;
+    padding-left: 10px;
+  }
+
+  .detail-content p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  .detail-responses {
+    margin-bottom: 30px;
+  }
+
+  .detail-responses h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 16px;
+    border-left: 3px solid #673ab7;
+    padding-left: 10px;
+  }
+
+  .response-item {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #eee;
+  }
+
+  .response-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  .response-avatar i {
+    font-size: 24px;
+    color: #9e9e9e;
+  }
+
+  .response-item.admin .response-avatar {
+    background: #ede7f6;
+  }
+
+  .response-item.admin .response-avatar i {
+    color: #673ab7;
+  }
+
+  .response-content {
+    flex: 1;
+  }
+
+  .response-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .response-name {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .response-item.admin .response-name {
+    color: #673ab7;
+  }
+
+  .response-date {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .response-text p {
+    margin: 0 0 10px 0;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .response-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .add-response {
+  }
+
+  .add-response h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 16px;
+    border-left: 3px solid #673ab7;
+    padding-left: 10px;
+  }
+
+  .add-response textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 15px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .history-filter {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .filter-group {
+      width: 100%;
+    }
+
+    .detail-meta {
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+    }
+  }
+</style>
+
+<script>
+  // Xử lý tệp đính kèm
+  document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById("feedback-attachment");
+    const fileInfo = document.querySelector(".file-info");
+
+    if (fileInput) {
+      fileInput.addEventListener("change", function () {
+        if (fileInput.files.length > 0) {
+          fileInfo.textContent = fileInput.files[0].name;
+        } else {
+          fileInfo.textContent = "Chưa có tệp nào được chọn";
+        }
+      });
+    }
+
+    // Khởi tạo hiển thị câu hỏi thường gặp
+    document
+      .querySelectorAll(".feedback-answer")
+      .forEach(function (answer, index) {
+        answer.style.display = "none";
+      });
+  });
+
+  // Gửi góp ý
+  function submitFeedback() {
+    const category = document.getElementById("feedback-category").value;
+    const title = document.getElementById("feedback-title").value;
+    const content = document.getElementById("feedback-content").value;
+
+    if (!category || !title || !content) {
+      alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
+      return;
+    }
+
+    alert(
+      "Góp ý của bạn đã được gửi thành công! Cảm ơn bạn đã đóng góp ý kiến."
+    );
+    resetFeedbackForm();
+  }
+
+  // Làm mới biểu mẫu
+  function resetFeedbackForm() {
+    document.getElementById("feedback-category").value = "";
+    document.getElementById("feedback-title").value = "";
+    document.getElementById("feedback-content").value = "";
+    document.getElementById("feedback-suggestion").value = "";
+    document.getElementById("feedback-priority").value = "normal";
+    document.getElementById("feedback-visibility").value = "private";
+    document.getElementById("feedback-attachment").value = "";
+    document.getElementById("feedback-anonymous").checked = false;
+    document.querySelector(".file-info").textContent =
+      "Chưa có tệp nào được chọn";
+  }
+
+  // Lọc góp ý
+  function filterFeedback() {
+    alert("Đang lọc danh sách góp ý...");
+  }
+
+  // Tìm kiếm góp ý
+  function searchFeedback() {
+    const searchTerm = document.getElementById("search-feedback").value;
+    if (!searchTerm) {
+      alert("Vui lòng nhập từ khóa tìm kiếm!");
+      return;
+    }
+
+    alert("Đang tìm kiếm góp ý với từ khóa: " + searchTerm);
+  }
+
+  // Xem chi tiết góp ý
+  function viewFeedback(id) {
+    const modal = document.getElementById("feedback-detail-modal");
+    modal.style.display = "block";
+
+    // Trong thực tế, sẽ gọi API để lấy dữ liệu chi tiết của góp ý
+    console.log("Xem chi tiết góp ý ID:", id);
+  }
+
+  // Đóng modal
+  function closeModal() {
+    const modal = document.getElementById("feedback-detail-modal");
+    modal.style.display = "none";
+  }
+
+  // Đóng modal khi click bên ngoài
+  window.onclick = function (event) {
+    const modal = document.getElementById("feedback-detail-modal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  // Thêm bình luận
+  function addResponse() {
+    const responseText = document.getElementById("response-text").value;
+    if (!responseText) {
+      alert("Vui lòng nhập nội dung bình luận!");
+      return;
+    }
+
+    alert("Bình luận của bạn đã được gửi thành công!");
+    document.getElementById("response-text").value = "";
+  }
+
+  // Hiển thị/ẩn câu trả lời cho câu hỏi thường gặp
+  function toggleFeedback(id) {
+    const answer = document.getElementById("feedback-answer-" + id);
+    const question = answer.previousElementSibling;
+
+    if (answer.style.display === "none" || !answer.style.display) {
+      answer.style.display = "block";
+      question.classList.add("active");
+    } else {
+      answer.style.display = "none";
+      question.classList.remove("active");
+    }
+  }
+</script>

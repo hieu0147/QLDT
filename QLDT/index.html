@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cổng thông tin sinh viên - Trường Đại học Công nghệ Đồng Nai</title>
+
+    <!-- PHẦN LIÊN KẾT NGOÀI - Liên kết đến thư viện Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- PHẦN CSS - Định dạng giao diện trang web -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- PHẦN HEADER - Thanh tiêu đề cố định trên cùng -->
+    <div class="header">
+      <div class="header-title">
+        CỔNG THÔNG TIN SINH VIÊN - TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ĐỒNG NAI
+      </div>
+      <div class="user-dropdown">
+        <button class="dropdown-btn">
+          <i class="fa fa-user-circle"></i> Nguyễn Văn A
+        </button>
+        <div class="dropdown-content">
+          <a href="#"><i class="fa fa-user"></i> Thông tin cá nhân</a>
+          <a href="#"><i class="fa fa-cog"></i> Cài đặt</a>
+          <a href="#"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN SIDEBAR - Thanh menu bên trái -->
+    <div class="sidebar">
+      <div class="sidebar-header"><i class="fa fa-bars"></i> MENU CHÍNH</div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" onclick="showContent('dashboard'); return false;"><i class="fa fa-home"></i> Trang chủ</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#"><i class="fa fa-th"></i> Tiện ích</a>
+          <ul class="submenu">
+            <li>
+              <a
+                href="#"
+                onclick="showContent('thong-bao-nha-truong'); return false;"
+                >Thông báo từ nhà trường</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="showContent('thong-bao-ca-nhan'); return false;"
+                >Thông báo cá nhân</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="showContent('bang-tin'); return false;"
+                >Bảng tin</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="showContent('dich-vu-mot-cua'); return false;"
+                >Dịch vụ một cửa</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="showContent('huong-dan-su-dung'); return false;"
+                >Hướng dẫn sử dụng</a
+              >
+            </li>
+            <li><a href="#" onclick="alert('Trang đang được phát triển'); return false;">Sổ tay an toàn</a></li>
+            <li>
+              <a
+                href="#"
+                onclick="showContent('bao-hong-thiet-bi'); return false;"
+                >Báo hỏng thiết bị</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#" onclick="showContent('dien-dan-trao-doi'); return false;"
+            ><i class="fa fa-share-alt"></i> Chia sẻ thông tin</a
+          >
+          <ul class="submenu">
+            <li>
+              <a
+                href="#"
+                onclick="showContent('chia-se-trong-lop'); return false;"
+                >Chia sẻ trong lớp</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="showContent('chia-se-voi-nha-truong'); return false;"
+                >Chia sẻ với nhà trường</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="showContent('trao-doi-lop-hoc-phan'); return false;"
+                >Trao đổi thông tin lớp học phần</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"><i class="fa fa-user"></i> Thông tin cá nhân</a>
+          <ul class="submenu">
+            <li>
+              <a
+                href="#"
+                onclick="showContent('ho-so-sinh-vien'); return false;"
+                
+              >
+            </li onclick="showContent('ho-so-sinh-vien'); return false;">Hồ sơ sinh viên</a></li>
+            <li><a href="#" onclick="showContent('cap-nhat-thong-tin'); return false;">Cập nhật thông tin</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"><i class="fa fa-money"></i> Theo dõi giao dịch</a>
+          <ul class="submenu">
+            <li><a href="#" onclick="showContent('hoc-phi'); return false;">Học phí</a></li>
+            <li><a href="#" onclick="showContent('cac-khoan-thu-khac'); return false;">Các khoản thu khác</a></li>
+            <li><a href="#" onclick="showContent('nap-tien-vao-tai-khoan'); return false;">Nạp tiền vào tài khoản</a></li>
+            <li><a href="#" onclick="showContent('thanh-toan-cong-no'); return false;">Thanh toán công nợ</a></li>
+            <li><a href="#" onclick="showContent('lich-su-giao-dich'); return false;">Lịch sử giao dịch</a></li>
+            <li><a href="#" onclick="showContent('in-hoa-don-dien-tu'); return false;">In hóa đơn điện tử</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"
+            ><i class="fa fa-graduation-cap"></i> Chương trình đào tạo</a
+          >
+          <ul class="submenu">
+            <li><a href="#" onclick="showContent('khung-chuong-trinh'); return false;">Khung chương trình</a></li>
+            <li><a href="#" onclick="showContent('tien-do-hoc-tap'); return false;">Tiến độ học tập</a></li>
+            <li><a href="#" onclick="showContent('khung-theo-ky'); return false;">Khung theo kỳ</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"><i class="fa fa-calendar"></i> Đăng ký học phần</a>
+          <ul class="submenu">
+            <li><a href="#" onclick="showContent('dang-ky-hoc-phan'); return false;">Đăng ký học phần</a></li>
+            <li><a href="#" onclick="showContent('ket-qua-dang-ky'); return false;">Kết quả đăng ký</a></li>
+            <li><a href="#" onclick="showContent('rut-hoc-phan'); return false;">Rút học phần</a></li>
+            <li><a href="#" onclick="showContent('thong-tin-dang-ky-hoc-phan'); return false;">Thông tin đăng ký học phần</a></li>
+            <li><a href="#" onclick="showContent('dang-ky-hoc-ct2'); return false;">Đăng ký học CT2</a></li>
+            <li><a href="#" onclick="showContent('ds-don-dang-ky-hoc-ct2'); return false;">DS đơn đăng ký học CT2</a></li>
+            <li><a href="#" onclick="showContent('kiem-tra-tien-do-ct2'); return false;">Kiểm tra tiến độ CT2</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"><i class="fa fa-table"></i> Thời khóa biểu</a>
+          <ul class="submenu">
+            <li><a href="#" onclick="showContent('thoi-khoa-bieu'); return false;">Thời khóa biểu</a></li>
+            <li><a href="#" onclick="showContent('lich-giang-day'); return false;">Xem lịch giảng dạy</a></li>
+            <li><a href="#" onclick="showContent('lich-thi'); return false;">Theo dõi lịch thi</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"
+            ><i class="fa fa-calendar-check-o"></i> Theo dõi lịch thi</a
+          >
+          <ul class="submenu">
+            <li><a href="#" onclick="showContent('ke-hoach-thi'); return false;">Kế hoạch thi</a></li>
+            <li><a href="#" onclick="showContent('lich-thi'); return false;">Lịch thi</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="showContent('dang-ky-thi-lai'); return false;"><i class="fa fa-pencil-square-o"></i> Đăng ký thi lại</a>
+        </li>
+        <li>
+          <a href="#" onclick="showContent('hoc-truc-tuyen'); return false;"><i class="fa fa-laptop"></i> Học trực tuyến</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#"><i class="fa fa-bar-chart"></i> Theo dõi KQ học tập</a>
+          <ul class="submenu">
+        
+            <li><a href="#" onclick="showContent('ket-qua-hoc-tap'); return false;">Kết quả học tập</a></li>
+            <li><a href="#" onclick="showContent('ket-qua-thi'); return false;">Kết quả thi</a></li>
+            <li><a href="#" onclick="showContent('nop-don-phuc-tra'); return false;">Nộp đơn phúc tra</a></li>
+            <li><a href="#" onclick="showContent('trung-binh-chung-hoc-ky'); return false;">Trung bình chung học kỳ</a></li>
+            <li><a href="#" onclick="showContent('bang-diem'); return false;">Bảng điểm</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="showContent('xet-tot-nghiep'); return false;"><i class="fa fa-graduation-cap"></i> Xét tốt nghiệp</a>
+        </li>
+        <li>
+          <a href="#" onclick="showContent('thong-tin-in-bang'); return false;"><i class="fa fa-certificate"></i> Thông tin in bằng</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#"><i class="fa fa-star"></i> Rèn luyện và tuần học</a>
+          <ul class="submenu">
+            <li><a href="#" onclick="showContent('diem-ren-luyen'); return false;">Điểm rèn luyện</a></li>
+            <li><a href="#" onclick="showContent('hoat-dong-tuan'); return false;">Hoạt động tuần</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"
+            ><i class="fa fa-check-square-o"></i> Đánh giá và khảo sát</a
+          >
+          <ul class="submenu">
+            <li><a href="#" onclick="showContent('danh-gia-giang-vien'); return false;">Đánh giá giảng viên</a></li>
+            <li><a href="#" onclick="showContent('khao-sat-sinh-vien'); return false;">Khảo sát chất lượng</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="showContent('gop-y'); return false;"><i class="fa fa-comments"></i> Góp ý</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PHẦN NỘI DUNG CHÍNH - Khu vực hiển thị thông tin -->
+    <div class="main-content">
+      <!-- Trang chủ - Dashboard -->
+      <div id="dashboard" class="content-section active">
+        <h1 class="page-title">
+          <i class="fa fa-dashboard" style="color: #1e3056"></i> Trang chủ
+        </h1>
+
+        <!-- Thẻ thông tin tổng quan -->
+        <div class="dashboard-cards">
+          <div class="card card-orange">
+            <div class="card-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </div>
+            <div class="card-value">12</div>
+            <div class="card-label">Học phần đã đăng ký</div>
+            <div class="card-details">
+              <small>Học kỳ 2, năm học 2023-2024</small>
+              <small>Tổng số tín chỉ: 24</small>
+            </div>
+          </div>
+          <div class="card card-blue">
+            <div class="card-icon">
+              <i class="fa fa-graduation-cap"></i>
+            </div>
+            <div class="card-value">3.65</div>
+            <div class="card-label">Điểm trung bình tích lũy</div>
+            <div class="card-details">
+              <small>Xếp loại: Giỏi</small>
+              <small>Cập nhật: 15/05/2024</small>
+            </div>
+          </div>
+          <div class="card card-green">
+            <div class="card-icon">
+              <i class="fa fa-check-circle"></i>
+            </div>
+            <div class="card-value">85</div>
+            <div class="card-label">Điểm rèn luyện</div>
+            <div class="card-details">
+              <small>Xếp loại: Tốt</small>
+              <small>Học kỳ 1, năm học 2023-2024</small>
+            </div>
+          </div>
+          <div class="card card-pink">
+            <div class="card-icon">
+              <i class="fa fa-money"></i>
+            </div>
+            <div class="card-value">0</div>
+            <div class="card-label">Công nợ học phí (VNĐ)</div>
+            <div class="card-details">
+              <small>Đã thanh toán: 15,000,000 VNĐ</small>
+              <small>Cập nhật: 10/05/2024</small>
+            </div>
+          </div>
+          <div class="card card-purple">
+            <div class="card-icon">
+              <i class="fa fa-bell"></i>
+            </div>
+            <div class="card-value">5</div>
+            <div class="card-label">Thông báo mới</div>
+            <div class="card-details">
+              <small>3 thông báo quan trọng</small>
+              <small>2 thông báo thường</small>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Thông tin nổi bật</h2>
+
+        <!-- Phần thông tin nổi bật -->
+        <div class="dashboard-highlights">
+          <!-- Thông báo quan trọng -->
+          <div class="highlight-section">
+            <div class="highlight-header">
+              <h3><i class="fa fa-bullhorn"></i> Thông báo quan trọng</h3>
+              <a
+                href="#"
+                onclick="showContent('thong-bao-nha-truong'); return false;"
+                class="view-all"
+                >Xem tất cả</a
+              >
+            </div>
+            <div class="highlight-content">
+              <div class="notification-item unread">
+                <div class="notification-icon important">
+                  <i class="fa fa-exclamation"></i>
+                </div>
+                <div class="notification-content">
+                  <div class="notification-title">
+                    Thông báo về việc đóng học phí học kỳ 2 năm học 2023-2024
+                    <span class="notification-badge badge-important"
+                      >Quan trọng</span
+                    >
+                    <span class="notification-badge badge-new">Mới</span>
+                  </div>
+                  <div class="notification-meta">
+                    <span
+                      ><i class="fa fa-building-o"></i> Phòng Tài chính - Kế
+                      toán</span
+                    >
+                    <span><i class="fa fa-calendar"></i> 15/05/2024</span>
+                  </div>
+                </div>
+              </div>
+              <div class="notification-item">
+                <div class="notification-icon event">
+                  <i class="fa fa-calendar-check-o"></i>
+                </div>
+                <div class="notification-content">
+                  <div class="notification-title">
+                    Kế hoạch thi kết thúc học phần học kỳ 2 năm học 2023-2024
+                  </div>
+                  <div class="notification-meta">
+                    <span><i class="fa fa-building-o"></i> Phòng Đào tạo</span>
+                    <span><i class="fa fa-calendar"></i> 10/05/2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lịch học hôm nay -->
+          <div class="highlight-section">
+            <div class="highlight-header">
+              <h3><i class="fa fa-calendar"></i> Lịch học hôm nay</h3>
+              <a href="#" onclick="showContent('thoi-khoa-bieu'); return false;" class="view-all">Xem TKB</a>
+            </div>
+            <div class="highlight-content">
+              <div class="schedule-item">
+                <div class="schedule-time">07:00 - 09:30</div>
+                <div class="schedule-details">
+                  <div class="schedule-subject">Lập trình Web nâng cao</div>
+                  <div class="schedule-meta">
+                    <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+                    <span><i class="fa fa-user"></i> GV. Nguyễn Văn B</span>
+                  </div>
+                </div>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-time">09:45 - 11:30</div>
+                <div class="schedule-details">
+                  <div class="schedule-subject">Trí tuệ nhân tạo</div>
+                  <div class="schedule-meta">
+                    <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+                    <span><i class="fa fa-user"></i> GV. Trần Thị C</span>
+                  </div>
+                </div>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-time">13:00 - 15:30</div>
+                <div class="schedule-details">
+                  <div class="schedule-subject">
+                    Phân tích và thiết kế hệ thống
+                  </div>
+                  <div class="schedule-meta">
+                    <span><i class="fa fa-map-marker"></i> Phòng A401</span>
+                    <span><i class="fa fa-user"></i> GV. Lê Văn D</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lịch thi sắp tới -->
+          <div class="highlight-section">
+            <div class="highlight-header">
+              <h3><i class="fa fa-file-text-o"></i> Lịch thi sắp tới</h3>
+              <a href="#" onclick="showContent('lich-thi'); return false;" class="view-all">Xem tất cả</a>
+            </div>
+            <div class="highlight-content">
+              <div class="exam-item">
+                <div class="exam-date">20/06/2024</div>
+                <div class="exam-details">
+                  <div class="exam-subject">Lập trình Web nâng cao</div>
+                  <div class="exam-meta">
+                    <span><i class="fa fa-clock-o"></i> 07:00 - 08:30</span>
+                    <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+                  </div>
+                </div>
+              </div>
+              <div class="exam-item">
+                <div class="exam-date">22/06/2024</div>
+                <div class="exam-details">
+                  <div class="exam-subject">Trí tuệ nhân tạo</div>
+                  <div class="exam-meta">
+                    <span><i class="fa fa-clock-o"></i> 09:00 - 10:30</span>
+                    <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+                  </div>
+                </div>
+              </div>
+              <div class="exam-item">
+                <div class="exam-date">25/06/2024</div>
+                <div class="exam-details">
+                  <div class="exam-subject">Phân tích và thiết kế hệ thống</div>
+                  <div class="exam-meta">
+                    <span><i class="fa fa-clock-o"></i> 13:00 - 14:30</span>
+                    <span><i class="fa fa-map-marker"></i> Phòng A401</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN JAVASCRIPT - Xử lý tương tác -->
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/service.js"></script>
+  </body>
+</html>

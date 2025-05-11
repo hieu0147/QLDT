@@ -1,0 +1,465 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-share-alt" style="color: #4caf50"></i> Diễn đàn trao đổi
+</h1>
+
+<!-- Thống kê diễn đàn -->
+<div class="forum-stats">
+  <div class="stat-item">
+    <div class="stat-value">24</div>
+    <div class="stat-label">Chủ đề</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">156</div>
+    <div class="stat-label">Bài viết</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Chủ đề của bạn</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">12</div>
+    <div class="stat-label">Bình luận của bạn</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và tìm kiếm -->
+<div class="forum-controls">
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm chủ đề..." id="forum-search" />
+    <button class="search-btn" onclick="searchForum()">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+
+  <div class="filter-controls">
+    <select id="forum-category" onchange="filterForumByCategory()">
+      <option value="all">Tất cả chủ đề</option>
+      <option value="academic">Học tập</option>
+      <option value="events">Sự kiện</option>
+      <option value="activities">Hoạt động ngoại khóa</option>
+      <option value="career">Việc làm & Thực tập</option>
+      <option value="general">Chung</option>
+    </select>
+
+    <select id="forum-sort" onchange="sortForum()">
+      <option value="newest">Mới nhất</option>
+      <option value="popular">Phổ biến nhất</option>
+      <option value="most-comments">Nhiều bình luận nhất</option>
+      <option value="oldest">Cũ nhất</option>
+    </select>
+  </div>
+
+  <button class="new-topic-btn" onclick="showNewTopicForm()">
+    <i class="fa fa-plus"></i> Tạo chủ đề mới
+  </button>
+</div>
+
+<!-- Danh sách chủ đề -->
+<div class="forum-topics">
+  <h2 class="section-title">Chủ đề mới nhất</h2>
+
+  <!-- Chủ đề 1 -->
+  <div class="topic-item">
+    <div class="topic-avatar">
+      <img src="https://via.placeholder.com/50" alt="Avatar" />
+    </div>
+    <div class="topic-content">
+      <div class="topic-header">
+        <h3 class="topic-title">
+          <a href="#" onclick="showTopicDetail('topic-1'); return false;"
+            >Thông báo về lịch thi cuối kỳ học kỳ 2 năm học 2023-2024</a
+          >
+          <span class="topic-badge important">Quan trọng</span>
+        </h3>
+        <div class="topic-meta">
+          <span class="topic-author"
+            ><i class="fa fa-user"></i> Phòng Đào tạo</span
+          >
+          <span class="topic-date"
+            ><i class="fa fa-clock-o"></i> 15/05/2024</span
+          >
+          <span class="topic-category"><i class="fa fa-tag"></i> Học tập</span>
+        </div>
+      </div>
+      <div class="topic-summary">
+        Phòng Đào tạo thông báo lịch thi cuối kỳ học kỳ 2 năm học 2023-2024.
+        Sinh viên vui lòng theo dõi lịch thi và chuẩn bị cho kỳ thi sắp tới...
+      </div>
+      <div class="topic-stats">
+        <span class="views"><i class="fa fa-eye"></i> 245 lượt xem</span>
+        <span class="comments"
+          ><i class="fa fa-comments"></i> 18 bình luận</span
+        >
+        <span class="last-reply"
+          ><i class="fa fa-reply"></i> Trả lời gần nhất: 2 giờ trước</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Chủ đề 2 -->
+  <div class="topic-item">
+    <div class="topic-avatar">
+      <img src="https://via.placeholder.com/50" alt="Avatar" />
+    </div>
+    <div class="topic-content">
+      <div class="topic-header">
+        <h3 class="topic-title">
+          <a href="#" onclick="showTopicDetail('topic-2'); return false;"
+            >Hướng dẫn đăng ký học phần học kỳ 1 năm học 2024-2025</a
+          >
+        </h3>
+        <div class="topic-meta">
+          <span class="topic-author"
+            ><i class="fa fa-user"></i> Phòng Đào tạo</span
+          >
+          <span class="topic-date"
+            ><i class="fa fa-clock-o"></i> 12/05/2024</span
+          >
+          <span class="topic-category"><i class="fa fa-tag"></i> Học tập</span>
+        </div>
+      </div>
+      <div class="topic-summary">
+        Phòng Đào tạo hướng dẫn sinh viên đăng ký học phần cho học kỳ 1 năm học
+        2024-2025. Thời gian đăng ký từ ngày 01/06/2024 đến ngày 15/06/2024...
+      </div>
+      <div class="topic-stats">
+        <span class="views"><i class="fa fa-eye"></i> 189 lượt xem</span>
+        <span class="comments"
+          ><i class="fa fa-comments"></i> 12 bình luận</span
+        >
+        <span class="last-reply"
+          ><i class="fa fa-reply"></i> Trả lời gần nhất: 5 giờ trước</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Chủ đề 3 -->
+  <div class="topic-item">
+    <div class="topic-avatar">
+      <img src="https://via.placeholder.com/50" alt="Avatar" />
+    </div>
+    <div class="topic-content">
+      <div class="topic-header">
+        <h3 class="topic-title">
+          <a href="#" onclick="showTopicDetail('topic-3'); return false;"
+            >Thông báo về Ngày hội việc làm 2024</a
+          >
+          <span class="topic-badge event">Sự kiện</span>
+        </h3>
+        <div class="topic-meta">
+          <span class="topic-author"
+            ><i class="fa fa-user"></i> Phòng Công tác sinh viên</span
+          >
+          <span class="topic-date"
+            ><i class="fa fa-clock-o"></i> 10/05/2024</span
+          >
+          <span class="topic-category"><i class="fa fa-tag"></i> Sự kiện</span>
+        </div>
+      </div>
+      <div class="topic-summary">
+        Trường Đại học Công nghệ Đồng Nai tổ chức Ngày hội việc làm 2024 vào
+        ngày 25/05/2024. Sự kiện có sự tham gia của hơn 50 doanh nghiệp với hơn
+        1000 vị trí tuyển dụng...
+      </div>
+      <div class="topic-stats">
+        <span class="views"><i class="fa fa-eye"></i> 320 lượt xem</span>
+        <span class="comments"
+          ><i class="fa fa-comments"></i> 25 bình luận</span
+        >
+        <span class="last-reply"
+          ><i class="fa fa-reply"></i> Trả lời gần nhất: 1 ngày trước</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Chủ đề 4 -->
+  <div class="topic-item">
+    <div class="topic-avatar">
+      <img src="https://via.placeholder.com/50" alt="Avatar" />
+    </div>
+    <div class="topic-content">
+      <div class="topic-header">
+        <h3 class="topic-title">
+          <a href="#" onclick="showTopicDetail('topic-4'); return false;"
+            >Thảo luận: Kinh nghiệm thực tập tại các công ty phần mềm</a
+          >
+        </h3>
+        <div class="topic-meta">
+          <span class="topic-author"
+            ><i class="fa fa-user"></i> Nguyễn Văn B</span
+          >
+          <span class="topic-date"
+            ><i class="fa fa-clock-o"></i> 08/05/2024</span
+          >
+          <span class="topic-category"
+            ><i class="fa fa-tag"></i> Việc làm & Thực tập</span
+          >
+        </div>
+      </div>
+      <div class="topic-summary">
+        Chào các bạn, mình muốn chia sẻ và trao đổi kinh nghiệm thực tập tại các
+        công ty phần mềm. Mình vừa hoàn thành kỳ thực tập tại công ty ABC và
+        muốn chia sẻ một số kinh nghiệm...
+      </div>
+      <div class="topic-stats">
+        <span class="views"><i class="fa fa-eye"></i> 178 lượt xem</span>
+        <span class="comments"
+          ><i class="fa fa-comments"></i> 32 bình luận</span
+        >
+        <span class="last-reply"
+          ><i class="fa fa-reply"></i> Trả lời gần nhất: 2 ngày trước</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Chủ đề 5 -->
+  <div class="topic-item">
+    <div class="topic-avatar">
+      <img src="https://via.placeholder.com/50" alt="Avatar" />
+    </div>
+    <div class="topic-content">
+      <div class="topic-header">
+        <h3 class="topic-title">
+          <a href="#" onclick="showTopicDetail('topic-5'); return false;"
+            >Hỏi đáp về môn Trí tuệ nhân tạo</a
+          >
+        </h3>
+        <div class="topic-meta">
+          <span class="topic-author"
+            ><i class="fa fa-user"></i> Trần Thị C</span
+          >
+          <span class="topic-date"
+            ><i class="fa fa-clock-o"></i> 05/05/2024</span
+          >
+          <span class="topic-category"><i class="fa fa-tag"></i> Học tập</span>
+        </div>
+      </div>
+      <div class="topic-summary">
+        Mình đang gặp khó khăn trong việc hiểu một số khái niệm trong môn Trí
+        tuệ nhân tạo. Cụ thể là phần học máy và mạng neural. Các bạn có thể giúp
+        mình giải thích hoặc chia sẻ tài liệu không?
+      </div>
+      <div class="topic-stats">
+        <span class="views"><i class="fa fa-eye"></i> 145 lượt xem</span>
+        <span class="comments"
+          ><i class="fa fa-comments"></i> 28 bình luận</span
+        >
+        <span class="last-reply"
+          ><i class="fa fa-reply"></i> Trả lời gần nhất: 3 ngày trước</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phân trang -->
+<div class="pagination">
+  <a href="#" class="active">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">&raquo;</a>
+</div>
+
+<!-- Form tạo chủ đề mới (mặc định ẩn) -->
+<div id="new-topic-form" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Tạo chủ đề mới</h3>
+      <span class="close-modal" onclick="hideNewTopicForm()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="topic-title">Tiêu đề:</label>
+        <input
+          type="text"
+          id="topic-title"
+          placeholder="Nhập tiêu đề chủ đề..."
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="topic-category-select">Danh mục:</label>
+        <select id="topic-category-select">
+          <option value="academic">Học tập</option>
+          <option value="events">Sự kiện</option>
+          <option value="activities">Hoạt động ngoại khóa</option>
+          <option value="career">Việc làm & Thực tập</option>
+          <option value="general">Chung</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="topic-content">Nội dung:</label>
+        <textarea
+          id="topic-content"
+          rows="10"
+          placeholder="Nhập nội dung chủ đề..."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="topic-tags">Thẻ (cách nhau bởi dấu phẩy):</label>
+        <input
+          type="text"
+          id="topic-tags"
+          placeholder="Ví dụ: học tập, thi cử, thực tập..."
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Tùy chọn:</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="topic-notification" />
+          <label for="topic-notification"
+            >Nhận thông báo khi có bình luận mới</label
+          >
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="hideNewTopicForm()">Hủy</button>
+      <button class="submit-btn" onclick="submitNewTopic()">Đăng chủ đề</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm tìm kiếm chủ đề
+  function searchForum() {
+    const searchText = document
+      .getElementById("forum-search")
+      .value.toLowerCase();
+    console.log("Tìm kiếm chủ đề với từ khóa: " + searchText);
+
+    // Trong thực tế, đây sẽ là API call để tìm kiếm chủ đề
+    // searchTopics(searchText);
+
+    // Mô phỏng tìm kiếm
+    const topicItems = document.querySelectorAll(".topic-item");
+
+    topicItems.forEach((item) => {
+      const title = item
+        .querySelector(".topic-title")
+        .textContent.toLowerCase();
+      const summary = item
+        .querySelector(".topic-summary")
+        .textContent.toLowerCase();
+
+      if (title.includes(searchText) || summary.includes(searchText)) {
+        item.style.display = "";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+
+  // Hàm lọc chủ đề theo danh mục
+  function filterForumByCategory() {
+    const category = document.getElementById("forum-category").value;
+    console.log("Lọc chủ đề theo danh mục: " + category);
+
+    // Trong thực tế, đây sẽ là API call để lọc chủ đề
+    // filterTopics(category);
+
+    // Mô phỏng lọc
+    const topicItems = document.querySelectorAll(".topic-item");
+
+    if (category === "all") {
+      topicItems.forEach((item) => {
+        item.style.display = "";
+      });
+    } else {
+      topicItems.forEach((item) => {
+        const topicCategory = item
+          .querySelector(".topic-category")
+          .textContent.toLowerCase();
+
+        if (topicCategory.includes(category.toLowerCase())) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+  }
+
+  // Hàm sắp xếp chủ đề
+  function sortForum() {
+    const sortBy = document.getElementById("forum-sort").value;
+    console.log("Sắp xếp chủ đề theo: " + sortBy);
+
+    // Trong thực tế, đây sẽ là API call để sắp xếp chủ đề
+    // sortTopics(sortBy);
+
+    // Mô phỏng sắp xếp (không thực hiện thực tế trong demo)
+    alert("Đang sắp xếp chủ đề theo: " + sortBy);
+  }
+
+  // Hàm hiển thị chi tiết chủ đề
+  function showTopicDetail(topicId) {
+    console.log("Hiển thị chi tiết chủ đề: " + topicId);
+
+    // Trong thực tế, đây sẽ là chuyển hướng đến trang chi tiết chủ đề
+    alert("Đang chuyển đến trang chi tiết chủ đề: " + topicId);
+  }
+
+  // Hàm hiển thị form tạo chủ đề mới
+  function showNewTopicForm() {
+    document.getElementById("new-topic-form").style.display = "block";
+  }
+
+  // Hàm ẩn form tạo chủ đề mới
+  function hideNewTopicForm() {
+    document.getElementById("new-topic-form").style.display = "none";
+  }
+
+  // Hàm gửi chủ đề mới
+  function submitNewTopic() {
+    const title = document.getElementById("topic-title").value;
+    const category = document.getElementById("topic-category-select").value;
+    const content = document.getElementById("topic-content").value;
+    const tags = document.getElementById("topic-tags").value;
+    const notification = document.getElementById("topic-notification").checked;
+
+    // Kiểm tra dữ liệu
+    if (!title.trim()) {
+      alert("Vui lòng nhập tiêu đề chủ đề!");
+      return;
+    }
+
+    if (!content.trim()) {
+      alert("Vui lòng nhập nội dung chủ đề!");
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để tạo chủ đề mới
+    console.log("Tạo chủ đề mới:", {
+      title,
+      category,
+      content,
+      tags,
+      notification,
+    });
+
+    // Hiển thị thông báo
+    alert("Chủ đề mới đã được tạo thành công!");
+
+    // Đóng form
+    hideNewTopicForm();
+  }
+
+  // Đóng modal khi click bên ngoài
+  window.onclick = function (event) {
+    const modal = document.getElementById("new-topic-form");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>

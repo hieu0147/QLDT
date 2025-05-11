@@ -1,0 +1,472 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-minus-circle" style="color: #f44336"></i> Rút học phần
+</h1>
+
+<!-- Thông tin chung -->
+<div class="withdraw-info">
+  <div class="info-item">
+    <div class="info-label">Học kỳ hiện tại:</div>
+    <div class="info-value">Học kỳ 2, năm học 2023-2024</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Thời gian rút học phần:</div>
+    <div class="info-value">01/06/2023 - 15/06/2023</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Trạng thái:</div>
+    <div class="info-value status-active">Đang mở</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Số học phần đã đăng ký:</div>
+    <div class="info-value">7</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Số tín chỉ đã đăng ký:</div>
+    <div class="info-value">20</div>
+  </div>
+</div>
+
+<!-- Thông báo quan trọng -->
+<div class="important-notice">
+  <div class="notice-icon"><i class="fa fa-exclamation-triangle"></i></div>
+  <div class="notice-content">
+    <h3>Lưu ý quan trọng</h3>
+    <ul>
+      <li>Sinh viên chỉ được phép rút học phần trong thời gian quy định.</li>
+      <li>Học phần đã rút sẽ không được hoàn học phí.</li>
+      <li>
+        Sau khi rút học phần, sinh viên phải đảm bảo số tín chỉ tối thiểu trong
+        học kỳ là 14 tín chỉ (trừ học kỳ cuối).
+      </li>
+      <li>
+        Học phần đã rút sẽ không được tính vào kết quả học tập và không hiển thị
+        trong bảng điểm.
+      </li>
+      <li>
+        Sinh viên có thể đăng ký lại học phần đã rút trong các học kỳ sau.
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Danh sách học phần đã đăng ký -->
+<div class="registered-courses">
+  <h2 class="section-title">Danh sách học phần đã đăng ký</h2>
+
+  <table class="course-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã học phần</th>
+        <th>Tên học phần</th>
+        <th>Nhóm</th>
+        <th>Số tín chỉ</th>
+        <th>Lịch học</th>
+        <th>Phòng học</th>
+        <th>Giảng viên</th>
+        <th>Trạng thái</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Học phần 1 -->
+      <tr class="course-row">
+        <td>1</td>
+        <td>COMP3006</td>
+        <td>Kiểm thử phần mềm</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 2 (7:00-9:30)</td>
+        <td>A305</td>
+        <td>TS. Nguyễn Văn X</td>
+        <td><span class="status-badge active">Đang học</span></td>
+        <td>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3006', '01', 'Kiểm thử phần mềm')"
+          >
+            <i class="fa fa-minus-circle"></i> Rút
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 2 -->
+      <tr class="course-row">
+        <td>2</td>
+        <td>COMP3007</td>
+        <td>Quản lý dự án phần mềm</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 3 (7:00-9:30)</td>
+        <td>A401</td>
+        <td>TS. Lê Văn Y</td>
+        <td><span class="status-badge active">Đang học</span></td>
+        <td>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3007', '01', 'Quản lý dự án phần mềm')"
+          >
+            <i class="fa fa-minus-circle"></i> Rút
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 3 -->
+      <tr class="course-row">
+        <td>3</td>
+        <td>COMP3008</td>
+        <td>Học máy</td>
+        <td>02</td>
+        <td>3</td>
+        <td>Thứ 4 (7:00-9:30)</td>
+        <td>B203</td>
+        <td>TS. Trần Thị Z</td>
+        <td><span class="status-badge active">Đang học</span></td>
+        <td>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3008', '02', 'Học máy')"
+          >
+            <i class="fa fa-minus-circle"></i> Rút
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 4 -->
+      <tr class="course-row">
+        <td>4</td>
+        <td>COMP3009</td>
+        <td>Phát triển game</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 5 (7:00-9:30)</td>
+        <td>A305</td>
+        <td>TS. Phạm Văn W</td>
+        <td><span class="status-badge active">Đang học</span></td>
+        <td>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3009', '01', 'Phát triển game')"
+          >
+            <i class="fa fa-minus-circle"></i> Rút
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 5 -->
+      <tr class="course-row">
+        <td>5</td>
+        <td>COMP3010</td>
+        <td>Điện toán đám mây</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 6 (7:00-9:30)</td>
+        <td>B203</td>
+        <td>TS. Nguyễn Văn X</td>
+        <td><span class="status-badge active">Đang học</span></td>
+        <td>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3010', '01', 'Điện toán đám mây')"
+          >
+            <i class="fa fa-minus-circle"></i> Rút
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 6 -->
+      <tr class="course-row">
+        <td>6</td>
+        <td>POLI3002</td>
+        <td>Lịch sử Đảng Cộng sản Việt Nam</td>
+        <td>03</td>
+        <td>2</td>
+        <td>Thứ 7 (7:00-8:40)</td>
+        <td>A401</td>
+        <td>TS. Lê Thị V</td>
+        <td><span class="status-badge active">Đang học</span></td>
+        <td>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('POLI3002', '03', 'Lịch sử Đảng Cộng sản Việt Nam')"
+          >
+            <i class="fa fa-minus-circle"></i> Rút
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 7 -->
+      <tr class="course-row">
+        <td>7</td>
+        <td>COMP3011</td>
+        <td>Thực tập doanh nghiệp</td>
+        <td>01</td>
+        <td>3</td>
+        <td>-</td>
+        <td>-</td>
+        <td>TS. Lê Văn Y</td>
+        <td><span class="status-badge pending">Chờ xử lý</span></td>
+        <td>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3011', '01', 'Thực tập doanh nghiệp')"
+          >
+            <i class="fa fa-minus-circle"></i> Rút
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Lịch sử rút học phần -->
+<div class="withdraw-history">
+  <h2 class="section-title">Lịch sử rút học phần</h2>
+
+  <table class="history-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã học phần</th>
+        <th>Tên học phần</th>
+        <th>Nhóm</th>
+        <th>Số tín chỉ</th>
+        <th>Học kỳ</th>
+        <th>Ngày rút</th>
+        <th>Lý do</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Lịch sử 1 -->
+      <tr class="history-row">
+        <td>1</td>
+        <td>COMP2010</td>
+        <td>Phát triển ứng dụng di động</td>
+        <td>02</td>
+        <td>3</td>
+        <td>Học kỳ 1, 2022-2023</td>
+        <td>15/09/2022</td>
+        <td>Trùng lịch học</td>
+        <td><span class="status-badge completed">Đã duyệt</span></td>
+      </tr>
+
+      <!-- Lịch sử 2 -->
+      <tr class="history-row">
+        <td>2</td>
+        <td>COMP2012</td>
+        <td>Phát triển ứng dụng web</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Học kỳ 2, 2021-2022</td>
+        <td>10/02/2022</td>
+        <td>Khối lượng học tập quá tải</td>
+        <td><span class="status-badge completed">Đã duyệt</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal xác nhận rút học phần -->
+<div id="withdraw-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Xác nhận rút học phần</h3>
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>
+        Bạn có chắc chắn muốn rút học phần
+        <strong id="modal-course-name">Kiểm thử phần mềm</strong> (<span
+          id="modal-course-code"
+          >COMP3006</span
+        >) - Nhóm <span id="modal-course-group">01</span>?
+      </p>
+
+      <div class="warning-box">
+        <div class="warning-icon">
+          <i class="fa fa-exclamation-triangle"></i>
+        </div>
+        <div class="warning-text">
+          <p><strong>Lưu ý:</strong></p>
+          <ul>
+            <li>Học phần đã rút sẽ không được hoàn học phí.</li>
+            <li>Học phần đã rút sẽ không được tính vào kết quả học tập.</li>
+            <li>Bạn có thể đăng ký lại học phần này trong các học kỳ sau.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="withdraw-reason">Lý do rút học phần:</label>
+        <select id="withdraw-reason" required>
+          <option value="">-- Chọn lý do --</option>
+          <option value="schedule-conflict">Trùng lịch học/thi</option>
+          <option value="workload">Khối lượng học tập quá tải</option>
+          <option value="difficulty">Nội dung học phần quá khó</option>
+          <option value="health">Lý do sức khỏe</option>
+          <option value="financial">Lý do tài chính</option>
+          <option value="other">Lý do khác</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="other-reason-group" style="display: none">
+        <label for="other-reason">Lý do khác:</label>
+        <textarea
+          id="other-reason"
+          rows="3"
+          placeholder="Nhập lý do rút học phần..."
+        ></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="closeModal()">Hủy</button>
+      <button class="confirm-btn" onclick="confirmWithdraw()">
+        Xác nhận rút
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal thông báo kết quả -->
+<div id="result-modal" class="modal">
+  <div class="modal-content result-modal">
+    <div class="modal-header">
+      <h3>Kết quả rút học phần</h3>
+      <span class="close-modal" onclick="closeResultModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="result-icon success"><i class="fa fa-check-circle"></i></div>
+      <div class="result-message">
+        <p>
+          Bạn đã rút học phần
+          <strong id="result-course-name">Kiểm thử phần mềm</strong> (<span
+            id="result-course-code"
+            >COMP3006</span
+          >) - Nhóm <span id="result-course-group">01</span> thành công!
+        </p>
+        <p>
+          Yêu cầu rút học phần của bạn đã được ghi nhận và sẽ được cập nhật
+          trong hệ thống.
+        </p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="close-btn" onclick="closeResultModal()">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Biến lưu thông tin học phần đang xử lý
+  let currentCourseCode = "";
+  let currentCourseGroup = "";
+  let currentCourseName = "";
+
+  // Hàm rút học phần
+  function withdrawCourse(courseCode, courseGroup, courseName) {
+    // Lưu thông tin học phần đang rút
+    currentCourseCode = courseCode;
+    currentCourseGroup = courseGroup;
+    currentCourseName = courseName;
+
+    // Cập nhật thông tin trong modal
+    document.getElementById("modal-course-code").textContent = courseCode;
+    document.getElementById("modal-course-group").textContent = courseGroup;
+    document.getElementById("modal-course-name").textContent = courseName;
+
+    // Reset form
+    document.getElementById("withdraw-reason").value = "";
+    document.getElementById("other-reason").value = "";
+    document.getElementById("other-reason-group").style.display = "none";
+
+    // Hiển thị modal
+    document.getElementById("withdraw-modal").style.display = "block";
+  }
+
+  // Hàm xác nhận rút học phần
+  function confirmWithdraw() {
+    // Kiểm tra lý do
+    const reason = document.getElementById("withdraw-reason").value;
+    if (!reason) {
+      alert("Vui lòng chọn lý do rút học phần!");
+      return;
+    }
+
+    // Kiểm tra lý do khác
+    if (reason === "other") {
+      const otherReason = document.getElementById("other-reason").value.trim();
+      if (!otherReason) {
+        alert("Vui lòng nhập lý do rút học phần!");
+        return;
+      }
+    }
+
+    // Đóng modal xác nhận
+    closeModal();
+
+    // Trong thực tế, đây sẽ là API call để rút học phần
+    console.log(
+      "Rút học phần: " +
+        currentCourseCode +
+        ", nhóm: " +
+        currentCourseGroup +
+        ", lý do: " +
+        reason
+    );
+
+    // Cập nhật thông tin trong modal kết quả
+    document.getElementById("result-course-code").textContent =
+      currentCourseCode;
+    document.getElementById("result-course-group").textContent =
+      currentCourseGroup;
+    document.getElementById("result-course-name").textContent =
+      currentCourseName;
+
+    // Hiển thị modal kết quả
+    document.getElementById("result-modal").style.display = "block";
+  }
+
+  // Hàm đóng modal xác nhận
+  function closeModal() {
+    document.getElementById("withdraw-modal").style.display = "none";
+  }
+
+  // Hàm đóng modal kết quả
+  function closeResultModal() {
+    document.getElementById("result-modal").style.display = "none";
+
+    // Cập nhật giao diện
+    // Trong thực tế, đây sẽ là reload trang hoặc cập nhật DOM
+    location.reload();
+  }
+
+  // Xử lý sự kiện thay đổi lý do
+  document.addEventListener("DOMContentLoaded", function () {
+    const withdrawReason = document.getElementById("withdraw-reason");
+    const otherReasonGroup = document.getElementById("other-reason-group");
+
+    withdrawReason.addEventListener("change", function () {
+      if (this.value === "other") {
+        otherReasonGroup.style.display = "block";
+      } else {
+        otherReasonGroup.style.display = "none";
+      }
+    });
+  });
+
+  // Đóng modal khi click bên ngoài
+  window.onclick = function (event) {
+    const withdrawModal = document.getElementById("withdraw-modal");
+    const resultModal = document.getElementById("result-modal");
+
+    if (event.target == withdrawModal) {
+      closeModal();
+    }
+
+    if (event.target == resultModal) {
+      closeResultModal();
+    }
+  };
+</script>

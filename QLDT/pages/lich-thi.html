@@ -1,0 +1,459 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-calendar-check-o" style="color: #e91e63"></i> Lịch thi
+</h1>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="exam-controls">
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="loadExamSchedule()">
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="exam-type">Loại kỳ thi:</label>
+    <select id="exam-type" onchange="loadExamSchedule()">
+      <option value="all">Tất cả</option>
+      <option value="midterm">Giữa kỳ</option>
+      <option value="final">Cuối kỳ</option>
+      <option value="makeup">Thi lại</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printExamSchedule()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportExamSchedule()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+    <button class="action-btn" onclick="syncCalendar()">
+      <i class="fa fa-refresh"></i> Đồng bộ
+    </button>
+  </div>
+</div>
+
+<!-- Thông báo lịch thi -->
+<div class="exam-notice">
+  <div class="notice-icon"><i class="fa fa-info-circle"></i></div>
+  <div class="notice-content">
+    <h3>Thông báo về kỳ thi cuối kỳ học kỳ 2, năm học 2023-2024</h3>
+    <p>
+      Kỳ thi cuối kỳ sẽ diễn ra từ ngày 15/06/2024 đến ngày 30/06/2024. Sinh
+      viên cần mang theo thẻ sinh viên và đến trước giờ thi ít nhất 15 phút. Các
+      trường hợp đi trễ quá 15 phút sẽ không được dự thi.
+    </p>
+    <p>
+      Sinh viên cần kiểm tra kỹ lịch thi và phòng thi. Mọi thắc mắc vui lòng
+      liên hệ Phòng Đào tạo trước ngày 10/06/2024.
+    </p>
+    <div class="notice-meta">
+      <span><i class="fa fa-calendar"></i> Ngày đăng: 01/06/2024</span>
+      <span><i class="fa fa-user"></i> Người đăng: Phòng Đào tạo</span>
+    </div>
+  </div>
+</div>
+
+<!-- Lịch thi sắp tới -->
+<div class="upcoming-exams">
+  <h2 class="section-title">Lịch thi sắp tới</h2>
+
+  <div class="exam-timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <div class="date-day">15</div>
+        <div class="date-month">Tháng 6</div>
+        <div class="date-year">2024</div>
+      </div>
+      <div class="timeline-content">
+        <div class="exam-card">
+          <div class="exam-time">07:00 - 08:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">Lập trình Web nâng cao</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Hình thức: Thi viết</span>
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <div class="date-day">17</div>
+        <div class="date-month">Tháng 6</div>
+        <div class="date-year">2024</div>
+      </div>
+      <div class="timeline-content">
+        <div class="exam-card">
+          <div class="exam-time">07:00 - 08:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">Trí tuệ nhân tạo</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Hình thức: Thi viết</span>
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-time">13:00 - 14:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">An toàn thông tin</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span
+                ><i class="fa fa-info-circle"></i> Hình thức: Thi trắc
+                nghiệm</span
+              >
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <div class="date-day">20</div>
+        <div class="date-month">Tháng 6</div>
+        <div class="date-year">2024</div>
+      </div>
+      <div class="timeline-content">
+        <div class="exam-card">
+          <div class="exam-time">07:00 - 08:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">Phân tích và thiết kế hệ thống</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A401</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Hình thức: Thi viết</span>
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <div class="date-day">22</div>
+        <div class="date-month">Tháng 6</div>
+        <div class="date-year">2024</div>
+      </div>
+      <div class="timeline-content">
+        <div class="exam-card">
+          <div class="exam-time">07:00 - 08:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">Lập trình Java</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A401</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span
+                ><i class="fa fa-info-circle"></i> Hình thức: Thi thực
+                hành</span
+              >
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-time">13:00 - 14:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">Kiểm thử phần mềm</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Hình thức: Thi viết</span>
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <div class="date-day">25</div>
+        <div class="date-month">Tháng 6</div>
+        <div class="date-year">2024</div>
+      </div>
+      <div class="timeline-content">
+        <div class="exam-card">
+          <div class="exam-time">07:00 - 08:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">Cơ sở dữ liệu</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Hình thức: Thi viết</span>
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <div class="date-day">27</div>
+        <div class="date-month">Tháng 6</div>
+        <div class="date-year">2024</div>
+      </div>
+      <div class="timeline-content">
+        <div class="exam-card">
+          <div class="exam-time">07:00 - 08:30</div>
+          <div class="exam-details">
+            <div class="exam-subject">Mạng máy tính</div>
+            <div class="exam-info">
+              <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Hình thức: Thi viết</span>
+            </div>
+          </div>
+          <div class="exam-status">
+            <span class="status-upcoming">Sắp tới</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bảng lịch thi chi tiết -->
+<div class="exam-schedule-table">
+  <h2 class="section-title">Bảng lịch thi chi tiết</h2>
+
+  <div class="table-container">
+    <table class="exam-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Mã học phần</th>
+          <th>Tên học phần</th>
+          <th>Ngày thi</th>
+          <th>Giờ thi</th>
+          <th>Phòng thi</th>
+          <th>Hình thức</th>
+          <th>Ghi chú</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>LTWNC01</td>
+          <td>Lập trình Web nâng cao</td>
+          <td>15/06/2024</td>
+          <td>07:00 - 08:30</td>
+          <td>A305</td>
+          <td>Thi viết</td>
+          <td>Mang theo bút, thước kẻ</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>TTNT02</td>
+          <td>Trí tuệ nhân tạo</td>
+          <td>17/06/2024</td>
+          <td>07:00 - 08:30</td>
+          <td>B203</td>
+          <td>Thi viết</td>
+          <td>Mang theo bút, thước kẻ</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>ATTT01</td>
+          <td>An toàn thông tin</td>
+          <td>17/06/2024</td>
+          <td>13:00 - 14:30</td>
+          <td>A305</td>
+          <td>Thi trắc nghiệm</td>
+          <td>Mang theo bút chì 2B</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>PTTKHT01</td>
+          <td>Phân tích và thiết kế hệ thống</td>
+          <td>20/06/2024</td>
+          <td>07:00 - 08:30</td>
+          <td>A401</td>
+          <td>Thi viết</td>
+          <td>Mang theo bút, thước kẻ</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>JAVA03</td>
+          <td>Lập trình Java</td>
+          <td>22/06/2024</td>
+          <td>07:00 - 08:30</td>
+          <td>A401</td>
+          <td>Thi thực hành</td>
+          <td>Thi trên máy tính</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>KTPM02</td>
+          <td>Kiểm thử phần mềm</td>
+          <td>22/06/2024</td>
+          <td>13:00 - 14:30</td>
+          <td>A305</td>
+          <td>Thi viết</td>
+          <td>Mang theo bút, thước kẻ</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>CSDL02</td>
+          <td>Cơ sở dữ liệu</td>
+          <td>25/06/2024</td>
+          <td>07:00 - 08:30</td>
+          <td>B203</td>
+          <td>Thi viết</td>
+          <td>Mang theo bút, thước kẻ</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>MMT01</td>
+          <td>Mạng máy tính</td>
+          <td>27/06/2024</td>
+          <td>07:00 - 08:30</td>
+          <td>B203</td>
+          <td>Thi viết</td>
+          <td>Mang theo bút, thước kẻ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Quy định thi -->
+<div class="exam-regulations">
+  <h2 class="section-title">Quy định thi</h2>
+
+  <div class="regulations-content">
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-clock-o"></i></div>
+      <div class="regulation-text">
+        <h3>Thời gian</h3>
+        <p>
+          Sinh viên phải có mặt tại phòng thi trước giờ thi ít nhất 15 phút.
+          Sinh viên đến trễ quá 15 phút sau khi bắt đầu thi sẽ không được dự
+          thi.
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-id-card"></i></div>
+      <div class="regulation-text">
+        <h3>Giấy tờ</h3>
+        <p>
+          Sinh viên phải mang theo thẻ sinh viên hoặc giấy tờ tùy thân có ảnh
+          (CMND, CCCD, bằng lái xe) khi đi thi. Sinh viên không có giấy tờ tùy
+          thân sẽ không được dự thi.
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-ban"></i></div>
+      <div class="regulation-text">
+        <h3>Vật dụng cấm mang vào phòng thi</h3>
+        <p>
+          Sinh viên không được mang vào phòng thi: điện thoại di động, thiết bị
+          ghi âm, ghi hình, thiết bị truyền tin, tài liệu (trừ những môn được
+          phép mang tài liệu theo quy định của giảng viên).
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-check-circle"></i></div>
+      <div class="regulation-text">
+        <h3>Vật dụng được phép mang vào phòng thi</h3>
+        <p>
+          Sinh viên được phép mang vào phòng thi: bút, thước kẻ, máy tính cầm
+          tay không có chức năng soạn thảo văn bản và không có thẻ nhớ (đối với
+          các môn được phép sử dụng máy tính).
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon">
+        <i class="fa fa-exclamation-triangle"></i>
+      </div>
+      <div class="regulation-text">
+        <h3>Quy định về gian lận</h3>
+        <p>
+          Sinh viên bị phát hiện gian lận trong kỳ thi sẽ bị xử lý theo quy định
+          của nhà trường, từ nhắc nhở, cảnh cáo đến đình chỉ thi và hủy kết quả
+          thi.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm tải lịch thi
+  function loadExamSchedule() {
+    const selectedSemester = document.getElementById("semester-select").value;
+    const selectedType = document.getElementById("exam-type").value;
+    console.log(
+      "Đang tải lịch thi cho học kỳ: " +
+        selectedSemester +
+        ", loại kỳ thi: " +
+        selectedType
+    );
+
+    // Trong thực tế, đây sẽ là API call để lấy dữ liệu lịch thi
+    // fetchExamScheduleData(selectedSemester, selectedType);
+  }
+
+  // Hàm in lịch thi
+  function printExamSchedule() {
+    console.log("In lịch thi");
+    window.print();
+  }
+
+  // Hàm xuất file lịch thi
+  function exportExamSchedule() {
+    console.log("Xuất file lịch thi");
+
+    // Trong thực tế, đây sẽ là API call để xuất file
+    alert("Đang xuất file lịch thi...");
+  }
+
+  // Hàm đồng bộ lịch thi với Google Calendar hoặc ứng dụng khác
+  function syncCalendar() {
+    console.log("Đồng bộ lịch thi");
+
+    // Trong thực tế, đây sẽ là API call để đồng bộ lịch
+    alert("Đang đồng bộ lịch thi với Google Calendar...");
+  }
+</script>

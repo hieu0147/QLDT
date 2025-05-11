@@ -1,0 +1,442 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-university" style="color: #2196f3"></i> Chia sẻ với nhà trường
+</h1>
+
+<!-- Giới thiệu -->
+<div class="feedback-intro">
+  <p>
+    Chào mừng bạn đến với trang Chia sẻ với nhà trường. Đây là nơi bạn có thể
+    gửi các ý kiến đóng góp, phản hồi, đề xuất hoặc báo cáo vấn đề đến các phòng
+    ban của nhà trường. Mọi ý kiến của bạn sẽ được xem xét và phản hồi trong
+    thời gian sớm nhất.
+  </p>
+</div>
+
+<!-- Thống kê phản hồi -->
+<div class="feedback-stats">
+  <div class="stat-item">
+    <div class="stat-value">2</div>
+    <div class="stat-label">Đang xử lý</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Đã phản hồi</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">0</div>
+    <div class="stat-label">Chờ bổ sung</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">7</div>
+    <div class="stat-label">Tổng số</div>
+  </div>
+</div>
+
+<!-- Form gửi phản hồi mới -->
+<div class="new-feedback-section">
+  <button class="new-feedback-btn" onclick="toggleFeedbackForm()">
+    <i class="fa fa-plus-circle"></i> Gửi phản hồi mới
+  </button>
+
+  <div id="feedback-form" class="feedback-form" style="display: none">
+    <h3>Gửi phản hồi mới</h3>
+
+    <div class="form-group">
+      <label for="feedback-department"
+        >Gửi đến phòng/ban: <span class="required">*</span></label
+      >
+      <select id="feedback-department" required>
+        <option value="">-- Chọn phòng/ban --</option>
+        <option value="dao-tao">Phòng Đào tạo</option>
+        <option value="ctsv">Phòng Công tác sinh viên</option>
+        <option value="tc-kt">Phòng Tài chính - Kế toán</option>
+        <option value="cntt">Phòng Công nghệ thông tin</option>
+        <option value="ttgd">Trung tâm Giáo dục thường xuyên</option>
+        <option value="khoa-cntt">Khoa Công nghệ thông tin</option>
+        <option value="khoa-kinh-te">Khoa Kinh tế</option>
+        <option value="khoa-co-khi">Khoa Cơ khí</option>
+        <option value="khoa-dien">Khoa Điện - Điện tử</option>
+        <option value="khoa-xd">Khoa Xây dựng</option>
+        <option value="khoa-nn">Khoa Ngoại ngữ</option>
+        <option value="ban-giam-hieu">Ban Giám hiệu</option>
+        <option value="khac">Khác</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-type"
+        >Loại phản hồi: <span class="required">*</span></label
+      >
+      <select id="feedback-type" required>
+        <option value="">-- Chọn loại phản hồi --</option>
+        <option value="gop-y">Góp ý, đề xuất</option>
+        <option value="khieu-nai">Khiếu nại</option>
+        <option value="bao-loi">Báo lỗi hệ thống</option>
+        <option value="hoi-dap">Hỏi đáp thông tin</option>
+        <option value="khen-ngoi">Khen ngợi</option>
+        <option value="khac">Khác</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-title"
+        >Tiêu đề: <span class="required">*</span></label
+      >
+      <input
+        type="text"
+        id="feedback-title"
+        placeholder="Nhập tiêu đề phản hồi..."
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-content"
+        >Nội dung: <span class="required">*</span></label
+      >
+      <textarea
+        id="feedback-content"
+        rows="5"
+        placeholder="Nhập nội dung phản hồi chi tiết..."
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-attachment">Tệp đính kèm:</label>
+      <input type="file" id="feedback-attachment" multiple />
+      <small>Hỗ trợ các định dạng: PDF, DOC, DOCX, JPG, PNG (tối đa 5MB)</small>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input type="checkbox" id="feedback-anonymous" /> Gửi ẩn danh
+      </label>
+      <small
+        >Lưu ý: Phản hồi ẩn danh sẽ không hiển thị thông tin cá nhân của bạn,
+        nhưng nhà trường vẫn có thể liên hệ thông qua hệ thống nếu cần thêm
+        thông tin.</small
+      >
+    </div>
+
+    <div class="form-actions">
+      <button class="cancel-btn" onclick="toggleFeedbackForm()">Hủy</button>
+      <button class="submit-btn" onclick="submitFeedback()">
+        Gửi phản hồi
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Danh sách phản hồi đã gửi -->
+<div class="feedback-history">
+  <h2 class="section-title">Lịch sử phản hồi</h2>
+
+  <!-- Phản hồi 1 -->
+  <div class="feedback-item">
+    <div class="feedback-header">
+      <div class="feedback-info">
+        <h3 class="feedback-title">
+          Đề xuất cải thiện hệ thống đăng ký học phần
+        </h3>
+        <div class="feedback-meta">
+          <span><i class="fa fa-building-o"></i> Phòng Đào tạo</span>
+          <span><i class="fa fa-tag"></i> Góp ý, đề xuất</span>
+          <span><i class="fa fa-calendar"></i> 10/05/2024</span>
+          <span class="feedback-status processing">Đang xử lý</span>
+        </div>
+      </div>
+      <div class="feedback-toggle" onclick="toggleFeedbackDetail(this)">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+    </div>
+
+    <div class="feedback-detail" style="display: none">
+      <div class="feedback-content">
+        <p>Kính gửi Phòng Đào tạo,</p>
+        <p>
+          Em xin góp ý về hệ thống đăng ký học phần hiện tại. Trong đợt đăng ký
+          học kỳ vừa qua, em nhận thấy hệ thống thường xuyên bị quá tải vào thời
+          điểm mở đăng ký, dẫn đến việc nhiều sinh viên không thể đăng ký được
+          các môn học mong muốn.
+        </p>
+        <p>Em xin đề xuất một số giải pháp sau:</p>
+        <ol>
+          <li>
+            Phân chia thời gian đăng ký theo khóa/ngành để giảm tải cho hệ thống
+          </li>
+          <li>Tăng cường server trong thời gian đăng ký học phần</li>
+          <li>Cải thiện giao diện để dễ sử dụng hơn trên thiết bị di động</li>
+        </ol>
+        <p>
+          Em hy vọng những đề xuất này sẽ giúp cải thiện trải nghiệm đăng ký học
+          phần cho sinh viên trong các học kỳ tới.
+        </p>
+        <p>Trân trọng cảm ơn!</p>
+      </div>
+
+      <div class="feedback-response">
+        <div class="response-header">
+          <i class="fa fa-reply"></i> Phản hồi từ Phòng Đào tạo
+        </div>
+        <div class="response-content">
+          <p>Chưa có phản hồi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phản hồi 2 -->
+  <div class="feedback-item">
+    <div class="feedback-header">
+      <div class="feedback-info">
+        <h3 class="feedback-title">Báo lỗi không xem được điểm thi</h3>
+        <div class="feedback-meta">
+          <span
+            ><i class="fa fa-building-o"></i> Phòng Công nghệ thông tin</span
+          >
+          <span><i class="fa fa-tag"></i> Báo lỗi hệ thống</span>
+          <span><i class="fa fa-calendar"></i> 05/05/2024</span>
+          <span class="feedback-status completed">Đã phản hồi</span>
+        </div>
+      </div>
+      <div class="feedback-toggle" onclick="toggleFeedbackDetail(this)">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+    </div>
+
+    <div class="feedback-detail" style="display: none">
+      <div class="feedback-content">
+        <p>Kính gửi Phòng Công nghệ thông tin,</p>
+        <p>
+          Em xin báo lỗi về việc không xem được điểm thi học kỳ 1 năm học
+          2023-2024. Khi em truy cập vào mục "Kết quả học tập" và chọn học kỳ 1,
+          hệ thống hiển thị thông báo lỗi "Không thể kết nối đến máy chủ dữ
+          liệu".
+        </p>
+        <p>
+          Em đã thử đăng nhập lại và xóa cache trình duyệt nhưng vẫn gặp lỗi
+          tương tự. Lỗi này xảy ra trên cả máy tính và điện thoại của em.
+        </p>
+        <p>Mong Phòng CNTT kiểm tra và khắc phục sự cố này.</p>
+        <p>Trân trọng cảm ơn!</p>
+      </div>
+
+      <div class="feedback-response">
+        <div class="response-header">
+          <i class="fa fa-reply"></i> Phản hồi từ Phòng Công nghệ thông tin
+          <span class="response-date">07/05/2024, 10:15</span>
+        </div>
+        <div class="response-content">
+          <p>Chào bạn,</p>
+          <p>
+            Cảm ơn bạn đã báo lỗi. Phòng CNTT đã kiểm tra và phát hiện sự cố với
+            máy chủ dữ liệu điểm thi. Chúng tôi đã khắc phục xong vấn đề này vào
+            lúc 9h30 ngày 07/05/2024.
+          </p>
+          <p>
+            Hiện tại bạn có thể truy cập và xem điểm thi bình thường. Nếu vẫn
+            gặp khó khăn, vui lòng liên hệ lại với chúng tôi.
+          </p>
+          <p>Trân trọng,<br />Phòng Công nghệ thông tin</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phản hồi 3 -->
+  <div class="feedback-item">
+    <div class="feedback-header">
+      <div class="feedback-info">
+        <h3 class="feedback-title">
+          Đề xuất bổ sung thiết bị cho phòng thực hành
+        </h3>
+        <div class="feedback-meta">
+          <span><i class="fa fa-building-o"></i> Khoa Công nghệ thông tin</span>
+          <span><i class="fa fa-tag"></i> Góp ý, đề xuất</span>
+          <span><i class="fa fa-calendar"></i> 28/04/2024</span>
+          <span class="feedback-status completed">Đã phản hồi</span>
+        </div>
+      </div>
+      <div class="feedback-toggle" onclick="toggleFeedbackDetail(this)">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+    </div>
+
+    <div class="feedback-detail" style="display: none">
+      <div class="feedback-content">
+        <p>Kính gửi Khoa Công nghệ thông tin,</p>
+        <p>
+          Em là sinh viên lớp CNTT2020, hiện đang học các môn chuyên ngành tại
+          phòng thực hành Lab CNTT1. Em xin góp ý về việc bổ sung thiết bị cho
+          phòng thực hành để phục vụ tốt hơn cho việc học tập.
+        </p>
+        <p>
+          Hiện tại, phòng Lab CNTT1 đang thiếu một số thiết bị cần thiết như:
+        </p>
+        <ul>
+          <li>
+            Card đồ họa cho các máy tính để chạy các phần mềm đồ họa và AI
+          </li>
+          <li>Bộ thiết bị IoT để thực hành môn Internet of Things</li>
+          <li>
+            Các thiết bị mạng như router, switch để thực hành môn Quản trị mạng
+          </li>
+        </ul>
+        <p>
+          Việc bổ sung các thiết bị này sẽ giúp sinh viên có môi trường thực
+          hành tốt hơn, đặc biệt là các môn học liên quan đến AI, IoT và mạng
+          máy tính.
+        </p>
+        <p>Em xin chân thành cảm ơn!</p>
+      </div>
+
+      <div class="feedback-response">
+        <div class="response-header">
+          <i class="fa fa-reply"></i> Phản hồi từ Khoa Công nghệ thông tin
+          <span class="response-date">02/05/2024, 14:30</span>
+        </div>
+        <div class="response-content">
+          <p>Chào bạn,</p>
+          <p>
+            Khoa CNTT cảm ơn bạn đã có những đề xuất thiết thực về việc bổ sung
+            thiết bị cho phòng thực hành. Chúng tôi đã ghi nhận ý kiến của bạn
+            và đang xem xét kế hoạch nâng cấp thiết bị cho các phòng Lab.
+          </p>
+          <p>
+            Hiện tại, Khoa đã lập kế hoạch mua sắm thiết bị mới cho năm học
+            2024-2025, trong đó có các thiết bị bạn đề xuất. Dự kiến việc nâng
+            cấp sẽ được thực hiện vào tháng 8/2024, trước khi bắt đầu năm học
+            mới.
+          </p>
+          <p>
+            Một lần nữa cảm ơn bạn đã đóng góp ý kiến để cải thiện chất lượng
+            đào tạo của Khoa.
+          </p>
+          <p>
+            Trân trọng,<br />TS. Nguyễn Văn X<br />Trưởng Khoa Công nghệ thông
+            tin
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phản hồi 4 -->
+  <div class="feedback-item">
+    <div class="feedback-header">
+      <div class="feedback-info">
+        <h3 class="feedback-title">Hỏi đáp về quy trình xét tốt nghiệp</h3>
+        <div class="feedback-meta">
+          <span><i class="fa fa-building-o"></i> Phòng Đào tạo</span>
+          <span><i class="fa fa-tag"></i> Hỏi đáp thông tin</span>
+          <span><i class="fa fa-calendar"></i> 20/04/2024</span>
+          <span class="feedback-status processing">Đang xử lý</span>
+        </div>
+      </div>
+      <div class="feedback-toggle" onclick="toggleFeedbackDetail(this)">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+    </div>
+
+    <div class="feedback-detail" style="display: none">
+      <div class="feedback-content">
+        <p>Kính gửi Phòng Đào tạo,</p>
+        <p>
+          Em là sinh viên năm cuối, dự kiến sẽ tốt nghiệp vào tháng 6/2024. Em
+          có một số thắc mắc về quy trình xét tốt nghiệp như sau:
+        </p>
+        <ol>
+          <li>
+            Thời gian nộp hồ sơ xét tốt nghiệp đợt tháng 6/2024 là khi nào?
+          </li>
+          <li>Hồ sơ xét tốt nghiệp cần những giấy tờ gì?</li>
+          <li>
+            Em còn nợ chứng chỉ TOEIC, vậy em có thể nộp bổ sung sau khi có kết
+            quả thi được không?
+          </li>
+          <li>Thời gian dự kiến nhận bằng tốt nghiệp là khi nào?</li>
+        </ol>
+        <p>Mong Phòng Đào tạo giải đáp giúp em các thắc mắc trên.</p>
+        <p>Em xin chân thành cảm ơn!</p>
+      </div>
+
+      <div class="feedback-response">
+        <div class="response-header">
+          <i class="fa fa-reply"></i> Phản hồi từ Phòng Đào tạo
+        </div>
+        <div class="response-content">
+          <p>Chưa có phản hồi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phân trang -->
+<div class="pagination">
+  <a href="#"><i class="fa fa-angle-double-left"></i></a>
+  <a href="#"><i class="fa fa-angle-left"></i></a>
+  <a href="#" class="active">1</a>
+  <a href="#">2</a>
+  <a href="#"><i class="fa fa-angle-right"></i></a>
+  <a href="#"><i class="fa fa-angle-double-right"></i></a>
+</div>
+
+<script>
+  // Hàm hiển thị/ẩn form gửi phản hồi
+  function toggleFeedbackForm() {
+    const form = document.getElementById("feedback-form");
+    if (form.style.display === "none") {
+      form.style.display = "block";
+    } else {
+      form.style.display = "none";
+    }
+  }
+
+  // Hàm xử lý khi gửi phản hồi
+  function submitFeedback() {
+    const department = document.getElementById("feedback-department").value;
+    const type = document.getElementById("feedback-type").value;
+    const title = document.getElementById("feedback-title").value;
+    const content = document.getElementById("feedback-content").value;
+
+    if (!department || !type || !title || !content) {
+      alert("Vui lòng điền đầy đủ các thông tin bắt buộc!");
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để gửi phản hồi
+    alert(
+      "Gửi phản hồi thành công! Nhà trường sẽ xem xét và phản hồi trong thời gian sớm nhất."
+    );
+
+    // Reset form và ẩn đi
+    document.getElementById("feedback-department").value = "";
+    document.getElementById("feedback-type").value = "";
+    document.getElementById("feedback-title").value = "";
+    document.getElementById("feedback-content").value = "";
+    document.getElementById("feedback-attachment").value = "";
+    document.getElementById("feedback-anonymous").checked = false;
+    toggleFeedbackForm();
+
+    // Làm mới danh sách phản hồi (trong thực tế sẽ gọi API)
+    // refreshFeedbackList();
+  }
+
+  // Hàm hiển thị/ẩn chi tiết phản hồi
+  function toggleFeedbackDetail(element) {
+    const feedbackItem = element.closest(".feedback-item");
+    const detailSection = feedbackItem.querySelector(".feedback-detail");
+    const toggleIcon = element.querySelector("i");
+
+    if (detailSection.style.display === "none") {
+      detailSection.style.display = "block";
+      toggleIcon.className = "fa fa-chevron-up";
+    } else {
+      detailSection.style.display = "none";
+      toggleIcon.className = "fa fa-chevron-down";
+    }
+  }
+</script>

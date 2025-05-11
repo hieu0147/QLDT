@@ -1,0 +1,746 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-pencil" style="color: #ff7043"></i> Cập nhật thông tin
+</h1>
+
+<!-- Giới thiệu -->
+<div class="update-intro">
+  <p>
+    Trang này cho phép bạn cập nhật thông tin cá nhân. Vui lòng điền đầy đủ và
+    chính xác các thông tin được yêu cầu. Các trường đánh dấu
+    <span class="required">*</span> là bắt buộc.
+  </p>
+  <div class="note-box">
+    <p>
+      <strong>Lưu ý:</strong> Một số thông tin cơ bản không thể thay đổi (họ
+      tên, ngày sinh, mã sinh viên, v.v.). Nếu cần thay đổi những thông tin này,
+      vui lòng liên hệ Phòng Đào tạo.
+    </p>
+  </div>
+</div>
+
+<!-- Form cập nhật thông tin -->
+<div class="update-form">
+  <div class="form-tabs">
+    <button class="tab-btn active" onclick="showUpdateTab('contact-tab')">
+      Thông tin liên hệ
+    </button>
+    <button class="tab-btn" onclick="showUpdateTab('address-tab')">
+      Địa chỉ
+    </button>
+    <button class="tab-btn" onclick="showUpdateTab('family-tab')">
+      Thông tin gia đình
+    </button>
+    <button class="tab-btn" onclick="showUpdateTab('document-tab')">
+      Hồ sơ, giấy tờ
+    </button>
+    <button class="tab-btn" onclick="showUpdateTab('account-tab')">
+      Tài khoản
+    </button>
+  </div>
+
+  <div id="update-tab-content">
+    <!-- Tab thông tin liên hệ -->
+    <div id="contact-tab" class="update-tab-pane active">
+      <h3 class="section-title">Cập nhật thông tin liên hệ</h3>
+
+      <div class="form-group">
+        <label for="phone">Điện thoại: <span class="required">*</span></label>
+        <input type="tel" id="phone" value="0987654321" required />
+      </div>
+
+      <div class="form-group">
+        <label for="personal-email"
+          >Email cá nhân: <span class="required">*</span></label
+        >
+        <input
+          type="email"
+          id="personal-email"
+          value="nguyenvana@gmail.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="school-email">Email trường cấp:</label>
+        <input
+          type="email"
+          id="school-email"
+          value="sv12345@dntu.edu.vn"
+          readonly
+        />
+        <small>Email trường cấp không thể thay đổi.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="facebook">Facebook:</label>
+        <input type="text" id="facebook" value="facebook.com/nguyenvana" />
+      </div>
+
+      <div class="form-group">
+        <label for="emergency-contact"
+          >Người liên hệ khẩn cấp: <span class="required">*</span></label
+        >
+        <input
+          type="text"
+          id="emergency-contact"
+          value="Nguyễn Văn B (Bố)"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="emergency-phone"
+          >Số điện thoại liên hệ khẩn cấp:
+          <span class="required">*</span></label
+        >
+        <input type="tel" id="emergency-phone" value="0912345678" required />
+      </div>
+
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="cancelUpdate()">Hủy</button>
+        <button class="save-btn" onclick="saveContactInfo()">
+          Lưu thay đổi
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab địa chỉ -->
+    <div id="address-tab" class="update-tab-pane">
+      <h3 class="section-title">Cập nhật địa chỉ</h3>
+
+      <div class="form-group">
+        <label>Địa chỉ thường trú: <span class="required">*</span></label>
+        <div class="address-inputs">
+          <div class="form-row">
+            <div class="form-column">
+              <label for="permanent-province">Tỉnh/Thành phố:</label>
+              <select id="permanent-province" required>
+                <option value="dong-nai" selected>Đồng Nai</option>
+                <option value="ho-chi-minh">TP. Hồ Chí Minh</option>
+                <option value="binh-duong">Bình Dương</option>
+                <option value="ba-ria-vung-tau">Bà Rịa - Vũng Tàu</option>
+                <!-- Thêm các tỉnh/thành phố khác -->
+              </select>
+            </div>
+            <div class="form-column">
+              <label for="permanent-district">Quận/Huyện:</label>
+              <select id="permanent-district" required>
+                <option value="bien-hoa" selected>TP. Biên Hòa</option>
+                <option value="long-khanh">TP. Long Khánh</option>
+                <option value="nhon-trach">Nhơn Trạch</option>
+                <option value="trang-bom">Trảng Bom</option>
+                <!-- Thêm các quận/huyện khác -->
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-column">
+              <label for="permanent-ward">Phường/Xã:</label>
+              <select id="permanent-ward" required>
+                <option value="phuong-b" selected>Phường B</option>
+                <option value="phuong-c">Phường C</option>
+                <option value="phuong-d">Phường D</option>
+                <!-- Thêm các phường/xã khác -->
+              </select>
+            </div>
+            <div class="form-column">
+              <label for="permanent-street">Số nhà, đường:</label>
+              <input
+                type="text"
+                id="permanent-street"
+                value="123 Đường A"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Địa chỉ tạm trú:</label>
+        <div class="address-inputs">
+          <div class="form-row">
+            <div class="form-column">
+              <label for="temporary-province">Tỉnh/Thành phố:</label>
+              <select id="temporary-province">
+                <option value="dong-nai" selected>Đồng Nai</option>
+                <option value="ho-chi-minh">TP. Hồ Chí Minh</option>
+                <option value="binh-duong">Bình Dương</option>
+                <option value="ba-ria-vung-tau">Bà Rịa - Vũng Tàu</option>
+                <!-- Thêm các tỉnh/thành phố khác -->
+              </select>
+            </div>
+            <div class="form-column">
+              <label for="temporary-district">Quận/Huyện:</label>
+              <select id="temporary-district">
+                <option value="bien-hoa" selected>TP. Biên Hòa</option>
+                <option value="long-khanh">TP. Long Khánh</option>
+                <option value="nhon-trach">Nhơn Trạch</option>
+                <option value="trang-bom">Trảng Bom</option>
+                <!-- Thêm các quận/huyện khác -->
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-column">
+              <label for="temporary-ward">Phường/Xã:</label>
+              <select id="temporary-ward">
+                <option value="phuong-d" selected>Phường D</option>
+                <option value="phuong-e">Phường E</option>
+                <option value="phuong-f">Phường F</option>
+                <!-- Thêm các phường/xã khác -->
+              </select>
+            </div>
+            <div class="form-column">
+              <label for="temporary-street">Số nhà, đường:</label>
+              <input type="text" id="temporary-street" value="456 Đường C" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="current-residence"
+          >Nơi ở hiện tại: <span class="required">*</span></label
+        >
+        <select id="current-residence" required>
+          <option value="ktx">Ký túc xá trường</option>
+          <option value="thue-tro">Nhà trọ</option>
+          <option value="nha-rieng">Nhà riêng</option>
+          <option value="o-voi-nguoi-than">Ở với người thân</option>
+        </select>
+      </div>
+
+      <div class="form-group ktx-info">
+        <label for="ktx-room">Phòng ký túc xá:</label>
+        <input type="text" id="ktx-room" value="B205" />
+      </div>
+
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="cancelUpdate()">Hủy</button>
+        <button class="save-btn" onclick="saveAddressInfo()">
+          Lưu thay đổi
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab thông tin gia đình -->
+    <div id="family-tab" class="update-tab-pane">
+      <h3 class="section-title">Cập nhật thông tin gia đình</h3>
+
+      <div class="family-member-form">
+        <h4>Thông tin bố</h4>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="father-name">Họ và tên:</label>
+            <input type="text" id="father-name" value="Nguyễn Văn B" />
+          </div>
+          <div class="form-column">
+            <label for="father-year">Năm sinh:</label>
+            <input type="number" id="father-year" value="1975" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="father-job">Nghề nghiệp:</label>
+            <input type="text" id="father-job" value="Kỹ sư xây dựng" />
+          </div>
+          <div class="form-column">
+            <label for="father-workplace">Nơi làm việc:</label>
+            <input
+              type="text"
+              id="father-workplace"
+              value="Công ty Xây dựng ABC"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="father-phone">Điện thoại:</label>
+            <input type="tel" id="father-phone" value="0912345678" />
+          </div>
+        </div>
+      </div>
+
+      <div class="family-member-form">
+        <h4>Thông tin mẹ</h4>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="mother-name">Họ và tên:</label>
+            <input type="text" id="mother-name" value="Trần Thị C" />
+          </div>
+          <div class="form-column">
+            <label for="mother-year">Năm sinh:</label>
+            <input type="number" id="mother-year" value="1978" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="mother-job">Nghề nghiệp:</label>
+            <input type="text" id="mother-job" value="Giáo viên" />
+          </div>
+          <div class="form-column">
+            <label for="mother-workplace">Nơi làm việc:</label>
+            <input type="text" id="mother-workplace" value="Trường THCS XYZ" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="mother-phone">Điện thoại:</label>
+            <input type="tel" id="mother-phone" value="0923456789" />
+          </div>
+        </div>
+      </div>
+
+      <div class="family-member-form">
+        <h4>Thông tin anh/chị/em</h4>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="sibling-name">Họ và tên:</label>
+            <input type="text" id="sibling-name" value="Nguyễn Thị D" />
+          </div>
+          <div class="form-column">
+            <label for="sibling-year">Năm sinh:</label>
+            <input type="number" id="sibling-year" value="2005" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="sibling-relation">Quan hệ:</label>
+            <select id="sibling-relation">
+              <option value="anh-trai">Anh trai</option>
+              <option value="chi-gai">Chị gái</option>
+              <option value="em-trai">Em trai</option>
+              <option value="em-gai" selected>Em gái</option>
+            </select>
+          </div>
+          <div class="form-column">
+            <label for="sibling-job">Nghề nghiệp:</label>
+            <input type="text" id="sibling-job" value="Học sinh" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-column">
+            <label for="sibling-school">Nơi học tập/làm việc:</label>
+            <input
+              type="text"
+              id="sibling-school"
+              value="Trường THPT Nguyễn Hữu Cảnh"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="add-sibling-btn">
+          <i class="fa fa-plus"></i> Thêm anh/chị/em
+        </button>
+      </div>
+
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="cancelUpdate()">Hủy</button>
+        <button class="save-btn" onclick="saveFamilyInfo()">
+          Lưu thay đổi
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab hồ sơ, giấy tờ -->
+    <div id="document-tab" class="update-tab-pane">
+      <h3 class="section-title">Cập nhật hồ sơ, giấy tờ</h3>
+
+      <div class="document-upload-section">
+        <h4>Tải lên giấy tờ mới</h4>
+        <p>
+          Bạn có thể tải lên các giấy tờ mới hoặc cập nhật các giấy tờ đã có.
+        </p>
+
+        <div class="form-group">
+          <label for="document-type"
+            >Loại giấy tờ: <span class="required">*</span></label
+          >
+          <select id="document-type" required>
+            <option value="">-- Chọn loại giấy tờ --</option>
+            <option value="cmnd">CMND/CCCD (bản sao)</option>
+            <option value="ho-khau">Sổ hộ khẩu (bản sao)</option>
+            <option value="mien-giam">Đơn xin miễn giảm học phí</option>
+            <option value="chung-chi">Chứng chỉ</option>
+            <option value="khac">Giấy tờ khác</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="document-name"
+            >Tên giấy tờ: <span class="required">*</span></label
+          >
+          <input
+            type="text"
+            id="document-name"
+            placeholder="Nhập tên giấy tờ..."
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="document-file"
+            >Tệp đính kèm: <span class="required">*</span></label
+          >
+          <input type="file" id="document-file" required />
+          <small>Định dạng hỗ trợ: PDF, JPG, PNG (tối đa 5MB)</small>
+        </div>
+
+        <div class="form-group">
+          <label for="document-note">Ghi chú:</label>
+          <textarea
+            id="document-note"
+            rows="3"
+            placeholder="Nhập ghi chú (nếu có)..."
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="upload-btn" onclick="uploadDocument()">
+            <i class="fa fa-upload"></i> Tải lên
+          </button>
+        </div>
+      </div>
+
+      <div class="document-list-section">
+        <h4>Danh sách giấy tờ đã tải lên</h4>
+
+        <div class="document-list">
+          <div class="document-item">
+            <div class="document-icon"><i class="fa fa-file-pdf-o"></i></div>
+            <div class="document-info">
+              <div class="document-name">CMND/CCCD (bản sao)</div>
+              <div class="document-meta">
+                <span><i class="fa fa-calendar"></i> 15/08/2020</span>
+                <span><i class="fa fa-check-circle"></i> Đã xác nhận</span>
+              </div>
+            </div>
+            <div class="document-actions">
+              <button class="view-btn"><i class="fa fa-eye"></i></button>
+              <button class="download-btn">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="delete-btn"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+
+          <div class="document-item">
+            <div class="document-icon"><i class="fa fa-file-pdf-o"></i></div>
+            <div class="document-info">
+              <div class="document-name">Sổ hộ khẩu (bản sao)</div>
+              <div class="document-meta">
+                <span><i class="fa fa-calendar"></i> 15/08/2020</span>
+                <span><i class="fa fa-check-circle"></i> Đã xác nhận</span>
+              </div>
+            </div>
+            <div class="document-actions">
+              <button class="view-btn"><i class="fa fa-eye"></i></button>
+              <button class="download-btn">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="delete-btn"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+
+          <div class="document-item">
+            <div class="document-icon"><i class="fa fa-file-pdf-o"></i></div>
+            <div class="document-info">
+              <div class="document-name">Chứng chỉ Tiếng Anh B1</div>
+              <div class="document-meta">
+                <span><i class="fa fa-calendar"></i> 10/03/2023</span>
+                <span><i class="fa fa-check-circle"></i> Đã xác nhận</span>
+              </div>
+            </div>
+            <div class="document-actions">
+              <button class="view-btn"><i class="fa fa-eye"></i></button>
+              <button class="download-btn">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="delete-btn"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+
+          <div class="document-item">
+            <div class="document-icon"><i class="fa fa-file-pdf-o"></i></div>
+            <div class="document-info">
+              <div class="document-name">Chứng chỉ Tin học MOS</div>
+              <div class="document-meta">
+                <span><i class="fa fa-calendar"></i> 05/05/2024</span>
+                <span><i class="fa fa-clock-o"></i> Đang xử lý</span>
+              </div>
+            </div>
+            <div class="document-actions">
+              <button class="view-btn"><i class="fa fa-eye"></i></button>
+              <button class="download-btn">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="delete-btn"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab tài khoản -->
+    <div id="account-tab" class="update-tab-pane">
+      <h3 class="section-title">Cập nhật thông tin tài khoản</h3>
+
+      <div class="form-group">
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" value="SV12345" readonly />
+        <small>Tên đăng nhập không thể thay đổi.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="current-password"
+          >Mật khẩu hiện tại: <span class="required">*</span></label
+        >
+        <input
+          type="password"
+          id="current-password"
+          placeholder="Nhập mật khẩu hiện tại..."
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="new-password"
+          >Mật khẩu mới: <span class="required">*</span></label
+        >
+        <input
+          type="password"
+          id="new-password"
+          placeholder="Nhập mật khẩu mới..."
+          required
+        />
+        <small
+          >Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và
+          số.</small
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password"
+          >Xác nhận mật khẩu mới: <span class="required">*</span></label
+        >
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Nhập lại mật khẩu mới..."
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="security-question">Câu hỏi bảo mật:</label>
+        <select id="security-question">
+          <option value="pet">Tên thú cưng đầu tiên của bạn là gì?</option>
+          <option value="school">
+            Tên trường tiểu học đầu tiên của bạn là gì?
+          </option>
+          <option value="city">Thành phố bạn sinh ra là gì?</option>
+          <option value="mother">Tên thời con gái của mẹ bạn là gì?</option>
+          <option value="food">Món ăn yêu thích của bạn là gì?</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="security-answer">Câu trả lời:</label>
+        <input
+          type="text"
+          id="security-answer"
+          placeholder="Nhập câu trả lời..."
+        />
+      </div>
+
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="cancelUpdate()">Hủy</button>
+        <button class="save-btn" onclick="saveAccountInfo()">
+          Lưu thay đổi
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm chuyển đổi giữa các tab
+  function showUpdateTab(tabId) {
+    // Ẩn tất cả các tab
+    const tabPanes = document.querySelectorAll(".update-tab-pane");
+    tabPanes.forEach((pane) => {
+      pane.classList.remove("active");
+    });
+
+    // Hiển thị tab được chọn
+    document.getElementById(tabId).classList.add("active");
+
+    // Cập nhật trạng thái active cho nút tab
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    tabButtons.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+
+    // Tìm và active nút tab tương ứng
+    const activeButton = document.querySelector(
+      `.tab-btn[onclick="showUpdateTab('${tabId}')"]`
+    );
+    if (activeButton) {
+      activeButton.classList.add("active");
+    }
+  }
+
+  // Hàm hủy cập nhật
+  function cancelUpdate() {
+    // Trong thực tế, đây sẽ là chuyển hướng về trang hồ sơ sinh viên
+    showContent("ho-so-sinh-vien");
+  }
+
+  // Hàm lưu thông tin liên hệ
+  function saveContactInfo() {
+    // Kiểm tra các trường bắt buộc
+    const phone = document.getElementById("phone").value;
+    const personalEmail = document.getElementById("personal-email").value;
+    const emergencyContact = document.getElementById("emergency-contact").value;
+    const emergencyPhone = document.getElementById("emergency-phone").value;
+
+    if (!phone || !personalEmail || !emergencyContact || !emergencyPhone) {
+      alert("Vui lòng điền đầy đủ các thông tin bắt buộc!");
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để lưu thông tin
+    alert("Cập nhật thông tin liên hệ thành công!");
+
+    // Chuyển về trang hồ sơ sinh viên
+    showContent("ho-so-sinh-vien");
+  }
+
+  // Hàm lưu thông tin địa chỉ
+  function saveAddressInfo() {
+    // Kiểm tra các trường bắt buộc
+    const permanentProvince =
+      document.getElementById("permanent-province").value;
+    const permanentDistrict =
+      document.getElementById("permanent-district").value;
+    const permanentWard = document.getElementById("permanent-ward").value;
+    const permanentStreet = document.getElementById("permanent-street").value;
+    const currentResidence = document.getElementById("current-residence").value;
+
+    if (
+      !permanentProvince ||
+      !permanentDistrict ||
+      !permanentWard ||
+      !permanentStreet ||
+      !currentResidence
+    ) {
+      alert("Vui lòng điền đầy đủ các thông tin bắt buộc!");
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để lưu thông tin
+    alert("Cập nhật thông tin địa chỉ thành công!");
+
+    // Chuyển về trang hồ sơ sinh viên
+    showContent("ho-so-sinh-vien");
+  }
+
+  // Hàm lưu thông tin gia đình
+  function saveFamilyInfo() {
+    // Trong thực tế, đây sẽ là API call để lưu thông tin
+    alert("Cập nhật thông tin gia đình thành công!");
+
+    // Chuyển về trang hồ sơ sinh viên
+    showContent("ho-so-sinh-vien");
+  }
+
+  // Hàm tải lên giấy tờ
+  function uploadDocument() {
+    // Kiểm tra các trường bắt buộc
+    const documentType = document.getElementById("document-type").value;
+    const documentName = document.getElementById("document-name").value;
+    const documentFile = document.getElementById("document-file").value;
+
+    if (!documentType || !documentName || !documentFile) {
+      alert("Vui lòng điền đầy đủ các thông tin bắt buộc!");
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để tải lên giấy tờ
+    alert(
+      "Tải lên giấy tờ thành công! Giấy tờ của bạn sẽ được xử lý trong thời gian sớm nhất."
+    );
+
+    // Reset form
+    document.getElementById("document-type").value = "";
+    document.getElementById("document-name").value = "";
+    document.getElementById("document-file").value = "";
+    document.getElementById("document-note").value = "";
+  }
+
+  // Hàm lưu thông tin tài khoản
+  function saveAccountInfo() {
+    // Kiểm tra các trường bắt buộc
+    const currentPassword = document.getElementById("current-password").value;
+    const newPassword = document.getElementById("new-password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      alert("Vui lòng điền đầy đủ các thông tin bắt buộc!");
+      return;
+    }
+
+    // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+    if (newPassword !== confirmPassword) {
+      alert("Mật khẩu mới và xác nhận mật khẩu không khớp!");
+      return;
+    }
+
+    // Kiểm tra độ mạnh của mật khẩu
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    if (!passwordRegex.test(newPassword)) {
+      alert(
+        "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số!"
+      );
+      return;
+    }
+
+    // Trong thực tế, đây sẽ là API call để lưu thông tin
+    alert("Cập nhật thông tin tài khoản thành công!");
+
+    // Reset form
+    document.getElementById("current-password").value = "";
+    document.getElementById("new-password").value = "";
+    document.getElementById("confirm-password").value = "";
+
+    // Chuyển về trang hồ sơ sinh viên
+    showContent("ho-so-sinh-vien");
+  }
+
+  // Hiển thị/ẩn thông tin ký túc xá dựa trên lựa chọn nơi ở hiện tại
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentResidence = document.getElementById("current-residence");
+    const ktxInfo = document.querySelector(".ktx-info");
+
+    if (currentResidence && ktxInfo) {
+      currentResidence.addEventListener("change", function () {
+        if (this.value === "ktx") {
+          ktxInfo.style.display = "block";
+        } else {
+          ktxInfo.style.display = "none";
+        }
+      });
+
+      // Kiểm tra giá trị ban đầu
+      if (currentResidence.value === "ktx") {
+        ktxInfo.style.display = "block";
+      } else {
+        ktxInfo.style.display = "none";
+      }
+    }
+  });
+</script>

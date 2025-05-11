@@ -1,0 +1,758 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-history" style="color: #673ab7"></i> Lịch sử giao dịch
+</h1>
+
+<!-- Thống kê giao dịch -->
+<div class="transaction-stats">
+  <div class="stat-item">
+    <div class="stat-value">25</div>
+    <div class="stat-label">Tổng số giao dịch</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">72,950,000 VNĐ</div>
+    <div class="stat-label">Tổng tiền giao dịch</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Giao dịch trong tháng</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">10,300,000 VNĐ</div>
+    <div class="stat-label">Tổng tiền trong tháng</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="transaction-controls">
+  <div class="filter-section">
+    <div class="filter-group">
+      <label for="transaction-type">Loại giao dịch:</label>
+      <select id="transaction-type" onchange="filterTransactions()">
+        <option value="all">Tất cả</option>
+        <option value="tuition">Học phí</option>
+        <option value="deposit">Nạp tiền</option>
+        <option value="fee">Các khoản thu khác</option>
+        <option value="refund">Hoàn tiền</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="transaction-status">Trạng thái:</label>
+      <select id="transaction-status" onchange="filterTransactions()">
+        <option value="all">Tất cả</option>
+        <option value="success">Thành công</option>
+        <option value="pending">Đang xử lý</option>
+        <option value="failed">Thất bại</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="date-range">Thời gian:</label>
+      <select id="date-range" onchange="filterTransactions()">
+        <option value="all">Tất cả</option>
+        <option value="today">Hôm nay</option>
+        <option value="week">7 ngày qua</option>
+        <option value="month">30 ngày qua</option>
+        <option value="month-3">3 tháng qua</option>
+        <option value="month-6">6 tháng qua</option>
+        <option value="year">1 năm qua</option>
+      </select>
+    </div>
+
+    <div class="filter-group date-picker">
+      <label>Khoảng thời gian cụ thể:</label>
+      <div class="date-inputs">
+        <input type="date" id="date-from" placeholder="Từ ngày" />
+        <span>đến</span>
+        <input type="date" id="date-to" placeholder="Đến ngày" />
+        <button class="apply-date-btn" onclick="applyDateFilter()">
+          Áp dụng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-controls">
+    <div class="search-box">
+      <input
+        type="text"
+        id="transaction-search"
+        placeholder="Tìm kiếm giao dịch..."
+      />
+      <button class="search-btn" onclick="searchTransactions()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <button class="action-btn" onclick="printTransactions()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportTransactions()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Bảng lịch sử giao dịch -->
+<div class="transaction-table-container">
+  <h2 class="section-title">Danh sách giao dịch</h2>
+
+  <table class="transaction-table">
+    <thead>
+      <tr>
+        <th>Mã giao dịch</th>
+        <th>Ngày giao dịch</th>
+        <th>Loại giao dịch</th>
+        <th>Mô tả</th>
+        <th>Số tiền</th>
+        <th>Phương thức</th>
+        <th>Trạng thái</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Giao dịch 1 -->
+      <tr class="transaction-row success tuition">
+        <td>PAY20240515001</td>
+        <td>15/05/2024 10:30</td>
+        <td>Học phí</td>
+        <td>Thanh toán học phí học kỳ 2, năm học 2023-2024</td>
+        <td>8,500,000 VNĐ</td>
+        <td>Thẻ ATM</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('PAY20240515001')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('PAY20240515001')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 2 -->
+      <tr class="transaction-row success deposit">
+        <td>DEP20240510002</td>
+        <td>10/05/2024 14:15</td>
+        <td>Nạp tiền</td>
+        <td>Nạp tiền vào tài khoản sinh viên</td>
+        <td>1,000,000 VNĐ</td>
+        <td>Ví MoMo</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('DEP20240510002')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('DEP20240510002')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 3 -->
+      <tr class="transaction-row success fee">
+        <td>FEE20240505003</td>
+        <td>05/05/2024 09:45</td>
+        <td>Các khoản thu khác</td>
+        <td>Thanh toán phí ký túc xá học kỳ 2, năm học 2023-2024</td>
+        <td>1,200,000 VNĐ</td>
+        <td>Chuyển khoản ngân hàng</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('FEE20240505003')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('FEE20240505003')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 4 -->
+      <tr class="transaction-row success fee">
+        <td>FEE20240501004</td>
+        <td>01/05/2024 11:20</td>
+        <td>Các khoản thu khác</td>
+        <td>Thanh toán phí hoạt động ngoại khóa học kỳ 2, năm học 2023-2024</td>
+        <td>200,000 VNĐ</td>
+        <td>Thẻ ATM</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('FEE20240501004')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('FEE20240501004')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 5 -->
+      <tr class="transaction-row success deposit">
+        <td>DEP20240420005</td>
+        <td>20/04/2024 16:30</td>
+        <td>Nạp tiền</td>
+        <td>Nạp tiền vào tài khoản sinh viên</td>
+        <td>2,000,000 VNĐ</td>
+        <td>Chuyển khoản ngân hàng</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('DEP20240420005')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('DEP20240420005')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 6 -->
+      <tr class="transaction-row failed tuition">
+        <td>PAY20240415006</td>
+        <td>15/04/2024 09:10</td>
+        <td>Học phí</td>
+        <td>Thanh toán học phí học kỳ 2, năm học 2023-2024</td>
+        <td>8,500,000 VNĐ</td>
+        <td>Thẻ tín dụng</td>
+        <td><span class="status-badge failed">Thất bại</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('PAY20240415006')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn retry-btn"
+            title="Thử lại"
+            onclick="retryTransaction('PAY20240415006')"
+          >
+            <i class="fa fa-refresh"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 7 -->
+      <tr class="transaction-row success tuition">
+        <td>PAY20240215007</td>
+        <td>15/02/2024 10:30</td>
+        <td>Học phí</td>
+        <td>Thanh toán học phí học kỳ 2, năm học 2023-2024</td>
+        <td>8,500,000 VNĐ</td>
+        <td>Chuyển khoản ngân hàng</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('PAY20240215007')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('PAY20240215007')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 8 -->
+      <tr class="transaction-row success tuition">
+        <td>PAY20230915008</td>
+        <td>15/09/2023 14:20</td>
+        <td>Học phí</td>
+        <td>Thanh toán học phí học kỳ 1, năm học 2023-2024</td>
+        <td>8,500,000 VNĐ</td>
+        <td>Chuyển khoản ngân hàng</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('PAY20230915008')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('PAY20230915008')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 9 -->
+      <tr class="transaction-row success fee">
+        <td>FEE20230915009</td>
+        <td>15/09/2023 14:25</td>
+        <td>Các khoản thu khác</td>
+        <td>Thanh toán bảo hiểm y tế năm học 2023-2024</td>
+        <td>600,000 VNĐ</td>
+        <td>Chuyển khoản ngân hàng</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('FEE20230915009')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('FEE20230915009')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Giao dịch 10 -->
+      <tr class="transaction-row success fee">
+        <td>FEE20230915010</td>
+        <td>15/09/2023 14:30</td>
+        <td>Các khoản thu khác</td>
+        <td>Thanh toán phí ký túc xá học kỳ 1, năm học 2023-2024</td>
+        <td>1,200,000 VNĐ</td>
+        <td>Chuyển khoản ngân hàng</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewTransaction('FEE20230915010')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('FEE20230915010')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">&raquo;</a>
+  </div>
+</div>
+
+<!-- Biểu đồ thống kê -->
+<div class="transaction-charts">
+  <h2 class="section-title">Thống kê giao dịch</h2>
+
+  <div class="charts-container">
+    <div class="chart-item">
+      <h3 class="chart-title">Giao dịch theo loại</h3>
+      <div class="chart-placeholder">
+        <div class="pie-chart">
+          <div class="pie-segment" style="--percentage: 60%; --color: #4caf50">
+            <span class="segment-label">Học phí</span>
+          </div>
+          <div class="pie-segment" style="--percentage: 20%; --color: #2196f3">
+            <span class="segment-label">Nạp tiền</span>
+          </div>
+          <div class="pie-segment" style="--percentage: 15%; --color: #ff9800">
+            <span class="segment-label">Các khoản thu khác</span>
+          </div>
+          <div class="pie-segment" style="--percentage: 5%; --color: #9c27b0">
+            <span class="segment-label">Hoàn tiền</span>
+          </div>
+        </div>
+        <div class="chart-legend">
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: #4caf50"></span>
+            <span class="legend-label">Học phí (60%)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: #2196f3"></span>
+            <span class="legend-label">Nạp tiền (20%)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: #ff9800"></span>
+            <span class="legend-label">Các khoản thu khác (15%)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: #9c27b0"></span>
+            <span class="legend-label">Hoàn tiền (5%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-item">
+      <h3 class="chart-title">Giao dịch theo tháng</h3>
+      <div class="chart-placeholder">
+        <div class="bar-chart">
+          <div class="bar-container">
+            <div class="bar-label">T1</div>
+            <div class="bar" style="height: 30%">
+              <span class="bar-value">3</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T2</div>
+            <div class="bar" style="height: 50%">
+              <span class="bar-value">5</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T3</div>
+            <div class="bar" style="height: 20%">
+              <span class="bar-value">2</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T4</div>
+            <div class="bar" style="height: 40%">
+              <span class="bar-value">4</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T5</div>
+            <div class="bar" style="height: 50%">
+              <span class="bar-value">5</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T6</div>
+            <div class="bar" style="height: 10%">
+              <span class="bar-value">1</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T7</div>
+            <div class="bar" style="height: 0%">
+              <span class="bar-value">0</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T8</div>
+            <div class="bar" style="height: 0%">
+              <span class="bar-value">0</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T9</div>
+            <div class="bar" style="height: 50%">
+              <span class="bar-value">5</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T10</div>
+            <div class="bar" style="height: 0%">
+              <span class="bar-value">0</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T11</div>
+            <div class="bar" style="height: 0%">
+              <span class="bar-value">0</span>
+            </div>
+          </div>
+          <div class="bar-container">
+            <div class="bar-label">T12</div>
+            <div class="bar" style="height: 0%">
+              <span class="bar-value">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal xem chi tiết giao dịch -->
+<div id="transaction-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Chi tiết giao dịch</h3>
+      <span class="close-modal" onclick="closeTransactionModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="transaction-details">
+        <div class="detail-row">
+          <div class="detail-label">Mã giao dịch:</div>
+          <div class="detail-value">PAY20240515001</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Loại giao dịch:</div>
+          <div class="detail-value">Học phí</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Mô tả:</div>
+          <div class="detail-value">
+            Thanh toán học phí học kỳ 2, năm học 2023-2024
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ngày giao dịch:</div>
+          <div class="detail-value">15/05/2024 10:30:45</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Số tiền:</div>
+          <div class="detail-value">8,500,000 VNĐ</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Phương thức thanh toán:</div>
+          <div class="detail-value">Thẻ ATM</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Thông tin thanh toán:</div>
+          <div class="detail-value">Thẻ: **** **** **** 5678</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ngân hàng:</div>
+          <div class="detail-value">Vietcombank</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Mã giao dịch đối tác:</div>
+          <div class="detail-value">VNPAY123456789</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Trạng thái:</div>
+          <div class="detail-value">
+            <span class="status-badge success">Thành công</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Người thực hiện:</div>
+          <div class="detail-value">Nguyễn Văn A</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ghi chú:</div>
+          <div class="detail-value">
+            Thanh toán học phí học kỳ 2 năm học 2023-2024
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="download-btn" onclick="downloadReceipt('PAY20240515001')">
+        <i class="fa fa-download"></i> Tải biên lai
+      </button>
+      <button class="close-btn" onclick="closeTransactionModal()">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm lọc giao dịch
+  function filterTransactions() {
+    const transactionType = document.getElementById("transaction-type").value;
+    const transactionStatus =
+      document.getElementById("transaction-status").value;
+    const dateRange = document.getElementById("date-range").value;
+
+    console.log(
+      `Lọc giao dịch: Loại=${transactionType}, Trạng thái=${transactionStatus}, Thời gian=${dateRange}`
+    );
+
+    // Trong thực tế, đây sẽ là API call để lọc giao dịch
+    // filterTransactionData(transactionType, transactionStatus, dateRange);
+
+    // Mô phỏng lọc
+    const transactionRows = document.querySelectorAll(".transaction-row");
+
+    transactionRows.forEach((row) => {
+      let showRow = true;
+
+      // Lọc theo loại giao dịch
+      if (
+        transactionType !== "all" &&
+        !row.classList.contains(transactionType)
+      ) {
+        showRow = false;
+      }
+
+      // Lọc theo trạng thái
+      if (
+        transactionStatus !== "all" &&
+        !row.classList.contains(transactionStatus)
+      ) {
+        showRow = false;
+      }
+
+      // Hiển thị hoặc ẩn hàng
+      row.style.display = showRow ? "" : "none";
+    });
+  }
+
+  // Hàm áp dụng bộ lọc ngày tùy chỉnh
+  function applyDateFilter() {
+    const dateFrom = document.getElementById("date-from").value;
+    const dateTo = document.getElementById("date-to").value;
+
+    if (!dateFrom || !dateTo) {
+      alert("Vui lòng chọn đầy đủ khoảng thời gian");
+      return;
+    }
+
+    console.log(
+      `Lọc giao dịch theo khoảng thời gian: Từ ${dateFrom} đến ${dateTo}`
+    );
+
+    // Trong thực tế, đây sẽ là API call để lọc giao dịch theo khoảng thời gian
+    // filterTransactionsByDateRange(dateFrom, dateTo);
+
+    // Mô phỏng lọc (không thực hiện thực tế trong demo)
+    alert(`Đang lọc giao dịch từ ngày ${dateFrom} đến ngày ${dateTo}`);
+  }
+
+  // Hàm tìm kiếm giao dịch
+  function searchTransactions() {
+    const searchText = document
+      .getElementById("transaction-search")
+      .value.toLowerCase();
+
+    if (!searchText.trim()) {
+      // Nếu không có từ khóa tìm kiếm, hiển thị lại tất cả các giao dịch
+      filterTransactions();
+      return;
+    }
+
+    console.log("Tìm kiếm giao dịch với từ khóa: " + searchText);
+
+    // Trong thực tế, đây sẽ là API call để tìm kiếm giao dịch
+    // searchTransactionData(searchText);
+
+    // Mô phỏng tìm kiếm
+    const transactionRows = document.querySelectorAll(".transaction-row");
+
+    transactionRows.forEach((row) => {
+      const transactionId = row
+        .querySelector("td:nth-child(1)")
+        .textContent.toLowerCase();
+      const transactionDesc = row
+        .querySelector("td:nth-child(4)")
+        .textContent.toLowerCase();
+
+      if (
+        transactionId.includes(searchText) ||
+        transactionDesc.includes(searchText)
+      ) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  // Hàm in giao dịch
+  function printTransactions() {
+    window.print();
+  }
+
+  // Hàm xuất file giao dịch
+  function exportTransactions() {
+    alert("Đang xuất file dữ liệu giao dịch...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+
+  // Hàm xem chi tiết giao dịch
+  function viewTransaction(transactionId) {
+    console.log("Xem chi tiết giao dịch: " + transactionId);
+
+    // Trong thực tế, đây sẽ là API call để lấy chi tiết giao dịch
+    // getTransactionDetails(transactionId);
+
+    // Hiển thị modal
+    document.getElementById("transaction-modal").style.display = "block";
+  }
+
+  // Hàm đóng modal chi tiết giao dịch
+  function closeTransactionModal() {
+    document.getElementById("transaction-modal").style.display = "none";
+  }
+
+  // Hàm tải biên lai
+  function downloadReceipt(transactionId) {
+    console.log("Tải biên lai giao dịch: " + transactionId);
+
+    // Trong thực tế, đây sẽ là API call để tải biên lai
+    alert("Đang tải biên lai giao dịch " + transactionId);
+  }
+
+  // Hàm thử lại giao dịch
+  function retryTransaction(transactionId) {
+    console.log("Thử lại giao dịch: " + transactionId);
+
+    // Trong thực tế, đây sẽ là API call để thử lại giao dịch
+    alert("Đang thử lại giao dịch " + transactionId);
+  }
+
+  // Khởi tạo trang
+  document.addEventListener("DOMContentLoaded", function () {
+    // Đóng modal khi click bên ngoài
+    window.onclick = function (event) {
+      const modal = document.getElementById("transaction-modal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    // Xử lý sự kiện nhấn Enter trong ô tìm kiếm
+    document
+      .getElementById("transaction-search")
+      .addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          searchTransactions();
+        }
+      });
+  });
+</script>

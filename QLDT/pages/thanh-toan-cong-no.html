@@ -1,0 +1,608 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-money" style="color: #e91e63"></i> Thanh toán công nợ
+</h1>
+
+<!-- Thống kê công nợ -->
+<div class="debt-stats">
+  <div class="stat-item">
+    <div class="stat-value">0 VNĐ</div>
+    <div class="stat-label">Tổng công nợ</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">69,000,000 VNĐ</div>
+    <div class="stat-label">Đã thanh toán</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">0 VNĐ</div>
+    <div class="stat-label">Công nợ quá hạn</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">0 VNĐ</div>
+    <div class="stat-label">Công nợ sắp đến hạn</div>
+  </div>
+</div>
+
+<!-- Thông tin sinh viên -->
+<div class="student-info">
+  <div class="info-card">
+    <div class="info-header">
+      <h2>Thông tin sinh viên</h2>
+    </div>
+    <div class="info-body">
+      <div class="info-row">
+        <div class="info-label">Mã sinh viên:</div>
+        <div class="info-value">SV20200001</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Họ và tên:</div>
+        <div class="info-value">Nguyễn Văn A</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Ngành học:</div>
+        <div class="info-value">Công nghệ thông tin</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Lớp:</div>
+        <div class="info-value">CNTT2020</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Khóa học:</div>
+        <div class="info-value">2020-2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="debt-controls">
+  <div class="control-group">
+    <label for="debt-type">Loại công nợ:</label>
+    <select id="debt-type" onchange="filterDebtData()">
+      <option value="all">Tất cả</option>
+      <option value="tuition">Học phí</option>
+      <option value="dormitory">Ký túc xá</option>
+      <option value="insurance">Bảo hiểm</option>
+      <option value="other">Khác</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="debt-status">Trạng thái:</label>
+    <select id="debt-status" onchange="filterDebtData()">
+      <option value="all">Tất cả</option>
+      <option value="unpaid">Chưa thanh toán</option>
+      <option value="paid">Đã thanh toán</option>
+      <option value="overdue">Quá hạn</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="filterDebtData()">
+      <option value="all">Tất cả</option>
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printDebtData()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportDebtData()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Thông báo quan trọng -->
+<div class="important-notice">
+  <div class="notice-icon"><i class="fa fa-exclamation-triangle"></i></div>
+  <div class="notice-content">
+    <h3>Thông báo quan trọng</h3>
+    <p>
+      Sinh viên cần thanh toán công nợ đúng hạn để tránh bị khóa tài khoản và
+      không thể tham gia các kỳ thi. Công nợ quá hạn sẽ bị tính phí phạt theo
+      quy định của nhà trường.
+    </p>
+    <p>
+      Mọi thắc mắc về công nợ vui lòng liên hệ Phòng Kế hoạch - Tài chính,
+      email: tckt@dntu.edu.vn, điện thoại: 0251.3456.789.
+    </p>
+  </div>
+</div>
+
+<!-- Bảng công nợ chi tiết -->
+<div class="debt-table-container">
+  <h2 class="section-title">Danh sách công nợ</h2>
+
+  <div class="no-debt-message">
+    <i class="fa fa-check-circle"></i>
+    <h3>Bạn không có khoản công nợ nào!</h3>
+    <p>Tất cả các khoản phí đã được thanh toán đầy đủ.</p>
+  </div>
+
+  <table class="debt-table" style="display: none">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã công nợ</th>
+        <th>Loại công nợ</th>
+        <th>Mô tả</th>
+        <th>Học kỳ</th>
+        <th>Số tiền</th>
+        <th>Đã thanh toán</th>
+        <th>Còn nợ</th>
+        <th>Hạn nộp</th>
+        <th>Trạng thái</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Các hàng công nợ sẽ được thêm vào đây khi có dữ liệu -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5"><strong>Tổng cộng:</strong></td>
+        <td>0 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td colspan="3"></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- Lịch sử thanh toán -->
+<div class="payment-history">
+  <h2 class="section-title">Lịch sử thanh toán</h2>
+
+  <div class="history-filters">
+    <div class="filter-group">
+      <label for="date-range">Thời gian:</label>
+      <select id="date-range" onchange="filterHistory()">
+        <option value="all">Tất cả</option>
+        <option value="month-3">3 tháng gần đây</option>
+        <option value="month-6">6 tháng gần đây</option>
+        <option value="year-1">1 năm gần đây</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="payment-type">Loại thanh toán:</label>
+      <select id="payment-type" onchange="filterHistory()">
+        <option value="all">Tất cả</option>
+        <option value="tuition">Học phí</option>
+        <option value="dormitory">Ký túc xá</option>
+        <option value="insurance">Bảo hiểm</option>
+        <option value="other">Khác</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="history-table-container">
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Mã giao dịch</th>
+          <th>Ngày thanh toán</th>
+          <th>Loại công nợ</th>
+          <th>Mô tả</th>
+          <th>Học kỳ</th>
+          <th>Số tiền</th>
+          <th>Phương thức</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Giao dịch 1 -->
+        <tr class="history-row">
+          <td>PAY20240215001</td>
+          <td>15/02/2024</td>
+          <td>Học phí</td>
+          <td>Học phí học kỳ 2, năm học 2023-2024</td>
+          <td>HK2 2023-2024</td>
+          <td>8,500,000 VNĐ</td>
+          <td>Chuyển khoản</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewPaymentDetail('PAY20240215001')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadReceipt('PAY20240215001')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Giao dịch 2 -->
+        <tr class="history-row">
+          <td>PAY20230915002</td>
+          <td>15/09/2023</td>
+          <td>Học phí</td>
+          <td>Học phí học kỳ 1, năm học 2023-2024</td>
+          <td>HK1 2023-2024</td>
+          <td>8,500,000 VNĐ</td>
+          <td>Chuyển khoản</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewPaymentDetail('PAY20230915002')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadReceipt('PAY20230915002')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Giao dịch 3 -->
+        <tr class="history-row">
+          <td>PAY20230915003</td>
+          <td>15/09/2023</td>
+          <td>Bảo hiểm</td>
+          <td>Bảo hiểm y tế năm học 2023-2024</td>
+          <td>Năm học 2023-2024</td>
+          <td>600,000 VNĐ</td>
+          <td>Chuyển khoản</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewPaymentDetail('PAY20230915003')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadReceipt('PAY20230915003')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Giao dịch 4 -->
+        <tr class="history-row">
+          <td>PAY20230915004</td>
+          <td>15/09/2023</td>
+          <td>Ký túc xá</td>
+          <td>Phí ký túc xá học kỳ 1, năm học 2023-2024</td>
+          <td>HK1 2023-2024</td>
+          <td>1,200,000 VNĐ</td>
+          <td>Chuyển khoản</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewPaymentDetail('PAY20230915004')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadReceipt('PAY20230915004')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+
+        <!-- Giao dịch 5 -->
+        <tr class="history-row">
+          <td>PAY20230215005</td>
+          <td>15/02/2023</td>
+          <td>Học phí</td>
+          <td>Học phí học kỳ 2, năm học 2022-2023</td>
+          <td>HK2 2022-2023</td>
+          <td>8,500,000 VNĐ</td>
+          <td>Chuyển khoản</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewPaymentDetail('PAY20230215005')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadReceipt('PAY20230215005')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">&raquo;</a>
+  </div>
+</div>
+
+<!-- Hướng dẫn thanh toán -->
+<div class="payment-guide">
+  <h2 class="section-title">Hướng dẫn thanh toán công nợ</h2>
+
+  <div class="guide-content">
+    <div class="guide-section">
+      <h3 class="subsection-title">Thanh toán trực tuyến</h3>
+      <p>
+        Sinh viên có thể thanh toán công nợ trực tuyến thông qua các phương thức
+        sau:
+      </p>
+      <ul>
+        <li>
+          <strong>Thẻ ATM nội địa:</strong> Hỗ trợ tất cả các ngân hàng có liên
+          kết với NAPAS.
+        </li>
+        <li><strong>Thẻ quốc tế:</strong> Visa, MasterCard, JCB.</li>
+        <li><strong>Ví điện tử:</strong> MoMo, ZaloPay, VNPay.</li>
+        <li>
+          <strong>QR Code:</strong> Quét mã QR để thanh toán qua ứng dụng ngân
+          hàng.
+        </li>
+      </ul>
+    </div>
+
+    <div class="guide-section">
+      <h3 class="subsection-title">Chuyển khoản ngân hàng</h3>
+      <p>Sinh viên có thể chuyển khoản công nợ vào tài khoản của trường:</p>
+      <ul>
+        <li>
+          <strong>Tên tài khoản:</strong> Trường Đại học Công nghệ Đồng Nai
+        </li>
+        <li><strong>Số tài khoản:</strong> 1234567890</li>
+        <li><strong>Ngân hàng:</strong> Vietcombank - Chi nhánh Đồng Nai</li>
+        <li>
+          <strong>Nội dung chuyển khoản:</strong> [Mã sinh viên] - [Họ tên] -
+          [Mã công nợ]
+        </li>
+        <li>
+          <strong>Ví dụ:</strong> SV20200001 - Nguyen Van A - HP2023-2024-2
+        </li>
+      </ul>
+    </div>
+
+    <div class="guide-section">
+      <h3 class="subsection-title">Thanh toán trực tiếp</h3>
+      <p>Sinh viên có thể đến thanh toán trực tiếp tại:</p>
+      <ul>
+        <li>
+          <strong>Phòng Kế hoạch - Tài chính:</strong> Phòng A101, Tòa nhà A,
+          Trường Đại học Công nghệ Đồng Nai
+        </li>
+        <li>
+          <strong>Thời gian làm việc:</strong> Từ thứ 2 đến thứ 6 (7:30 - 11:30
+          và 13:30 - 17:00)
+        </li>
+        <li>
+          <strong>Phương thức thanh toán:</strong> Tiền mặt, thẻ ngân hàng
+        </li>
+      </ul>
+    </div>
+
+    <div class="guide-section">
+      <h3 class="subsection-title">Lưu ý quan trọng</h3>
+      <ul>
+        <li>
+          Sinh viên cần thanh toán công nợ đúng hạn để tránh bị khóa tài khoản
+          và không thể tham gia các kỳ thi.
+        </li>
+        <li>
+          Sau khi thanh toán, sinh viên nên kiểm tra lại thông tin thanh toán
+          trên hệ thống sau 24-48 giờ.
+        </li>
+        <li>
+          Nếu có thắc mắc về công nợ, vui lòng liên hệ Phòng Kế hoạch - Tài
+          chính.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal xem chi tiết giao dịch -->
+<div id="payment-detail-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Chi tiết giao dịch</h3>
+      <span class="close-modal" onclick="closePaymentDetailModal()"
+        >&times;</span
+      >
+    </div>
+    <div class="modal-body">
+      <div class="payment-details">
+        <div class="detail-row">
+          <div class="detail-label">Mã giao dịch:</div>
+          <div class="detail-value">PAY20240215001</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ngày thanh toán:</div>
+          <div class="detail-value">15/02/2024 10:30:45</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Loại công nợ:</div>
+          <div class="detail-value">Học phí</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Mô tả:</div>
+          <div class="detail-value">Học phí học kỳ 2, năm học 2023-2024</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Học kỳ:</div>
+          <div class="detail-value">Học kỳ 2, năm học 2023-2024</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Số tiền:</div>
+          <div class="detail-value">8,500,000 VNĐ</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Phương thức thanh toán:</div>
+          <div class="detail-value">Chuyển khoản ngân hàng</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ngân hàng:</div>
+          <div class="detail-value">Vietcombank</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Mã giao dịch ngân hàng:</div>
+          <div class="detail-value">VCB123456789</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Người thanh toán:</div>
+          <div class="detail-value">Nguyễn Văn A</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Trạng thái:</div>
+          <div class="detail-value">
+            <span class="status-badge success">Thành công</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ghi chú:</div>
+          <div class="detail-value">
+            Thanh toán học phí học kỳ 2 năm học 2023-2024
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="download-btn" onclick="downloadReceipt('PAY20240215001')">
+        <i class="fa fa-download"></i> Tải biên lai
+      </button>
+      <button class="close-btn" onclick="closePaymentDetailModal()">
+        Đóng
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm lọc dữ liệu công nợ
+  function filterDebtData() {
+    const debtType = document.getElementById("debt-type").value;
+    const debtStatus = document.getElementById("debt-status").value;
+    const semester = document.getElementById("semester-select").value;
+
+    console.log(
+      `Lọc dữ liệu công nợ: Loại=${debtType}, Trạng thái=${debtStatus}, Học kỳ=${semester}`
+    );
+
+    // Trong thực tế, đây sẽ là API call để lọc dữ liệu công nợ
+    // filterDebts(debtType, debtStatus, semester);
+
+    // Hiển thị thông báo không có công nợ
+    document.querySelector(".no-debt-message").style.display = "flex";
+    document.querySelector(".debt-table").style.display = "none";
+  }
+
+  // Hàm lọc lịch sử thanh toán
+  function filterHistory() {
+    const dateRange = document.getElementById("date-range").value;
+    const paymentType = document.getElementById("payment-type").value;
+
+    console.log(
+      `Lọc lịch sử thanh toán: Thời gian=${dateRange}, Loại=${paymentType}`
+    );
+
+    // Trong thực tế, đây sẽ là API call để lọc lịch sử thanh toán
+    // filterPaymentHistory(dateRange, paymentType);
+
+    // Mô phỏng lọc
+    const historyRows = document.querySelectorAll(".history-row");
+
+    historyRows.forEach((row) => {
+      let showRow = true;
+
+      // Lọc theo loại thanh toán
+      if (paymentType !== "all") {
+        const rowType = row
+          .querySelector("td:nth-child(3)")
+          .textContent.toLowerCase();
+        if (!rowType.includes(paymentType.toLowerCase())) {
+          showRow = false;
+        }
+      }
+
+      // Hiển thị hoặc ẩn hàng
+      row.style.display = showRow ? "" : "none";
+    });
+  }
+
+  // Hàm in dữ liệu công nợ
+  function printDebtData() {
+    window.print();
+  }
+
+  // Hàm xuất file dữ liệu công nợ
+  function exportDebtData() {
+    alert("Đang xuất file dữ liệu công nợ...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+
+  // Hàm xem chi tiết giao dịch thanh toán
+  function viewPaymentDetail(paymentId) {
+    console.log("Xem chi tiết giao dịch thanh toán: " + paymentId);
+
+    // Trong thực tế, đây sẽ là API call để lấy chi tiết giao dịch
+    // getPaymentDetails(paymentId);
+
+    // Hiển thị modal
+    document.getElementById("payment-detail-modal").style.display = "block";
+  }
+
+  // Hàm đóng modal chi tiết giao dịch
+  function closePaymentDetailModal() {
+    document.getElementById("payment-detail-modal").style.display = "none";
+  }
+
+  // Hàm tải biên lai
+  function downloadReceipt(paymentId) {
+    console.log("Tải biên lai giao dịch: " + paymentId);
+
+    // Trong thực tế, đây sẽ là API call để tải biên lai
+    alert("Đang tải biên lai giao dịch " + paymentId);
+  }
+
+  // Khởi tạo trang
+  document.addEventListener("DOMContentLoaded", function () {
+    // Đóng modal khi click bên ngoài
+    window.onclick = function (event) {
+      const modal = document.getElementById("payment-detail-modal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
+</script>

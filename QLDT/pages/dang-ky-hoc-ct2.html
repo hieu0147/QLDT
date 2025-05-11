@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký học CT2 - Hệ thống quản lý đào tạo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/course-registration-styles.css" />
+    <style>
+      /* Thiết lập cơ bản */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
+
+      /* Tiêu đề trang */
+      .page-header {
+        margin-bottom: 25px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 15px;
+      }
+
+      .page-title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #1e3056;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+
+      .page-title i {
+        margin-right: 12px;
+        font-size: 26px;
+      }
+
+      .page-subtitle {
+        color: #666;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+
+      /* Thẻ thông tin */
+      .info-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #eaeaea;
+      }
+
+      .info-card h2 {
+        font-size: 18px;
+        color: #1e3056;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .info-card h2 i {
+        margin-right: 10px;
+        color: #2196f3;
+      }
+
+      /* Thông báo */
+      .notification {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+      }
+
+      .notification.warning {
+        background-color: #fff8e1;
+        border-left-color: #ffc107;
+      }
+
+      .notification.success {
+        background-color: #e8f5e9;
+        border-left-color: #4caf50;
+      }
+
+      .notification.error {
+        background-color: #ffebee;
+        border-left-color: #f44336;
+      }
+
+      .notification h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+
+      .notification h3 i {
+        margin-right: 8px;
+      }
+
+      /* Form đăng ký */
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #1e3056;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        border-color: #2196f3;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+      }
+
+      .form-select {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%231e3056' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 12px;
+      }
+
+      .form-check {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .form-check-input {
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .form-check-label {
+        font-weight: normal;
+      }
+
+      .form-text {
+        display: block;
+        margin-top: 5px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Bảng */
+      .table-responsive {
+        overflow-x: auto;
+        margin-bottom: 20px;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      .data-table th {
+        background-color: #f5f7fa;
+        font-weight: 600;
+        color: #1e3056;
+      }
+
+      .data-table tbody tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .data-table .status {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .data-table .status.open {
+        background-color: #e8f5e9;
+        color: #4caf50;
+      }
+
+      .data-table .status.closed {
+        background-color: #ffebee;
+        color: #f44336;
+      }
+
+      .data-table .status.pending {
+        background-color: #fff8e1;
+        color: #ff9800;
+      }
+
+      /* Nút và điều khiển */
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .btn i {
+        margin-right: 8px;
+      }
+
+      .btn-primary {
+        background-color: #2196f3;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: #1976d2;
+      }
+
+      .btn-secondary {
+        background-color: #f5f5f5;
+        color: #333;
+        border: 1px solid #ddd;
+      }
+
+      .btn-secondary:hover {
+        background-color: #e0e0e0;
+      }
+
+      .btn-success {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .btn-success:hover {
+        background-color: #388e3c;
+      }
+
+      .btn-warning {
+        background-color: #ff9800;
+        color: white;
+      }
+
+      .btn-warning:hover {
+        background-color: #f57c00;
+      }
+
+      .btn-danger {
+        background-color: #f44336;
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background-color: #d32f2f;
+      }
+
+      /* Thẻ thông tin CT2 */
+      .ct2-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .ct2-card {
+        flex: 1;
+        min-width: 250px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        padding: 15px;
+        border: 1px solid #eaeaea;
+      }
+
+      .ct2-card h3 {
+        font-size: 16px;
+        color: #1e3056;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .ct2-card h3 i {
+        margin-right: 8px;
+        color: #2196f3;
+      }
+
+      .ct2-card p {
+        margin-bottom: 8px;
+        color: #666;
+      }
+
+      .ct2-card .value {
+        font-weight: 600;
+        color: #333;
+      }
+
+      /* Bước đăng ký */
+      .steps {
+        display: flex;
+        margin-bottom: 30px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+
+      .step {
+        flex: 1;
+        min-width: 150px;
+        text-align: center;
+        position: relative;
+      }
+
+      .step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 25px;
+        right: -50%;
+        width: 100%;
+        height: 2px;
+        background-color: #e0e0e0;
+        z-index: 1;
+      }
+
+      .step.active:not(:last-child)::after {
+        background-color: #2196f3;
+      }
+
+      .step.completed:not(:last-child)::after {
+        background-color: #4caf50;
+      }
+
+      .step-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        position: relative;
+        z-index: 2;
+        border: 2px solid #e0e0e0;
+      }
+
+      .step.active .step-icon {
+        background-color: #e3f2fd;
+        border-color: #2196f3;
+      }
+
+      .step.completed .step-icon {
+        background-color: #e8f5e9;
+        border-color: #4caf50;
+      }
+
+      .step-icon i {
+        font-size: 20px;
+        color: #9e9e9e;
+      }
+
+      .step.active .step-icon i {
+        color: #2196f3;
+      }
+
+      .step.completed .step-icon i {
+        color: #4caf50;
+      }
+
+      .step-title {
+        font-weight: 600;
+        color: #1e3056;
+        margin-bottom: 5px;
+      }
+
+      .step-desc {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .ct2-info {
+          flex-direction: column;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .steps {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .step {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 15px;
+        }
+
+        .step:not(:last-child)::after {
+          display: none;
+        }
+
+        .step-icon {
+          margin: 0 15px 0 0;
+        }
+
+        .step-content {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Tiêu đề trang -->
+    <div class="page-header">
+      <h1 class="page-title">
+        <i class="fa fa-graduation-cap" style="color: #2196f3"></i> Đăng ký học
+        chương trình 2 (CT2)
+      </h1>
+      <p class="page-subtitle">
+        Đăng ký học chương trình thứ hai để nhận thêm một bằng cử nhân
+      </p>
+    </div>
+
+    <!-- Thông báo quan trọng -->
+    <div class="notification">
+      <h3><i class="fa fa-bell"></i> Thông báo quan trọng</h3>
+      <p>
+        Đợt đăng ký học chương trình 2 (CT2) cho học kỳ 1 năm học 2024-2025 đang
+        được mở. Hạn cuối đăng ký: 30/07/2024.
+      </p>
+    </div>
+
+    <!-- Thông tin về CT2 -->
+    <div class="info-card">
+      <h2>
+        <i class="fa fa-info-circle"></i> Thông tin về chương trình 2 (CT2)
+      </h2>
+
+      <p style="margin-bottom: 15px">
+        Chương trình 2 (CT2) là chương trình đào tạo cho phép sinh viên học thêm
+        một ngành học khác song song với ngành học chính, nhằm trang bị thêm
+        kiến thức và kỹ năng, nâng cao cơ hội việc làm sau khi tốt nghiệp.
+      </p>
+
+      <div class="ct2-info">
+        <div class="ct2-card">
+          <h3><i class="fa fa-check-circle"></i> Điều kiện đăng ký</h3>
+          <p>Điểm trung bình tích lũy: <span class="value">≥ 2.5/4.0</span></p>
+          <p>Số tín chỉ đã tích lũy: <span class="value">≥ 30 tín chỉ</span></p>
+          <p>Không nợ học phí: <span class="value">Yêu cầu</span></p>
+          <p>Không vi phạm kỷ luật: <span class="value">Yêu cầu</span></p>
+        </div>
+
+        <div class="ct2-card">
+          <h3><i class="fa fa-calendar-check"></i> Thời gian đào tạo</h3>
+          <p>Thời gian tối thiểu: <span class="value">1.5 năm</span></p>
+          <p>Thời gian tối đa: <span class="value">4 năm</span></p>
+          <p>Số tín chỉ trung bình: <span class="value">60-80 tín chỉ</span></p>
+          <p>Học cùng lúc với CT1: <span class="value">Có thể</span></p>
+        </div>
+
+        <div class="ct2-card">
+          <h3><i class="fa fa-money-bill"></i> Học phí</h3>
+          <p>Mức học phí: <span class="value">Theo quy định hiện hành</span></p>
+          <p>Cách tính: <span class="value">Theo tín chỉ</span></p>
+          <p>Miễn giảm: <span class="value">Không áp dụng</span></p>
+          <p>Thanh toán: <span class="value">Theo học kỳ</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Các ngành đào tạo CT2 -->
+    <div class="info-card">
+      <h2><i class="fa fa-list"></i> Các ngành đào tạo CT2 đang mở</h2>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Mã ngành</th>
+              <th>Tên ngành</th>
+              <th>Khoa</th>
+              <th>Số tín chỉ</th>
+              <th>Thời gian</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CNTT-CT2</td>
+              <td>Công nghệ thông tin</td>
+              <td>Công nghệ thông tin</td>
+              <td>75</td>
+              <td>2.5 năm</td>
+              <td><span class="status open">Đang mở</span></td>
+            </tr>
+            <tr>
+              <td>QTKD-CT2</td>
+              <td>Quản trị kinh doanh</td>
+              <td>Kinh tế</td>
+              <td>65</td>
+              <td>2 năm</td>
+              <td><span class="status open">Đang mở</span></td>
+            </tr>
+            <tr>
+              <td>KTPM-CT2</td>
+              <td>Kỹ thuật phần mềm</td>
+              <td>Công nghệ thông tin</td>
+              <td>70</td>
+              <td>2.5 năm</td>
+              <td><span class="status open">Đang mở</span></td>
+            </tr>
+            <tr>
+              <td>TCKT-CT2</td>
+              <td>Tài chính kế toán</td>
+              <td>Kinh tế</td>
+              <td>68</td>
+              <td>2 năm</td>
+              <td><span class="status open">Đang mở</span></td>
+            </tr>
+            <tr>
+              <td>KTĐT-CT2</td>
+              <td>Kỹ thuật điện tử</td>
+              <td>Điện - Điện tử</td>
+              <td>80</td>
+              <td>3 năm</td>
+              <td><span class="status open">Đang mở</span></td>
+            </tr>
+            <tr>
+              <td>MARKETING-CT2</td>
+              <td>Marketing</td>
+              <td>Kinh tế</td>
+              <td>65</td>
+              <td>2 năm</td>
+              <td><span class="status open">Đang mở</span></td>
+            </tr>
+            <tr>
+              <td>NNA-CT2</td>
+              <td>Ngôn ngữ Anh</td>
+              <td>Ngoại ngữ</td>
+              <td>70</td>
+              <td>2.5 năm</td>
+              <td><span class="status open">Đang mở</span></td>
+            </tr>
+            <tr>
+              <td>HTTT-CT2</td>
+              <td>Hệ thống thông tin</td>
+              <td>Công nghệ thông tin</td>
+              <td>72</td>
+              <td>2.5 năm</td>
+              <td><span class="status closed">Đã đóng</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Quy trình đăng ký -->
+    <div class="info-card">
+      <h2><i class="fa fa-tasks"></i> Quy trình đăng ký CT2</h2>
+
+      <div class="steps">
+        <div class="step completed">
+          <div class="step-icon">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Kiểm tra điều kiện</div>
+            <div class="step-desc">Xác nhận đủ điều kiện đăng ký CT2</div>
+          </div>
+        </div>
+
+        <div class="step active">
+          <div class="step-icon">
+            <i class="fa fa-edit"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Nộp đơn đăng ký</div>
+            <div class="step-desc">Điền thông tin và nộp đơn</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-icon">
+            <i class="fa fa-hourglass-half"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Xét duyệt</div>
+            <div class="step-desc">Chờ phê duyệt từ khoa</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-icon">
+            <i class="fa fa-money-bill"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Thanh toán</div>
+            <div class="step-desc">Đóng học phí CT2</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-icon">
+            <i class="fa fa-graduation-cap"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Bắt đầu học</div>
+            <div class="step-desc">Tham gia học CT2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form đăng ký CT2 -->
+    <div class="info-card">
+      <h2><i class="fa fa-file-alt"></i> Đơn đăng ký chương trình 2</h2>
+
+      <form id="ct2-registration-form">
+        <div class="form-group">
+          <label for="student-id">Mã sinh viên</label>
+          <input
+            type="text"
+            id="student-id"
+            class="form-control"
+            value="SV20200001"
+            readonly
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="student-name">Họ và tên</label>
+          <input
+            type="text"
+            id="student-name"
+            class="form-control"
+            value="Nguyễn Văn A"
+            readonly
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="current-program">Chương trình đang học (CT1)</label>
+          <input
+            type="text"
+            id="current-program"
+            class="form-control"
+            value="Công nghệ thông tin"
+            readonly
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="current-gpa">Điểm trung bình tích lũy hiện tại</label>
+          <input
+            type="text"
+            id="current-gpa"
+            class="form-control"
+            value="3.65/4.0"
+            readonly
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="ct2-program"
+            >Chọn chương trình 2 (CT2) muốn đăng ký
+            <span class="text-danger">*</span></label
+          >
+          <select id="ct2-program" class="form-select" required>
+            <option value="">-- Chọn chương trình --</option>
+            <option value="QTKD-CT2">Quản trị kinh doanh</option>
+            <option value="TCKT-CT2">Tài chính kế toán</option>
+            <option value="MARKETING-CT2">Marketing</option>
+            <option value="NNA-CT2">Ngôn ngữ Anh</option>
+            <option value="KTĐT-CT2">Kỹ thuật điện tử</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="registration-reason"
+            >Lý do đăng ký <span class="text-danger">*</span></label
+          >
+          <textarea
+            id="registration-reason"
+            class="form-control"
+            rows="4"
+            placeholder="Nhập lý do bạn muốn đăng ký học chương trình 2..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="start-semester"
+            >Học kỳ bắt đầu <span class="text-danger">*</span></label
+          >
+          <select id="start-semester" class="form-select" required>
+            <option value="">-- Chọn học kỳ --</option>
+            <option value="2024-2025-1">Học kỳ 1, năm học 2024-2025</option>
+            <option value="2024-2025-2">Học kỳ 2, năm học 2024-2025</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            >Cam kết của sinh viên <span class="text-danger">*</span></label
+          >
+          <div class="form-check">
+            <input
+              type="checkbox"
+              id="commitment-1"
+              class="form-check-input"
+              required
+            />
+            <label for="commitment-1" class="form-check-label"
+              >Tôi cam kết các thông tin khai báo là chính xác</label
+            >
+          </div>
+          <div class="form-check">
+            <input
+              type="checkbox"
+              id="commitment-2"
+              class="form-check-input"
+              required
+            />
+            <label for="commitment-2" class="form-check-label"
+              >Tôi đã đọc và hiểu rõ các quy định về học chương trình 2</label
+            >
+          </div>
+          <div class="form-check">
+            <input
+              type="checkbox"
+              id="commitment-3"
+              class="form-check-input"
+              required
+            />
+            <label for="commitment-3" class="form-check-label"
+              >Tôi cam kết đóng học phí đúng hạn và tuân thủ các quy định của
+              nhà trường</label
+            >
+          </div>
+        </div>
+
+        <div class="notification warning">
+          <h3><i class="fa fa-exclamation-triangle"></i> Lưu ý quan trọng</h3>
+          <p>
+            Sau khi đăng ký thành công, sinh viên cần theo dõi kết quả xét duyệt
+            trong vòng 7 ngày làm việc.
+          </p>
+          <p>
+            Sinh viên chỉ được phép đăng ký một chương trình CT2 trong cùng một
+            thời điểm.
+          </p>
+        </div>
+
+        <div class="button-group">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            onclick="submitCT2Registration(); return false;"
+          >
+            <i class="fa fa-paper-plane"></i> Nộp đơn đăng ký
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="resetForm()">
+            <i class="fa fa-refresh"></i> Làm mới
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning"
+            onclick="window.location.href='ds-don-dang-ky-hoc-ct2.html'"
+          >
+            <i class="fa fa-list"></i> Xem đơn đã nộp
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Câu hỏi thường gặp -->
+    <div class="info-card">
+      <h2><i class="fa fa-question-circle"></i> Câu hỏi thường gặp</h2>
+
+      <div style="margin-bottom: 15px">
+        <h3 style="font-size: 16px; color: #1e3056; margin-bottom: 8px">
+          1. Tôi có thể học CT2 cùng lúc với CT1 không?
+        </h3>
+        <p style="margin-bottom: 15px">
+          Có, sinh viên có thể học song song cả hai chương trình. Tuy nhiên, cần
+          cân nhắc khả năng học tập và thời gian để đảm bảo kết quả tốt.
+        </p>
+
+        <h3 style="font-size: 16px; color: #1e3056; margin-bottom: 8px">
+          2. Học phí CT2 có khác với CT1 không?
+        </h3>
+        <p style="margin-bottom: 15px">
+          Học phí CT2 được tính theo số tín chỉ đăng ký học, tương tự như CT1.
+          Tuy nhiên, các chính sách miễn giảm học phí thường không áp dụng cho
+          CT2.
+        </p>
+
+        <h3 style="font-size: 16px; color: #1e3056; margin-bottom: 8px">
+          3. Tôi có thể hủy đăng ký CT2 sau khi đã được chấp nhận không?
+        </h3>
+        <p style="margin-bottom: 15px">
+          Có, sinh viên có thể làm đơn xin hủy đăng ký CT2. Tuy nhiên, việc hoàn
+          trả học phí sẽ tuân theo quy định hiện hành của nhà trường.
+        </p>
+
+        <h3 style="font-size: 16px; color: #1e3056; margin-bottom: 8px">
+          4. Bằng tốt nghiệp CT2 có giá trị như bằng CT1 không?
+        </h3>
+        <p style="margin-bottom: 15px">
+          Có, bằng tốt nghiệp CT2 có giá trị pháp lý tương đương với bằng CT1 và
+          được công nhận rộng rãi.
+        </p>
+
+        <h3 style="font-size: 16px; color: #1e3056; margin-bottom: 8px">
+          5. Tôi có thể đăng ký CT2 ở trường khác không?
+        </h3>
+        <p>
+          Không, chương trình CT2 chỉ áp dụng trong cùng một trường đại học. Nếu
+          muốn học ở trường khác, sinh viên cần tìm hiểu về chương trình liên
+          kết hoặc chuyển tiếp.
+        </p>
+      </div>
+    </div>
+
+    <!-- Liên hệ hỗ trợ -->
+    <div class="info-card">
+      <h2><i class="fa fa-headset"></i> Liên hệ hỗ trợ</h2>
+
+      <p>Nếu bạn cần hỗ trợ thêm về đăng ký CT2, vui lòng liên hệ:</p>
+      <ul style="padding-left: 20px; margin-bottom: 20px">
+        <li>Phòng Đào tạo: <strong>0251.3456.789</strong> (Ext: 123)</li>
+        <li>Email: <strong>daotao@dntu.edu.vn</strong></li>
+        <li>Văn phòng: <strong>Phòng A101, Tòa nhà A, Cơ sở chính</strong></li>
+        <li>Giờ làm việc: <strong>7:30 - 17:00, Thứ Hai - Thứ Sáu</strong></li>
+      </ul>
+    </div>
+
+    <script>
+      // Hàm nộp đơn đăng ký CT2
+      function submitCT2Registration() {
+        // Kiểm tra form
+        const form = document.getElementById("ct2-registration-form");
+        const program = document.getElementById("ct2-program").value;
+        const reason = document.getElementById("registration-reason").value;
+        const semester = document.getElementById("start-semester").value;
+        const commitment1 = document.getElementById("commitment-1").checked;
+        const commitment2 = document.getElementById("commitment-2").checked;
+        const commitment3 = document.getElementById("commitment-3").checked;
+
+        if (!program) {
+          alert("Vui lòng chọn chương trình CT2 muốn đăng ký");
+          return;
+        }
+
+        if (!reason) {
+          alert("Vui lòng nhập lý do đăng ký");
+          return;
+        }
+
+        if (!semester) {
+          alert("Vui lòng chọn học kỳ bắt đầu");
+          return;
+        }
+
+        if (!commitment1 || !commitment2 || !commitment3) {
+          alert("Vui lòng đồng ý với tất cả các cam kết");
+          return;
+        }
+
+        // Gửi đơn đăng ký (mô phỏng)
+        alert(
+          "Đơn đăng ký CT2 đã được gửi thành công! Vui lòng theo dõi kết quả xét duyệt trong vòng 7 ngày làm việc."
+        );
+
+        // Chuyển hướng đến trang danh sách đơn đăng ký
+        window.location.href = "ds-don-dang-ky-hoc-ct2.html";
+      }
+
+      // Hàm làm mới form
+      function resetForm() {
+        document.getElementById("ct2-program").value = "";
+        document.getElementById("registration-reason").value = "";
+        document.getElementById("start-semester").value = "";
+        document.getElementById("commitment-1").checked = false;
+        document.getElementById("commitment-2").checked = false;
+        document.getElementById("commitment-3").checked = false;
+      }
+
+      // Hiệu ứng khi hover vào các bước
+      document.addEventListener("DOMContentLoaded", function () {
+        const steps = document.querySelectorAll(".step");
+
+        steps.forEach((step) => {
+          step.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-5px)";
+          });
+
+          step.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

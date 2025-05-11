@@ -1,0 +1,694 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-calendar-check-o" style="color: #ff7043"></i> Kế hoạch thi
+</h1>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="filter-section">
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm kế hoạch thi..." />
+    <button><i class="fa fa-search"></i></button>
+  </div>
+  <div class="filter-options">
+    <select id="semester-select">
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+    </select>
+    <select id="exam-type">
+      <option value="all">Tất cả kỳ thi</option>
+      <option value="midterm">Giữa kỳ</option>
+      <option value="final">Cuối kỳ</option>
+      <option value="makeup">Thi lại</option>
+    </select>
+  </div>
+</div>
+
+<!-- Thông báo quan trọng -->
+<div class="notification-item unread" style="margin-bottom: 20px">
+  <div class="notification-icon important">
+    <i class="fa fa-exclamation"></i>
+  </div>
+  <div class="notification-content">
+    <div class="notification-title">
+      Thông báo về kế hoạch thi học kỳ 2 năm học 2023-2024
+      <span class="notification-badge badge-important">Quan trọng</span>
+    </div>
+    <div class="notification-meta">
+      <span><i class="fa fa-calendar"></i> Ngày đăng: 01/06/2024</span>
+      <span><i class="fa fa-user"></i> Người đăng: Phòng Khảo thí</span>
+    </div>
+    <div class="notification-preview">
+      <p>
+        Phòng Khảo thí thông báo kế hoạch thi học kỳ 2 năm học 2023-2024 như
+        sau:
+      </p>
+      <p>- Thi giữa kỳ: Từ ngày 15/04/2024 đến ngày 25/04/2024</p>
+      <p>- Thi cuối kỳ: Từ ngày 15/06/2024 đến ngày 30/06/2024</p>
+      <p>- Thi lại: Từ ngày 15/07/2024 đến ngày 25/07/2024</p>
+      <p>
+        Sinh viên theo dõi lịch thi chi tiết tại mục "Lịch thi" và chuẩn bị tốt
+        cho kỳ thi sắp tới.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Thống kê kỳ thi -->
+<div class="dashboard-cards">
+  <div class="card card-orange">
+    <div class="card-icon">
+      <i class="fa fa-calendar"></i>
+    </div>
+    <div class="card-value">3</div>
+    <div class="card-label">Kỳ thi trong học kỳ</div>
+    <div class="card-details">
+      <small>Giữa kỳ, Cuối kỳ, Thi lại</small>
+      <small>Học kỳ 2, năm học 2023-2024</small>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <div class="card-icon">
+      <i class="fa fa-book"></i>
+    </div>
+    <div class="card-value">8</div>
+    <div class="card-label">Môn thi</div>
+    <div class="card-details">
+      <small>Đã đăng ký: 8/8 môn</small>
+      <small>Cập nhật: 01/06/2024</small>
+    </div>
+  </div>
+  <div class="card card-green">
+    <div class="card-icon">
+      <i class="fa fa-check-circle"></i>
+    </div>
+    <div class="card-value">0</div>
+    <div class="card-label">Môn đã thi</div>
+    <div class="card-details">
+      <small>Còn lại: 8 môn</small>
+      <small>Cập nhật: 01/06/2024</small>
+    </div>
+  </div>
+  <div class="card card-pink">
+    <div class="card-icon">
+      <i class="fa fa-clock-o"></i>
+    </div>
+    <div class="card-value">14</div>
+    <div class="card-label">Ngày đến kỳ thi</div>
+    <div class="card-details">
+      <small>Kỳ thi cuối kỳ</small>
+      <small>Bắt đầu: 15/06/2024</small>
+    </div>
+  </div>
+</div>
+
+<!-- Kế hoạch thi theo kỳ -->
+<div class="dashboard-preview">
+  <h2 class="section-title">Kế hoạch thi học kỳ 2, năm học 2023-2024</h2>
+
+  <!-- Tabs cho các loại kỳ thi -->
+  <div class="exam-plan-tabs">
+    <div class="tab active" data-tab="midterm">Thi giữa kỳ</div>
+    <div class="tab" data-tab="final">Thi cuối kỳ</div>
+    <div class="tab" data-tab="makeup">Thi lại</div>
+  </div>
+
+  <!-- Nội dung tab thi giữa kỳ -->
+  <div class="tab-content active" id="midterm-content">
+    <div class="exam-plan-info">
+      <div class="plan-header">
+        <h3><i class="fa fa-calendar-check-o"></i> Kỳ thi giữa kỳ</h3>
+        <div class="plan-period">Từ ngày 15/04/2024 đến ngày 25/04/2024</div>
+      </div>
+
+      <div class="plan-details">
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-info-circle"></i> Hình thức thi:
+          </div>
+          <div class="detail-value">
+            Thi viết, trắc nghiệm, thực hành (tùy môn)
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-clock-o"></i> Thời gian thi:
+          </div>
+          <div class="detail-value">45-60 phút (tùy môn)</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-percent"></i> Trọng số điểm:
+          </div>
+          <div class="detail-value">30% tổng điểm học phần</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-file-text"></i> Nội dung thi:
+          </div>
+          <div class="detail-value">Kiến thức từ tuần 1 đến tuần 7</div>
+        </div>
+      </div>
+
+      <div class="plan-status completed">
+        <i class="fa fa-check-circle"></i> Đã hoàn thành
+      </div>
+    </div>
+
+    <div class="plan-timeline">
+      <div class="timeline-header">Tiến trình kỳ thi giữa kỳ</div>
+      <div class="timeline-steps">
+        <div class="step completed">
+          <div class="step-icon"><i class="fa fa-calendar"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố kế hoạch thi</div>
+            <div class="step-date">01/04/2024</div>
+          </div>
+        </div>
+        <div class="step completed">
+          <div class="step-icon"><i class="fa fa-list-alt"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố danh sách phòng thi</div>
+            <div class="step-date">10/04/2024</div>
+          </div>
+        </div>
+        <div class="step completed">
+          <div class="step-icon"><i class="fa fa-pencil-square-o"></i></div>
+          <div class="step-info">
+            <div class="step-title">Tổ chức thi</div>
+            <div class="step-date">15/04 - 25/04/2024</div>
+          </div>
+        </div>
+        <div class="step completed">
+          <div class="step-icon"><i class="fa fa-check-square-o"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố kết quả</div>
+            <div class="step-date">10/05/2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nội dung tab thi cuối kỳ -->
+  <div class="tab-content" id="final-content">
+    <div class="exam-plan-info">
+      <div class="plan-header">
+        <h3><i class="fa fa-calendar-check-o"></i> Kỳ thi cuối kỳ</h3>
+        <div class="plan-period">Từ ngày 15/06/2024 đến ngày 30/06/2024</div>
+      </div>
+
+      <div class="plan-details">
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-info-circle"></i> Hình thức thi:
+          </div>
+          <div class="detail-value">
+            Thi viết, trắc nghiệm, thực hành (tùy môn)
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-clock-o"></i> Thời gian thi:
+          </div>
+          <div class="detail-value">90 phút (tùy môn)</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-percent"></i> Trọng số điểm:
+          </div>
+          <div class="detail-value">70% tổng điểm học phần</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-file-text"></i> Nội dung thi:
+          </div>
+          <div class="detail-value">Toàn bộ kiến thức học phần</div>
+        </div>
+      </div>
+
+      <div class="plan-status upcoming">
+        <i class="fa fa-hourglass-half"></i> Sắp diễn ra
+      </div>
+    </div>
+
+    <div class="plan-timeline">
+      <div class="timeline-header">Tiến trình kỳ thi cuối kỳ</div>
+      <div class="timeline-steps">
+        <div class="step completed">
+          <div class="step-icon"><i class="fa fa-calendar"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố kế hoạch thi</div>
+            <div class="step-date">01/06/2024</div>
+          </div>
+        </div>
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-list-alt"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố danh sách phòng thi</div>
+            <div class="step-date">10/06/2024</div>
+          </div>
+        </div>
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-pencil-square-o"></i></div>
+          <div class="step-info">
+            <div class="step-title">Tổ chức thi</div>
+            <div class="step-date">15/06 - 30/06/2024</div>
+          </div>
+        </div>
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-check-square-o"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố kết quả</div>
+            <div class="step-date">15/07/2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <a
+        href="#"
+        onclick="showContent('lich-thi'); return false;"
+        class="action-btn"
+      >
+        <i class="fa fa-calendar"></i> Xem lịch thi chi tiết
+      </a>
+      <a href="#" class="action-btn">
+        <i class="fa fa-download"></i> Tải xuống kế hoạch thi
+      </a>
+    </div>
+  </div>
+
+  <!-- Nội dung tab thi lại -->
+  <div class="tab-content" id="makeup-content">
+    <div class="exam-plan-info">
+      <div class="plan-header">
+        <h3><i class="fa fa-calendar-check-o"></i> Kỳ thi lại</h3>
+        <div class="plan-period">Từ ngày 15/07/2024 đến ngày 25/07/2024</div>
+      </div>
+
+      <div class="plan-details">
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-info-circle"></i> Hình thức thi:
+          </div>
+          <div class="detail-value">
+            Thi viết, trắc nghiệm, thực hành (tùy môn)
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-clock-o"></i> Thời gian thi:
+          </div>
+          <div class="detail-value">90 phút (tùy môn)</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-money"></i> Lệ phí thi lại:
+          </div>
+          <div class="detail-value">150.000 VNĐ/môn</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">
+            <i class="fa fa-file-text"></i> Nội dung thi:
+          </div>
+          <div class="detail-value">Toàn bộ kiến thức học phần</div>
+        </div>
+      </div>
+
+      <div class="plan-status upcoming">
+        <i class="fa fa-hourglass-half"></i> Sắp diễn ra
+      </div>
+    </div>
+
+    <div class="plan-timeline">
+      <div class="timeline-header">Tiến trình kỳ thi lại</div>
+      <div class="timeline-steps">
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-calendar"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố kế hoạch thi lại</div>
+            <div class="step-date">01/07/2024</div>
+          </div>
+        </div>
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-edit"></i></div>
+          <div class="step-info">
+            <div class="step-title">Đăng ký thi lại</div>
+            <div class="step-date">05/07 - 10/07/2024</div>
+          </div>
+        </div>
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-list-alt"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố danh sách phòng thi</div>
+            <div class="step-date">12/07/2024</div>
+          </div>
+        </div>
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-pencil-square-o"></i></div>
+          <div class="step-info">
+            <div class="step-title">Tổ chức thi</div>
+            <div class="step-date">15/07 - 25/07/2024</div>
+          </div>
+        </div>
+        <div class="step upcoming">
+          <div class="step-icon"><i class="fa fa-check-square-o"></i></div>
+          <div class="step-info">
+            <div class="step-title">Công bố kết quả</div>
+            <div class="step-date">05/08/2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <a href="#" class="action-btn">
+        <i class="fa fa-edit"></i> Đăng ký thi lại
+      </a>
+      <a href="#" class="action-btn">
+        <i class="fa fa-download"></i> Tải xuống kế hoạch thi lại
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Quy định thi -->
+<div class="exam-regulations">
+  <h2 class="section-title">Quy định thi</h2>
+
+  <div class="regulations-content">
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-clock-o"></i></div>
+      <div class="regulation-text">
+        <h3>Thời gian</h3>
+        <p>
+          Sinh viên phải có mặt tại phòng thi trước giờ thi ít nhất 15 phút.
+          Sinh viên đến trễ quá 15 phút sau khi bắt đầu thi sẽ không được dự
+          thi.
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-id-card"></i></div>
+      <div class="regulation-text">
+        <h3>Giấy tờ</h3>
+        <p>
+          Sinh viên phải mang theo thẻ sinh viên hoặc giấy tờ tùy thân có ảnh
+          (CMND, CCCD, bằng lái xe) khi đi thi. Sinh viên không có giấy tờ tùy
+          thân sẽ không được dự thi.
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-ban"></i></div>
+      <div class="regulation-text">
+        <h3>Vật dụng cấm mang vào phòng thi</h3>
+        <p>
+          Sinh viên không được mang vào phòng thi: điện thoại di động, thiết bị
+          ghi âm, ghi hình, thiết bị truyền tin, tài liệu (trừ những môn được
+          phép mang tài liệu theo quy định của giảng viên).
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon"><i class="fa fa-check-circle"></i></div>
+      <div class="regulation-text">
+        <h3>Vật dụng được phép mang vào phòng thi</h3>
+        <p>
+          Sinh viên được phép mang vào phòng thi: bút, thước kẻ, máy tính cầm
+          tay không có chức năng soạn thảo văn bản và không có thẻ nhớ (đối với
+          các môn được phép sử dụng máy tính).
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-icon">
+        <i class="fa fa-exclamation-triangle"></i>
+      </div>
+      <div class="regulation-text">
+        <h3>Xử lý vi phạm</h3>
+        <p>
+          Sinh viên vi phạm quy chế thi sẽ bị xử lý theo quy định của nhà
+          trường, từ nhắc nhở, khiển trách đến đình chỉ thi và hủy kết quả thi
+          tùy theo mức độ vi phạm.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Thêm CSS cho trang -->
+<style>
+  /* Tabs cho kế hoạch thi */
+  .exam-plan-tabs {
+    display: flex;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+  }
+
+  .exam-plan-tabs .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .exam-plan-tabs .tab:hover {
+    color: #1e3056;
+  }
+
+  .exam-plan-tabs .tab.active {
+    color: #1e3056;
+    border-bottom: 3px solid #ff7043;
+  }
+
+  /* Tab content */
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  /* Thông tin kế hoạch thi */
+  .exam-plan-info {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .plan-header {
+    margin-bottom: 15px;
+  }
+
+  .plan-header h3 {
+    font-size: 18px;
+    color: #1e3056;
+    margin-bottom: 5px;
+  }
+
+  .plan-period {
+    color: #666;
+    font-size: 14px;
+  }
+
+  .plan-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .detail-label {
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+    min-width: 120px;
+  }
+
+  .detail-value {
+    color: #333;
+  }
+
+  .plan-status {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .plan-status.completed {
+    background-color: #e8f5e9;
+    color: #4caf50;
+  }
+
+  .plan-status.upcoming {
+    background-color: #fff8e1;
+    color: #ff9800;
+  }
+
+  /* Timeline */
+  .plan-timeline {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .timeline-header {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #1e3056;
+  }
+
+  .timeline-steps {
+    position: relative;
+    padding-left: 30px;
+  }
+
+  .timeline-steps:before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ddd;
+  }
+
+  .step {
+    display: flex;
+    margin-bottom: 25px;
+    position: relative;
+  }
+
+  .step:last-child {
+    margin-bottom: 0;
+  }
+
+  .step-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    position: absolute;
+    left: -15px;
+    border: 2px solid #ddd;
+    z-index: 1;
+  }
+
+  .step.completed .step-icon {
+    background-color: #4caf50;
+    color: white;
+    border-color: #4caf50;
+  }
+
+  .step.upcoming .step-icon {
+    background-color: #ff9800;
+    color: white;
+    border-color: #ff9800;
+  }
+
+  .step-info {
+    padding-left: 30px;
+  }
+
+  .step-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .step-date {
+    color: #666;
+    font-size: 14px;
+  }
+
+  /* Action buttons */
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1e3056;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .action-btn:hover {
+    background-color: #283b6b;
+  }
+
+  .action-btn i {
+    margin-right: 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .plan-details {
+      grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+    }
+
+    .action-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<!-- Thêm JavaScript cho trang -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Xử lý tabs
+    const tabs = document.querySelectorAll(".exam-plan-tabs .tab");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", function () {
+        // Xóa active class từ tất cả tabs
+        tabs.forEach((t) => t.classList.remove("active"));
+
+        // Thêm active class cho tab được click
+        this.classList.add("active");
+
+        // Ẩn tất cả tab content
+        tabContents.forEach((content) => content.classList.remove("active"));
+
+        // Hiển thị tab content tương ứng
+        const tabId = this.getAttribute("data-tab");
+        document.getElementById(tabId + "-content").classList.add("active");
+      });
+    });
+  });
+</script>

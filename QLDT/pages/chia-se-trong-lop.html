@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diễn đàn chia sẻ trong lớp</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #4caf50;
+        --primary-light: #e8f5e9;
+        --primary-dark: #388e3c;
+        --accent-color: #ff5722;
+        --text-dark: #333;
+        --text-light: #757575;
+        --background-light: #f9f9f9;
+        --background-white: #ffffff;
+        --border-color: #e0e0e0;
+        --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+        --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.1);
+        --transition-speed: 0.3s;
+        --border-radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+
+      body {
+        background-color: var(--background-light);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* Header */
+      .page-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--primary-dark)
+        );
+        color: white;
+        padding: 30px 20px;
+        border-radius: var(--border-radius);
+        margin-bottom: 25px;
+        box-shadow: var(--shadow-medium);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .page-title {
+        font-size: 28px;
+        margin: 0;
+        letter-spacing: 0.5px;
+      }
+
+      .page-title i {
+        margin-right: 10px;
+      }
+
+      /* Forum intro */
+      .forum-intro {
+        background-color: var(--background-white);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-light);
+        margin-bottom: 25px;
+        border-left: 4px solid var(--primary-color);
+      }
+
+      .forum-intro p {
+        color: var(--text-light);
+        font-size: 16px;
+      }
+
+      /* Class selector */
+      .class-selector {
+        background-color: var(--background-white);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-light);
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .class-selector label {
+        font-weight: 600;
+        color: var(--text-dark);
+        font-size: 16px;
+      }
+
+      #class-select {
+        padding: 10px 15px;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        background-color: var(--background-white);
+        font-size: 14px;
+        flex-grow: 1;
+        cursor: pointer;
+        color: var(--text-dark);
+        transition: border-color var(--transition-speed);
+      }
+
+      #class-select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      /* New post section */
+      .new-post-section {
+        margin-bottom: 25px;
+      }
+
+      .new-post-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color var(--transition-speed);
+        box-shadow: var(--shadow-light);
+        width: 100%;
+        justify-content: center;
+      }
+
+      .new-post-btn:hover {
+        background-color: var(--primary-dark);
+      }
+
+      .new-post-form {
+        background-color: var(--background-white);
+        padding: 25px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-medium);
+        margin-top: 15px;
+      }
+
+      .new-post-form h3 {
+        color: var(--primary-dark);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 18px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+      }
+
+      .form-group input[type="text"],
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        font-size: 14px;
+        transition: border-color var(--transition-speed);
+      }
+
+      .form-group input[type="text"]:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .form-group small {
+        color: var(--text-light);
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+      }
+
+      .form-group input[type="file"] {
+        margin-top: 5px;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .cancel-btn {
+        background-color: transparent;
+        color: var(--text-light);
+        border: 1px solid var(--border-color);
+        padding: 10px 18px;
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+      }
+
+      .cancel-btn:hover {
+        background-color: var(--border-color);
+      }
+
+      .submit-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+      }
+
+      .submit-btn:hover {
+        background-color: var(--primary-dark);
+      }
+
+      /* Post list */
+      .post-list {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 30px;
+      }
+
+      .post-item {
+        background-color: var(--background-white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-light);
+        overflow: hidden;
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+      }
+
+      .post-item:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
+      }
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: var(--primary-light);
+      }
+
+      .post-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+        box-shadow: 0 0 0 2px var(--primary-color);
+      }
+
+      .author-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .author-name {
+        font-weight: 600;
+        color: var(--text-dark);
+        font-size: 15px;
+      }
+
+      .post-meta {
+        display: flex;
+        gap: 15px;
+        color: var(--text-light);
+        font-size: 13px;
+      }
+
+      .post-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .post-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .action-btn {
+        background-color: white;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+        color: var(--text-light);
+        font-size: 16px;
+      }
+
+      .action-btn:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--primary-color);
+      }
+
+      .post-content {
+        padding: 20px;
+      }
+
+      .post-title {
+        color: var(--primary-dark);
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .post-text {
+        margin-bottom: 20px;
+        color: var(--text-dark);
+        font-size: 15px;
+      }
+
+      .post-text p {
+        margin-bottom: 10px;
+      }
+
+      .post-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .post-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color var(--transition-speed);
+        word-break: break-all;
+      }
+
+      .post-link:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+      }
+
+      .post-attachments {
+        background-color: rgba(0, 0, 0, 0.02);
+        padding: 15px;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+      }
+
+      .attachment-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .attachment-item:last-child {
+        border-bottom: none;
+      }
+
+      .attachment-item i {
+        color: var(--primary-color);
+        font-size: 20px;
+      }
+
+      .attachment-name {
+        flex-grow: 1;
+        font-weight: 500;
+        color: var(--text-dark);
+        font-size: 14px;
+      }
+
+      .attachment-size {
+        color: var(--text-light);
+        font-size: 12px;
+      }
+
+      .download-btn {
+        background-color: transparent;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        transition: background-color var(--transition-speed);
+      }
+
+      .download-btn:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--primary-color);
+      }
+
+      .post-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-top: 1px solid var(--border-color);
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .post-stats {
+        display: flex;
+        gap: 15px;
+        color: var(--text-light);
+        font-size: 14px;
+      }
+
+      .post-stats span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .post-interactions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .interaction-btn {
+        background-color: transparent;
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        transition: background-color var(--transition-speed),
+          color var(--transition-speed);
+        color: var(--text-light);
+        font-size: 14px;
+      }
+
+      .interaction-btn:hover {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        border-color: var(--primary-light);
+      }
+
+      .like-btn.active {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        border-color: var(--primary-light);
+      }
+
+      /* Comment section */
+      .comment-section {
+        padding: 0 20px 20px;
+        background-color: var(--background-light);
+        border-top: 1px solid var(--border-color);
+      }
+
+      .comment-list {
+        margin-bottom: 15px;
+      }
+
+      .comment-item {
+        display: flex;
+        gap: 10px;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .comment-item:last-child {
+        border-bottom: none;
+      }
+
+      .comment-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .comment-content {
+        flex-grow: 1;
+      }
+
+      .comment-author {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+      }
+
+      .comment-text {
+        font-size: 14px;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+      }
+
+      .comment-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-light);
+        font-size: 12px;
+      }
+
+      .reply-btn {
+        background-color: transparent;
+        border: none;
+        color: var(--text-light);
+        cursor: pointer;
+        font-size: 12px;
+        padding: 0;
+        transition: color var(--transition-speed);
+      }
+
+      .reply-btn:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+
+      .add-comment {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .comment-input-container {
+        display: flex;
+        gap: 10px;
+        flex-grow: 1;
+        position: relative;
+      }
+
+      .comment-input {
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        background-color: white;
+        font-size: 14px;
+        transition: border-color var(--transition-speed);
+      }
+
+      .comment-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .send-comment-btn {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+      }
+
+      .send-comment-btn:hover {
+        background-color: var(--primary-dark);
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 30px;
+      }
+
+      .pagination a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--background-white);
+        color: var(--text-dark);
+        text-decoration: none;
+        transition: background-color var(--transition-speed),
+          color var(--transition-speed);
+        box-shadow: var(--shadow-light);
+        font-weight: 500;
+      }
+
+      .pagination a:hover {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+      }
+
+      .pagination a.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      /* Responsive styling */
+      @media (max-width: 768px) {
+        .post-header,
+        .post-footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .post-actions {
+          margin-top: 10px;
+          align-self: flex-end;
+        }
+
+        .post-stats {
+          flex-wrap: wrap;
+        }
+
+        .post-interactions {
+          width: 100%;
+          justify-content: space-between;
+          margin-top: 10px;
+        }
+
+        .interaction-btn {
+          flex-grow: 1;
+          justify-content: center;
+        }
+
+        .form-actions {
+          flex-direction: column;
+        }
+
+        .submit-btn,
+        .cancel-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Tiêu đề trang -->
+      <header class="page-header">
+        <i class="fas fa-users fa-2x" style="color: white"></i>
+        <h1 class="page-title">Diễn đàn chia sẻ trong lớp</h1>
+      </header>
+
+      <!-- Giới thiệu -->
+      <div class="forum-intro">
+        <p>
+          Chào mừng bạn đến với diễn đàn chia sẻ trong lớp. Đây là nơi bạn có
+          thể trao đổi thông tin, tài liệu học tập, và thảo luận với các bạn
+          cùng lớp.
+        </p>
+      </div>
+
+      <!-- Chọn lớp -->
+      <div class="class-selector">
+        <label for="class-select">Chọn lớp:</label>
+        <select id="class-select" onchange="loadClassPosts()">
+          <option value="cntt2020">CNTT2020 - Công nghệ thông tin K20</option>
+          <option value="ktpm2020">KTPM2020 - Kỹ thuật phần mềm K20</option>
+          <option value="httt2020">HTTT2020 - Hệ thống thông tin K20</option>
+        </select>
+      </div>
+
+      <!-- Tạo bài viết mới -->
+      <div class="new-post-section">
+        <button class="new-post-btn" onclick="toggleNewPostForm()">
+          <i class="fas fa-plus-circle"></i> Tạo bài viết mới
+        </button>
+
+        <div id="new-post-form" class="new-post-form" style="display: none">
+          <h3>Tạo bài viết mới</h3>
+          <div class="form-group">
+            <label for="post-title">Tiêu đề:</label>
+            <input
+              type="text"
+              id="post-title"
+              placeholder="Nhập tiêu đề bài viết..."
+            />
+          </div>
+          <div class="form-group">
+            <label for="post-content">Nội dung:</label>
+            <textarea
+              id="post-content"
+              rows="5"
+              placeholder="Nhập nội dung bài viết..."
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="post-attachment">Tệp đính kèm:</label>
+            <input type="file" id="post-attachment" multiple />
+            <small
+              >Hỗ trợ các định dạng: PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG,
+              PNG (tối đa 10MB)</small
+            >
+          </div>
+          <div class="form-actions">
+            <button class="cancel-btn" onclick="toggleNewPostForm()">
+              Hủy
+            </button>
+            <button class="submit-btn" onclick="submitNewPost()">
+              Đăng bài
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danh sách bài viết -->
+      <div class="post-list">
+        <!-- Bài viết 1 -->
+        <div class="post-item">
+          <div class="post-header">
+            <div class="post-author">
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Avatar"
+                class="author-avatar"
+              />
+              <div class="author-info">
+                <div class="author-name">Nguyễn Thị B</div>
+                <div class="post-meta">
+                  <span><i class="far fa-clock"></i> 15/05/2024, 10:30</span>
+                  <span><i class="fas fa-tag"></i> Tài liệu học tập</span>
+                </div>
+              </div>
+            </div>
+            <div class="post-actions">
+              <button class="action-btn" title="Lưu bài viết">
+                <i class="far fa-bookmark"></i>
+              </button>
+              <button class="action-btn" title="Chia sẻ">
+                <i class="fas fa-share-alt"></i>
+              </button>
+            </div>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title">
+              Tài liệu ôn tập môn Lập trình Web nâng cao
+            </h3>
+            <div class="post-text">
+              <p>Chào các bạn,</p>
+              <p>
+                Mình xin chia sẻ tài liệu ôn tập cho môn Lập trình Web nâng cao.
+                Tài liệu này bao gồm các nội dung chính sẽ xuất hiện trong kỳ
+                thi sắp tới.
+              </p>
+              <p>Mọi người cùng tham khảo nhé!</p>
+            </div>
+            <div class="post-attachments">
+              <div class="attachment-item">
+                <i class="far fa-file-pdf"></i>
+                <span class="attachment-name">Tai-lieu-on-tap-LTWNC.pdf</span>
+                <span class="attachment-size">(2.5 MB)</span>
+                <button class="download-btn">
+                  <i class="fas fa-download"></i>
+                </button>
+              </div>
+              <div class="attachment-item">
+                <i class="far fa-file-powerpoint"></i>
+                <span class="attachment-name"
+                  >Slide-bai-giang-tuan-10-15.pptx</span
+                >
+                <span class="attachment-size">(5.8 MB)</span>
+                <button class="download-btn">
+                  <i class="fas fa-download"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="post-footer">
+            <div class="post-stats">
+              <span><i class="far fa-eye"></i> 45 lượt xem</span>
+              <span><i class="far fa-comment"></i> 12 bình luận</span>
+              <span><i class="far fa-thumbs-up"></i> 18 thích</span>
+            </div>
+            <div class="post-interactions">
+              <button class="interaction-btn like-btn">
+                <i class="far fa-thumbs-up"></i> Thích
+              </button>
+              <button class="interaction-btn comment-btn">
+                <i class="far fa-comment"></i> Bình luận
+              </button>
+            </div>
+          </div>
+
+          <!-- Phần bình luận -->
+          <div class="comment-section">
+            <div class="comment-list">
+              <div class="comment-item">
+                <img
+                  src="https://via.placeholder.com/30"
+                  alt="Avatar"
+                  class="comment-avatar"
+                />
+                <div class="comment-content">
+                  <div class="comment-author">Trần Văn C</div>
+                  <div class="comment-text">
+                    Cảm ơn bạn đã chia sẻ tài liệu rất hữu ích!
+                  </div>
+                  <div class="comment-meta">
+                    <span>15/05/2024, 11:15</span>
+                    <button class="reply-btn">Trả lời</button>
+                  </div>
+                </div>
+              </div>
+              <div class="comment-item">
+                <img
+                  src="https://via.placeholder.com/30"
+                  alt="Avatar"
+                  class="comment-avatar"
+                />
+                <div class="comment-content">
+                  <div class="comment-author">Lê Thị D</div>
+                  <div class="comment-text">
+                    Bạn có thể chia sẻ thêm các bài tập mẫu không?
+                  </div>
+                  <div class="comment-meta">
+                    <span>15/05/2024, 13:20</span>
+                    <button class="reply-btn">Trả lời</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="add-comment">
+              <img
+                src="https://via.placeholder.com/30"
+                alt="Avatar"
+                class="comment-avatar"
+              />
+              <div class="comment-input-container">
+                <input
+                  type="text"
+                  class="comment-input"
+                  placeholder="Viết bình luận..."
+                />
+                <button class="send-comment-btn">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bài viết 2 -->
+        <div class="post-item">
+          <div class="post-header">
+            <div class="post-author">
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Avatar"
+                class="author-avatar"
+              />
+              <div class="author-info">
+                <div class="author-name">Phạm Văn E</div>
+                <div class="post-meta">
+                  <span><i class="far fa-clock"></i> 14/05/2024, 15:45</span>
+                  <span><i class="fas fa-tag"></i> Thông báo</span>
+                </div>
+              </div>
+            </div>
+            <div class="post-actions">
+              <button class="action-btn" title="Lưu bài viết">
+                <i class="far fa-bookmark"></i>
+              </button>
+              <button class="action-btn" title="Chia sẻ">
+                <i class="fas fa-share-alt"></i>
+              </button>
+            </div>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title">Thông báo về buổi ôn tập trước kỳ thi</h3>
+            <div class="post-text">
+              <p>Thông báo đến tất cả các bạn trong lớp CNTT2020,</p>
+              <p>
+                Nhóm trưởng các nhóm học tập sẽ tổ chức buổi ôn tập chung cho
+                các môn sắp thi vào ngày 25/05/2024, từ 8h00 đến 16h00 tại phòng
+                A305.
+              </p>
+              <p>Các bạn đăng ký tham gia bằng cách điền vào form dưới đây:</p>
+              <p>
+                <a href="#" class="post-link"
+                  >https://forms.example.com/ontap-cntt2020</a
+                >
+              </p>
+              <p>Hạn đăng ký: 20/05/2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

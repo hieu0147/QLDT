@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hồ sơ sinh viên</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #2196f3;
+        --secondary-color: #1976d2;
+        --text-color: #333;
+        --light-text: #666;
+        --bg-color: #f5f7fa;
+        --white: #ffffff;
+        --border-color: #e0e0e0;
+        --success-color: #4caf50;
+        --warning-color: #ff9800;
+        --error-color: #f44336;
+        --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* Header */
+      .page-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .page-title i {
+        margin-right: 15px;
+        font-size: 32px;
+      }
+
+      /* Profile Section */
+      .profile-section {
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+
+      /* Profile Header */
+      .profile-header {
+        display: flex;
+        padding: 30px;
+        background: linear-gradient(135deg, #1976d2, #2196f3);
+        color: var(--white);
+        position: relative;
+      }
+
+      .profile-avatar {
+        position: relative;
+        margin-right: 30px;
+      }
+
+      .profile-avatar img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      .change-avatar-btn {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--white);
+        color: var(--primary-color);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .change-avatar-btn:hover {
+        background-color: var(--primary-color);
+        color: var(--white);
+      }
+
+      .profile-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .student-name {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .student-id,
+      .student-class,
+      .student-status {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .status-active {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 3px 10px;
+        border-radius: 15px;
+        font-weight: 500;
+        color: #4caf50;
+        background-color: rgba(76, 175, 80, 0.1);
+        border: 1px solid rgba(76, 175, 80, 0.3);
+      }
+
+      /* Profile Tabs */
+      .profile-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border-color);
+        overflow-x: auto;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .profile-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-btn {
+        padding: 15px 20px;
+        border: none;
+        background: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--light-text);
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+      }
+
+      .tab-btn:hover {
+        color: var(--primary-color);
+      }
+
+      .tab-btn.active {
+        color: var(--primary-color);
+        border-bottom: 3px solid var(--primary-color);
+      }
+
+      /* Tab Content */
+      #profile-tab-content {
+        padding: 30px;
+      }
+
+      .profile-tab-pane {
+        display: none;
+      }
+
+      .profile-tab-pane.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Info Sections */
+      .info-section {
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        font-size: 20px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+      }
+
+      .section-title:after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: var(--border-color);
+        margin-left: 15px;
+      }
+
+      /* Info Grid */
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .info-label {
+        font-weight: 500;
+        color: var(--light-text);
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .info-value {
+        color: var(--text-color);
+        font-size: 16px;
+      }
+
+      /* Family Member */
+      .family-member {
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 4px solid var(--primary-color);
+      }
+
+      .family-member h4 {
+        margin-bottom: 15px;
+        color: var(--primary-color);
+        font-weight: 500;
+      }
+
+      /* Document List */
+      .document-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .document-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        transition: var(--transition);
+      }
+
+      .document-item:hover {
+        box-shadow: var(--shadow);
+      }
+
+      .document-icon {
+        font-size: 24px;
+        color: var(--primary-color);
+        margin-right: 15px;
+      }
+
+      .document-info {
+        flex: 1;
+      }
+
+      .document-name {
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .document-status {
+        font-size: 14px;
+        padding: 2px 8px;
+        border-radius: 12px;
+        display: inline-block;
+      }
+
+      .document-status.completed {
+        background-color: rgba(76, 175, 80, 0.1);
+        color: var(--success-color);
+        border: 1px solid rgba(76, 175, 80, 0.3);
+      }
+
+      .document-status.processing {
+        background-color: rgba(255, 152, 0, 0.1);
+        color: var(--warning-color);
+        border: 1px solid rgba(255, 152, 0, 0.3);
+      }
+
+      .document-status.not-submitted {
+        background-color: rgba(244, 67, 54, 0.1);
+        color: var(--error-color);
+        border: 1px solid rgba(244, 67, 54, 0.3);
+      }
+
+      .document-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .document-actions button {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        background-color: var(--white);
+        color: var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .document-actions button:hover {
+        background-color: var(--primary-color);
+        color: var(--white);
+      }
+
+      .view-btn,
+      .download-btn,
+      .upload-btn {
+        font-size: 14px;
+      }
+
+      /* Profile Actions */
+      .profile-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .update-profile-btn {
+        padding: 12px 30px;
+        border-radius: 30px;
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+      }
+
+      .update-profile-btn i {
+        margin-right: 10px;
+      }
+
+      .update-profile-btn:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .profile-header {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .profile-avatar {
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .profile-tabs {
+          justify-content: start;
+        }
+
+        #profile-tab-content {
+          padding: 20px 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Tiêu đề trang -->
+      <h1 class="page-title">
+        <i class="fas fa-user-graduate"></i> Hồ sơ sinh viên
+      </h1>
+
+      <!-- Thông tin cơ bản -->
+      <div class="profile-section">
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <img src="/api/placeholder/150/150" alt="Avatar" />
+            <button class="change-avatar-btn">
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+          <div class="profile-info">
+            <h2 class="student-name">Nguyễn Văn A</h2>
+            <div class="student-id">Mã sinh viên: SV12345</div>
+            <div class="student-class">Lớp: CNTT2020</div>
+            <div class="student-status">
+              Trạng thái: <span class="status-active">Đang học</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-tabs">
+          <button
+            class="tab-btn active"
+            onclick="showProfileTab('personal-info')"
+          >
+            <i class="fas fa-user"></i> Thông tin cá nhân
+          </button>
+          <button class="tab-btn" onclick="showProfileTab('academic-info')">
+            <i class="fas fa-graduation-cap"></i> Thông tin học tập
+          </button>
+          <button class="tab-btn" onclick="showProfileTab('contact-info')">
+            <i class="fas fa-address-book"></i> Thông tin liên hệ
+          </button>
+          <button class="tab-btn" onclick="showProfileTab('family-info')">
+            <i class="fas fa-users"></i> Thông tin gia đình
+          </button>
+          <button class="tab-btn" onclick="showProfileTab('documents')">
+            <i class="fas fa-file-alt"></i> Hồ sơ, giấy tờ
+          </button>
+        </div>
+
+        <!-- Tab nội dung -->
+        <div id="profile-tab-content">
+          <!-- Tab thông tin cá nhân -->
+          <div id="personal-info" class="profile-tab-pane active">
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-info-circle"></i> Thông tin cơ bản
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Họ và tên:</div>
+                  <div class="info-value">Nguyễn Văn A</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Ngày sinh:</div>
+                  <div class="info-value">15/05/2002</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Giới tính:</div>
+                  <div class="info-value">Nam</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Số CMND/CCCD:</div>
+                  <div class="info-value">0123456789</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Ngày cấp:</div>
+                  <div class="info-value">10/06/2019</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Nơi cấp:</div>
+                  <div class="info-value">Công an tỉnh Đồng Nai</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Dân tộc:</div>
+                  <div class="info-value">Kinh</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Tôn giáo:</div>
+                  <div class="info-value">Không</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Quốc tịch:</div>
+                  <div class="info-value">Việt Nam</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-certificate"></i> Thông tin khác
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Đối tượng ưu tiên:</div>
+                  <div class="info-value">Không</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Khu vực:</div>
+                  <div class="info-value">2NT</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Đoàn viên:</div>
+                  <div class="info-value">Có</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Đảng viên:</div>
+                  <div class="info-value">Không</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Ngày vào Đoàn:</div>
+                  <div class="info-value">26/03/2017</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Nơi vào Đoàn:</div>
+                  <div class="info-value">Trường THPT Nguyễn Hữu Cảnh</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab thông tin học tập -->
+          <div id="academic-info" class="profile-tab-pane">
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-university"></i> Thông tin nhập học
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Khoa:</div>
+                  <div class="info-value">Công nghệ thông tin</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Ngành:</div>
+                  <div class="info-value">Công nghệ thông tin</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Chuyên ngành:</div>
+                  <div class="info-value">Công nghệ phần mềm</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Lớp:</div>
+                  <div class="info-value">CNTT2020</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Khóa học:</div>
+                  <div class="info-value">2020-2024</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Bậc đào tạo:</div>
+                  <div class="info-value">Đại học</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Hệ đào tạo:</div>
+                  <div class="info-value">Chính quy</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Cố vấn học tập:</div>
+                  <div class="info-value">TS. Nguyễn Văn X</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-history"></i> Thông tin trước khi nhập học
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Trường THPT:</div>
+                  <div class="info-value">THPT Nguyễn Hữu Cảnh</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Năm tốt nghiệp THPT:</div>
+                  <div class="info-value">2020</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Điểm thi THPT QG:</div>
+                  <div class="info-value">24.5</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Tổ hợp xét tuyển:</div>
+                  <div class="info-value">A00 (Toán, Lý, Hóa)</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Phương thức trúng tuyển:</div>
+                  <div class="info-value">Xét điểm thi THPT QG</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-chart-line"></i> Kết quả học tập
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Điểm trung bình tích lũy:</div>
+                  <div class="info-value">3.65/4.0</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Xếp loại học lực:</div>
+                  <div class="info-value">Giỏi</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Số tín chỉ đã đăng ký:</div>
+                  <div class="info-value">120</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Số tín chỉ đã tích lũy:</div>
+                  <div class="info-value">110</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Số tín chỉ còn phải học:</div>
+                  <div class="info-value">30</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Điểm rèn luyện trung bình:</div>
+                  <div class="info-value">85/100</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Xếp loại rèn luyện:</div>
+                  <div class="info-value">Tốt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab thông tin liên hệ -->
+          <div id="contact-info" class="profile-tab-pane">
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-phone-alt"></i> Thông tin liên hệ
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Điện thoại:</div>
+                  <div class="info-value">0987654321</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Email cá nhân:</div>
+                  <div class="info-value">nguyenvana@gmail.com</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Email trường cấp:</div>
+                  <div class="info-value">sv12345@dntu.edu.vn</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Facebook:</div>
+                  <div class="info-value">facebook.com/nguyenvana</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-map-marker-alt"></i> Địa chỉ
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Địa chỉ thường trú:</div>
+                  <div class="info-value">
+                    123 Đường A, Phường B, TP. Biên Hòa, Đồng Nai
+                  </div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Địa chỉ tạm trú:</div>
+                  <div class="info-value">
+                    456 Đường C, Phường D, TP. Biên Hòa, Đồng Nai
+                  </div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Nơi ở hiện tại:</div>
+                  <div class="info-value">Ký túc xá trường, Phòng B205</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-exclamation-circle"></i> Thông tin khẩn cấp
+              </h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label">Người liên hệ:</div>
+                  <div class="info-value">Nguyễn Văn B (Bố)</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Số điện thoại:</div>
+                  <div class="info-value">0912345678</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Địa chỉ:</div>
+                  <div class="info-value">
+                    123 Đường A, Phường B, TP. Biên Hòa, Đồng Nai
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab thông tin gia đình -->
+          <div id="family-info" class="profile-tab-pane">
+            <div class="info-section">
+              <h3 class="section-title">
+                <i class="fas fa-users"></i> Thông tin gia đình
+              </h3>
+
+              <div class="family-member">
+                <h4><i class="fas fa-user"></i> Thông tin bố</h4>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <div class="info-label">Họ và tên:</div>
+                    <div class="info-value">Nguyễn Văn B</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Năm sinh:</div>
+                    <div class="info-value">1975</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Nghề nghiệp:</div>
+                    <div class="info-value">Kỹ sư xây dựng</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Nơi làm việc:</div>
+                    <div class="info-value">Công ty Xây dựng ABC</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Điện thoại:</div>
+                    <div class="info-value">0912345678</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="family-member">
+                <h4><i class="fas fa-user"></i> Thông tin mẹ</h4>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <div class="info-label">Họ và tên:</div>
+                    <div class="info-value">Trần Thị C</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Năm sinh:</div>
+                    <div class="info-value">1978</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Nghề nghiệp:</div>
+                    <div class="info-value">Giáo viên</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Nơi làm việc:</div>
+                    <div class="info-value">Trường THCS XYZ</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Điện thoại:</div>
+                    <div class="info-value">0923456789</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="family-member">
+                <h4><i class="fas fa-user"></i> Thông tin anh/chị/em</h4>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <div class="info-label">Họ và tên:</div>
+                    <div class="info-value">Nguyễn Thị D</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Năm sinh:</div>
+                    <div class="info-value">2005</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Quan hệ:</div>
+                    <div class="info-value">Em gái</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Nghề nghiệp:</div>
+                    <div class="info-value">Học sinh</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Nơi học tập:</div>
+                    <div class="info-value">Trường THPT Nguyễn Hữu Cảnh</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="documents" class="profile-tab-pane">
+      <div class="info-section">
+        <h3 class="section-title">
+          <i class="fas fa-file-alt"></i> Danh sách hồ sơ, giấy tờ
+        </h3>
+        <div class="document-list">
+          <div class="document-item">
+            <i class="document-icon fas fa-id-card"></i>
+            <div class="document-info">
+              <div class="document-name">Căn cước công dân</div>
+              <span class="document-status completed">Đã nộp</span>
+            </div>
+            <div class="document-actions">
+              <button class="view-btn"><i class="fas fa-eye"></i></button>
+              <button class="download-btn">
+                <i class="fas fa-download"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function showProfileTab(tabId) {
+        const tabButtons = document.querySelectorAll(".tab-btn");
+        const tabPanes = document.querySelectorAll(".profile-tab-pane");
+
+        tabButtons.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        tabPanes.forEach((pane) => {
+          pane.classList.remove("active");
+        });
+
+        document
+          .querySelector(`.tab-btn[onclick="showProfileTab('${tabId}')"]`)
+          .classList.add("active");
+
+        document.getElementById(tabId).classList.add("active");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1067 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-bar-chart" style="color: #4caf50"></i> Bảng điểm
+</h1>
+
+<!-- Thông tin sinh viên -->
+<div class="student-info">
+  <div class="info-item">
+    <div class="info-label">Mã sinh viên:</div>
+    <div class="info-value">SV20200001</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Họ và tên:</div>
+    <div class="info-value">Nguyễn Văn A</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Ngành học:</div>
+    <div class="info-value">Công nghệ thông tin</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Chuyên ngành:</div>
+    <div class="info-value">Kỹ thuật phần mềm</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Khóa học:</div>
+    <div class="info-value">2020-2024</div>
+  </div>
+</div>
+
+<!-- Thống kê điểm -->
+<div class="grade-summary">
+  <div class="summary-item">
+    <div class="summary-value">3.65</div>
+    <div class="summary-label">Điểm trung bình tích lũy</div>
+  </div>
+  <div class="summary-item">
+    <div class="summary-value">3.75</div>
+    <div class="summary-label">Điểm trung bình học kỳ gần nhất</div>
+  </div>
+  <div class="summary-item">
+    <div class="summary-value">100/150</div>
+    <div class="summary-label">Số tín chỉ tích lũy</div>
+  </div>
+  <div class="summary-item">
+    <div class="summary-value">Khá</div>
+    <div class="summary-label">Xếp loại</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="grade-controls">
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="loadGrades()">
+      <option value="all">Tất cả</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+      <option value="2021-2022-2">Học kỳ 2, năm học 2021-2022</option>
+      <option value="2021-2022-1">Học kỳ 1, năm học 2021-2022</option>
+      <option value="2020-2021-2">Học kỳ 2, năm học 2020-2021</option>
+      <option value="2020-2021-1">Học kỳ 1, năm học 2020-2021</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="course-type">Loại học phần:</label>
+    <select id="course-type" onchange="filterGrades()">
+      <option value="all">Tất cả</option>
+      <option value="required">Bắt buộc</option>
+      <option value="elective">Tự chọn</option>
+      <option value="general">Đại cương</option>
+      <option value="specialized">Chuyên ngành</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printGrades()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportGrades()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+    <button class="action-btn" onclick="requestTranscript()">
+      <i class="fa fa-file-text"></i> Yêu cầu bảng điểm
+    </button>
+  </div>
+</div>
+
+<!-- Bảng điểm chi tiết -->
+<div class="grade-table-container">
+  <h2 class="section-title">Bảng điểm chi tiết</h2>
+
+  <div class="search-filter">
+    <input
+      type="text"
+      id="grade-search"
+      placeholder="Tìm kiếm theo mã hoặc tên học phần..."
+      onkeyup="searchGrades()"
+    />
+    <button class="search-btn" onclick="searchGrades()">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+
+  <table class="grade-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã học phần</th>
+        <th>Tên học phần</th>
+        <th>Số tín chỉ</th>
+        <th>Học kỳ</th>
+        <th>Điểm quá trình</th>
+        <th>Điểm thi</th>
+        <th>Điểm tổng kết</th>
+        <th>Điểm chữ</th>
+        <th>Kết quả</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Năm thứ nhất - Học kỳ 1 -->
+      <tr class="semester-header">
+        <td colspan="10">Học kỳ 1, năm học 2020-2021</td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>1</td>
+        <td>MATH1001</td>
+        <td>Giải tích 1</td>
+        <td>3</td>
+        <td>2020-2021-1</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>2</td>
+        <td>MATH1002</td>
+        <td>Đại số tuyến tính</td>
+        <td>3</td>
+        <td>2020-2021-1</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>3</td>
+        <td>PHYS1001</td>
+        <td>Vật lý đại cương</td>
+        <td>3</td>
+        <td>2020-2021-1</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>4</td>
+        <td>COMP1001</td>
+        <td>Nhập môn lập trình</td>
+        <td>3</td>
+        <td>2020-2021-1</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>5</td>
+        <td>COMP1002</td>
+        <td>Nhập môn công nghệ thông tin</td>
+        <td>3</td>
+        <td>2020-2021-1</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>6</td>
+        <td>ENGL1001</td>
+        <td>Tiếng Anh 1</td>
+        <td>3</td>
+        <td>2020-2021-1</td>
+        <td>7.0</td>
+        <td>7.0</td>
+        <td>7.0</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="semester-summary">
+        <td colspan="3">Điểm trung bình học kỳ: 8.08</td>
+        <td>18</td>
+        <td colspan="6">Số tín chỉ đạt: 18/18</td>
+      </tr>
+
+      <!-- Năm thứ nhất - Học kỳ 2 -->
+      <tr class="semester-header">
+        <td colspan="10">Học kỳ 2, năm học 2020-2021</td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>7</td>
+        <td>MATH1003</td>
+        <td>Giải tích 2</td>
+        <td>3</td>
+        <td>2020-2021-2</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>8</td>
+        <td>MATH1004</td>
+        <td>Xác suất thống kê</td>
+        <td>3</td>
+        <td>2020-2021-2</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>9</td>
+        <td>COMP1003</td>
+        <td>Kỹ thuật lập trình</td>
+        <td>3</td>
+        <td>2020-2021-2</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>10</td>
+        <td>COMP1004</td>
+        <td>Cấu trúc dữ liệu và giải thuật</td>
+        <td>3</td>
+        <td>2020-2021-2</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>11</td>
+        <td>ENGL1002</td>
+        <td>Tiếng Anh 2</td>
+        <td>3</td>
+        <td>2020-2021-2</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>12</td>
+        <td>POLI1001</td>
+        <td>Triết học Mác-Lênin</td>
+        <td>3</td>
+        <td>2020-2021-2</td>
+        <td>7.0</td>
+        <td>7.0</td>
+        <td>7.0</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="semester-summary">
+        <td colspan="3">Điểm trung bình học kỳ: 7.75</td>
+        <td>18</td>
+        <td colspan="6">Số tín chỉ đạt: 18/18</td>
+      </tr>
+
+      <!-- Năm thứ hai - Học kỳ 1 -->
+      <tr class="semester-header">
+        <td colspan="10">Học kỳ 1, năm học 2021-2022</td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>13</td>
+        <td>COMP2001</td>
+        <td>Cơ sở dữ liệu</td>
+        <td>3</td>
+        <td>2021-2022-1</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>14</td>
+        <td>COMP2002</td>
+        <td>Lập trình hướng đối tượng</td>
+        <td>3</td>
+        <td>2021-2022-1</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>15</td>
+        <td>COMP2003</td>
+        <td>Kiến trúc máy tính</td>
+        <td>3</td>
+        <td>2021-2022-1</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>16</td>
+        <td>COMP2004</td>
+        <td>Hệ điều hành</td>
+        <td>3</td>
+        <td>2021-2022-1</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>17</td>
+        <td>ENGL2001</td>
+        <td>Tiếng Anh 3</td>
+        <td>3</td>
+        <td>2021-2022-1</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>18</td>
+        <td>POLI2001</td>
+        <td>Kinh tế chính trị Mác-Lênin</td>
+        <td>2</td>
+        <td>2021-2022-1</td>
+        <td>7.0</td>
+        <td>7.0</td>
+        <td>7.0</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="semester-summary">
+        <td colspan="3">Điểm trung bình học kỳ: 7.94</td>
+        <td>17</td>
+        <td colspan="6">Số tín chỉ đạt: 17/17</td>
+      </tr>
+
+      <!-- Năm thứ hai - Học kỳ 2 -->
+      <tr class="semester-header">
+        <td colspan="10">Học kỳ 2, năm học 2021-2022</td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>19</td>
+        <td>COMP2005</td>
+        <td>Mạng máy tính</td>
+        <td>3</td>
+        <td>2021-2022-2</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>20</td>
+        <td>COMP2006</td>
+        <td>Phân tích và thiết kế hệ thống</td>
+        <td>3</td>
+        <td>2021-2022-2</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>21</td>
+        <td>COMP2007</td>
+        <td>Lập trình Web</td>
+        <td>3</td>
+        <td>2021-2022-2</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>22</td>
+        <td>COMP2008</td>
+        <td>Lập trình Java</td>
+        <td>3</td>
+        <td>2021-2022-2</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>23</td>
+        <td>ENGL2002</td>
+        <td>Tiếng Anh 4</td>
+        <td>3</td>
+        <td>2021-2022-2</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>24</td>
+        <td>POLI2002</td>
+        <td>Chủ nghĩa xã hội khoa học</td>
+        <td>2</td>
+        <td>2021-2022-2</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="semester-summary">
+        <td colspan="3">Điểm trung bình học kỳ: 8.25</td>
+        <td>17</td>
+        <td colspan="6">Số tín chỉ đạt: 17/17</td>
+      </tr>
+
+      <!-- Năm thứ ba - Học kỳ 1 -->
+      <tr class="semester-header">
+        <td colspan="10">Học kỳ 1, năm học 2022-2023</td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>25</td>
+        <td>COMP3001</td>
+        <td>Công nghệ phần mềm</td>
+        <td>3</td>
+        <td>2022-2023-1</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>26</td>
+        <td>COMP3002</td>
+        <td>Trí tuệ nhân tạo</td>
+        <td>3</td>
+        <td>2022-2023-1</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>27</td>
+        <td>COMP3003</td>
+        <td>An toàn thông tin</td>
+        <td>3</td>
+        <td>2022-2023-1</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized elective">
+        <td>28</td>
+        <td>COMP3004</td>
+        <td>Lập trình di động</td>
+        <td>3</td>
+        <td>2022-2023-1</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized elective">
+        <td>29</td>
+        <td>COMP3005</td>
+        <td>Lập trình Web nâng cao</td>
+        <td>3</td>
+        <td>2022-2023-1</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>9.0</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>30</td>
+        <td>POLI3001</td>
+        <td>Tư tưởng Hồ Chí Minh</td>
+        <td>2</td>
+        <td>2022-2023-1</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="semester-summary">
+        <td colspan="3">Điểm trung bình học kỳ: 8.25</td>
+        <td>17</td>
+        <td colspan="6">Số tín chỉ đạt: 17/17</td>
+      </tr>
+
+      <!-- Năm thứ ba - Học kỳ 2 -->
+      <tr class="semester-header">
+        <td colspan="10">Học kỳ 2, năm học 2022-2023</td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>31</td>
+        <td>COMP3006</td>
+        <td>Kiểm thử phần mềm</td>
+        <td>3</td>
+        <td>2022-2023-2</td>
+        <td>8.0</td>
+        <td>7.0</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized required">
+        <td>32</td>
+        <td>COMP3007</td>
+        <td>Quản lý dự án phần mềm</td>
+        <td>3</td>
+        <td>2022-2023-2</td>
+        <td>8.5</td>
+        <td>7.5</td>
+        <td>8.0</td>
+        <td>B+</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized elective">
+        <td>33</td>
+        <td>COMP3008</td>
+        <td>Học máy</td>
+        <td>3</td>
+        <td>2022-2023-2</td>
+        <td>7.5</td>
+        <td>6.5</td>
+        <td>7.0</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized elective">
+        <td>34</td>
+        <td>COMP3009</td>
+        <td>Phát triển game</td>
+        <td>3</td>
+        <td>2022-2023-2</td>
+        <td>9.0</td>
+        <td>8.0</td>
+        <td>8.5</td>
+        <td>A</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row specialized elective">
+        <td>35</td>
+        <td>COMP3010</td>
+        <td>Điện toán đám mây</td>
+        <td>3</td>
+        <td>2022-2023-2</td>
+        <td>8.0</td>
+        <td>7.0</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="grade-row general required">
+        <td>36</td>
+        <td>POLI3002</td>
+        <td>Lịch sử Đảng Cộng sản Việt Nam</td>
+        <td>2</td>
+        <td>2022-2023-2</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>7.5</td>
+        <td>B</td>
+        <td><span class="status-badge passed">Đạt</span></td>
+      </tr>
+      <tr class="semester-summary">
+        <td colspan="3">Điểm trung bình học kỳ: 7.67</td>
+        <td>17</td>
+        <td colspan="6">Số tín chỉ đạt: 17/17</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Biểu đồ điểm -->
+<div class="grade-charts">
+  <h2 class="section-title">Biểu đồ điểm</h2>
+
+  <div class="charts-container">
+    <div class="chart-item">
+      <h3 class="chart-title">Điểm trung bình theo học kỳ</h3>
+      <div class="chart-wrapper">
+        <canvas id="semester-gpa-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-item">
+      <h3 class="chart-title">Phân bố điểm</h3>
+      <div class="chart-wrapper">
+        <canvas id="grade-distribution-chart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Yêu cầu bảng điểm -->
+<div id="transcript-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Yêu cầu bảng điểm</h3>
+      <span class="close-modal" onclick="closeTranscriptModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>Vui lòng điền thông tin để yêu cầu bảng điểm chính thức:</p>
+
+      <div class="form-group">
+        <label for="transcript-type">Loại bảng điểm:</label>
+        <select id="transcript-type" required>
+          <option value="">-- Chọn loại bảng điểm --</option>
+          <option value="vietnamese">Bảng điểm tiếng Việt</option>
+          <option value="english">Bảng điểm tiếng Anh</option>
+          <option value="both">Cả hai loại</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="transcript-copies">Số lượng bản:</label>
+        <input
+          type="number"
+          id="transcript-copies"
+          min="1"
+          max="10"
+          value="1"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="transcript-purpose">Mục đích sử dụng:</label>
+        <select id="transcript-purpose" required>
+          <option value="">-- Chọn mục đích --</option>
+          <option value="job">Xin việc</option>
+          <option value="study">Học tiếp</option>
+          <option value="scholarship">Xin học bổng</option>
+          <option value="other">Khác</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="other-purpose-group" style="display: none">
+        <label for="other-purpose">Mục đích khác:</label>
+        <input
+          type="text"
+          id="other-purpose"
+          placeholder="Nhập mục đích sử dụng..."
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="transcript-note">Ghi chú:</label>
+        <textarea
+          id="transcript-note"
+          rows="3"
+          placeholder="Nhập ghi chú nếu có..."
+        ></textarea>
+      </div>
+
+      <div class="fee-info">
+        <p>Lệ phí: <span id="transcript-fee">30,000 VNĐ</span></p>
+        <p class="note">
+          Lưu ý: Bảng điểm sẽ được chuẩn bị trong vòng 3-5 ngày làm việc.
+        </p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="closeTranscriptModal()">Hủy</button>
+      <button class="confirm-btn" onclick="submitTranscriptRequest()">
+        Xác nhận yêu cầu
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Biến lưu trữ dữ liệu điểm
+  let gradeData = [];
+
+  // Hàm tải dữ liệu điểm
+  function loadGrades() {
+    const selectedSemester = document.getElementById("semester-select").value;
+    console.log("Đang tải điểm cho học kỳ: " + selectedSemester);
+
+    // Trong thực tế, đây sẽ là API call để lấy dữ liệu điểm
+    // fetchGrades(selectedSemester);
+
+    // Hiển thị hoặc ẩn các hàng dựa trên học kỳ được chọn
+    const semesterHeaders = document.querySelectorAll(".semester-header");
+    const gradeRows = document.querySelectorAll(".grade-row");
+    const semesterSummaries = document.querySelectorAll(".semester-summary");
+
+    if (selectedSemester === "all") {
+      // Hiển thị tất cả
+      semesterHeaders.forEach((header) => {
+        header.style.display = "";
+      });
+
+      gradeRows.forEach((row) => {
+        row.style.display = "";
+      });
+
+      semesterSummaries.forEach((summary) => {
+        summary.style.display = "";
+      });
+    } else {
+      // Hiển thị chỉ học kỳ được chọn
+      semesterHeaders.forEach((header, index) => {
+        const headerText = header.textContent.toLowerCase();
+        if (headerText.includes(selectedSemester.toLowerCase())) {
+          header.style.display = "";
+
+          // Hiển thị các hàng điểm thuộc học kỳ này
+          let i = index * 6; // Giả sử mỗi học kỳ có 6 học phần
+          for (let j = 0; j < 6; j++) {
+            if (gradeRows[i + j]) {
+              gradeRows[i + j].style.display = "";
+            }
+          }
+
+          // Hiển thị tổng kết học kỳ
+          if (semesterSummaries[index]) {
+            semesterSummaries[index].style.display = "";
+          }
+        } else {
+          header.style.display = "none";
+
+          // Ẩn các hàng điểm thuộc học kỳ khác
+          let i = index * 6; // Giả sử mỗi học kỳ có 6 học phần
+          for (let j = 0; j < 6; j++) {
+            if (gradeRows[i + j]) {
+              gradeRows[i + j].style.display = "none";
+            }
+          }
+
+          // Ẩn tổng kết học kỳ
+          if (semesterSummaries[index]) {
+            semesterSummaries[index].style.display = "none";
+          }
+        }
+      });
+    }
+  }
+
+  // Hàm lọc điểm theo loại học phần
+  function filterGrades() {
+    const courseType = document.getElementById("course-type").value;
+    const gradeRows = document.querySelectorAll(".grade-row");
+
+    if (courseType === "all") {
+      // Hiển thị tất cả
+      gradeRows.forEach((row) => {
+        if (row.style.display !== "none") {
+          // Không thay đổi các hàng đã bị ẩn bởi bộ lọc học kỳ
+          row.style.display = "";
+        }
+      });
+    } else {
+      // Hiển thị chỉ loại học phần được chọn
+      gradeRows.forEach((row) => {
+        if (row.classList.contains(courseType)) {
+          if (row.style.display !== "none") {
+            // Không thay đổi các hàng đã bị ẩn bởi bộ lọc học kỳ
+            row.style.display = "";
+          }
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+  }
+
+  // Hàm tìm kiếm điểm
+  function searchGrades() {
+    const searchText = document
+      .getElementById("grade-search")
+      .value.toLowerCase();
+    const gradeRows = document.querySelectorAll(".grade-row");
+
+    gradeRows.forEach((row) => {
+      const courseCode = row
+        .querySelector("td:nth-child(2)")
+        .textContent.toLowerCase();
+      const courseName = row
+        .querySelector("td:nth-child(3)")
+        .textContent.toLowerCase();
+
+      if (courseCode.includes(searchText) || courseName.includes(searchText)) {
+        if (row.style.display !== "none") {
+          // Không thay đổi các hàng đã bị ẩn bởi các bộ lọc khác
+          row.style.display = "";
+        }
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  // Hàm in bảng điểm
+  function printGrades() {
+    window.print();
+  }
+
+  // Hàm xuất file bảng điểm
+  function exportGrades() {
+    alert("Đang xuất file bảng điểm...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+
+  // Hàm mở modal yêu cầu bảng điểm
+  function requestTranscript() {
+    // Cập nhật lệ phí dựa trên loại bảng điểm và số lượng
+    updateTranscriptFee();
+
+    // Hiển thị modal
+    document.getElementById("transcript-modal").style.display = "block";
+  }
+
+  // Hàm đóng modal yêu cầu bảng điểm
+  function closeTranscriptModal() {
+    document.getElementById("transcript-modal").style.display = "none";
+  }
+
+  // Hàm cập nhật lệ phí bảng điểm
+  function updateTranscriptFee() {
+    const type = document.getElementById("transcript-type").value;
+    const copies = document.getElementById("transcript-copies").value;
+
+    let fee = 0;
+    if (type === "vietnamese") {
+      fee = 30000 * copies;
+    } else if (type === "english") {
+      fee = 50000 * copies;
+    } else if (type === "both") {
+      fee = 70000 * copies;
+    }
+
+    document.getElementById("transcript-fee").textContent =
+      fee.toLocaleString() + " VNĐ";
+  }
+
+  // Hàm gửi yêu cầu bảng điểm
+  function submitTranscriptRequest() {
+    // Kiểm tra thông tin
+    const type = document.getElementById("transcript-type").value;
+    const copies = document.getElementById("transcript-copies").value;
+    const purpose = document.getElementById("transcript-purpose").value;
+
+    if (!type) {
+      alert("Vui lòng chọn loại bảng điểm!");
+      return;
+    }
+
+    if (!purpose) {
+      alert("Vui lòng chọn mục đích sử dụng!");
+      return;
+    }
+
+    // Kiểm tra mục đích khác
+    if (purpose === "other") {
+      const otherPurpose = document
+        .getElementById("other-purpose")
+        .value.trim();
+      if (!otherPurpose) {
+        alert("Vui lòng nhập mục đích sử dụng!");
+        return;
+      }
+    }
+
+    // Trong thực tế, đây sẽ là API call để gửi yêu cầu
+    console.log("Gửi yêu cầu bảng điểm:", {
+      type,
+      copies,
+      purpose:
+        purpose === "other"
+          ? document.getElementById("other-purpose").value
+          : purpose,
+      note: document.getElementById("transcript-note").value,
+    });
+
+    // Đóng modal
+    closeTranscriptModal();
+
+    // Hiển thị thông báo
+    alert(
+      "Yêu cầu bảng điểm của bạn đã được ghi nhận. Vui lòng đến phòng Đào tạo để thanh toán lệ phí và nhận bảng điểm trong vòng 3-5 ngày làm việc."
+    );
+  }
+
+  // Hàm vẽ biểu đồ điểm trung bình theo học kỳ
+  function drawSemesterGPAChart() {
+    const ctx = document.getElementById("semester-gpa-chart").getContext("2d");
+
+    // Dữ liệu mẫu
+    const data = {
+      labels: [
+        "HK1 2020-2021",
+        "HK2 2020-2021",
+        "HK1 2021-2022",
+        "HK2 2021-2022",
+        "HK1 2022-2023",
+        "HK2 2022-2023",
+      ],
+      datasets: [
+        {
+          label: "Điểm trung bình học kỳ",
+          data: [8.08, 7.75, 7.94, 8.25, 8.25, 7.67],
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    // Cấu hình
+    const config = {
+      type: "line",
+      data: data,
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: 6,
+            max: 10,
+          },
+        },
+      },
+    };
+
+    // Vẽ biểu đồ
+    new Chart(ctx, config);
+  }
+
+  // Hàm vẽ biểu đồ phân bố điểm
+  function drawGradeDistributionChart() {
+    const ctx = document
+      .getElementById("grade-distribution-chart")
+      .getContext("2d");
+
+    // Dữ liệu mẫu
+    const data = {
+      labels: ["A", "B+", "B", "C+", "C", "D+", "D", "F"],
+      datasets: [
+        {
+          label: "Số học phần",
+          data: [12, 8, 10, 4, 2, 0, 0, 0],
+          backgroundColor: [
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(199, 199, 199, 0.2)",
+            "rgba(83, 83, 83, 0.2)",
+          ],
+          borderColor: [
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(255, 159, 64, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(199, 199, 199, 1)",
+            "rgba(83, 83, 83, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    // Cấu hình
+    const config = {
+      type: "bar",
+      data: data,
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    };
+
+    // Vẽ biểu đồ
+    new Chart(ctx, config);
+  }
+
+  // Khởi tạo trang
+  document.addEventListener("DOMContentLoaded", function () {
+    // Xử lý sự kiện thay đổi loại bảng điểm và số lượng
+    document
+      .getElementById("transcript-type")
+      .addEventListener("change", updateTranscriptFee);
+    document
+      .getElementById("transcript-copies")
+      .addEventListener("change", updateTranscriptFee);
+    document
+      .getElementById("transcript-copies")
+      .addEventListener("input", updateTranscriptFee);
+
+    // Xử lý sự kiện thay đổi mục đích
+    document
+      .getElementById("transcript-purpose")
+      .addEventListener("change", function () {
+        if (this.value === "other") {
+          document.getElementById("other-purpose-group").style.display =
+            "block";
+        } else {
+          document.getElementById("other-purpose-group").style.display = "none";
+        }
+      });
+
+    // Đóng modal khi click bên ngoài
+    window.onclick = function (event) {
+      const modal = document.getElementById("transcript-modal");
+      if (event.target == modal) {
+        closeTranscriptModal();
+      }
+    };
+
+    // Vẽ biểu đồ
+    drawSemesterGPAChart();
+    drawGradeDistributionChart();
+  });
+</script>

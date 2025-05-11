@@ -1,0 +1,1113 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-clipboard-check" style="color: #9c27b0"></i> Khảo sát sinh
+  viên
+</h1>
+
+<!-- Giới thiệu -->
+<div class="survey-intro">
+  <p>
+    Khảo sát sinh viên là kênh thông tin quan trọng giúp nhà trường nắm bắt ý
+    kiến, nguyện vọng của sinh viên để cải thiện chất lượng đào tạo và dịch vụ.
+    Vui lòng tham gia các khảo sát dưới đây để đóng góp ý kiến của bạn.
+  </p>
+  <div class="note-box">
+    <p>
+      <strong>Lưu ý:</strong> Thông tin khảo sát của bạn sẽ được giữ bí mật và
+      chỉ được sử dụng cho mục đích cải thiện chất lượng đào tạo và dịch vụ của
+      nhà trường.
+    </p>
+  </div>
+</div>
+
+<!-- Thống kê khảo sát -->
+<div class="survey-stats">
+  <div class="stat-item">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Tổng số khảo sát</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Đã hoàn thành</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">2</div>
+    <div class="stat-label">Chưa hoàn thành</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">60%</div>
+    <div class="stat-label">Tỷ lệ hoàn thành</div>
+  </div>
+</div>
+
+<!-- Bộ lọc khảo sát -->
+<div class="survey-filters">
+  <div class="control-group">
+    <label for="survey-status">Trạng thái:</label>
+    <select id="survey-status" onchange="filterSurveys()">
+      <option value="all">Tất cả</option>
+      <option value="completed">Đã hoàn thành</option>
+      <option value="pending">Chưa hoàn thành</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="survey-type">Loại khảo sát:</label>
+    <select id="survey-type" onchange="filterSurveys()">
+      <option value="all">Tất cả</option>
+      <option value="academic">Học thuật</option>
+      <option value="service">Dịch vụ</option>
+      <option value="facility">Cơ sở vật chất</option>
+      <option value="other">Khác</option>
+    </select>
+  </div>
+</div>
+
+<!-- Danh sách khảo sát -->
+<div class="survey-list">
+  <h2 class="section-title">Danh sách khảo sát</h2>
+
+  <div class="survey-cards">
+    <!-- Khảo sát 1 - Chưa hoàn thành -->
+    <div class="survey-card pending">
+      <div class="survey-header">
+        <div class="survey-type academic">Học thuật</div>
+        <div class="survey-badge pending">Chưa hoàn thành</div>
+      </div>
+      <div class="survey-body">
+        <div class="survey-title">
+          Khảo sát về chương trình đào tạo học kỳ 2, năm học 2023-2024
+        </div>
+        <div class="survey-description">
+          Khảo sát này nhằm thu thập ý kiến của sinh viên về chương trình đào
+          tạo, nội dung học phần, phương pháp giảng dạy và đánh giá trong học kỳ
+          vừa qua.
+        </div>
+        <div class="survey-info">
+          <div class="info-item">
+            <i class="fa fa-calendar-check-o"></i> Thời hạn: 30/06/2024
+          </div>
+          <div class="info-item">
+            <i class="fa fa-clock-o"></i> Thời gian hoàn thành: 15-20 phút
+          </div>
+          <div class="info-item">
+            <i class="fa fa-question-circle"></i> Số câu hỏi: 25
+          </div>
+        </div>
+      </div>
+      <div class="survey-footer">
+        <button
+          class="start-btn"
+          onclick="startSurvey('survey-academic-2023-2024-2')"
+        >
+          <i class="fa fa-play"></i> Bắt đầu khảo sát
+        </button>
+      </div>
+    </div>
+
+    <!-- Khảo sát 2 - Chưa hoàn thành -->
+    <div class="survey-card pending">
+      <div class="survey-header">
+        <div class="survey-type facility">Cơ sở vật chất</div>
+        <div class="survey-badge pending">Chưa hoàn thành</div>
+      </div>
+      <div class="survey-body">
+        <div class="survey-title">
+          Khảo sát về cơ sở vật chất và môi trường học tập
+        </div>
+        <div class="survey-description">
+          Khảo sát này nhằm thu thập ý kiến của sinh viên về cơ sở vật chất,
+          trang thiết bị phục vụ học tập, nghiên cứu và các hoạt động ngoại
+          khóa.
+        </div>
+        <div class="survey-info">
+          <div class="info-item">
+            <i class="fa fa-calendar-check-o"></i> Thời hạn: 15/07/2024
+          </div>
+          <div class="info-item">
+            <i class="fa fa-clock-o"></i> Thời gian hoàn thành: 10-15 phút
+          </div>
+          <div class="info-item">
+            <i class="fa fa-question-circle"></i> Số câu hỏi: 20
+          </div>
+        </div>
+      </div>
+      <div class="survey-footer">
+        <button class="start-btn" onclick="startSurvey('survey-facility-2024')">
+          <i class="fa fa-play"></i> Bắt đầu khảo sát
+        </button>
+      </div>
+    </div>
+
+    <!-- Khảo sát 3 - Đã hoàn thành -->
+    <div class="survey-card completed">
+      <div class="survey-header">
+        <div class="survey-type service">Dịch vụ</div>
+        <div class="survey-badge completed">Đã hoàn thành</div>
+      </div>
+      <div class="survey-body">
+        <div class="survey-title">Khảo sát về dịch vụ sinh viên</div>
+        <div class="survey-description">
+          Khảo sát này nhằm thu thập ý kiến của sinh viên về các dịch vụ hỗ trợ
+          sinh viên như thư viện, ký túc xá, căng tin, y tế, tư vấn học tập và
+          nghề nghiệp.
+        </div>
+        <div class="survey-info">
+          <div class="info-item">
+            <i class="fa fa-calendar-check-o"></i> Thời hạn: 01/06/2024
+          </div>
+          <div class="info-item">
+            <i class="fa fa-clock-o"></i> Thời gian hoàn thành: 10-15 phút
+          </div>
+          <div class="info-item">
+            <i class="fa fa-question-circle"></i> Số câu hỏi: 15
+          </div>
+        </div>
+        <div class="completion-info">
+          <div class="completion-date">Hoàn thành ngày: 25/05/2024</div>
+        </div>
+      </div>
+      <div class="survey-footer">
+        <button class="view-btn" onclick="viewSurvey('survey-service-2024')">
+          <i class="fa fa-eye"></i> Xem kết quả
+        </button>
+      </div>
+    </div>
+
+    <!-- Khảo sát 4 - Đã hoàn thành -->
+    <div class="survey-card completed">
+      <div class="survey-header">
+        <div class="survey-type academic">Học thuật</div>
+        <div class="survey-badge completed">Đã hoàn thành</div>
+      </div>
+      <div class="survey-body">
+        <div class="survey-title">
+          Khảo sát về chương trình đào tạo học kỳ 1, năm học 2023-2024
+        </div>
+        <div class="survey-description">
+          Khảo sát này nhằm thu thập ý kiến của sinh viên về chương trình đào
+          tạo, nội dung học phần, phương pháp giảng dạy và đánh giá trong học kỳ
+          vừa qua.
+        </div>
+        <div class="survey-info">
+          <div class="info-item">
+            <i class="fa fa-calendar-check-o"></i> Thời hạn: 15/01/2024
+          </div>
+          <div class="info-item">
+            <i class="fa fa-clock-o"></i> Thời gian hoàn thành: 15-20 phút
+          </div>
+          <div class="info-item">
+            <i class="fa fa-question-circle"></i> Số câu hỏi: 25
+          </div>
+        </div>
+        <div class="completion-info">
+          <div class="completion-date">Hoàn thành ngày: 10/01/2024</div>
+        </div>
+      </div>
+      <div class="survey-footer">
+        <button
+          class="view-btn"
+          onclick="viewSurvey('survey-academic-2023-2024-1')"
+        >
+          <i class="fa fa-eye"></i> Xem kết quả
+        </button>
+      </div>
+    </div>
+
+    <!-- Khảo sát 5 - Đã hoàn thành -->
+    <div class="survey-card completed">
+      <div class="survey-header">
+        <div class="survey-type other">Khác</div>
+        <div class="survey-badge completed">Đã hoàn thành</div>
+      </div>
+      <div class="survey-body">
+        <div class="survey-title">
+          Khảo sát về hoạt động ngoại khóa và đời sống sinh viên
+        </div>
+        <div class="survey-description">
+          Khảo sát này nhằm thu thập ý kiến của sinh viên về các hoạt động ngoại
+          khóa, câu lạc bộ, đoàn hội và đời sống sinh viên tại trường.
+        </div>
+        <div class="survey-info">
+          <div class="info-item">
+            <i class="fa fa-calendar-check-o"></i> Thời hạn: 01/05/2024
+          </div>
+          <div class="info-item">
+            <i class="fa fa-clock-o"></i> Thời gian hoàn thành: 10-15 phút
+          </div>
+          <div class="info-item">
+            <i class="fa fa-question-circle"></i> Số câu hỏi: 18
+          </div>
+        </div>
+        <div class="completion-info">
+          <div class="completion-date">Hoàn thành ngày: 20/04/2024</div>
+        </div>
+      </div>
+      <div class="survey-footer">
+        <button
+          class="view-btn"
+          onclick="viewSurvey('survey-extracurricular-2024')"
+        >
+          <i class="fa fa-eye"></i> Xem kết quả
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form khảo sát (Modal) -->
+<div id="survey-modal" class="modal">
+  <div class="modal-content survey-form-modal">
+    <div class="modal-header">
+      <h3 id="survey-modal-title">
+        Khảo sát về chương trình đào tạo học kỳ 2, năm học 2023-2024
+      </h3>
+      <span class="close-modal" onclick="closeSurveyModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="survey-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%">0%</div>
+        </div>
+        <div class="progress-info">
+          <span id="current-question">Câu hỏi 1</span> /
+          <span id="total-questions">25</span>
+        </div>
+      </div>
+
+      <form id="survey-form">
+        <input type="hidden" id="survey-id" value="" />
+
+        <div class="survey-questions">
+          <!-- Phần 1: Thông tin chung -->
+          <div class="question-section" id="section-1">
+            <h4>Phần 1: Thông tin chung</h4>
+
+            <div class="question-item" id="q1">
+              <div class="question-text">1. Bạn đang theo học ngành nào?</div>
+              <div class="question-options">
+                <div class="option-item">
+                  <input type="radio" name="q1" id="q1_1" value="cntt" />
+                  <label for="q1_1">Công nghệ thông tin</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q1" id="q1_2" value="dtvt" />
+                  <label for="q1_2">Điện tử viễn thông</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q1" id="q1_3" value="ktdl" />
+                  <label for="q1_3">Kỹ thuật điện</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q1" id="q1_4" value="cokhi" />
+                  <label for="q1_4">Cơ khí</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q1" id="q1_5" value="other" />
+                  <label for="q1_5">Khác (vui lòng ghi rõ)</label>
+                  <input
+                    type="text"
+                    id="q1_other"
+                    class="other-input"
+                    placeholder="Nhập ngành học của bạn..."
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="question-item" id="q2">
+              <div class="question-text">2. Bạn đang học năm thứ mấy?</div>
+              <div class="question-options">
+                <div class="option-item">
+                  <input type="radio" name="q2" id="q2_1" value="1" />
+                  <label for="q2_1">Năm thứ nhất</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q2" id="q2_2" value="2" />
+                  <label for="q2_2">Năm thứ hai</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q2" id="q2_3" value="3" />
+                  <label for="q2_3">Năm thứ ba</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q2" id="q2_4" value="4" />
+                  <label for="q2_4">Năm thứ tư</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q2" id="q2_5" value="5" />
+                  <label for="q2_5">Năm thứ năm trở lên</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phần 2: Chương trình đào tạo -->
+          <div class="question-section" id="section-2" style="display: none">
+            <h4>Phần 2: Chương trình đào tạo</h4>
+
+            <div class="question-item" id="q3">
+              <div class="question-text">
+                3. Mức độ hài lòng của bạn về nội dung chương trình đào tạo?
+              </div>
+              <div class="rating-group">
+                <div class="rating-option">
+                  <input type="radio" name="q3" id="q3_1" value="1" />
+                  <label for="q3_1">1</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q3" id="q3_2" value="2" />
+                  <label for="q3_2">2</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q3" id="q3_3" value="3" />
+                  <label for="q3_3">3</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q3" id="q3_4" value="4" />
+                  <label for="q3_4">4</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q3" id="q3_5" value="5" />
+                  <label for="q3_5">5</label>
+                </div>
+              </div>
+              <div class="rating-labels">
+                <span>Rất không hài lòng</span>
+                <span>Rất hài lòng</span>
+              </div>
+            </div>
+
+            <div class="question-item" id="q4">
+              <div class="question-text">
+                4. Mức độ hài lòng của bạn về tính cập nhật của chương trình đào
+                tạo?
+              </div>
+              <div class="rating-group">
+                <div class="rating-option">
+                  <input type="radio" name="q4" id="q4_1" value="1" />
+                  <label for="q4_1">1</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q4" id="q4_2" value="2" />
+                  <label for="q4_2">2</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q4" id="q4_3" value="3" />
+                  <label for="q4_3">3</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q4" id="q4_4" value="4" />
+                  <label for="q4_4">4</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q4" id="q4_5" value="5" />
+                  <label for="q4_5">5</label>
+                </div>
+              </div>
+              <div class="rating-labels">
+                <span>Rất không hài lòng</span>
+                <span>Rất hài lòng</span>
+              </div>
+            </div>
+
+            <div class="question-item" id="q5">
+              <div class="question-text">
+                5. Mức độ hài lòng của bạn về tính thực tiễn của chương trình
+                đào tạo?
+              </div>
+              <div class="rating-group">
+                <div class="rating-option">
+                  <input type="radio" name="q5" id="q5_1" value="1" />
+                  <label for="q5_1">1</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q5" id="q5_2" value="2" />
+                  <label for="q5_2">2</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q5" id="q5_3" value="3" />
+                  <label for="q5_3">3</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q5" id="q5_4" value="4" />
+                  <label for="q5_4">4</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q5" id="q5_5" value="5" />
+                  <label for="q5_5">5</label>
+                </div>
+              </div>
+              <div class="rating-labels">
+                <span>Rất không hài lòng</span>
+                <span>Rất hài lòng</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phần 3: Phương pháp giảng dạy -->
+          <div class="question-section" id="section-3" style="display: none">
+            <h4>Phần 3: Phương pháp giảng dạy</h4>
+
+            <div class="question-item" id="q6">
+              <div class="question-text">
+                6. Mức độ hài lòng của bạn về phương pháp giảng dạy của giảng
+                viên?
+              </div>
+              <div class="rating-group">
+                <div class="rating-option">
+                  <input type="radio" name="q6" id="q6_1" value="1" />
+                  <label for="q6_1">1</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q6" id="q6_2" value="2" />
+                  <label for="q6_2">2</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q6" id="q6_3" value="3" />
+                  <label for="q6_3">3</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q6" id="q6_4" value="4" />
+                  <label for="q6_4">4</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q6" id="q6_5" value="5" />
+                  <label for="q6_5">5</label>
+                </div>
+              </div>
+              <div class="rating-labels">
+                <span>Rất không hài lòng</span>
+                <span>Rất hài lòng</span>
+              </div>
+            </div>
+
+            <div class="question-item" id="q7">
+              <div class="question-text">
+                7. Phương pháp giảng dạy nào bạn thấy hiệu quả nhất? (Có thể
+                chọn nhiều đáp án)
+              </div>
+              <div class="question-options">
+                <div class="option-item">
+                  <input type="checkbox" name="q7" id="q7_1" value="lecture" />
+                  <label for="q7_1">Giảng bài truyền thống</label>
+                </div>
+                <div class="option-item">
+                  <input
+                    type="checkbox"
+                    name="q7"
+                    id="q7_2"
+                    value="discussion"
+                  />
+                  <label for="q7_2">Thảo luận nhóm</label>
+                </div>
+                <div class="option-item">
+                  <input type="checkbox" name="q7" id="q7_3" value="project" />
+                  <label for="q7_3">Học theo dự án</label>
+                </div>
+                <div class="option-item">
+                  <input type="checkbox" name="q7" id="q7_4" value="practice" />
+                  <label for="q7_4">Thực hành, thí nghiệm</label>
+                </div>
+                <div class="option-item">
+                  <input type="checkbox" name="q7" id="q7_5" value="online" />
+                  <label for="q7_5">Học trực tuyến</label>
+                </div>
+                <div class="option-item">
+                  <input type="checkbox" name="q7" id="q7_6" value="other" />
+                  <label for="q7_6">Khác (vui lòng ghi rõ)</label>
+                  <input
+                    type="text"
+                    id="q7_other"
+                    class="other-input"
+                    placeholder="Nhập phương pháp khác..."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phần 4: Đánh giá và kiểm tra -->
+          <div class="question-section" id="section-4" style="display: none">
+            <h4>Phần 4: Đánh giá và kiểm tra</h4>
+
+            <div class="question-item" id="q8">
+              <div class="question-text">
+                8. Mức độ hài lòng của bạn về phương pháp đánh giá, kiểm tra?
+              </div>
+              <div class="rating-group">
+                <div class="rating-option">
+                  <input type="radio" name="q8" id="q8_1" value="1" />
+                  <label for="q8_1">1</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q8" id="q8_2" value="2" />
+                  <label for="q8_2">2</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q8" id="q8_3" value="3" />
+                  <label for="q8_3">3</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q8" id="q8_4" value="4" />
+                  <label for="q8_4">4</label>
+                </div>
+                <div class="rating-option">
+                  <input type="radio" name="q8" id="q8_5" value="5" />
+                  <label for="q8_5">5</label>
+                </div>
+              </div>
+              <div class="rating-labels">
+                <span>Rất không hài lòng</span>
+                <span>Rất hài lòng</span>
+              </div>
+            </div>
+
+            <div class="question-item" id="q9">
+              <div class="question-text">
+                9. Phương pháp đánh giá nào bạn thấy công bằng và hiệu quả nhất?
+              </div>
+              <div class="question-options">
+                <div class="option-item">
+                  <input type="radio" name="q9" id="q9_1" value="exam" />
+                  <label for="q9_1">Thi cuối kỳ</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q9" id="q9_2" value="project" />
+                  <label for="q9_2">Làm dự án</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q9" id="q9_3" value="assignment" />
+                  <label for="q9_3">Bài tập, tiểu luận</label>
+                </div>
+                <div class="option-item">
+                  <input
+                    type="radio"
+                    name="q9"
+                    id="q9_4"
+                    value="presentation"
+                  />
+                  <label for="q9_4">Thuyết trình</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q9" id="q9_5" value="mixed" />
+                  <label for="q9_5">Kết hợp nhiều phương pháp</label>
+                </div>
+                <div class="option-item">
+                  <input type="radio" name="q9" id="q9_6" value="other" />
+                  <label for="q9_6">Khác (vui lòng ghi rõ)</label>
+                  <input
+                    type="text"
+                    id="q9_other"
+                    class="other-input"
+                    placeholder="Nhập phương pháp khác..."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phần 5: Góp ý và đề xuất -->
+          <div class="question-section" id="section-5" style="display: none">
+            <h4>Phần 5: Góp ý và đề xuất</h4>
+
+            <div class="question-item" id="q10">
+              <div class="question-text">
+                10. Những điểm mạnh của chương trình đào tạo hiện tại?
+              </div>
+              <textarea
+                name="q10"
+                rows="4"
+                placeholder="Nhập câu trả lời của bạn..."
+              ></textarea>
+            </div>
+
+            <div class="question-item" id="q11">
+              <div class="question-text">
+                11. Những điểm cần cải thiện của chương trình đào tạo hiện tại?
+              </div>
+              <textarea
+                name="q11"
+                rows="4"
+                placeholder="Nhập câu trả lời của bạn..."
+              ></textarea>
+            </div>
+
+            <div class="question-item" id="q12">
+              <div class="question-text">
+                12. Đề xuất của bạn để cải thiện chất lượng đào tạo?
+              </div>
+              <textarea
+                name="q12"
+                rows="4"
+                placeholder="Nhập câu trả lời của bạn..."
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="navigation-buttons">
+        <button id="prev-btn" class="nav-btn" onclick="prevQuestion()" disabled>
+          <i class="fa fa-arrow-left"></i> Trước
+        </button>
+        <button id="next-btn" class="nav-btn" onclick="nextQuestion()">
+          Tiếp <i class="fa fa-arrow-right"></i>
+        </button>
+        <button
+          id="submit-btn"
+          class="submit-btn"
+          onclick="submitSurvey()"
+          style="display: none"
+        >
+          <i class="fa fa-check"></i> Hoàn thành
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal xem kết quả khảo sát -->
+<div id="view-survey-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="view-survey-title">Khảo sát về dịch vụ sinh viên</h3>
+      <span class="close-modal" onclick="closeViewSurveyModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="survey-info-header">
+        <div class="info-row">
+          <div class="info-label">Ngày hoàn thành:</div>
+          <div class="info-value" id="view-completion-date">25/05/2024</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Thời gian hoàn thành:</div>
+          <div class="info-value" id="view-completion-time">12 phút</div>
+        </div>
+      </div>
+
+      <div class="survey-summary">
+        <h4>Tóm tắt kết quả</h4>
+        <p>
+          Cảm ơn bạn đã tham gia khảo sát. Dưới đây là tóm tắt các câu trả lời
+          của bạn.
+        </p>
+
+        <div class="summary-section">
+          <h5>Đánh giá chung</h5>
+          <div class="summary-chart">
+            <div class="chart-item">
+              <div class="chart-label">Mức độ hài lòng chung</div>
+              <div class="chart-bar">
+                <div class="bar-fill" style="width: 80%">4/5</div>
+              </div>
+            </div>
+            <div class="chart-item">
+              <div class="chart-label">Chất lượng dịch vụ</div>
+              <div class="chart-bar">
+                <div class="bar-fill" style="width: 70%">3.5/5</div>
+              </div>
+            </div>
+            <div class="chart-item">
+              <div class="chart-label">Thái độ phục vụ</div>
+              <div class="chart-bar">
+                <div class="bar-fill" style="width: 90%">4.5/5</div>
+              </div>
+            </div>
+            <div class="chart-item">
+              <div class="chart-label">Cơ sở vật chất</div>
+              <div class="chart-bar">
+                <div class="bar-fill" style="width: 60%">3/5</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-section">
+          <h5>Các dịch vụ được đánh giá cao nhất</h5>
+          <ul class="summary-list">
+            <li>Thư viện (4.5/5)</li>
+            <li>Dịch vụ y tế (4.2/5)</li>
+            <li>Tư vấn học tập (4.0/5)</li>
+          </ul>
+        </div>
+
+        <div class="summary-section">
+          <h5>Các dịch vụ cần cải thiện</h5>
+          <ul class="summary-list">
+            <li>Căng tin (3.0/5)</li>
+            <li>Ký túc xá (3.2/5)</li>
+            <li>Dịch vụ hành chính (3.5/5)</li>
+          </ul>
+        </div>
+
+        <div class="summary-section">
+          <h5>Góp ý của bạn</h5>
+          <div class="summary-comment">
+            <p>
+              Cần cải thiện chất lượng thực phẩm tại căng tin, đa dạng hóa menu
+              và đảm bảo vệ sinh an toàn thực phẩm. Dịch vụ ký túc xá cần được
+              nâng cấp về cơ sở vật chất và dịch vụ giặt là.
+            </p>
+            <p>
+              Thư viện có không gian học tập tốt, tài liệu đa dạng và nhân viên
+              nhiệt tình hỗ trợ. Dịch vụ y tế đáp ứng tốt nhu cầu chăm sóc sức
+              khỏe của sinh viên.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="close-btn" onclick="closeViewSurveyModal()">Đóng</button>
+      <button class="download-btn" onclick="downloadSurveyResults()">
+        <i class="fa fa-download"></i> Tải kết quả
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Biến lưu trạng thái khảo sát
+  let currentSection = 1;
+  let totalSections = 5;
+  let currentSurveyId = "";
+
+  // Hàm lọc danh sách khảo sát
+  function filterSurveys() {
+    const status = document.getElementById("survey-status").value;
+    const type = document.getElementById("survey-type").value;
+    console.log("Lọc khảo sát:", { status, type });
+
+    // Lọc theo trạng thái
+    const surveyCards = document.querySelectorAll(".survey-card");
+
+    surveyCards.forEach((card) => {
+      let showCard = true;
+
+      // Lọc theo trạng thái
+      if (status !== "all") {
+        if (status === "completed" && !card.classList.contains("completed")) {
+          showCard = false;
+        }
+        if (status === "pending" && !card.classList.contains("pending")) {
+          showCard = false;
+        }
+      }
+
+      // Lọc theo loại
+      if (type !== "all" && showCard) {
+        const cardType = card.querySelector(".survey-type").classList[1];
+        if (cardType !== type) {
+          showCard = false;
+        }
+      }
+
+      // Hiển thị hoặc ẩn card
+      card.style.display = showCard ? "block" : "none";
+    });
+  }
+
+  // Hàm bắt đầu khảo sát
+  function startSurvey(surveyId) {
+    currentSurveyId = surveyId;
+    currentSection = 1;
+
+    // Cập nhật tiêu đề modal
+    let surveyTitle = "";
+
+    if (surveyId === "survey-academic-2023-2024-2") {
+      surveyTitle =
+        "Khảo sát về chương trình đào tạo học kỳ 2, năm học 2023-2024";
+    } else if (surveyId === "survey-facility-2024") {
+      surveyTitle = "Khảo sát về cơ sở vật chất và môi trường học tập";
+    }
+
+    document.getElementById("survey-modal-title").textContent = surveyTitle;
+    document.getElementById("survey-id").value = surveyId;
+
+    // Reset form
+    document.getElementById("survey-form").reset();
+
+    // Hiển thị phần đầu tiên
+    showSection(1);
+
+    // Cập nhật thanh tiến trình
+    updateProgress();
+
+    // Hiển thị modal
+    document.getElementById("survey-modal").style.display = "block";
+  }
+
+  // Hàm hiển thị phần khảo sát
+  function showSection(sectionNumber) {
+    // Ẩn tất cả các phần
+    const sections = document.querySelectorAll(".question-section");
+    sections.forEach((section) => {
+      section.style.display = "none";
+    });
+
+    // Hiển thị phần được chọn
+    document.getElementById("section-" + sectionNumber).style.display = "block";
+
+    // Cập nhật nút điều hướng
+    document.getElementById("prev-btn").disabled = sectionNumber === 1;
+
+    if (sectionNumber === totalSections) {
+      document.getElementById("next-btn").style.display = "none";
+      document.getElementById("submit-btn").style.display = "inline-block";
+    } else {
+      document.getElementById("next-btn").style.display = "inline-block";
+      document.getElementById("submit-btn").style.display = "none";
+    }
+
+    // Cập nhật thanh tiến trình
+    updateProgress();
+  }
+
+  // Hàm cập nhật thanh tiến trình
+  function updateProgress() {
+    const progressPercent = (currentSection / totalSections) * 100;
+    document.querySelector(".progress-fill").style.width =
+      progressPercent + "%";
+    document.querySelector(".progress-fill").textContent =
+      Math.round(progressPercent) + "%";
+
+    // Cập nhật thông tin câu hỏi
+    let currentQuestionNumber = 0;
+    let totalQuestions = 0;
+
+    // Tính số câu hỏi
+    for (let i = 1; i <= currentSection; i++) {
+      const sectionQuestions = document.querySelectorAll(
+        "#section-" + i + " .question-item"
+      ).length;
+      if (i < currentSection) {
+        currentQuestionNumber += sectionQuestions;
+      }
+      totalQuestions += sectionQuestions;
+    }
+
+    currentQuestionNumber += 1; // Câu hỏi đầu tiên của phần hiện tại
+
+    document.getElementById("current-question").textContent =
+      "Câu hỏi " + currentQuestionNumber;
+    document.getElementById("total-questions").textContent = totalQuestions;
+  }
+
+  // Hàm chuyển đến câu hỏi trước
+  function prevQuestion() {
+    if (currentSection > 1) {
+      currentSection--;
+      showSection(currentSection);
+    }
+  }
+
+  // Hàm chuyển đến câu hỏi tiếp theo
+  function nextQuestion() {
+    // Kiểm tra các câu hỏi bắt buộc trong phần hiện tại
+    const currentSectionElement = document.getElementById(
+      "section-" + currentSection
+    );
+    const requiredQuestions =
+      currentSectionElement.querySelectorAll(".question-item");
+    let isValid = true;
+
+    // Trong thực tế, đây sẽ là kiểm tra chi tiết hơn
+    // Ví dụ: kiểm tra từng loại câu hỏi (radio, checkbox, text, etc.)
+
+    if (isValid && currentSection < totalSections) {
+      currentSection++;
+      showSection(currentSection);
+    }
+  }
+
+  // Hàm gửi khảo sát
+  function submitSurvey() {
+    // Kiểm tra các câu hỏi bắt buộc trong phần cuối
+    const currentSectionElement = document.getElementById(
+      "section-" + currentSection
+    );
+    const requiredQuestions =
+      currentSectionElement.querySelectorAll(".question-item");
+    let isValid = true;
+
+    // Trong thực tế, đây sẽ là kiểm tra chi tiết hơn
+
+    if (isValid) {
+      // Thu thập dữ liệu khảo sát
+      const surveyData = {
+        surveyId: currentSurveyId,
+        answers: {},
+      };
+
+      // Thu thập câu trả lời
+      const form = document.getElementById("survey-form");
+      const formData = new FormData(form);
+
+      for (const [name, value] of formData.entries()) {
+        surveyData.answers[name] = value;
+      }
+
+      console.log("Dữ liệu khảo sát:", surveyData);
+
+      // Trong thực tế, đây sẽ là API call để gửi khảo sát
+      // submitSurveyData(surveyData);
+
+      // Hiển thị thông báo
+      alert("Gửi khảo sát thành công! Cảm ơn bạn đã tham gia khảo sát.");
+
+      // Đóng modal
+      closeSurveyModal();
+
+      // Cập nhật trạng thái khảo sát
+      updateSurveyStatus(currentSurveyId);
+    }
+  }
+
+  // Hàm đóng modal khảo sát
+  function closeSurveyModal() {
+    document.getElementById("survey-modal").style.display = "none";
+  }
+
+  // Hàm cập nhật trạng thái khảo sát
+  function updateSurveyStatus(surveyId) {
+    // Tìm thẻ khảo sát
+    const surveyCards = document.querySelectorAll(".survey-card");
+
+    surveyCards.forEach((card) => {
+      // Kiểm tra xem có phải khảo sát cần cập nhật không
+      const startButton = card.querySelector(".start-btn");
+      if (
+        startButton &&
+        startButton.getAttribute("onclick").includes(surveyId)
+      ) {
+        // Cập nhật trạng thái
+        card.classList.remove("pending");
+        card.classList.add("completed");
+
+        // Cập nhật badge
+        const badge = card.querySelector(".survey-badge");
+        badge.classList.remove("pending");
+        badge.classList.add("completed");
+        badge.textContent = "Đã hoàn thành";
+
+        // Thêm thông tin hoàn thành
+        const cardBody = card.querySelector(".survey-body");
+
+        // Kiểm tra xem đã có thông tin hoàn thành chưa
+        let completionInfo = cardBody.querySelector(".completion-info");
+
+        if (!completionInfo) {
+          // Tạo mới nếu chưa có
+          completionInfo = document.createElement("div");
+          completionInfo.className = "completion-info";
+
+          // Tạo ngày hoàn thành
+          const completionDate = document.createElement("div");
+          completionDate.className = "completion-date";
+
+          // Lấy ngày hiện tại
+          const today = new Date();
+          const day = String(today.getDate()).padStart(2, "0");
+          const month = String(today.getMonth() + 1).padStart(2, "0");
+          const year = today.getFullYear();
+
+          completionDate.textContent = `Hoàn thành ngày: ${day}/${month}/${year}`;
+
+          // Thêm vào completion info
+          completionInfo.appendChild(completionDate);
+
+          // Thêm vào card body
+          cardBody.appendChild(completionInfo);
+        }
+
+        // Cập nhật footer
+        const cardFooter = card.querySelector(".survey-footer");
+        cardFooter.innerHTML = `
+          <button class="view-btn" onclick="viewSurvey('${surveyId}')">
+            <i class="fa fa-eye"></i> Xem kết quả
+          </button>
+        `;
+
+        // Cập nhật thống kê
+        updateStatistics();
+      }
+    });
+  }
+
+  // Hàm xem kết quả khảo sát
+  function viewSurvey(surveyId) {
+    // Cập nhật tiêu đề modal
+    let surveyTitle = "";
+
+    if (surveyId === "survey-service-2024") {
+      surveyTitle = "Khảo sát về dịch vụ sinh viên";
+    } else if (surveyId === "survey-academic-2023-2024-1") {
+      surveyTitle =
+        "Khảo sát về chương trình đào tạo học kỳ 1, năm học 2023-2024";
+    } else if (surveyId === "survey-extracurricular-2024") {
+      surveyTitle = "Khảo sát về hoạt động ngoại khóa và đời sống sinh viên";
+    }
+
+    document.getElementById("view-survey-title").textContent = surveyTitle;
+
+    // Trong thực tế, đây sẽ là API call để lấy chi tiết kết quả khảo sát
+    // fetchSurveyResults(surveyId);
+
+    // Hiển thị modal
+    document.getElementById("view-survey-modal").style.display = "block";
+  }
+
+  // Hàm đóng modal xem kết quả khảo sát
+  function closeViewSurveyModal() {
+    document.getElementById("view-survey-modal").style.display = "none";
+  }
+
+  // Hàm tải kết quả khảo sát
+  function downloadSurveyResults() {
+    console.log("Tải kết quả khảo sát");
+
+    // Trong thực tế, đây sẽ là API call để tải kết quả
+    alert("Đang tải kết quả khảo sát...");
+  }
+
+  // Hàm cập nhật thống kê
+  function updateStatistics() {
+    const totalSurveys = document.querySelectorAll(".survey-card").length;
+    const completedSurveys = document.querySelectorAll(
+      ".survey-card.completed"
+    ).length;
+    const pendingSurveys = totalSurveys - completedSurveys;
+    const completionRate = ((completedSurveys / totalSurveys) * 100).toFixed(0);
+
+    // Cập nhật thống kê
+    document.querySelector(
+      ".survey-stats .stat-item:nth-child(1) .stat-value"
+    ).textContent = totalSurveys;
+    document.querySelector(
+      ".survey-stats .stat-item:nth-child(2) .stat-value"
+    ).textContent = completedSurveys;
+    document.querySelector(
+      ".survey-stats .stat-item:nth-child(3) .stat-value"
+    ).textContent = pendingSurveys;
+    document.querySelector(
+      ".survey-stats .stat-item:nth-child(4) .stat-value"
+    ).textContent = completionRate + "%";
+  }
+
+  // Đóng modal khi click bên ngoài
+  window.onclick = function (event) {
+    const surveyModal = document.getElementById("survey-modal");
+    const viewSurveyModal = document.getElementById("view-survey-modal");
+
+    if (event.target == surveyModal) {
+      closeSurveyModal();
+    }
+
+    if (event.target == viewSurveyModal) {
+      closeViewSurveyModal();
+    }
+  };
+</script>

@@ -1,0 +1,1329 @@
+  <!DOCTYPE html>
+  <html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In hóa đơn điện tử - Hệ thống quản lý đào tạo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/invoice-styles.css">
+    <style>
+      /* Thiết lập cơ bản */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
+      
+      /* Tiêu đề trang */
+      .page-header {
+        margin-bottom: 25px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 15px;
+      }
+      
+      .page-title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #1e3056;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .page-title i {
+        margin-right: 12px;
+        font-size: 26px;
+      }
+      
+      .page-subtitle {
+        color: #666;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+      
+      /* Layout tổng quan */
+      .dashboard-layout {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+      
+      /* Thẻ thông tin sinh viên */
+      .student-info-card {
+        flex: 1;
+        min-width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        border: 1px solid #eaeaea;
+        transition: all 0.3s ease;
+      }
+      
+      .student-info-card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+      }
+      
+      .card-header {
+        background-color: #1e3056;
+        color: white;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eaeaea;
+      }
+      
+      .card-header h2 {
+        font-size: 18px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+      
+      .card-header h2 i {
+        margin-right: 10px;
+      }
+      
+      .card-body {
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .student-avatar {
+        width: 80px;
+        height: 80px;
+        background-color: #f5f5f5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        position: relative;
+        border: 1px solid #eaeaea;
+      }
+      
+      .student-avatar i {
+        font-size: 40px;
+        color: #1e3056;
+      }
+      
+      .student-status {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        border: 2px solid white;
+      }
+      
+      .student-status.online {
+        background-color: #4caf50;
+      }
+      
+      .student-details {
+        flex: 1;
+        min-width: 200px;
+      }
+      
+      .info-row {
+        display: flex;
+        margin-bottom: 10px;
+        border-bottom: 1px dashed #f0f0f0;
+        padding-bottom: 8px;
+      }
+      
+      .info-row:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+      
+      .info-label {
+        width: 120px;
+        color: #666;
+        font-weight: 500;
+      }
+      
+      .info-value {
+        flex: 1;
+        font-weight: 600;
+        color: #333;
+      }
+      
+      /* Thống kê hóa đơn */
+      .invoice-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        flex: 2;
+        min-width: 300px;
+      }
+      
+      .stat-card {
+        flex: 1;
+        min-width: 120px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        border: 1px solid #eaeaea;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      
+      .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      
+      .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: #e3f2fd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+      }
+      
+      .stat-icon i {
+        font-size: 24px;
+        color: #2196f3;
+      }
+      
+      .stat-content {
+        flex: 1;
+      }
+      
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 5px;
+      }
+      
+      .stat-label {
+        color: #666;
+        font-size: 13px;
+      }
+      
+      /* Animation cho các thẻ */
+      .student-info-card, .stat-card, .important-notice, 
+      .filter-controls, .invoice-table-container {
+        animation: fadeInUp 0.5s ease-out;
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+  <!-- Tiêu đề trang -->
+  <div class="page-header">
+    <h1 class="page-title">
+      <i class="fa fa-file-invoice" style="color: #2196f3"></i> In hóa đơn điện tử
+    </h1>
+    <p class="page-subtitle">Quản lý và in hóa đơn điện tử của sinh viên</p>
+  </div>
+
+  <div class="dashboard-layout">
+    <!-- Thông tin sinh viên -->
+    <div class="student-info-card">
+      <div class="card-header">
+        <h2><i class="fa fa-user-circle"></i> Thông tin sinh viên</h2>
+      </div>
+      <div class="card-body">
+        <div class="student-avatar">
+          <i class="fa fa-user-circle"></i>
+          <div class="student-status online"></div>
+        </div>
+        <div class="student-details">
+          <div class="info-row">
+            <div class="info-label">Mã sinh viên:</div>
+            <div class="info-value">SV20200001</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Họ và tên:</div>
+            <div class="info-value">Nguyễn Văn A</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Ngành học:</div>
+            <div class="info-value">Công nghệ thông tin</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Lớp:</div>
+            <div class="info-value">CNTT2020</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Khóa học:</div>
+            <div class="info-value">2020-2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thống kê hóa đơn -->
+    <div class="invoice-stats">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa fa-file-invoice"></i></div>
+        <div class="stat-content">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Tổng số hóa đơn</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa fa-check-circle"></i></div>
+        <div class="stat-content">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Đã phát hành</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa fa-clock"></i></div>
+        <div class="stat-content">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Chờ xử lý</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa fa-download"></i></div>
+        <div class="stat-content">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Đã tải xuống</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bộ lọc và điều khiển -->
+  <div class="filter-controls">
+    <div class="filter-header">
+      <h3><i class="fa fa-filter"></i> Bộ lọc hóa đơn</h3>
+      <button class="toggle-filter-btn" onclick="toggleFilterSection()">
+        <i class="fa fa-chevron-up"></i>
+      </button>
+    </div>
+    
+    <div class="filter-body">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="invoice-type">
+            <i class="fa fa-tag"></i> Loại hóa đơn:
+          </label>
+          <select id="invoice-type" onchange="filterInvoices()">
+            <option value="all">Tất cả</option>
+            <option value="tuition">Học phí</option>
+            <option value="dormitory">Ký túc xá</option>
+            <option value="insurance">Bảo hiểm</option>
+            <option value="other">Khác</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="semester-select">
+            <i class="fa fa-calendar"></i> Học kỳ:
+          </label>
+          <select id="semester-select" onchange="filterInvoices()">
+            <option value="all">Tất cả</option>
+            <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+            <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+            <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+            <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="filter-row">
+        <div class="filter-group date-range">
+          <label>
+            <i class="fa fa-calendar-check"></i> Khoảng thời gian:
+          </label>
+          <div class="date-inputs">
+            <div class="date-field">
+              <input type="date" id="date-from" placeholder="Từ ngày">
+              <i class="fa fa-calendar input-icon"></i>
+            </div>
+            <span class="date-separator">đến</span>
+            <div class="date-field">
+              <input type="date" id="date-to" placeholder="Đến ngày">
+              <i class="fa fa-calendar input-icon"></i>
+            </div>
+            <button class="apply-date-btn" onclick="applyDateFilter()">
+              <i class="fa fa-check"></i> Áp dụng
+            </button>
+          </div>
+        </div>
+        
+        <div class="search-box">
+          <input type="text" id="invoice-search" placeholder="Tìm kiếm hóa đơn...">
+          <button class="search-btn" onclick="searchInvoices()">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thông báo quan trọng -->
+  <div class="important-notice">
+    <div class="notice-icon"><i class="fa fa-info-circle"></i></div>
+    <div class="notice-content">
+      <h3>Thông tin về hóa đơn điện tử</h3>
+      <p>Hóa đơn điện tử có giá trị pháp lý tương đương với hóa đơn giấy và được sử dụng cho mục đích kê khai thuế, quyết toán thuế thu nhập cá nhân, hoàn thuế và các mục đích khác theo quy định của pháp luật.</p>
+      <p>Để đảm bảo tính hợp lệ của hóa đơn, vui lòng kiểm tra kỹ thông tin cá nhân trước khi yêu cầu xuất hóa đơn.</p>
+    </div>
+  </div>
+
+  <!-- Bảng danh sách hóa đơn -->
+  <div class="invoice-table-container">
+    <div class="table-header">
+      <h2 class="section-title"><i class="fa fa-list"></i> Danh sách hóa đơn điện tử</h2>
+      <div class="table-actions">
+        <button class="action-button refresh-btn" onclick="refreshInvoiceList()">
+          <i class="fa fa-sync"></i> Làm mới
+        </button>
+        <button class="action-button export-btn" onclick="exportInvoiceList()">
+          <i class="fa fa-file-excel"></i> Xuất Excel
+        </button>
+      </div>
+    </div>
+    
+    <div class="responsive-table-wrapper">
+      <table class="invoice-table">
+        <thead>
+          <tr>
+            <th class="sortable" onclick="sortTable('id')">
+              Mã hóa đơn <i class="fa fa-sort"></i>
+            </th>
+            <th class="sortable" onclick="sortTable('date')">
+              Ngày phát hành <i class="fa fa-sort"></i>
+            </th>
+            <th>Loại hóa đơn</th>
+            <th>Mô tả</th>
+            <th>Học kỳ</th>
+            <th class="sortable" onclick="sortTable('amount')">
+              Số tiền <i class="fa fa-sort"></i>
+            </th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Hóa đơn 1 -->
+          <tr class="invoice-row tuition">
+            <td class="invoice-id">INV20240515001</td>
+            <td>15/05/2024</td>
+            <td>
+              <span class="invoice-type tuition">
+                <i class="fa fa-graduation-cap"></i> Học phí
+              </span>
+            </td>
+            <td>Hóa đơn học phí học kỳ 2, năm học 2023-2024</td>
+            <td>HK2 2023-2024</td>
+            <td class="amount">8,500,000 VNĐ</td>
+            <td><span class="status-badge success">Đã phát hành</span></td>
+            <td class="action-buttons">
+              <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20240515001')">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20240515001')">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20240515001')">
+                <i class="fa fa-print"></i>
+              </button>
+              <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20240515001')">
+                <i class="fa fa-envelope"></i>
+              </button>
+            </td>
+          </tr>
+          
+          <!-- Hóa đơn 2 -->
+          <tr class="invoice-row insurance">
+            <td class="invoice-id">INV20240515002</td>
+            <td>15/05/2024</td>
+            <td>
+              <span class="invoice-type insurance">
+                <i class="fa fa-medkit"></i> Bảo hiểm
+              </span>
+            </td>
+            <td>Hóa đơn bảo hiểm y tế năm học 2023-2024</td>
+            <td>Năm học 2023-2024</td>
+            <td class="amount">600,000 VNĐ</td>
+            <td><span class="status-badge success">Đã phát hành</span></td>
+            <td class="action-buttons">
+              <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20240515002')">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20240515002')">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20240515002')">
+                <i class="fa fa-print"></i>
+              </button>
+              <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20240515002')">
+                <i class="fa fa-envelope"></i>
+              </button>
+            </td>
+          </tr>
+          
+          <!-- Hóa đơn 3 -->
+          <tr class="invoice-row dormitory">
+            <td class="invoice-id">INV20240515003</td>
+            <td>15/05/2024</td>
+            <td>
+              <span class="invoice-type dormitory">
+                <i class="fa fa-building"></i> Ký túc xá
+              </span>
+            </td>
+            <td>Hóa đơn phí ký túc xá học kỳ 2, năm học 2023-2024</td>
+            <td>HK2 2023-2024</td>
+            <td class="amount">1,200,000 VNĐ</td>
+            <td><span class="status-badge success">Đã phát hành</span></td>
+            <td class="action-buttons">
+              <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20240515003')">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20240515003')">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20240515003')">
+                <i class="fa fa-print"></i>
+              </button>
+              <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20240515003')">
+                <i class="fa fa-envelope"></i>
+              </button>
+            </td>
+          </tr>
+          
+          <!-- Hóa đơn 4 -->
+          <tr class="invoice-row other">
+            <td class="invoice-id">INV20240515004</td>
+            <td>15/05/2024</td>
+            <td>
+              <span class="invoice-type other">
+                <i class="fa fa-file-alt"></i> Khác
+              </span>
+            </td>
+            <td>Hóa đơn phí hoạt động ngoại khóa học kỳ 2, năm học 2023-2024</td>
+            <td>HK2 2023-2024</td>
+            <td class="amount">200,000 VNĐ</td>
+            <td><span class="status-badge success">Đã phát hành</span></td>
+            <td class="action-buttons">
+              <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20240515004')">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20240515004')">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20240515004')">
+                <i class="fa fa-print"></i>
+              </button>
+              <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20240515004')">
+                <i class="fa fa-envelope"></i>
+              </button>
+            </td>
+          </tr>
+          
+          <!-- Hóa đơn 5 -->
+          <tr class="invoice-row tuition">
+            <td class="invoice-id">INV20230915005</td>
+            <td>15/09/2023</td>
+            <td>
+              <span class="invoice-type tuition">
+                <i class="fa fa-graduation-cap"></i> Học phí
+              </span>
+            </td>
+            <td>Hóa đơn học phí học kỳ 1, năm học 2023-2024</td>
+            <td>HK1 2023-2024</td>
+            <td class="amount">8,500,000 VNĐ</td>
+            <td><span class="status-badge success">Đã phát hành</span></td>
+            <td class="action-buttons">
+              <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20230915005')">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20230915005')">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20230915005')">
+                <i class="fa fa-print"></i>
+              </button>
+              <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20230915005')">
+                <i class="fa fa-envelope"></i>
+              </button>
+            </td>
+          </tr>
+          
+          <!-- Hóa đơn 6 -->
+          <tr class="invoice-row dormitory">
+            <td class="invoice-id">INV20230915006</td>
+            <td>15/09/2023</td>
+            <td>
+              <span class="invoice-type dormitory">
+                <i class="fa fa-building"></i> Ký túc xá
+              </span>
+            </td>
+            <td>Hóa đơn phí ký túc xá học kỳ 1, năm học 2023-2024</td>
+            <td>HK1 2023-2024</td>
+            <td class="amount">1,200,000 VNĐ</td>
+            <td><span class="status-badge success">Đã phát hành</span></td>
+            <td class="action-buttons">
+              <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20230915006')">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20230915006')">
+                <i class="fa fa-download"></i>
+              </button>
+              <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20230915006')">
+                <i class="fa fa-print"></i>
+              </button>
+              <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20230915006')">
+                <i class="fa fa-envelope"></i>
+              </button>
+            </td>
+          </tr>
+        
+        <!-- Hóa đơn 7 -->
+        <tr class="invoice-row tuition">
+          <td>INV20230215007</td>
+          <td>15/02/2023</td>
+          <td>Học phí</td>
+          <td>Hóa đơn học phí học kỳ 2, năm học 2022-2023</td>
+          <td>HK2 2022-2023</td>
+          <td>8,500,000 VNĐ</td>
+          <td><span class="status-badge success">Đã phát hành</span></td>
+          <td>
+            <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20230215007')">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20230215007')">
+              <i class="fa fa-download"></i>
+            </button>
+            <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20230215007')">
+              <i class="fa fa-print"></i>
+            </button>
+            <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20230215007')">
+              <i class="fa fa-envelope"></i>
+            </button>
+          </td>
+        </tr>
+        
+        <!-- Hóa đơn 8 -->
+        <tr class="invoice-row tuition">
+          <td>INV20220915008</td>
+          <td>15/09/2022</td>
+          <td>Học phí</td>
+          <td>Hóa đơn học phí học kỳ 1, năm học 2022-2023</td>
+          <td>HK1 2022-2023</td>
+          <td>8,500,000 VNĐ</td>
+          <td><span class="status-badge success">Đã phát hành</span></td>
+          <td>
+            <button class="action-btn view-btn" title="Xem hóa đơn" onclick="viewInvoice('INV20220915008')">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="action-btn download-btn" title="Tải hóa đơn" onclick="downloadInvoice('INV20220915008')">
+              <i class="fa fa-download"></i>
+            </button>
+            <button class="action-btn print-btn" title="In hóa đơn" onclick="printInvoice('INV20220915008')">
+              <i class="fa fa-print"></i>
+            </button>
+            <button class="action-btn email-btn" title="Gửi email" onclick="emailInvoice('INV20220915008')">
+              <i class="fa fa-envelope"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="table-footer">
+      <div class="pagination">
+        <button class="page-btn prev-btn" disabled><i class="fa fa-chevron-left"></i></button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn next-btn"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      
+      <div class="page-info">
+        Hiển thị <span class="current-range">1-8</span> của <span class="total-items">15</span> hóa đơn
+      </div>
+    </div>
+  </div>
+
+  <!-- Yêu cầu xuất hóa đơn mới -->
+  <div class="request-invoice-section">
+    <div class="section-header">
+      <h2 class="section-title"><i class="fa fa-plus-circle"></i> Yêu cầu xuất hóa đơn mới</h2>
+      <p class="section-description">Điền đầy đủ thông tin để yêu cầu xuất hóa đơn mới</p>
+    </div>
+    
+    <div class="request-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="request-type">
+            <i class="fa fa-tag"></i> Loại hóa đơn:
+          </label>
+          <select id="request-type" class="form-control">
+            <option value="">-- Chọn loại hóa đơn --</option>
+            <option value="tuition">Học phí</option>
+            <option value="dormitory">Ký túc xá</option>
+            <option value="insurance">Bảo hiểm</option>
+            <option value="other">Khác</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="request-semester">
+            <i class="fa fa-calendar"></i> Học kỳ:
+          </label>
+          <select id="request-semester" class="form-control">
+            <option value="">-- Chọn học kỳ --</option>
+            <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+            <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+            <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+            <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="request-payment">
+            <i class="fa fa-money-bill"></i> Giao dịch thanh toán:
+          </label>
+          <select id="request-payment" class="form-control">
+            <option value="">-- Chọn giao dịch thanh toán --</option>
+            <option value="PAY20240515001">PAY20240515001 - Học phí HK2 2023-2024 (15/05/2024)</option>
+            <option value="PAY20230915002">PAY20230915002 - Học phí HK1 2023-2024 (15/09/2023)</option>
+            <option value="PAY20230915003">PAY20230915003 - Bảo hiểm y tế 2023-2024 (15/09/2023)</option>
+            <option value="PAY20230915004">PAY20230915004 - Phí KTX HK1 2023-2024 (15/09/2023)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="request-email">
+            <i class="fa fa-envelope"></i> Email nhận hóa đơn:
+          </label>
+          <input type="email" id="request-email" class="form-control" placeholder="Nhập email nhận hóa đơn">
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label for="request-note">
+            <i class="fa fa-sticky-note"></i> Ghi chú:
+          </label>
+          <textarea id="request-note" class="form-control" rows="3" placeholder="Nhập ghi chú hoặc yêu cầu đặc biệt (nếu có)"></textarea>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>
+            <i class="fa fa-info-circle"></i> Thông tin xuất hóa đơn:
+          </label>
+          <div class="invoice-info-options">
+            <div class="option">
+              <input type="radio" id="info-student" name="invoice-info" value="student" checked>
+              <label for="info-student">Xuất cho sinh viên</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="info-parent" name="invoice-info" value="parent">
+              <label for="info-parent">Xuất cho phụ huynh</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="info-company" name="invoice-info" value="company">
+              <label for="info-company">Xuất cho công ty/tổ chức</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Thông tin xuất hóa đơn cho công ty/tổ chức (hiển thị khi chọn "Xuất cho công ty/tổ chức") -->
+      <div id="company-info" class="company-info" style="display: none;">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="company-name">
+              <i class="fa fa-building"></i> Tên công ty/tổ chức:
+            </label>
+            <input type="text" id="company-name" class="form-control" placeholder="Nhập tên công ty/tổ chức">
+          </div>
+          
+          <div class="form-group">
+            <label for="company-tax">
+              <i class="fa fa-file-invoice"></i> Mã số thuế:
+            </label>
+            <input type="text" id="company-tax" class="form-control" placeholder="Nhập mã số thuế">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="company-address">
+              <i class="fa fa-map-marker-alt"></i> Địa chỉ:
+            </label>
+            <input type="text" id="company-address" class="form-control" placeholder="Nhập địa chỉ công ty/tổ chức">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="resetRequestForm()">
+          <i class="fa fa-refresh"></i> Làm mới
+        </button>
+        <button type="button" class="btn btn-primary" onclick="submitInvoiceRequest()">
+          <i class="fa fa-paper-plane"></i> Gửi yêu cầu
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hướng dẫn sử dụng -->
+  <div class="help-section">
+    <div class="section-header">
+      <h2 class="section-title"><i class="fa fa-question-circle"></i> Hướng dẫn sử dụng</h2>
+      <button class="toggle-help-btn" onclick="toggleHelpSection()">
+        <i class="fa fa-chevron-down"></i>
+      </button>
+    </div>
+    
+    <div class="help-content">
+      <div class="help-item">
+        <div class="help-icon"><i class="fa fa-search"></i></div>
+        <div class="help-text">
+          <h4>Tìm kiếm hóa đơn</h4>
+          <p>Sử dụng ô tìm kiếm để tìm hóa đơn theo mã, loại hoặc mô tả. Bạn cũng có thể lọc theo loại hóa đơn, học kỳ hoặc khoảng thời gian.</p>
+        </div>
+      </div>
+      
+      <div class="help-item">
+        <div class="help-icon"><i class="fa fa-print"></i></div>
+        <div class="help-text">
+          <h4>In hóa đơn</h4>
+          <p>Nhấn vào biểu tượng in <i class="fa fa-print"></i> bên cạnh hóa đơn để in trực tiếp. Hệ thống sẽ tạo bản PDF và mở cửa sổ in.</p>
+        </div>
+      </div>
+      
+      <div class="help-item">
+        <div class="help-icon"><i class="fa fa-download"></i></div>
+        <div class="help-text">
+          <h4>Tải hóa đơn</h4>
+          <p>Nhấn vào biểu tượng tải xuống <i class="fa fa-download"></i> để lưu hóa đơn dưới dạng PDF về máy tính của bạn.</p>
+        </div>
+      </div>
+      
+      <div class="help-item">
+        <div class="help-icon"><i class="fa fa-envelope"></i></div>
+        <div class="help-text">
+          <h4>Gửi hóa đơn qua email</h4>
+          <p>Nhấn vào biểu tượng email <i class="fa fa-envelope"></i> để gửi hóa đơn đến địa chỉ email của bạn hoặc người khác.</p>
+        </div>
+      </div>
+      
+      <div class="help-item">
+        <div class="help-icon"><i class="fa fa-plus-circle"></i></div>
+        <div class="help-text">
+          <h4>Yêu cầu xuất hóa đơn mới</h4>
+          <p>Sử dụng mẫu "Yêu cầu xuất hóa đơn mới" ở cuối trang để yêu cầu xuất hóa đơn cho các khoản thanh toán chưa có hóa đơn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script cho trang -->
+  <script>
+    // Hàm sắp xếp bảng
+    function sortTable(column) {
+      console.log(`Sorting by column: ${column}`);
+      // Sắp xếp bảng theo cột
+    }
+    
+    // Hàm làm mới danh sách hóa đơn
+    function refreshInvoiceList() {
+      console.log('Refreshing invoice list...');
+      // Làm mới danh sách
+    }
+    
+    // Hàm xuất danh sách hóa đơn ra Excel
+    function exportInvoiceList() {
+      console.log('Exporting invoice list to Excel...');
+      // Xuất ra Excel
+    }
+    
+    // Hàm gửi yêu cầu xuất hóa đơn mới
+    function submitInvoiceRequest() {
+      console.log('Submitting new invoice request...');
+      // Gửi yêu cầu
+      alert('Yêu cầu xuất hóa đơn mới đã được gửi thành công!');
+      resetRequestForm();
+    }
+    
+    // Hàm làm mới form yêu cầu
+    function resetRequestForm() {
+      console.log('Resetting request form...');
+      // Làm mới form
+      document.getElementById('request-type').value = '';
+      document.getElementById('request-semester').value = '';
+      document.getElementById('request-payment').value = '';
+      document.getElementById('request-email').value = '';
+      document.getElementById('request-note').value = '';
+      
+      // Ẩn thông tin công ty nếu đang hiển thị
+      document.getElementById('company-info').style.display = 'none';
+      document.getElementById('info-student').checked = true;
+    }
+    
+    // Hàm ẩn/hiện phần bộ lọc
+    function toggleFilterSection() {
+      const filterBody = document.querySelector('.filter-body');
+      const toggleBtn = document.querySelector('.toggle-filter-btn i');
+      
+      if (filterBody.style.display === 'none') {
+        filterBody.style.display = 'block';
+        toggleBtn.className = 'fa fa-chevron-up';
+      } else {
+        filterBody.style.display = 'none';
+        toggleBtn.className = 'fa fa-chevron-down';
+      }
+    }
+    
+    // Hàm ẩn/hiện phần hướng dẫn
+    function toggleHelpSection() {
+      const helpContent = document.querySelector('.help-content');
+      const toggleBtn = document.querySelector('.toggle-help-btn i');
+      
+      if (helpContent.style.display === 'none') {
+        helpContent.style.display = 'block';
+        toggleBtn.className = 'fa fa-chevron-up';
+      } else {
+        helpContent.style.display = 'none';
+        toggleBtn.className = 'fa fa-chevron-down';
+      }
+    }
+    
+    // Hiển thị/ẩn thông tin công ty khi chọn loại xuất hóa đơn
+    document.addEventListener('DOMContentLoaded', function() {
+      const companyRadio = document.getElementById('info-company');
+      const companyInfo = document.getElementById('company-info');
+      
+      // Xử lý sự kiện khi chọn loại xuất hóa đơn
+      document.querySelectorAll('input[name="invoice-info"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (companyRadio.checked) {
+            companyInfo.style.display = 'block';
+          } else {
+            companyInfo.style.display = 'none';
+          }
+        });
+      });
+      
+      // Hiệu ứng khi hover vào các thẻ thống kê
+      const statCards = document.querySelectorAll('.stat-card');
+      statCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px)';
+          this.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.1)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.08)';
+        });
+      });
+    });
+  </script>
+
+  <!-- Modal xem hóa đơn -->
+  <div id="invoice-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Xem hóa đơn điện tử</h3>
+        <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="invoice-preview">
+          <div class="invoice-header">
+            <div class="school-info">
+              <div class="school-logo">
+                <img src="assets/images/logo.png" alt="Logo trường">
+              </div>
+              <div class="school-details">
+                <h2>TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ĐỒNG NAI</h2>
+                <p>Địa chỉ: Số 1, Đường Nguyễn Khuyến, Phường Trảng Dài, TP. Biên Hòa, Tỉnh Đồng Nai</p>
+                <p>Điện thoại: 0251.3456.789 | Email: info@dntu.edu.vn</p>
+                <p>Mã số thuế: 1234567890</p>
+              </div>
+            </div>
+            
+            <div class="invoice-title">
+              <h1>HÓA ĐƠN ĐIỆN TỬ</h1>
+              <p>Mẫu số: 01GTKT0/001</p>
+              <p>Ký hiệu: AA/24E</p>
+              <p>Số: 0000001</p>
+              <p>Ngày 15 tháng 05 năm 2024</p>
+            </div>
+          </div>
+          
+          <div class="invoice-info">
+            <div class="customer-info">
+              <h3>THÔNG TIN NGƯỜI MUA HÀNG</h3>
+              <p><strong>Họ tên:</strong> Nguyễn Văn A</p>
+              <p><strong>Mã sinh viên:</strong> SV20200001</p>
+              <p><strong>Địa chỉ:</strong> Số 123, Đường ABC, Phường XYZ, TP. Biên Hòa, Tỉnh Đồng Nai</p>
+              <p><strong>Hình thức thanh toán:</strong> Chuyển khoản</p>
+            </div>
+          </div>
+          
+          <div class="invoice-details">
+            <table class="invoice-items">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên dịch vụ</th>
+                  <th>Đơn vị tính</th>
+                  <th>Số lượng</th>
+                  <th>Đơn giá</th>
+                  <th>Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Học phí học kỳ 2, năm học 2023-2024</td>
+                  <td>Kỳ</td>
+                  <td>1</td>
+                  <td>8,500,000</td>
+                  <td>8,500,000</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5" class="text-right"><strong>Cộng tiền dịch vụ:</strong></td>
+                  <td>8,500,000</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-right"><strong>Thuế GTGT (0%):</strong></td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-right"><strong>Tổng cộng tiền thanh toán:</strong></td>
+                  <td>8,500,000</td>
+                </tr>
+                <tr>
+                  <td colspan="6" class="text-right"><strong>Số tiền bằng chữ:</strong> Tám triệu năm trăm nghìn đồng chẵn.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          
+          <div class="invoice-footer">
+            <div class="signature-section">
+              <div class="buyer-signature">
+                <p><strong>NGƯỜI MUA HÀNG</strong></p>
+                <p><em>(Ký, ghi rõ họ tên)</em></p>
+              </div>
+              <div class="seller-signature">
+                <p><strong>NGƯỜI BÁN HÀNG</strong></p>
+                <p><em>(Ký, đóng dấu, ghi rõ họ tên)</em></p>
+                <div class="digital-signature">
+                  <p>Chữ ký điện tử hợp lệ</p>
+                  <p>Đã ký bởi: TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ĐỒNG NAI</p>
+                  <p>Ngày ký: 15/05/2024</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="invoice-notes">
+              <p><strong>Ghi chú:</strong></p>
+              <p>1. Hóa đơn điện tử này có giá trị pháp lý tương đương với hóa đơn giấy.</p>
+              <p>2. Tra cứu tính hợp lệ của hóa đơn tại: <a href="https://tracuuhoadon.gdt.gov.vn" target="_blank">https://tracuuhoadon.gdt.gov.vn</a></p>
+              <p>3. Mã tra cứu: ABCDEF123456</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="download-btn" onclick="downloadInvoice('INV20240515001')">
+          <i class="fa fa-download"></i> Tải hóa đơn
+        </button>
+        <button class="print-btn" onclick="printInvoiceFromModal()">
+          <i class="fa fa-print"></i> In hóa đơn
+        </button>
+        <button class="email-btn" onclick="emailInvoice('INV20240515001')">
+          <i class="fa fa-envelope"></i> Gửi email
+        </button>
+        <button class="close-btn" onclick="closeInvoiceModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Hàm lọc hóa đơn
+    function filterInvoices() {
+      const invoiceType = document.getElementById('invoice-type').value;
+      const semester = document.getElementById('semester-select').value;
+      
+      console.log(`Lọc hóa đơn: Loại=${invoiceType}, Học kỳ=${semester}`);
+      
+      // Trong thực tế, đây sẽ là API call để lọc hóa đơn
+      // filterInvoiceData(invoiceType, semester);
+      
+      // Mô phỏng lọc
+      const invoiceRows = document.querySelectorAll('.invoice-row');
+      
+      invoiceRows.forEach(row => {
+        let showRow = true;
+        
+        // Lọc theo loại hóa đơn
+        if (invoiceType !== 'all' && !row.classList.contains(invoiceType)) {
+          showRow = false;
+        }
+        
+        // Lọc theo học kỳ
+        if (semester !== 'all') {
+          const semesterCell = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+          if (!semesterCell.includes(semester.replace('-', ' ').toLowerCase())) {
+            showRow = false;
+          }
+        }
+        
+        // Hiển thị hoặc ẩn hàng
+        row.style.display = showRow ? '' : 'none';
+      });
+    }
+    
+    // Hàm áp dụng bộ lọc ngày tùy chỉnh
+    function applyDateFilter() {
+      const dateFrom = document.getElementById('date-from').value;
+      const dateTo = document.getElementById('date-to').value;
+      
+      if (!dateFrom || !dateTo) {
+        alert('Vui lòng chọn đầy đủ khoảng thời gian');
+        return;
+      }
+      
+      console.log(`Lọc hóa đơn theo khoảng thời gian: Từ ${dateFrom} đến ${dateTo}`);
+      
+      // Trong thực tế, đây sẽ là API call để lọc hóa đơn theo khoảng thời gian
+      // filterInvoicesByDateRange(dateFrom, dateTo);
+      
+      // Mô phỏng lọc (không thực hiện thực tế trong demo)
+      alert(`Đang lọc hóa đơn từ ngày ${dateFrom} đến ngày ${dateTo}`);
+    }
+    
+    // Hàm tìm kiếm hóa đơn
+    function searchInvoices() {
+      const searchText = document.getElementById('invoice-search').value.toLowerCase();
+      
+      if (!searchText.trim()) {
+        // Nếu không có từ khóa tìm kiếm, hiển thị lại tất cả các hóa đơn
+        filterInvoices();
+        return;
+      }
+      
+      console.log('Tìm kiếm hóa đơn với từ khóa: ' + searchText);
+      
+      // Trong thực tế, đây sẽ là API call để tìm kiếm hóa đơn
+      // searchInvoiceData(searchText);
+      
+      // Mô phỏng tìm kiếm
+      const invoiceRows = document.querySelectorAll('.invoice-row');
+      
+      invoiceRows.forEach(row => {
+        const invoiceId = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+        const invoiceDesc = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+        
+        if (invoiceId.includes(searchText) || invoiceDesc.includes(searchText)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+    
+    // Hàm xem hóa đơn
+    function viewInvoice(invoiceId) {
+      console.log('Xem hóa đơn: ' + invoiceId);
+      
+      // Trong thực tế, đây sẽ là API call để lấy chi tiết hóa đơn
+      // getInvoiceDetails(invoiceId);
+      
+      // Hiển thị modal
+      document.getElementById('invoice-modal').style.display = 'block';
+    }
+    
+    // Hàm đóng modal xem hóa đơn
+    function closeInvoiceModal() {
+      document.getElementById('invoice-modal').style.display = 'none';
+    }
+    
+    // Hàm tải hóa đơn
+    function downloadInvoice(invoiceId) {
+      console.log('Tải hóa đơn: ' + invoiceId);
+      
+      // Trong thực tế, đây sẽ là API call để tải hóa đơn
+      alert('Đang tải hóa đơn ' + invoiceId);
+    }
+    
+    // Hàm in hóa đơn
+    function printInvoice(invoiceId) {
+      console.log('In hóa đơn: ' + invoiceId);
+      
+      // Trong thực tế, đây sẽ là API call để lấy chi tiết hóa đơn và in
+      // getInvoiceDetails(invoiceId).then(printInvoiceData);
+      
+      // Mô phỏng in hóa đơn
+      viewInvoice(invoiceId);
+      setTimeout(() => {
+        printInvoiceFromModal();
+      }, 500);
+    }
+    
+    // Hàm in hóa đơn từ modal
+    function printInvoiceFromModal() {
+      const invoiceContent = document.querySelector('.invoice-preview').innerHTML;
+      const printWindow = window.open('', '_blank');
+      
+      
+      
+      printWindow.document.close();
+    }
+    
+    // Hàm gửi hóa đơn qua email
+    function emailInvoice(invoiceId) {
+      console.log('Gửi hóa đơn qua email: ' + invoiceId);
+      
+      // Trong thực tế, đây sẽ là API call để gửi hóa đơn qua email
+      // sendInvoiceByEmail(invoiceId);
+      
+      // Mô phỏng gửi email
+      const email = prompt('Nhập địa chỉ email nhận hóa đơn:', 'example@gmail.com');
+      
+      if (email) {
+        alert(`Hóa đơn ${invoiceId} đã được gửi đến địa chỉ email: ${email}`);
+      }
+    }
+    
+    // Hàm reset form yêu cầu xuất hóa đơn
+    function resetRequestForm() {
+      document.getElementById('request-type').value = '';
+      document.getElementById('request-semester').value = '';
+      document.getElementById('request-payment').value = '';
+      document.getElementById('request-note').value = '';
+      document.getElementById('info-student').checked = true;
+      document.getElementById('company-info').style.display = 'none';
+      
+      // Reset thông tin công ty
+      document.getElementById('company-name').value = '';
+      document.getElementById('company-tax').value = '';
+      document.getElementById('company-address').value = '';
+      document.getElementById('company-email').value = '';
+    }
+    
+    // Hàm gửi yêu cầu xuất hóa đơn
+    function submitInvoiceRequest() {
+      const requestType = document.getElementById('request-type').value;
+      const requestSemester = document.getElementById('request-semester').value;
+      const requestPayment = document.getElementById('request-payment').value;
+      const requestNote = document.getElementById('request-note').value;
+      const invoiceInfo = document.querySelector('input[name="invoice-info"]:checked').value;
+      
+      // Kiểm tra dữ liệu
+      if (!requestType) {
+        alert('Vui lòng chọn loại hóa đơn');
+        return;
+      }
+      
+      if (!requestSemester) {
+        alert('Vui lòng chọn học kỳ');
+        return;
+      }
+      
+      if (!requestPayment) {
+        alert('Vui lòng chọn giao dịch thanh toán');
+        return;
+      }
+      
+      // Kiểm tra thông tin công ty nếu xuất cho công ty
+      if (invoiceInfo === 'company') {
+        const companyName = document.getElementById('company-name').value;
+        const companyTax = document.getElementById('company-tax').value;
+        const companyAddress = document.getElementById('company-address').value;
+        const companyEmail = document.getElementById('company-email').value;
+        
+        if (!companyName || !companyTax || !companyAddress || !companyEmail) {
+          alert('Vui lòng điền đầy đủ thông tin công ty/tổ chức');
+          return;
+        }
+      }
+      
+      console.log('Gửi yêu cầu xuất hóa đơn:', {
+        requestType,
+        requestSemester,
+        requestPayment,
+        requestNote,
+        invoiceInfo
+      });
+      
+      // Trong thực tế, đây sẽ là API call để gửi yêu cầu xuất hóa đơn
+      // submitInvoiceRequestData(requestData);
+      
+      // Hiển thị thông báo
+      alert('Yêu cầu xuất hóa đơn đã được gửi thành công! Hóa đơn sẽ được phát hành trong vòng 3-5 ngày làm việc.');
+      
+      // Reset form
+      resetRequestForm();
+    }
+    
+    // Khởi tạo trang
+    document.addEventListener('DOMContentLoaded', function() {
+      // Xử lý sự kiện thay đổi loại thông tin xuất hóa đơn
+      const invoiceInfoOptions = document.querySelectorAll('input[name="invoice-info"]');
+      invoiceInfoOptions.forEach(option => {
+        option.addEventListener('change', function() {
+          if (this.value === 'company') {
+            document.getElementById('company-info').style.display = 'block';
+          } else {
+            document.getElementById('company-info').style.display = 'none';
+          }
+        });
+      });
+      
+      // Xử lý sự kiện nhấn Enter trong ô tìm kiếm
+      document.getElementById('invoice-search').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+          searchInvoices();
+        }
+      });
+      
+      // Đóng modal khi click bên ngoài
+      window.onclick = function(event) {
+        const modal = document.getElementById('invoice-modal');
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      };
+    });
+  </script>
+  </body>
+  </html>

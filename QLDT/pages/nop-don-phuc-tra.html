@@ -1,0 +1,860 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-file-text-o" style="color: #ff9800"></i> Nộp đơn phúc tra
+</h1>
+
+<!-- Thông tin hướng dẫn -->
+<div class="info-panel">
+  <div class="info-icon">
+    <i class="fa fa-info-circle"></i>
+  </div>
+  <div class="info-content">
+    <h3>Hướng dẫn nộp đơn phúc tra</h3>
+    <p>
+      Sinh viên có thể nộp đơn phúc tra điểm thi trong vòng 7 ngày kể từ ngày
+      công bố điểm. Mỗi học phần chỉ được phúc tra một lần. Phí phúc tra: 50.000
+      VNĐ/môn học.
+    </p>
+    <div class="info-steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          Chọn học phần cần phúc tra từ danh sách kết quả thi
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">Điền thông tin vào đơn phúc tra</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">Thanh toán phí phúc tra</div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">Theo dõi trạng thái đơn phúc tra</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Danh sách kết quả thi có thể phúc tra -->
+<div class="exam-results-section">
+  <h2 class="section-title">Danh sách kết quả thi có thể phúc tra</h2>
+
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th width="5%">STT</th>
+          <th width="10%">Mã học phần</th>
+          <th width="25%">Tên học phần</th>
+          <th width="10%">Ngày thi</th>
+          <th width="10%">Điểm quá trình</th>
+          <th width="10%">Điểm thi</th>
+          <th width="10%">Điểm tổng kết</th>
+          <th width="10%">Ngày công bố</th>
+          <th width="10%">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>CNPM101</td>
+          <td>Công nghệ phần mềm nâng cao</td>
+          <td>10/06/2024</td>
+          <td>8.5</td>
+          <td>8.0</td>
+          <td>8.2</td>
+          <td>15/06/2024</td>
+          <td>
+            <button class="action-btn" onclick="createAppeal('CNPM101')">
+              <i class="fa fa-pencil"></i> Tạo đơn
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>TTNT201</td>
+          <td>Trí tuệ nhân tạo</td>
+          <td>05/06/2024</td>
+          <td>7.5</td>
+          <td>8.5</td>
+          <td>8.1</td>
+          <td>12/06/2024</td>
+          <td>
+            <button class="action-btn" onclick="createAppeal('TTNT201')">
+              <i class="fa fa-pencil"></i> Tạo đơn
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>HTTT301</td>
+          <td>Hệ thống thông tin doanh nghiệp</td>
+          <td>01/06/2024</td>
+          <td>9.0</td>
+          <td>8.5</td>
+          <td>8.7</td>
+          <td>08/06/2024</td>
+          <td>
+            <button class="action-btn" onclick="createAppeal('HTTT301')">
+              <i class="fa fa-pencil"></i> Tạo đơn
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>MMT202</td>
+          <td>Mạng máy tính nâng cao</td>
+          <td>28/05/2024</td>
+          <td>8.0</td>
+          <td>7.5</td>
+          <td>7.7</td>
+          <td>04/06/2024</td>
+          <td>
+            <button class="action-btn" onclick="createAppeal('MMT202')">
+              <i class="fa fa-pencil"></i> Tạo đơn
+            </button>
+          </td>
+        </tr>
+        <tr class="expired-row">
+          <td>5</td>
+          <td>ATTT301</td>
+          <td>An toàn thông tin nâng cao</td>
+          <td>25/05/2024</td>
+          <td>7.0</td>
+          <td>7.0</td>
+          <td>7.0</td>
+          <td>01/06/2024</td>
+          <td>
+            <button
+              class="action-btn disabled"
+              disabled
+              title="Đã hết hạn phúc tra"
+            >
+              <i class="fa fa-ban"></i> Hết hạn
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Form nộp đơn phúc tra -->
+<div
+  class="appeal-form-section"
+  id="appeal-form-container"
+  style="display: none"
+>
+  <h2 class="section-title">Đơn phúc tra điểm thi</h2>
+
+  <div class="form-container">
+    <form id="appeal-form" onsubmit="submitAppeal(event)">
+      <div class="form-header">
+        <div class="form-title">ĐƠN PHÚC TRA ĐIỂM THI</div>
+        <div class="form-subtitle">Học kỳ 2, năm học 2023-2024</div>
+      </div>
+
+      <div class="form-group">
+        <label for="student-id">Mã sinh viên:</label>
+        <input type="text" id="student-id" value="SV12345" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="student-name">Họ và tên:</label>
+        <input type="text" id="student-name" value="Nguyễn Văn A" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="student-class">Lớp:</label>
+        <input type="text" id="student-class" value="CNTT2021" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="course-code">Mã học phần:</label>
+        <input type="text" id="course-code" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="course-name">Tên học phần:</label>
+        <input type="text" id="course-name" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="exam-date">Ngày thi:</label>
+        <input type="text" id="exam-date" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="current-grade">Điểm hiện tại:</label>
+        <input type="text" id="current-grade" readonly />
+      </div>
+
+      <div class="form-group full-width">
+        <label for="appeal-reason">Lý do phúc tra:</label>
+        <textarea
+          id="appeal-reason"
+          rows="4"
+          required
+          placeholder="Nhập lý do phúc tra điểm thi..."
+        ></textarea>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="appeal-components">Thành phần điểm cần phúc tra:</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="appeal-component" value="midterm" />
+            Điểm giữa kỳ
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="appeal-component" value="assignment" />
+            Điểm bài tập
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="appeal-component" value="practical" />
+            Điểm thực hành
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="appeal-component" value="final" /> Điểm
+            thi cuối kỳ
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Phí phúc tra:</label>
+        <div class="fee-info">
+          <span class="fee-amount">50.000 VNĐ</span>
+          <span class="fee-note"
+            >Phí sẽ được trừ vào tài khoản sinh viên sau khi nộp đơn</span
+          >
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label class="checkbox-label agreement-label">
+          <input type="checkbox" id="agreement" required />
+          Tôi đã đọc và hiểu rõ quy định về phúc tra điểm thi. Tôi cam kết những
+          thông tin trên là đúng sự thật.
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="cancel-btn" onclick="cancelAppeal()">
+          <i class="fa fa-times"></i> Hủy bỏ
+        </button>
+        <button type="submit" class="submit-btn">
+          <i class="fa fa-paper-plane"></i> Nộp đơn
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Danh sách đơn phúc tra đã nộp -->
+<div class="appeal-history-section">
+  <h2 class="section-title">Lịch sử đơn phúc tra</h2>
+
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th width="5%">STT</th>
+          <th width="10%">Mã đơn</th>
+          <th width="15%">Mã học phần</th>
+          <th width="20%">Tên học phần</th>
+          <th width="15%">Ngày nộp đơn</th>
+          <th width="15%">Trạng thái</th>
+          <th width="10%">Kết quả</th>
+          <th width="10%">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>PT24060001</td>
+          <td>KTPM301</td>
+          <td>Kiểm thử phần mềm nâng cao</td>
+          <td>05/06/2024</td>
+          <td><span class="status-completed">Đã xử lý</span></td>
+          <td><span class="result-unchanged">Không thay đổi</span></td>
+          <td>
+            <button
+              class="action-icon"
+              title="Xem chi tiết"
+              onclick="viewAppealDetail('PT24060001')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>PT24050002</td>
+          <td>QLDA401</td>
+          <td>Quản lý dự án phần mềm</td>
+          <td>20/05/2024</td>
+          <td><span class="status-completed">Đã xử lý</span></td>
+          <td><span class="result-changed">Thay đổi</span></td>
+          <td>
+            <button
+              class="action-icon"
+              title="Xem chi tiết"
+              onclick="viewAppealDetail('PT24050002')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>PT24050001</td>
+          <td>PTUD301</td>
+          <td>Phát triển ứng dụng di động</td>
+          <td>15/05/2024</td>
+          <td><span class="status-completed">Đã xử lý</span></td>
+          <td><span class="result-unchanged">Không thay đổi</span></td>
+          <td>
+            <button
+              class="action-icon"
+              title="Xem chi tiết"
+              onclick="viewAppealDetail('PT24050001')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Quy định về phúc tra -->
+<div class="regulations-section">
+  <h2 class="section-title">Quy định về phúc tra điểm thi</h2>
+
+  <div class="regulations-container">
+    <div class="regulation-item">
+      <div class="regulation-number">1</div>
+      <div class="regulation-content">
+        <h3>Thời gian nộp đơn phúc tra</h3>
+        <p>
+          Sinh viên có thể nộp đơn phúc tra điểm thi trong vòng 7 ngày kể từ
+          ngày công bố điểm.
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-number">2</div>
+      <div class="regulation-content">
+        <h3>Phí phúc tra</h3>
+        <p>
+          Phí phúc tra: 50.000 VNĐ/môn học. Phí này sẽ không được hoàn lại, kể
+          cả khi kết quả phúc tra có thay đổi.
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-number">3</div>
+      <div class="regulation-content">
+        <h3>Số lần phúc tra</h3>
+        <p>Mỗi học phần chỉ được phúc tra một lần.</p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-number">4</div>
+      <div class="regulation-content">
+        <h3>Thời gian xử lý</h3>
+        <p>
+          Thời gian xử lý đơn phúc tra từ 7-14 ngày làm việc kể từ ngày nộp đơn.
+        </p>
+      </div>
+    </div>
+
+    <div class="regulation-item">
+      <div class="regulation-number">5</div>
+      <div class="regulation-content">
+        <h3>Kết quả phúc tra</h3>
+        <p>
+          Kết quả phúc tra là kết quả cuối cùng, không có khiếu nại tiếp theo.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Định dạng cho trang nộp đơn phúc tra */
+
+  /* Panel thông tin */
+  .info-panel {
+    background-color: #f8f9fa;
+    border-left: 4px solid #ff9800;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .info-icon {
+    font-size: 24px;
+    color: #ff9800;
+    margin-right: 20px;
+  }
+
+  .info-content h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .info-content p {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .info-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+    background-color: #ff9800;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .step-content {
+    color: #555;
+  }
+
+  /* Bảng kết quả */
+  .exam-results-section,
+  .appeal-history-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .data-table th {
+    background-color: #1e3056;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+  }
+
+  .data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .data-table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  .expired-row {
+    background-color: #f9f9f9;
+    color: #999;
+  }
+
+  .action-btn {
+    background-color: #1e3056;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  .action-btn:hover {
+    background-color: #2a4070;
+  }
+
+  .action-btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .action-icon {
+    background: none;
+    border: none;
+    color: #1e3056;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .action-icon:hover {
+    color: #ff7043;
+  }
+
+  /* Trạng thái đơn */
+  .status-pending {
+    background-color: #ffecb3;
+    color: #ff9800;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .status-processing {
+    background-color: #e3f2fd;
+    color: #2196f3;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .status-completed {
+    background-color: #e8f5e9;
+    color: #4caf50;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .result-unchanged {
+    background-color: #f5f5f5;
+    color: #757575;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .result-changed {
+    background-color: #e8f5e9;
+    color: #4caf50;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  /* Form nộp đơn */
+  .appeal-form-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-container {
+    margin-top: 20px;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .form-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e3056;
+    margin-bottom: 5px;
+  }
+
+  .form-subtitle {
+    color: #666;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+  }
+
+  .form-group.full-width {
+    width: 100%;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .form-group input[type="text"],
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .form-group input[readonly] {
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  .fee-info {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .fee-amount {
+    font-weight: bold;
+    color: #f44336;
+  }
+
+  .fee-note {
+    color: #666;
+    font-size: 13px;
+  }
+
+  .agreement-label {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .agreement-label input {
+    margin-top: 3px;
+    margin-right: 10px;
+  }
+
+  .form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+  }
+
+  .cancel-btn {
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .cancel-btn:hover {
+    background-color: #e0e0e0;
+  }
+
+  .submit-btn {
+    background-color: #1e3056;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #2a4070;
+  }
+
+  /* Quy định */
+  .regulations-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .regulations-container {
+    margin-top: 20px;
+  }
+
+  .regulation-item {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .regulation-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .regulation-number {
+    width: 30px;
+    height: 30px;
+    background-color: #1e3056;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  .regulation-content h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .regulation-content p {
+    color: #666;
+    line-height: 1.5;
+  }
+</style>
+
+<script>
+  // Hiển thị form nộp đơn phúc tra
+  function createAppeal(courseCode) {
+    // Lấy thông tin môn học
+    let courseName = "";
+    let examDate = "";
+    let currentGrade = "";
+
+    // Giả lập dữ liệu
+    switch (courseCode) {
+      case "CNPM101":
+        courseName = "Công nghệ phần mềm nâng cao";
+        examDate = "10/06/2024";
+        currentGrade = "8.0";
+        break;
+      case "TTNT201":
+        courseName = "Trí tuệ nhân tạo";
+        examDate = "05/06/2024";
+        currentGrade = "8.5";
+        break;
+      case "HTTT301":
+        courseName = "Hệ thống thông tin doanh nghiệp";
+        examDate = "01/06/2024";
+        currentGrade = "8.5";
+        break;
+      case "MMT202":
+        courseName = "Mạng máy tính nâng cao";
+        examDate = "28/05/2024";
+        currentGrade = "7.5";
+        break;
+    }
+
+    // Điền thông tin vào form
+    document.getElementById("course-code").value = courseCode;
+    document.getElementById("course-name").value = courseName;
+    document.getElementById("exam-date").value = examDate;
+    document.getElementById("current-grade").value = currentGrade;
+
+    // Hiển thị form
+    document.getElementById("appeal-form-container").style.display = "block";
+
+    // Cuộn đến form
+    document
+      .getElementById("appeal-form-container")
+      .scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Hủy nộp đơn
+  function cancelAppeal() {
+    document.getElementById("appeal-form-container").style.display = "none";
+    document.getElementById("appeal-form").reset();
+  }
+
+  // Nộp đơn phúc tra
+  function submitAppeal(event) {
+    event.preventDefault();
+
+    // Kiểm tra đã chọn thành phần điểm cần phúc tra chưa
+    const components = document.querySelectorAll(
+      'input[name="appeal-component"]:checked'
+    );
+    if (components.length === 0) {
+      alert("Vui lòng chọn ít nhất một thành phần điểm cần phúc tra!");
+      return;
+    }
+
+    // Kiểm tra đã nhập lý do chưa
+    const reason = document.getElementById("appeal-reason").value.trim();
+    if (reason === "") {
+      alert("Vui lòng nhập lý do phúc tra!");
+      return;
+    }
+
+    // Xác nhận nộp đơn
+    if (
+      confirm(
+        "Bạn có chắc chắn muốn nộp đơn phúc tra? Phí phúc tra 50.000 VNĐ sẽ được trừ vào tài khoản của bạn."
+      )
+    ) {
+      alert("Đã nộp đơn phúc tra thành công!");
+      document.getElementById("appeal-form-container").style.display = "none";
+      document.getElementById("appeal-form").reset();
+
+      // Reload trang để cập nhật danh sách đơn đã nộp
+      // window.location.reload();
+    }
+  }
+
+  // Xem chi tiết đơn phúc tra
+  function viewAppealDetail(appealId) {
+    alert("Xem chi tiết đơn phúc tra: " + appealId);
+  }
+</script>

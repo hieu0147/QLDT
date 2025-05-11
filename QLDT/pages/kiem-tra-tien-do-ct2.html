@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiểm tra tiến độ CT2 - Hệ thống quản lý đào tạo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/course-registration-styles.css" />
+    <style>
+      /* Thiết lập cơ bản */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+      }
+
+      /* Tiêu đề trang */
+      .page-header {
+        margin-bottom: 25px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 15px;
+      }
+
+      .page-title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #1e3056;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+
+      .page-title i {
+        margin-right: 12px;
+        font-size: 26px;
+      }
+
+      .page-subtitle {
+        color: #666;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+
+      /* Thẻ thông tin */
+      .info-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #eaeaea;
+      }
+
+      .info-card h2 {
+        font-size: 18px;
+        color: #1e3056;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .info-card h2 i {
+        margin-right: 10px;
+        color: #2196f3;
+      }
+
+      /* Thông báo */
+      .notification {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+      }
+
+      .notification.warning {
+        background-color: #fff8e1;
+        border-left-color: #ffc107;
+      }
+
+      .notification.success {
+        background-color: #e8f5e9;
+        border-left-color: #4caf50;
+      }
+
+      .notification.error {
+        background-color: #ffebee;
+        border-left-color: #f44336;
+      }
+
+      .notification h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+
+      .notification h3 i {
+        margin-right: 8px;
+      }
+
+      /* Bảng */
+      .table-responsive {
+        overflow-x: auto;
+        margin-bottom: 20px;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      .data-table th {
+        background-color: #f5f7fa;
+        font-weight: 600;
+        color: #1e3056;
+      }
+
+      .data-table tbody tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .data-table .status {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .data-table .status.completed {
+        background-color: #e8f5e9;
+        color: #4caf50;
+      }
+
+      .data-table .status.in-progress {
+        background-color: #e3f2fd;
+        color: #2196f3;
+      }
+
+      .data-table .status.not-started {
+        background-color: #f5f5f5;
+        color: #9e9e9e;
+      }
+
+      .data-table .status.failed {
+        background-color: #ffebee;
+        color: #f44336;
+      }
+
+      /* Nút và điều khiển */
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .btn i {
+        margin-right: 8px;
+      }
+
+      .btn-primary {
+        background-color: #2196f3;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: #1976d2;
+      }
+
+      .btn-secondary {
+        background-color: #f5f5f5;
+        color: #333;
+        border: 1px solid #ddd;
+      }
+
+      .btn-secondary:hover {
+        background-color: #e0e0e0;
+      }
+
+      .btn-success {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .btn-success:hover {
+        background-color: #388e3c;
+      }
+
+      /* Thẻ thông tin CT2 */
+      .ct2-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .ct2-card {
+        flex: 1;
+        min-width: 250px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        padding: 15px;
+        border: 1px solid #eaeaea;
+      }
+
+      .ct2-card h3 {
+        font-size: 16px;
+        color: #1e3056;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .ct2-card h3 i {
+        margin-right: 8px;
+        color: #2196f3;
+      }
+
+      .ct2-card p {
+        margin-bottom: 8px;
+        color: #666;
+      }
+
+      .ct2-card .value {
+        font-weight: 600;
+        color: #333;
+      }
+
+      /* Tiến độ */
+      .progress-container {
+        margin-bottom: 20px;
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .progress-title {
+        font-weight: 600;
+        color: #1e3056;
+      }
+
+      .progress-value {
+        font-weight: 600;
+        color: #2196f3;
+      }
+
+      .progress-bar {
+        height: 10px;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background-color: #2196f3;
+        border-radius: 5px;
+        transition: width 0.5s ease;
+      }
+
+      /* Học kỳ */
+      .semester-tabs {
+        display: flex;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+      }
+
+      .semester-tab {
+        padding: 10px 15px;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        white-space: nowrap;
+        font-weight: 600;
+        color: #666;
+        transition: all 0.3s ease;
+      }
+
+      .semester-tab:hover {
+        background-color: #e0e0e0;
+      }
+
+      .semester-tab.active {
+        background-color: #2196f3;
+        color: white;
+        border-color: #2196f3;
+      }
+
+      /* Biểu đồ */
+      .chart-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .chart-card {
+        flex: 1;
+        min-width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        padding: 15px;
+        border: 1px solid #eaeaea;
+      }
+
+      .chart-title {
+        font-size: 16px;
+        color: #1e3056;
+        margin-bottom: 15px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+
+      .chart-title i {
+        margin-right: 8px;
+        color: #2196f3;
+      }
+
+      .chart {
+        height: 250px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        padding: 10px 0;
+      }
+
+      .chart-bar {
+        width: 40px;
+        background-color: #2196f3;
+        border-radius: 5px 5px 0 0;
+        position: relative;
+        transition: height 0.5s ease;
+      }
+
+      .chart-bar-label {
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+      }
+
+      .chart-bar-value {
+        position: absolute;
+        top: -25px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      /* Doughnut chart */
+      .doughnut-chart {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        position: relative;
+        border-radius: 50%;
+        background: conic-gradient(
+          #4caf50 0% 60%,
+          #2196f3 60% 75%,
+          #f44336 75% 85%,
+          #9e9e9e 85% 100%
+        );
+      }
+
+      .doughnut-hole {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background-color: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .doughnut-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1e3056;
+      }
+
+      .doughnut-label {
+        font-size: 12px;
+        color: #666;
+      }
+
+      .chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .legend-color {
+        width: 15px;
+        height: 15px;
+        border-radius: 3px;
+        margin-right: 5px;
+      }
+
+      .legend-text {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .ct2-info {
+          flex-direction: column;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .chart-container {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Tiêu đề trang -->
+    <div class="page-header">
+      <h1 class="page-title">
+        <i class="fa fa-tasks" style="color: #2196f3"></i> Kiểm tra tiến độ CT2
+      </h1>
+      <p class="page-subtitle">Theo dõi tiến độ học tập chương trình 2 (CT2)</p>
+    </div>
+
+    <!-- Thông tin CT2 -->
+    <div class="info-card">
+      <h2><i class="fa fa-graduation-cap"></i> Thông tin chương trình 2</h2>
+
+      <div class="ct2-info">
+        <div class="ct2-card">
+          <h3><i class="fa fa-info-circle"></i> Thông tin cơ bản</h3>
+          <p>Chương trình: <span class="value">Quản trị kinh doanh</span></p>
+          <p>Mã chương trình: <span class="value">QTKD-CT2</span></p>
+          <p>Khoa: <span class="value">Khoa Kinh tế</span></p>
+          <p>Ngày bắt đầu: <span class="value">15/08/2023</span></p>
+        </div>
+
+        <div class="ct2-card">
+          <h3><i class="fa fa-chart-line"></i> Tiến độ học tập</h3>
+          <p>Số tín chỉ yêu cầu: <span class="value">65 tín chỉ</span></p>
+          <p>Số tín chỉ đã hoàn thành: <span class="value">39 tín chỉ</span></p>
+          <p>Số tín chỉ đang học: <span class="value">12 tín chỉ</span></p>
+          <p>Số tín chỉ còn lại: <span class="value">14 tín chỉ</span></p>
+        </div>
+
+        <div class="ct2-card">
+          <h3><i class="fa fa-award"></i> Kết quả học tập</h3>
+          <p>Điểm trung bình tích lũy: <span class="value">3.42/4.0</span></p>
+          <p>Xếp loại hiện tại: <span class="value">Giỏi</span></p>
+          <p>Học kỳ hiện tại: <span class="value">HK2 2023-2024</span></p>
+          <p>Dự kiến tốt nghiệp: <span class="value">06/2025</span></p>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-header">
+          <div class="progress-title">Tiến độ hoàn thành chương trình</div>
+          <div class="progress-value">60%</div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 60%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Biểu đồ tiến độ -->
+    <div class="chart-container">
+      <div class="chart-card">
+        <div class="chart-title">
+          <i class="fa fa-chart-bar"></i> Số tín chỉ theo học kỳ
+        </div>
+        <div class="chart">
+          <div class="chart-bar" style="height: 80%">
+            <div class="chart-bar-value">16</div>
+            <div class="chart-bar-label">HK1 23-24</div>
+          </div>
+          <div class="chart-bar" style="height: 65%">
+            <div class="chart-bar-value">13</div>
+            <div class="chart-bar-label">HK2 23-24</div>
+          </div>
+          <div class="chart-bar" style="height: 50%">
+            <div class="chart-bar-value">10</div>
+            <div class="chart-bar-label">HK3 23-24</div>
+          </div>
+          <div class="chart-bar" style="height: 60%">
+            <div class="chart-bar-value">12</div>
+            <div class="chart-bar-label">HK1 24-25</div>
+          </div>
+          <div class="chart-bar" style="height: 35%; background-color: #e0e0e0">
+            <div class="chart-bar-value">7</div>
+            <div class="chart-bar-label">HK2 24-25</div>
+          </div>
+          <div class="chart-bar" style="height: 35%; background-color: #e0e0e0">
+            <div class="chart-bar-value">7</div>
+            <div class="chart-bar-label">HK3 24-25</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">
+          <i class="fa fa-chart-pie"></i> Phân bố tín chỉ
+        </div>
+        <div class="doughnut-chart">
+          <div class="doughnut-hole">
+            <div class="doughnut-value">65</div>
+            <div class="doughnut-label">Tổng tín chỉ</div>
+          </div>
+        </div>
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #4caf50"></div>
+            <div class="legend-text">Đã hoàn thành (39)</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #2196f3"></div>
+            <div class="legend-text">Đang học (12)</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #f44336"></div>
+            <div class="legend-text">Chưa đạt (6)</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #9e9e9e"></div>
+            <div class="legend-text">Chưa học (8)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs học kỳ -->
+    <div class="semester-tabs">
+      <div class="semester-tab" onclick="changeSemester('all')">
+        Tất cả học kỳ
+      </div>
+      <div class="semester-tab active" onclick="changeSemester('current')">
+        Học kỳ hiện tại
+      </div>
+      <div class="semester-tab" onclick="changeSemester('2023-2024-1')">
+        HK1 2023-2024
+      </div>
+      <div class="semester-tab" onclick="changeSemester('2023-2024-2')">
+        HK2 2023-2024
+      </div>
+      <div class="semester-tab" onclick="changeSemester('2023-2024-3')">
+        HK3 2023-2024
+      </div>
+      <div class="semester-tab" onclick="changeSemester('2024-2025-1')">
+        HK1 2024-2025
+      </div>
+    </div>
+
+    <!-- Danh sách học phần -->
+    <div class="info-card">
+      <h2><i class="fa fa-list"></i> Danh sách học phần CT2</h2>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Mã học phần</th>
+              <th>Tên học phần</th>
+              <th>Số tín chỉ</th>
+              <th>Học kỳ</th>
+              <th>Điểm</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>QTKD101</td>
+              <td>Nhập môn quản trị kinh doanh</td>
+              <td>3</td>
+              <td>HK1 2023-2024</td>
+              <td>3.7</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD102</td>
+              <td>Kinh tế vi mô</td>
+              <td>3</td>
+              <td>HK1 2023-2024</td>
+              <td>3.3</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD103</td>
+              <td>Kinh tế vĩ mô</td>
+              <td>3</td>
+              <td>HK1 2023-2024</td>
+              <td>3.0</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD104</td>
+              <td>Nguyên lý kế toán</td>
+              <td>3</td>
+              <td>HK1 2023-2024</td>
+              <td>3.5</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD105</td>
+              <td>Quản trị học</td>
+              <td>4</td>
+              <td>HK1 2023-2024</td>
+              <td>4.0</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD201</td>
+              <td>Quản trị nhân lực</td>
+              <td>3</td>
+              <td>HK2 2023-2024</td>
+              <td>3.7</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD202</td>
+              <td>Quản trị tài chính</td>
+              <td>4</td>
+              <td>HK2 2023-2024</td>
+              <td>3.0</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD203</td>
+              <td>Marketing căn bản</td>
+              <td>3</td>
+              <td>HK2 2023-2024</td>
+              <td>3.3</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>QTKD204</td>
+              <td>Hành vi tổ chức</td>
+              <td>3</td>
+              <td>HK2 2023-2024</td>
+              <td>-</td>
+              <td><span class="status in-progress">Đang học</span></td>
+            </tr>
+            <tr>
+              <td>QTKD301</td>
+              <td>Quản trị chiến lược</td>
+              <td>4</td>
+              <td>HK2 2023-2024</td>
+              <td>-</td>
+              <td><span class="status in-progress">Đang học</span></td>
+            </tr>
+            <tr>
+              <td>QTKD302</td>
+              <td>Quản trị dự án</td>
+              <td>3</td>
+              <td>HK2 2023-2024</td>
+              <td>-</td>
+              <td><span class="status in-progress">Đang học</span></td>
+            </tr>
+            <tr>
+              <td>QTKD303</td>
+              <td>Quản trị chuỗi cung ứng</td>
+              <td>3</td>
+              <td>HK2 2023-2024</td>
+              <td>-</td>
+              <td><span class="status in-progress">Đang học</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Thông báo -->
+    <div class="notification">
+      <h3><i class="fa fa-info-circle"></i> Thông tin học tập</h3>
+      <p>
+        Sinh viên cần đạt điểm trung bình tích lũy từ 2.0 trở lên để được xét
+        tốt nghiệp chương trình 2.
+      </p>
+      <p>Thời gian học tối đa cho chương trình 2 là 4 năm kể từ khi bắt đầu.</p>
+    </div>
+
+    <!-- Các nút thao tác -->
+    <div class="button-group">
+      <button
+        class="btn btn-primary"
+        onclick="window.location.href='dang-ky-hoc-phan.html'"
+      >
+        <i class="fa fa-edit"></i> Đăng ký học phần CT2
+      </button>
+      <button
+        class="btn btn-secondary"
+        onclick="window.location.href='ket-qua-hoc-tap.html'"
+      >
+        <i class="fa fa-chart-line"></i> Xem kết quả học tập
+      </button>
+      <button
+        class="btn btn-secondary"
+        onclick="window.location.href='bang-diem.html'"
+      >
+        <i class="fa fa-file-alt"></i> Xem bảng điểm
+      </button>
+      <button class="btn btn-secondary" onclick="window.print()">
+        <i class="fa fa-print"></i> In tiến độ
+      </button>
+    </div>
+
+    <!-- Kế hoạch học tập -->
+    <div class="info-card">
+      <h2><i class="fa fa-calendar"></i> Kế hoạch học tập CT2</h2>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Học kỳ</th>
+              <th>Số tín chỉ dự kiến</th>
+              <th>Số học phần</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Học kỳ 1, năm học 2023-2024</td>
+              <td>16</td>
+              <td>5</td>
+              <td><span class="status completed">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>Học kỳ 2, năm học 2023-2024</td>
+              <td>13</td>
+              <td>4</td>
+              <td><span class="status in-progress">Đang học</span></td>
+            </tr>
+            <tr>
+              <td>Học kỳ 3, năm học 2023-2024</td>
+              <td>10</td>
+              <td>3</td>
+              <td><span class="status not-started">Chưa bắt đầu</span></td>
+            </tr>
+            <tr>
+              <td>Học kỳ 1, năm học 2024-2025</td>
+              <td>12</td>
+              <td>4</td>
+              <td><span class="status not-started">Chưa bắt đầu</span></td>
+            </tr>
+            <tr>
+              <td>Học kỳ 2, năm học 2024-2025</td>
+              <td>7</td>
+              <td>2</td>
+              <td><span class="status not-started">Chưa bắt đầu</span></td>
+            </tr>
+            <tr>
+              <td>Học kỳ 3, năm học 2024-2025</td>
+              <td>7</td>
+              <td>2</td>
+              <td><span class="status not-started">Chưa bắt đầu</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Thông tin liên hệ -->
+    <div class="info-card">
+      <h2><i class="fa fa-headset"></i> Hỗ trợ chương trình CT2</h2>
+
+      <p>Nếu bạn cần hỗ trợ về chương trình CT2, vui lòng liên hệ:</p>
+      <ul style="padding-left: 20px; margin-bottom: 20px">
+        <li>Phòng Đào tạo: <strong>0251.3456.789</strong> (Ext: 123)</li>
+        <li>Khoa Kinh tế: <strong>0251.3456.789</strong> (Ext: 456)</li>
+        <li>Email: <strong>ct2@dntu.edu.vn</strong></li>
+        <li>Văn phòng: <strong>Phòng A101, Tòa nhà A, Cơ sở chính</strong></li>
+        <li>Giờ làm việc: <strong>7:30 - 17:00, Thứ Hai - Thứ Sáu</strong></li>
+      </ul>
+    </div>
+
+    <script>
+      // Hàm chuyển đổi tab học kỳ
+      function changeSemester(semester) {
+        console.log("Chuyển sang học kỳ:", semester);
+
+        // Cập nhật trạng thái active cho tab
+        const tabs = document.querySelectorAll(".semester-tab");
+        tabs.forEach((tab) => {
+          tab.classList.remove("active");
+        });
+
+        // Tìm tab được chọn và thêm class active
+        const selectedTab = document.querySelector(
+          `.semester-tab[onclick="changeSemester('${semester}')"]`
+        );
+        if (selectedTab) {
+          selectedTab.classList.add("active");
+        }
+
+        // Trong thực tế, đây sẽ là API call để lấy dữ liệu học phần theo học kỳ
+        // getCoursesForSemester(semester).then(data => updateCourseTable(data));
+
+        // Mô phỏng cập nhật bảng học phần
+        const tableBody = document.querySelector(".data-table tbody");
+
+        // Xóa dữ liệu hiện tại
+        // tableBody.innerHTML = '';
+
+        // Thêm dữ liệu mới (trong thực tế sẽ lấy từ API)
+        // Đây chỉ là mô phỏng, không thực hiện thay đổi dữ liệu thực tế
+        alert(`Đã chuyển sang dữ liệu học kỳ: ${semester}`);
+      }
+
+      // Hiệu ứng khi hover vào các chart bar
+      document.addEventListener("DOMContentLoaded", function () {
+        const chartBars = document.querySelectorAll(".chart-bar");
+
+        chartBars.forEach((bar) => {
+          bar.addEventListener("mouseenter", function () {
+            this.style.opacity = "0.8";
+            this.style.transform = "scaleY(1.05)";
+          });
+
+          bar.addEventListener("mouseleave", function () {
+            this.style.opacity = "1";
+            this.style.transform = "scaleY(1)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

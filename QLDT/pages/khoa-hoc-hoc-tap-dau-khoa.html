@@ -1,0 +1,358 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-graduation-cap" style="color: #ff9800"></i> Khóa học học tập
+  đầu khóa
+</h1>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="schedule-controls">
+  <div class="control-group">
+    <label for="year-select">Năm học:</label>
+    <select id="year-select">
+      <option value="2023-2024">Năm học 2023-2024</option>
+      <option value="2022-2023">Năm học 2022-2023</option>
+      <option value="2021-2022">Năm học 2021-2022</option>
+      <option value="2020-2021">Năm học 2020-2021</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printSchedule()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportSchedule()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Thông tin khóa học -->
+<div class="orientation-course">
+  <div class="course-header">
+    <h2>Khóa học định hướng cho sinh viên năm nhất</h2>
+    <div class="course-meta">
+      <span
+        ><i class="fa fa-calendar"></i> Thời gian: 15/08/2023 - 25/08/2023</span
+      >
+      <span
+        ><i class="fa fa-map-marker"></i> Địa điểm: Khu A - Trường Đại học Công
+        nghệ Đồng Nai</span
+      >
+    </div>
+  </div>
+
+  <div class="course-description">
+    <p>
+      Khóa học định hướng dành cho sinh viên năm nhất nhằm giúp các bạn làm quen
+      với môi trường học tập đại học, hiểu rõ về ngành học, và chuẩn bị tốt nhất
+      cho hành trình học tập sắp tới.
+    </p>
+  </div>
+
+  <!-- Lịch học tập đầu khóa -->
+  <div class="orientation-schedule">
+    <h3>Lịch học tập chi tiết</h3>
+
+    <div class="schedule-list">
+      <div class="list-day">
+        <div class="list-day-header">Ngày 1: 15/08/2023</div>
+        <div class="list-classes">
+          <div class="list-class-item">
+            <div class="class-time">08:00 - 10:00</div>
+            <div class="class-details">
+              <div class="class-name">Lễ khai giảng và giới thiệu chung</div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Hội trường A</span>
+                <span><i class="fa fa-user"></i> Ban Giám hiệu</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">10:15 - 11:45</div>
+            <div class="class-details">
+              <div class="class-name">
+                Giới thiệu về trường và các phòng ban
+              </div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Hội trường A</span>
+                <span><i class="fa fa-user"></i> Phòng Công tác Sinh viên</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">13:30 - 16:30</div>
+            <div class="class-details">
+              <div class="class-name">Tham quan cơ sở vật chất</div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Khuôn viên trường</span>
+                <span><i class="fa fa-user"></i> Cố vấn học tập</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-day">
+        <div class="list-day-header">Ngày 2: 16/08/2023</div>
+        <div class="list-classes">
+          <div class="list-class-item">
+            <div class="class-time">08:00 - 10:00</div>
+            <div class="class-details">
+              <div class="class-name">Giới thiệu về ngành học</div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Phòng A101</span>
+                <span><i class="fa fa-user"></i> Trưởng khoa</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">10:15 - 11:45</div>
+            <div class="class-details">
+              <div class="class-name">
+                Phương pháp học tập hiệu quả ở bậc đại học
+              </div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Phòng A101</span>
+                <span><i class="fa fa-user"></i> TS. Nguyễn Văn A</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">13:30 - 16:30</div>
+            <div class="class-details">
+              <div class="class-name">
+                Hướng dẫn sử dụng thư viện và tài nguyên học tập
+              </div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Thư viện</span>
+                <span><i class="fa fa-user"></i> Cán bộ thư viện</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-day">
+        <div class="list-day-header">Ngày 3: 17/08/2023</div>
+        <div class="list-classes">
+          <div class="list-class-item">
+            <div class="class-time">08:00 - 10:00</div>
+            <div class="class-details">
+              <div class="class-name">
+                Hướng dẫn sử dụng hệ thống thông tin sinh viên
+              </div>
+              <div class="class-info">
+                <span
+                  ><i class="fa fa-map-marker"></i> Phòng máy tính B203</span
+                >
+                <span><i class="fa fa-user"></i> Phòng Đào tạo</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">10:15 - 11:45</div>
+            <div class="class-details">
+              <div class="class-name">
+                Quy chế đào tạo và đánh giá kết quả học tập
+              </div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Phòng A102</span>
+                <span><i class="fa fa-user"></i> Phòng Đào tạo</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">13:30 - 16:30</div>
+            <div class="class-details">
+              <div class="class-name">
+                Hoạt động ngoại khóa - Giao lưu với sinh viên khóa trước
+              </div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Sân vận động</span>
+                <span><i class="fa fa-user"></i> Đoàn Thanh niên</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-day">
+        <div class="list-day-header">Ngày 4: 18/08/2023</div>
+        <div class="list-classes">
+          <div class="list-class-item">
+            <div class="class-time">08:00 - 10:00</div>
+            <div class="class-details">
+              <div class="class-name">Kỹ năng mềm - Làm việc nhóm hiệu quả</div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Phòng A103</span>
+                <span><i class="fa fa-user"></i> ThS. Trần Thị B</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">10:15 - 11:45</div>
+            <div class="class-details">
+              <div class="class-name">Kỹ năng mềm - Quản lý thời gian</div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Phòng A103</span>
+                <span><i class="fa fa-user"></i> ThS. Trần Thị B</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">13:30 - 16:30</div>
+            <div class="class-details">
+              <div class="class-name">
+                Hoạt động ngoại khóa - Thực hành kỹ năng mềm
+              </div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Khu vực ngoài trời</span>
+                <span><i class="fa fa-user"></i> Đoàn Thanh niên</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-day">
+        <div class="list-day-header">Ngày 5: 19/08/2023</div>
+        <div class="list-classes">
+          <div class="list-class-item">
+            <div class="class-time">08:00 - 10:00</div>
+            <div class="class-details">
+              <div class="class-name">Hướng dẫn đăng ký học phần</div>
+              <div class="class-info">
+                <span
+                  ><i class="fa fa-map-marker"></i> Phòng máy tính B203</span
+                >
+                <span><i class="fa fa-user"></i> Phòng Đào tạo</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">10:15 - 11:45</div>
+            <div class="class-details">
+              <div class="class-name">
+                Chính sách học bổng và hỗ trợ tài chính
+              </div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Phòng A104</span>
+                <span><i class="fa fa-user"></i> Phòng Công tác Sinh viên</span>
+              </div>
+            </div>
+          </div>
+          <div class="list-class-item">
+            <div class="class-time">13:30 - 16:30</div>
+            <div class="class-details">
+              <div class="class-name">Tham quan doanh nghiệp đối tác</div>
+              <div class="class-info">
+                <span><i class="fa fa-map-marker"></i> Khu công nghiệp</span>
+                <span
+                  ><i class="fa fa-user"></i> Phòng Hợp tác Doanh nghiệp</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tài liệu học tập -->
+  <div class="orientation-materials">
+    <h3>Tài liệu học tập</h3>
+    <div class="materials-list">
+      <div class="material-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <a href="#">Sổ tay sinh viên năm học 2023-2024</a>
+      </div>
+      <div class="material-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <a href="#">Quy chế đào tạo theo hệ thống tín chỉ</a>
+      </div>
+      <div class="material-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <a href="#">Hướng dẫn sử dụng hệ thống thông tin sinh viên</a>
+      </div>
+      <div class="material-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <a href="#">Quy định về công tác sinh viên</a>
+      </div>
+      <div class="material-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <a href="#">Tài liệu hướng dẫn đăng ký học phần</a>
+      </div>
+      <div class="material-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <a href="#">Bản đồ khuôn viên trường</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thông tin liên hệ -->
+  <div class="orientation-contact">
+    <h3>Thông tin liên hệ</h3>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fa fa-user"></i>
+        <span>Cố vấn học tập: TS. Lê Văn C</span>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-phone"></i>
+        <span>Điện thoại: 0123.456.789</span>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-envelope"></i>
+        <span>Email: covankhoa@dntu.edu.vn</span>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-map-marker"></i>
+        <span>Văn phòng: Phòng A201, Khu A</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Đánh giá khóa học -->
+<div class="orientation-feedback">
+  <h3>Đánh giá khóa học</h3>
+  <p>
+    Vui lòng đánh giá khóa học định hướng để giúp chúng tôi cải thiện chất lượng
+    cho các khóa sau:
+  </p>
+
+  <div class="feedback-form">
+    <div class="form-group">
+      <label for="feedback-rating">Mức độ hài lòng:</label>
+      <select id="feedback-rating">
+        <option value="5">Rất hài lòng</option>
+        <option value="4">Hài lòng</option>
+        <option value="3">Bình thường</option>
+        <option value="2">Không hài lòng</option>
+        <option value="1">Rất không hài lòng</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-content">Nội dung đánh giá:</label>
+      <textarea
+        id="feedback-content"
+        rows="4"
+        placeholder="Nhập nội dung đánh giá của bạn..."
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="feedback-suggestion">Góp ý cải thiện:</label>
+      <textarea
+        id="feedback-suggestion"
+        rows="4"
+        placeholder="Nhập góp ý của bạn..."
+      ></textarea>
+    </div>
+
+    <button class="submit-btn" onclick="submitFeedback()">
+      <i class="fa fa-paper-plane"></i> Gửi đánh giá
+    </button>
+  </div>
+</div>

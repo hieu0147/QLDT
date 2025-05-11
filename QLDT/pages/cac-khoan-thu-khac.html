@@ -1,0 +1,590 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-money" style="color: #ff9800"></i> Các khoản thu khác
+</h1>
+
+<!-- Thống kê tổng quan -->
+<div class="fee-stats">
+  <div class="stat-item">
+    <div class="stat-value">0 VNĐ</div>
+    <div class="stat-label">Tổng công nợ</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">2,500,000 VNĐ</div>
+    <div class="stat-label">Đã thanh toán</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">0 VNĐ</div>
+    <div class="stat-label">Còn phải nộp</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">2,500,000 VNĐ</div>
+    <div class="stat-label">Tổng các khoản thu</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="fee-controls">
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="loadFeeData()">
+      <option value="all">Tất cả</option>
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="fee-status">Trạng thái:</label>
+    <select id="fee-status" onchange="filterFeeData()">
+      <option value="all">Tất cả</option>
+      <option value="paid">Đã thanh toán</option>
+      <option value="unpaid">Chưa thanh toán</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printFeeData()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportFeeData()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+    <button class="action-btn primary" onclick="showPaymentModal()">
+      <i class="fa fa-credit-card"></i> Thanh toán
+    </button>
+  </div>
+</div>
+
+<!-- Thông báo quan trọng -->
+<div class="important-notice">
+  <div class="notice-icon"><i class="fa fa-exclamation-triangle"></i></div>
+  <div class="notice-content">
+    <h3>Thông báo quan trọng</h3>
+    <p>
+      Sinh viên cần thanh toán đầy đủ các khoản thu khác để đảm bảo quyền lợi
+      học tập và tham gia các hoạt động của trường. Các khoản thu khác bao gồm:
+      phí thẻ sinh viên, bảo hiểm y tế, phí ký túc xá, phí hoạt động ngoại khóa,
+      v.v.
+    </p>
+    <p>
+      Mọi thắc mắc về các khoản thu khác vui lòng liên hệ Phòng Kế hoạch - Tài
+      chính, email: tckt@dntu.edu.vn, điện thoại: 0251.3456.789.
+    </p>
+  </div>
+</div>
+
+<!-- Bảng các khoản thu chi tiết -->
+<div class="fee-table-container">
+  <h2 class="section-title">Danh sách các khoản thu</h2>
+
+  <table class="fee-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã khoản thu</th>
+        <th>Tên khoản thu</th>
+        <th>Học kỳ</th>
+        <th>Số tiền</th>
+        <th>Đã nộp</th>
+        <th>Còn nợ</th>
+        <th>Hạn nộp</th>
+        <th>Trạng thái</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Khoản thu 1 -->
+      <tr class="fee-row paid">
+        <td>1</td>
+        <td>BHYT2023</td>
+        <td>Bảo hiểm y tế</td>
+        <td>Năm học 2023-2024</td>
+        <td>600,000 VNĐ</td>
+        <td>600,000 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td>15/09/2023</td>
+        <td><span class="status-badge paid">Đã thanh toán</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewFeeDetail('BHYT2023')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('BHYT2023')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Khoản thu 2 -->
+      <tr class="fee-row paid">
+        <td>2</td>
+        <td>KTX2023</td>
+        <td>Phí ký túc xá</td>
+        <td>Học kỳ 1, năm học 2023-2024</td>
+        <td>1,200,000 VNĐ</td>
+        <td>1,200,000 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td>15/09/2023</td>
+        <td><span class="status-badge paid">Đã thanh toán</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewFeeDetail('KTX2023')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('KTX2023')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Khoản thu 3 -->
+      <tr class="fee-row paid">
+        <td>3</td>
+        <td>TSV2023</td>
+        <td>Thẻ sinh viên</td>
+        <td>Năm học 2023-2024</td>
+        <td>50,000 VNĐ</td>
+        <td>50,000 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td>30/09/2023</td>
+        <td><span class="status-badge paid">Đã thanh toán</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewFeeDetail('TSV2023')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('TSV2023')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Khoản thu 4 -->
+      <tr class="fee-row paid">
+        <td>4</td>
+        <td>HDNK2023</td>
+        <td>Hoạt động ngoại khóa</td>
+        <td>Học kỳ 1, năm học 2023-2024</td>
+        <td>200,000 VNĐ</td>
+        <td>200,000 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td>15/10/2023</td>
+        <td><span class="status-badge paid">Đã thanh toán</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewFeeDetail('HDNK2023')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('HDNK2023')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Khoản thu 5 -->
+      <tr class="fee-row paid">
+        <td>5</td>
+        <td>KTX2024</td>
+        <td>Phí ký túc xá</td>
+        <td>Học kỳ 2, năm học 2023-2024</td>
+        <td>1,200,000 VNĐ</td>
+        <td>1,200,000 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td>15/02/2024</td>
+        <td><span class="status-badge paid">Đã thanh toán</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewFeeDetail('KTX2024')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('KTX2024')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Khoản thu 6 -->
+      <tr class="fee-row paid">
+        <td>6</td>
+        <td>HDNK2024</td>
+        <td>Hoạt động ngoại khóa</td>
+        <td>Học kỳ 2, năm học 2023-2024</td>
+        <td>200,000 VNĐ</td>
+        <td>200,000 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td>15/03/2024</td>
+        <td><span class="status-badge paid">Đã thanh toán</span></td>
+        <td>
+          <button
+            class="action-btn view-btn"
+            title="Xem chi tiết"
+            onclick="viewFeeDetail('HDNK2024')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="action-btn download-btn"
+            title="Tải biên lai"
+            onclick="downloadReceipt('HDNK2024')"
+          >
+            <i class="fa fa-download"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4"><strong>Tổng cộng:</strong></td>
+        <td>3,450,000 VNĐ</td>
+        <td>3,450,000 VNĐ</td>
+        <td>0 VNĐ</td>
+        <td colspan="3"></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- Modal thanh toán -->
+<div id="payment-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Thanh toán khoản thu</h3>
+      <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="payment-info">
+        <div class="info-row">
+          <div class="info-label">Khoản thu:</div>
+          <div class="info-value">Bảo hiểm y tế</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Mã khoản thu:</div>
+          <div class="info-value">BHYT2023</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Học kỳ:</div>
+          <div class="info-value">Năm học 2023-2024</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Số tiền:</div>
+          <div class="info-value">600,000 VNĐ</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Đã nộp:</div>
+          <div class="info-value">600,000 VNĐ</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Còn nợ:</div>
+          <div class="info-value">0 VNĐ</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Hạn nộp:</div>
+          <div class="info-value">15/09/2023</div>
+        </div>
+      </div>
+
+      <div class="payment-methods">
+        <h4>Chọn phương thức thanh toán</h4>
+
+        <div class="method-options">
+          <div class="method-option">
+            <input
+              type="radio"
+              id="method-card"
+              name="payment-method"
+              value="card"
+            />
+            <label for="method-card">Thẻ ATM/Thẻ tín dụng</label>
+          </div>
+
+          <div class="method-option">
+            <input
+              type="radio"
+              id="method-ewallet"
+              name="payment-method"
+              value="ewallet"
+            />
+            <label for="method-ewallet">Ví điện tử</label>
+          </div>
+
+          <div class="method-option">
+            <input
+              type="radio"
+              id="method-transfer"
+              name="payment-method"
+              value="transfer"
+              checked
+            />
+            <label for="method-transfer">Chuyển khoản ngân hàng</label>
+          </div>
+
+          <div class="method-option">
+            <input
+              type="radio"
+              id="method-qr"
+              name="payment-method"
+              value="qr"
+            />
+            <label for="method-qr">Quét mã QR</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thông tin chuyển khoản -->
+      <div class="transfer-info" id="transfer-info">
+        <h4>Thông tin chuyển khoản</h4>
+
+        <div class="bank-info">
+          <div class="info-row">
+            <div class="info-label">Tên tài khoản:</div>
+            <div class="info-value">Trường Đại học Công nghệ Đồng Nai</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Số tài khoản:</div>
+            <div class="info-value">1234567890</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Ngân hàng:</div>
+            <div class="info-value">Vietcombank - Chi nhánh Đồng Nai</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Nội dung chuyển khoản:</div>
+            <div class="info-value">SV20200001 - Nguyen Van A - BHYT2023</div>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <p>
+            <strong>Lưu ý:</strong> Sau khi chuyển khoản, vui lòng chụp lại biên
+            lai/màn hình xác nhận và gửi về email: tckt@dntu.edu.vn hoặc tải lên
+            hệ thống để được xác nhận thanh toán nhanh chóng.
+          </p>
+        </div>
+      </div>
+
+      <!-- QR Code -->
+      <div class="qr-info" id="qr-info" style="display: none">
+        <h4>Quét mã QR để thanh toán</h4>
+
+        <div class="qr-container">
+          <img
+            src="assets/images/payment-qr.png"
+            alt="QR Code thanh toán"
+            class="qr-image"
+          />
+        </div>
+
+        <div class="note-box">
+          <p>
+            <strong>Hướng dẫn:</strong> Mở ứng dụng ngân hàng hoặc ví điện tử,
+            chọn chức năng quét mã QR và quét mã trên để thanh toán.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="closePaymentModal()">Hủy</button>
+      <button class="confirm-btn" onclick="processPayment()">Tiếp tục</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm tải dữ liệu các khoản thu
+  function loadFeeData() {
+    const selectedSemester = document.getElementById("semester-select").value;
+    console.log(
+      "Đang tải dữ liệu các khoản thu cho học kỳ: " + selectedSemester
+    );
+
+    // Trong thực tế, đây sẽ là API call để lấy dữ liệu các khoản thu
+    // fetchFeeData(selectedSemester);
+
+    // Hiển thị hoặc ẩn các hàng dựa trên học kỳ được chọn
+    const feeRows = document.querySelectorAll(".fee-row");
+
+    if (selectedSemester === "all") {
+      // Hiển thị tất cả
+      feeRows.forEach((row) => {
+        row.style.display = "";
+      });
+    } else {
+      // Hiển thị chỉ học kỳ được chọn
+      feeRows.forEach((row) => {
+        const semesterCell = row
+          .querySelector("td:nth-child(4)")
+          .textContent.toLowerCase();
+        if (
+          semesterCell.includes(
+            selectedSemester.replace("-", " ").toLowerCase()
+          )
+        ) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+  }
+
+  // Hàm lọc dữ liệu các khoản thu theo trạng thái
+  function filterFeeData() {
+    const paymentStatus = document.getElementById("fee-status").value;
+    const feeRows = document.querySelectorAll(".fee-row");
+
+    if (paymentStatus === "all") {
+      // Hiển thị tất cả
+      feeRows.forEach((row) => {
+        if (row.style.display !== "none") {
+          // Không thay đổi các hàng đã bị ẩn bởi bộ lọc học kỳ
+          row.style.display = "";
+        }
+      });
+    } else {
+      // Hiển thị chỉ trạng thái được chọn
+      feeRows.forEach((row) => {
+        if (row.classList.contains(paymentStatus)) {
+          if (row.style.display !== "none") {
+            // Không thay đổi các hàng đã bị ẩn bởi bộ lọc học kỳ
+            row.style.display = "";
+          }
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+  }
+
+  // Hàm in dữ liệu các khoản thu
+  function printFeeData() {
+    window.print();
+  }
+
+  // Hàm xuất file dữ liệu các khoản thu
+  function exportFeeData() {
+    alert("Đang xuất file dữ liệu các khoản thu...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+
+  // Hàm xem chi tiết khoản thu
+  function viewFeeDetail(feeId) {
+    console.log("Xem chi tiết khoản thu: " + feeId);
+
+    // Trong thực tế, đây sẽ là API call để lấy chi tiết khoản thu
+    alert("Đang tải thông tin chi tiết khoản thu " + feeId);
+  }
+
+  // Hàm tải biên lai
+  function downloadReceipt(feeId) {
+    console.log("Tải biên lai khoản thu: " + feeId);
+
+    // Trong thực tế, đây sẽ là API call để tải biên lai
+    alert("Đang tải biên lai khoản thu " + feeId);
+  }
+
+  // Hàm hiển thị modal thanh toán
+  function showPaymentModal() {
+    document.getElementById("payment-modal").style.display = "block";
+
+    // Mặc định hiển thị thông tin chuyển khoản
+    document.getElementById("transfer-info").style.display = "block";
+    document.getElementById("qr-info").style.display = "none";
+  }
+
+  // Hàm đóng modal thanh toán
+  function closePaymentModal() {
+    document.getElementById("payment-modal").style.display = "none";
+  }
+
+  // Hàm xử lý thanh toán
+  function processPayment() {
+    const paymentMethod = document.querySelector(
+      'input[name="payment-method"]:checked'
+    ).value;
+
+    if (paymentMethod === "card") {
+      // Chuyển hướng đến trang thanh toán thẻ
+      alert("Đang chuyển hướng đến trang thanh toán thẻ...");
+    } else if (paymentMethod === "ewallet") {
+      // Chuyển hướng đến trang thanh toán ví điện tử
+      alert("Đang chuyển hướng đến trang thanh toán ví điện tử...");
+    } else if (paymentMethod === "transfer") {
+      // Hiển thị thông báo
+      alert(
+        "Vui lòng thực hiện chuyển khoản theo thông tin đã cung cấp và gửi biên lai về email: tckt@dntu.edu.vn"
+      );
+      closePaymentModal();
+    } else if (paymentMethod === "qr") {
+      // Đã hiển thị mã QR, không cần làm gì thêm
+      alert("Vui lòng quét mã QR để thanh toán");
+    }
+  }
+
+  // Khởi tạo trang
+  document.addEventListener("DOMContentLoaded", function () {
+    // Xử lý sự kiện thay đổi phương thức thanh toán
+    const paymentMethods = document.querySelectorAll(
+      'input[name="payment-method"]'
+    );
+    paymentMethods.forEach((method) => {
+      method.addEventListener("change", function () {
+        // Ẩn tất cả các thông tin thanh toán
+        document.getElementById("transfer-info").style.display = "none";
+        document.getElementById("qr-info").style.display = "none";
+
+        // Hiển thị thông tin tương ứng với phương thức được chọn
+        if (this.value === "transfer") {
+          document.getElementById("transfer-info").style.display = "block";
+        } else if (this.value === "qr") {
+          document.getElementById("qr-info").style.display = "block";
+        }
+      });
+    });
+
+    // Đóng modal khi click bên ngoài
+    window.onclick = function (event) {
+      const modal = document.getElementById("payment-modal");
+      if (event.target == modal) {
+        closePaymentModal();
+      }
+    };
+  });
+</script>

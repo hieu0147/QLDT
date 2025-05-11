@@ -1,0 +1,809 @@
+t<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-check-circle" style="color: #4caf50"></i> Kết quả đăng ký học
+  phần
+</h1>
+
+<!-- Thông tin đợt đăng ký -->
+<div class="registration-info">
+  <div class="info-item">
+    <div class="info-label">Đợt đăng ký:</div>
+    <div class="info-value">Đăng ký học phần học kỳ 2, năm học 2023-2024</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Thời gian đăng ký:</div>
+    <div class="info-value">15/05/2023 - 30/05/2023</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Trạng thái:</div>
+    <div class="info-value status-success">Đã hoàn thành</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Số tín chỉ đăng ký:</div>
+    <div class="info-value">17</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Học phí tạm tính:</div>
+    <div class="info-value">8,500,000 VNĐ</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="result-controls">
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="loadRegistrationResults()">
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="status-filter">Trạng thái:</label>
+    <select id="status-filter" onchange="filterResults()">
+      <option value="all">Tất cả</option>
+      <option value="success">Thành công</option>
+      <option value="pending">Chờ xử lý</option>
+      <option value="failed">Không thành công</option>
+    </select>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printResults()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportResults()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Thống kê kết quả -->
+<div class="result-stats">
+  <div class="stat-item">
+    <div class="stat-value">12</div>
+    <div class="stat-label">Tổng số học phần</div>
+  </div>
+  <div class="stat-item success">
+    <div class="stat-value">10</div>
+    <div class="stat-label">Thành công</div>
+  </div>
+  <div class="stat-item pending">
+    <div class="stat-value">1</div>
+    <div class="stat-label">Chờ xử lý</div>
+  </div>
+  <div class="stat-item failed">
+    <div class="stat-value">1</div>
+    <div class="stat-label">Không thành công</div>
+  </div>
+</div>
+
+<!-- Kết quả đăng ký -->
+<div class="registration-results">
+  <h2 class="section-title">Danh sách học phần đã đăng ký</h2>
+
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã học phần</th>
+        <th>Tên học phần</th>
+        <th>Nhóm</th>
+        <th>Số tín chỉ</th>
+        <th>Lịch học</th>
+        <th>Phòng học</th>
+        <th>Giảng viên</th>
+        <th>Trạng thái</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Học phần 1 -->
+      <tr class="result-row success">
+        <td>1</td>
+        <td>COMP3006</td>
+        <td>Kiểm thử phần mềm</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 2 (7:00-9:30)</td>
+        <td>A305</td>
+        <td>TS. Nguyễn Văn X</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('COMP3006', '01')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3006', '01')"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 2 -->
+      <tr class="result-row success">
+        <td>2</td>
+        <td>COMP3007</td>
+        <td>Quản lý dự án phần mềm</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 3 (7:00-9:30)</td>
+        <td>A401</td>
+        <td>TS. Lê Văn Y</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('COMP3007', '01')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3007', '01')"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 3 -->
+      <tr class="result-row success">
+        <td>3</td>
+        <td>COMP3008</td>
+        <td>Học máy</td>
+        <td>02</td>
+        <td>3</td>
+        <td>Thứ 4 (7:00-9:30)</td>
+        <td>B203</td>
+        <td>TS. Trần Thị Z</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('COMP3008', '02')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3008', '02')"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 4 -->
+      <tr class="result-row success">
+        <td>4</td>
+        <td>COMP3009</td>
+        <td>Phát triển game</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 5 (7:00-9:30)</td>
+        <td>A305</td>
+        <td>TS. Phạm Văn W</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('COMP3009', '01')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3009', '01')"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 5 -->
+      <tr class="result-row success">
+        <td>5</td>
+        <td>COMP3010</td>
+        <td>Điện toán đám mây</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 6 (7:00-9:30)</td>
+        <td>B203</td>
+        <td>TS. Nguyễn Văn X</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('COMP3010', '01')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3010', '01')"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 6 -->
+      <tr class="result-row success">
+        <td>6</td>
+        <td>POLI3002</td>
+        <td>Lịch sử Đảng Cộng sản Việt Nam</td>
+        <td>03</td>
+        <td>2</td>
+        <td>Thứ 7 (7:00-8:40)</td>
+        <td>A401</td>
+        <td>TS. Lê Thị V</td>
+        <td><span class="status-badge success">Thành công</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('POLI3002', '03')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('POLI3002', '03')"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 7 -->
+      <tr class="result-row pending">
+        <td>7</td>
+        <td>COMP3011</td>
+        <td>Thực tập doanh nghiệp</td>
+        <td>01</td>
+        <td>3</td>
+        <td>-</td>
+        <td>-</td>
+        <td>TS. Lê Văn Y</td>
+        <td><span class="status-badge pending">Chờ xử lý</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('COMP3011', '01')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button
+            class="withdraw-btn"
+            onclick="withdrawCourse('COMP3011', '01')"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Học phần 8 -->
+      <tr class="result-row failed">
+        <td>8</td>
+        <td>COMP3013</td>
+        <td>Phân tích dữ liệu lớn</td>
+        <td>01</td>
+        <td>3</td>
+        <td>Thứ 2 (13:00-15:30)</td>
+        <td>B203</td>
+        <td>TS. Trần Thị Z</td>
+        <td><span class="status-badge failed">Trùng lịch</span></td>
+        <td>
+          <button
+            class="view-btn"
+            onclick="viewCourseDetails('COMP3013', '01')"
+          >
+            <i class="fa fa-eye"></i>
+          </button>
+          <button class="retry-btn" onclick="retryCourse('COMP3013')">
+            <i class="fa fa-refresh"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Thời khóa biểu -->
+<div class="timetable-section">
+  <h2 class="section-title">Thời khóa biểu</h2>
+
+  <div class="timetable-container">
+    <table class="timetable">
+      <thead>
+        <tr>
+          <th class="time-column">Thời gian</th>
+          <th>Thứ 2</th>
+          <th>Thứ 3</th>
+          <th>Thứ 4</th>
+          <th>Thứ 5</th>
+          <th>Thứ 6</th>
+          <th>Thứ 7</th>
+          <th>Chủ nhật</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Buổi sáng -->
+        <tr>
+          <td class="time-slot">7:00 - 9:30</td>
+          <td class="course-slot">
+            <div class="course-info">
+              <div class="course-name">Kiểm thử phần mềm</div>
+              <div class="course-details">COMP3006 - A305</div>
+            </div>
+          </td>
+          <td class="course-slot">
+            <div class="course-info">
+              <div class="course-name">Quản lý dự án phần mềm</div>
+              <div class="course-details">COMP3007 - A401</div>
+            </div>
+          </td>
+          <td class="course-slot">
+            <div class="course-info">
+              <div class="course-name">Học máy</div>
+              <div class="course-details">COMP3008 - B203</div>
+            </div>
+          </td>
+          <td class="course-slot">
+            <div class="course-info">
+              <div class="course-name">Phát triển game</div>
+              <div class="course-details">COMP3009 - A305</div>
+            </div>
+          </td>
+          <td class="course-slot">
+            <div class="course-info">
+              <div class="course-name">Điện toán đám mây</div>
+              <div class="course-details">COMP3010 - B203</div>
+            </div>
+          </td>
+          <td class="course-slot">
+            <div class="course-info">
+              <div class="course-name">Lịch sử Đảng Cộng sản Việt Nam</div>
+              <div class="course-details">POLI3002 - A401</div>
+            </div>
+          </td>
+          <td class="course-slot empty"></td>
+        </tr>
+        <tr>
+          <td class="time-slot">9:45 - 11:30</td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+        </tr>
+
+        <!-- Buổi chiều -->
+        <tr>
+          <td class="time-slot">13:00 - 15:30</td>
+          <td class="course-slot conflict">
+            <div class="course-info">
+              <div class="course-name">Phân tích dữ liệu lớn</div>
+              <div class="course-details">COMP3013 - B203</div>
+              <div class="course-status">Trùng lịch</div>
+            </div>
+          </td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+        </tr>
+        <tr>
+          <td class="time-slot">15:45 - 17:30</td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+        </tr>
+
+        <!-- Buổi tối -->
+        <tr>
+          <td class="time-slot">18:00 - 20:30</td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+          <td class="course-slot empty"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Ghi chú -->
+<div class="registration-notes">
+  <h3 class="notes-title">Ghi chú</h3>
+  <ul class="notes-list">
+    <li>Sinh viên có thể rút học phần trong vòng 2 tuần đầu của học kỳ.</li>
+    <li>
+      Học phần có trạng thái "Chờ xử lý" sẽ được phòng Đào tạo xử lý trong vòng
+      3 ngày làm việc.
+    </li>
+    <li>
+      Học phần có trạng thái "Trùng lịch" cần được đăng ký lại với nhóm khác.
+    </li>
+    <li>Thời hạn đóng học phí: 15/06/2023 - 30/06/2023.</li>
+    <li>
+      Mọi thắc mắc vui lòng liên hệ Phòng Đào tạo, email: daotao@dntu.edu.vn,
+      điện thoại: 0251.3456.789.
+    </li>
+  </ul>
+</div>
+
+<!-- Modal xem chi tiết học phần -->
+<div id="course-details-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-course-title">Chi tiết học phần</h3>
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="course-details-container">
+        <div class="details-section">
+          <h4>Thông tin học phần</h4>
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Mã học phần:</div>
+              <div class="detail-value" id="detail-course-code">COMP3006</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Tên học phần:</div>
+              <div class="detail-value" id="detail-course-name">
+                Kiểm thử phần mềm
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Nhóm:</div>
+              <div class="detail-value" id="detail-course-group">01</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Số tín chỉ:</div>
+              <div class="detail-value" id="detail-course-credits">3</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Loại học phần:</div>
+              <div class="detail-value" id="detail-course-type">Bắt buộc</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Khoa/Bộ môn:</div>
+              <div class="detail-value" id="detail-course-department">
+                Khoa Công nghệ thông tin
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Lịch học</h4>
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Thời gian:</div>
+              <div class="detail-value" id="detail-course-time">
+                Thứ 2 (7:00-9:30)
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Phòng học:</div>
+              <div class="detail-value" id="detail-course-room">A305</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Tuần học:</div>
+              <div class="detail-value" id="detail-course-weeks">1-15</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Giảng viên:</div>
+              <div class="detail-value" id="detail-course-lecturer">
+                TS. Nguyễn Văn X
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Trợ giảng:</div>
+              <div class="detail-value" id="detail-course-assistant">
+                ThS. Lê Thị Y
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Thông tin đăng ký</h4>
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Ngày đăng ký:</div>
+              <div class="detail-value" id="detail-registration-date">
+                20/05/2023
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Trạng thái:</div>
+              <div
+                class="detail-value status-success"
+                id="detail-registration-status"
+              >
+                Thành công
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Học phí:</div>
+              <div class="detail-value" id="detail-course-fee">
+                1,500,000 VNĐ
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Sĩ số tối đa:</div>
+              <div class="detail-value" id="detail-course-max-students">50</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Sĩ số hiện tại:</div>
+              <div class="detail-value" id="detail-course-current-students">
+                45
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Mô tả học phần</h4>
+          <div class="course-description" id="detail-course-description">
+            <p>
+              Học phần này cung cấp cho sinh viên kiến thức và kỹ năng về kiểm
+              thử phần mềm, bao gồm các phương pháp, kỹ thuật và công cụ kiểm
+              thử. Sinh viên sẽ được học về quy trình kiểm thử, các loại kiểm
+              thử, thiết kế ca kiểm thử, và tự động hóa kiểm thử.
+            </p>
+            <p>
+              Nội dung chính bao gồm: Tổng quan về kiểm thử phần mềm, Quy trình
+              kiểm thử, Kiểm thử hộp đen, Kiểm thử hộp trắng, Kiểm thử đơn vị,
+              Kiểm thử tích hợp, Kiểm thử hệ thống, Kiểm thử chấp nhận, Kiểm thử
+              tự động, Công cụ kiểm thử.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="close-btn" onclick="closeModal()">Đóng</button>
+      <button class="withdraw-btn" onclick="withdrawCourseFromModal()">
+        Rút học phần
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal xác nhận rút học phần -->
+<div id="withdraw-confirm-modal" class="modal">
+  <div class="modal-content confirm-modal">
+    <div class="modal-header">
+      <h3>Xác nhận rút học phần</h3>
+      <span class="close-modal" onclick="closeWithdrawModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>
+        Bạn có chắc chắn muốn rút học phần
+        <strong id="withdraw-course-name">Kiểm thử phần mềm</strong> (<span
+          id="withdraw-course-code"
+          >COMP3006</span
+        >) - Nhóm <span id="withdraw-course-group">01</span>?
+      </p>
+      <p class="warning-text">
+        Lưu ý: Sau khi rút học phần, bạn có thể đăng ký lại trong thời gian quy
+        định.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="closeWithdrawModal()">Hủy</button>
+      <button class="confirm-btn" onclick="confirmWithdraw()">Xác nhận</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Biến lưu thông tin học phần đang xử lý
+  let currentCourseCode = "";
+  let currentCourseGroup = "";
+
+  // Hàm tải kết quả đăng ký học phần
+  function loadRegistrationResults() {
+    const selectedSemester = document.getElementById("semester-select").value;
+    console.log(
+      "Đang tải kết quả đăng ký học phần cho học kỳ: " + selectedSemester
+    );
+
+    // Trong thực tế, đây sẽ là API call để lấy dữ liệu kết quả đăng ký
+    // fetchRegistrationResults(selectedSemester);
+  }
+
+  // Hàm lọc kết quả đăng ký
+  function filterResults() {
+    const statusFilter = document.getElementById("status-filter").value;
+    const resultRows = document.querySelectorAll(".result-row");
+
+    resultRows.forEach((row) => {
+      if (statusFilter === "all" || row.classList.contains(statusFilter)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  // Hàm xem chi tiết học phần
+  function viewCourseDetails(courseCode, courseGroup) {
+    console.log(
+      "Xem chi tiết học phần: " + courseCode + ", nhóm: " + courseGroup
+    );
+
+    // Lưu thông tin học phần đang xem
+    currentCourseCode = courseCode;
+    currentCourseGroup = courseGroup;
+
+    // Trong thực tế, đây sẽ là API call để lấy chi tiết học phần
+    // fetchCourseDetails(courseCode, courseGroup);
+
+    // Cập nhật thông tin trong modal
+    document.getElementById("modal-course-title").textContent =
+      "Chi tiết học phần " + courseCode;
+    document.getElementById("detail-course-code").textContent = courseCode;
+
+    // Cập nhật tên học phần dựa trên mã học phần
+    let courseName = "";
+    if (courseCode === "COMP3006") {
+      courseName = "Kiểm thử phần mềm";
+    } else if (courseCode === "COMP3007") {
+      courseName = "Quản lý dự án phần mềm";
+    } else if (courseCode === "COMP3008") {
+      courseName = "Học máy";
+    } else if (courseCode === "COMP3009") {
+      courseName = "Phát triển game";
+    } else if (courseCode === "COMP3010") {
+      courseName = "Điện toán đám mây";
+    } else if (courseCode === "POLI3002") {
+      courseName = "Lịch sử Đảng Cộng sản Việt Nam";
+    } else if (courseCode === "COMP3011") {
+      courseName = "Thực tập doanh nghiệp";
+    } else if (courseCode === "COMP3013") {
+      courseName = "Phân tích dữ liệu lớn";
+    }
+
+    document.getElementById("detail-course-name").textContent = courseName;
+    document.getElementById("detail-course-group").textContent = courseGroup;
+
+    // Hiển thị modal
+    document.getElementById("course-details-modal").style.display = "block";
+  }
+
+  // Hàm rút học phần
+  function withdrawCourse(courseCode, courseGroup) {
+    console.log("Rút học phần: " + courseCode + ", nhóm: " + courseGroup);
+
+    // Lưu thông tin học phần đang rút
+    currentCourseCode = courseCode;
+    currentCourseGroup = courseGroup;
+
+    // Cập nhật thông tin trong modal xác nhận
+    document.getElementById("withdraw-course-code").textContent = courseCode;
+
+    // Cập nhật tên học phần dựa trên mã học phần
+    let courseName = "";
+    if (courseCode === "COMP3006") {
+      courseName = "Kiểm thử phần mềm";
+    } else if (courseCode === "COMP3007") {
+      courseName = "Quản lý dự án phần mềm";
+    } else if (courseCode === "COMP3008") {
+      courseName = "Học máy";
+    } else if (courseCode === "COMP3009") {
+      courseName = "Phát triển game";
+    } else if (courseCode === "COMP3010") {
+      courseName = "Điện toán đám mây";
+    } else if (courseCode === "POLI3002") {
+      courseName = "Lịch sử Đảng Cộng sản Việt Nam";
+    } else if (courseCode === "COMP3011") {
+      courseName = "Thực tập doanh nghiệp";
+    } else if (courseCode === "COMP3013") {
+      courseName = "Phân tích dữ liệu lớn";
+    }
+
+    document.getElementById("withdraw-course-name").textContent = courseName;
+    document.getElementById("withdraw-course-group").textContent = courseGroup;
+
+    // Hiển thị modal xác nhận
+    document.getElementById("withdraw-confirm-modal").style.display = "block";
+  }
+
+  // Hàm rút học phần từ modal chi tiết
+  function withdrawCourseFromModal() {
+    // Đóng modal chi tiết
+    closeModal();
+
+    // Mở modal xác nhận rút học phần
+    withdrawCourse(currentCourseCode, currentCourseGroup);
+  }
+
+  // Hàm xác nhận rút học phần
+  function confirmWithdraw() {
+    console.log(
+      "Xác nhận rút học phần: " +
+        currentCourseCode +
+        ", nhóm: " +
+        currentCourseGroup
+    );
+
+    // Trong thực tế, đây sẽ là API call để rút học phần
+    // withdrawCourseAPI(currentCourseCode, currentCourseGroup);
+
+    // Đóng modal xác nhận
+    closeWithdrawModal();
+
+    // Hiển thị thông báo
+    alert("Đã rút học phần " + currentCourseCode + " thành công!");
+
+    // Cập nhật giao diện
+    // Trong thực tế, đây sẽ là reload trang hoặc cập nhật DOM
+  }
+
+  // Hàm đăng ký lại học phần
+  function retryCourse(courseCode) {
+    console.log("Đăng ký lại học phần: " + courseCode);
+
+    // Trong thực tế, đây sẽ là chuyển hướng đến trang đăng ký học phần
+    alert("Chuyển đến trang đăng ký học phần để đăng ký lại " + courseCode);
+  }
+
+  // Hàm đóng modal chi tiết học phần
+  function closeModal() {
+    document.getElementById("course-details-modal").style.display = "none";
+  }
+
+  // Hàm đóng modal xác nhận rút học phần
+  function closeWithdrawModal() {
+    document.getElementById("withdraw-confirm-modal").style.display = "none";
+  }
+
+  // Hàm in kết quả đăng ký
+  function printResults() {
+    window.print();
+  }
+
+  // Hàm xuất file kết quả đăng ký
+  function exportResults() {
+    alert("Đang xuất file kết quả đăng ký học phần...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+
+  // Đóng modal khi click bên ngoài
+  window.onclick = function (event) {
+    const courseDetailsModal = document.getElementById("course-details-modal");
+    const withdrawConfirmModal = document.getElementById(
+      "withdraw-confirm-modal"
+    );
+
+    if (event.target == courseDetailsModal) {
+      closeModal();
+    }
+
+    if (event.target == withdrawConfirmModal) {
+      closeWithdrawModal();
+    }
+  };
+</script>

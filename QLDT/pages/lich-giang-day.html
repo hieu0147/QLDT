@@ -1,0 +1,718 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-calendar" style="color: #2196f3"></i> Lịch giảng dạy
+</h1>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="schedule-controls">
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="loadTeachingSchedule()">
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="week-select">Tuần học:</label>
+    <select id="week-select" onchange="loadTeachingSchedule()">
+      <option value="current">Tuần hiện tại (15/05 - 21/05/2024)</option>
+      <option value="next">Tuần sau (22/05 - 28/05/2024)</option>
+      <option value="week-1">Tuần 1 (01/02 - 07/02/2024)</option>
+      <option value="week-2">Tuần 2 (08/02 - 14/02/2024)</option>
+      <option value="week-3">Tuần 3 (15/02 - 21/02/2024)</option>
+      <option value="week-4">Tuần 4 (22/02 - 28/02/2024)</option>
+      <option value="week-5">Tuần 5 (29/02 - 06/03/2024)</option>
+      <option value="week-6">Tuần 6 (07/03 - 13/03/2024)</option>
+      <option value="week-7">Tuần 7 (14/03 - 20/03/2024)</option>
+      <option value="week-8">Tuần 8 (21/03 - 27/03/2024)</option>
+      <option value="week-9">Tuần 9 (28/03 - 03/04/2024)</option>
+      <option value="week-10">Tuần 10 (04/04 - 10/04/2024)</option>
+      <option value="week-11">Tuần 11 (11/04 - 17/04/2024)</option>
+      <option value="week-12">Tuần 12 (18/04 - 24/04/2024)</option>
+      <option value="week-13">Tuần 13 (25/04 - 01/05/2024)</option>
+      <option value="week-14">Tuần 14 (02/05 - 08/05/2024)</option>
+      <option value="week-15">Tuần 15 (09/05 - 15/05/2024)</option>
+      <option value="week-16">Tuần 16 (16/05 - 22/05/2024)</option>
+      <option value="week-17">Tuần 17 (23/05 - 29/05/2024)</option>
+      <option value="week-18">Tuần 18 (30/05 - 05/06/2024)</option>
+      <option value="week-19">Tuần 19 (06/06 - 12/06/2024)</option>
+      <option value="week-20">Tuần 20 (13/06 - 19/06/2024)</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="teacher-select">Giảng viên:</label>
+    <select id="teacher-select" onchange="loadTeachingSchedule()">
+      <option value="all">Tất cả giảng viên</option>
+      <option value="teacher-1">TS. Nguyễn Văn X</option>
+      <option value="teacher-2">TS. Lê Văn Y</option>
+      <option value="teacher-3">TS. Trần Thị Z</option>
+      <option value="teacher-4">TS. Phạm Văn W</option>
+      <option value="teacher-5">ThS. Hoàng Thị M</option>
+    </select>
+  </div>
+
+  <div class="view-controls">
+    <button class="view-btn active" onclick="changeTeachingView('week')">
+      <i class="fa fa-calendar"></i> Tuần
+    </button>
+    <button class="view-btn" onclick="changeTeachingView('list')">
+      <i class="fa fa-list"></i> Danh sách
+    </button>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printTeachingSchedule()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportTeachingSchedule()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Điều hướng tuần -->
+<div class="week-navigation">
+  <button class="nav-btn" onclick="navigateTeachingWeek('prev')">
+    <i class="fa fa-chevron-left"></i> Tuần trước
+  </button>
+  <div class="current-week">Tuần 15 (09/05 - 15/05/2024)</div>
+  <button class="nav-btn" onclick="navigateTeachingWeek('next')">
+    Tuần sau <i class="fa fa-chevron-right"></i>
+  </button>
+</div>
+
+<!-- Chế độ xem theo tuần -->
+<div id="teaching-week-view" class="schedule-view active">
+  <div class="schedule-grid">
+    <div class="time-column">
+      <div class="time-header">Giờ</div>
+      <div class="time-slot">Tiết 1<br /><small>07:00 - 07:50</small></div>
+      <div class="time-slot">Tiết 2<br /><small>07:50 - 08:40</small></div>
+      <div class="time-slot">Tiết 3<br /><small>08:40 - 09:30</small></div>
+      <div class="time-slot">Tiết 4<br /><small>09:45 - 10:35</small></div>
+      <div class="time-slot">Tiết 5<br /><small>10:35 - 11:25</small></div>
+      <div class="time-slot">Tiết 6<br /><small>11:25 - 12:15</small></div>
+      <div class="time-slot">Tiết 7<br /><small>13:00 - 13:50</small></div>
+      <div class="time-slot">Tiết 8<br /><small>13:50 - 14:40</small></div>
+      <div class="time-slot">Tiết 9<br /><small>14:40 - 15:30</small></div>
+      <div class="time-slot">Tiết 10<br /><small>15:45 - 16:35</small></div>
+      <div class="time-slot">Tiết 11<br /><small>16:35 - 17:25</small></div>
+      <div class="time-slot">Tiết 12<br /><small>17:25 - 18:15</small></div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-header">Thứ 2<br /><small>15/05</small></div>
+      <div class="day-schedule">
+        <div class="class-item" style="grid-row: 1 / span 3">
+          <div class="class-name">Lập trình Web nâng cao</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> A305</div>
+            <div><i class="fa fa-users"></i> CNTT2020</div>
+          </div>
+        </div>
+        <div class="class-item" style="grid-row: 7 / span 3">
+          <div class="class-name">Phân tích và thiết kế hệ thống</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> A401</div>
+            <div><i class="fa fa-users"></i> CNTT2021</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-header">Thứ 3<br /><small>16/05</small></div>
+      <div class="day-schedule">
+        <div class="class-item" style="grid-row: 4 / span 3">
+          <div class="class-name">Cơ sở dữ liệu</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> B203</div>
+            <div><i class="fa fa-users"></i> CNTT2022</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-header">Thứ 4<br /><small>17/05</small></div>
+      <div class="day-schedule">
+        <div class="class-item" style="grid-row: 1 / span 3">
+          <div class="class-name">Trí tuệ nhân tạo</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> B203</div>
+            <div><i class="fa fa-users"></i> CNTT2020</div>
+          </div>
+        </div>
+        <div class="class-item" style="grid-row: 7 / span 2">
+          <div class="class-name">An toàn thông tin</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> A305</div>
+            <div><i class="fa fa-users"></i> CNTT2021</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-header">Thứ 5<br /><small>18/05</small></div>
+      <div class="day-schedule">
+        <div class="class-item" style="grid-row: 4 / span 3">
+          <div class="class-name">Lập trình Java</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> A401</div>
+            <div><i class="fa fa-users"></i> CNTT2022</div>
+          </div>
+        </div>
+        <div class="class-item" style="grid-row: 10 / span 2">
+          <div class="class-name">Kiểm thử phần mềm</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> A305</div>
+            <div><i class="fa fa-users"></i> CNTT2020</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-header">Thứ 6<br /><small>19/05</small></div>
+      <div class="day-schedule">
+        <div class="class-item" style="grid-row: 7 / span 3">
+          <div class="class-name">Mạng máy tính</div>
+          <div class="class-info">
+            <div><i class="fa fa-map-marker"></i> B203</div>
+            <div><i class="fa fa-users"></i> CNTT2021</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-header">Thứ 7<br /><small>20/05</small></div>
+      <div class="day-schedule">
+        <!-- Không có lịch dạy -->
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-header">Chủ nhật<br /><small>21/05</small></div>
+      <div class="day-schedule">
+        <!-- Không có lịch dạy -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chế độ xem danh sách -->
+<div id="teaching-list-view" class="schedule-view">
+  <div class="schedule-list">
+    <div class="list-day">
+      <div class="list-day-header">Thứ 2 (15/05/2024)</div>
+      <div class="list-classes">
+        <div class="list-class-item">
+          <div class="class-time">07:00 - 09:30</div>
+          <div class="class-details">
+            <div class="class-name">Lập trình Web nâng cao</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 45</span>
+            </div>
+          </div>
+        </div>
+        <div class="list-class-item">
+          <div class="class-time">13:00 - 15:30</div>
+          <div class="class-details">
+            <div class="class-name">Phân tích và thiết kế hệ thống</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A401</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2021</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 38</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-day">
+      <div class="list-day-header">Thứ 3 (16/05/2024)</div>
+      <div class="list-classes">
+        <div class="list-class-item">
+          <div class="class-time">09:45 - 12:15</div>
+          <div class="class-details">
+            <div class="class-name">Cơ sở dữ liệu</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2022</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 52</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-day">
+      <div class="list-day-header">Thứ 4 (17/05/2024)</div>
+      <div class="list-classes">
+        <div class="list-class-item">
+          <div class="class-time">07:00 - 09:30</div>
+          <div class="class-details">
+            <div class="class-name">Trí tuệ nhân tạo</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 42</span>
+            </div>
+          </div>
+        </div>
+        <div class="list-class-item">
+          <div class="class-time">13:00 - 14:40</div>
+          <div class="class-details">
+            <div class="class-name">An toàn thông tin</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2021</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 40</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-day">
+      <div class="list-day-header">Thứ 5 (18/05/2024)</div>
+      <div class="list-classes">
+        <div class="list-class-item">
+          <div class="class-time">09:45 - 12:15</div>
+          <div class="class-details">
+            <div class="class-name">Lập trình Java</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A401</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2022</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 50</span>
+            </div>
+          </div>
+        </div>
+        <div class="list-class-item">
+          <div class="class-time">15:45 - 17:25</div>
+          <div class="class-details">
+            <div class="class-name">Kiểm thử phần mềm</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng A305</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2020</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 43</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-day">
+      <div class="list-day-header">Thứ 6 (19/05/2024)</div>
+      <div class="list-classes">
+        <div class="list-class-item">
+          <div class="class-time">13:00 - 15:30</div>
+          <div class="class-details">
+            <div class="class-name">Mạng máy tính</div>
+            <div class="class-info">
+              <span><i class="fa fa-map-marker"></i> Phòng B203</span>
+              <span><i class="fa fa-users"></i> Lớp: CNTT2021</span>
+              <span><i class="fa fa-info-circle"></i> Sĩ số: 38</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-day">
+      <div class="list-day-header">Thứ 7 (20/05/2024)</div>
+      <div class="list-classes">
+        <div class="list-empty">Không có lịch dạy</div>
+      </div>
+    </div>
+
+    <div class="list-day">
+      <div class="list-day-header">Chủ nhật (21/05/2024)</div>
+      <div class="list-classes">
+        <div class="list-empty">Không có lịch dạy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Thông tin chi tiết lớp học -->
+<div class="course-details">
+  <h2 class="section-title">Danh sách lớp học phần đang giảng dạy</h2>
+
+  <div class="course-table-container">
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Mã học phần</th>
+          <th>Tên học phần</th>
+          <th>Lớp</th>
+          <th>Sĩ số</th>
+          <th>Phòng học</th>
+          <th>Thời gian</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>IT4060</td>
+          <td>Lập trình Web nâng cao</td>
+          <td>CNTT2020</td>
+          <td>45</td>
+          <td>A305</td>
+          <td>Thứ 2 (07:00 - 09:30)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT4060')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT4060')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>IT3090</td>
+          <td>Phân tích và thiết kế hệ thống</td>
+          <td>CNTT2021</td>
+          <td>38</td>
+          <td>A401</td>
+          <td>Thứ 2 (13:00 - 15:30)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT3090')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT3090')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>IT2030</td>
+          <td>Cơ sở dữ liệu</td>
+          <td>CNTT2022</td>
+          <td>52</td>
+          <td>B203</td>
+          <td>Thứ 3 (09:45 - 12:15)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT2030')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT2030')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>IT4040</td>
+          <td>Trí tuệ nhân tạo</td>
+          <td>CNTT2020</td>
+          <td>42</td>
+          <td>B203</td>
+          <td>Thứ 4 (07:00 - 09:30)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT4040')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT4040')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>IT3120</td>
+          <td>An toàn thông tin</td>
+          <td>CNTT2021</td>
+          <td>40</td>
+          <td>A305</td>
+          <td>Thứ 4 (13:00 - 14:40)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT3120')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT3120')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>IT2020</td>
+          <td>Lập trình Java</td>
+          <td>CNTT2022</td>
+          <td>50</td>
+          <td>A401</td>
+          <td>Thứ 5 (09:45 - 12:15)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT2020')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT2020')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>IT4080</td>
+          <td>Kiểm thử phần mềm</td>
+          <td>CNTT2020</td>
+          <td>43</td>
+          <td>A305</td>
+          <td>Thứ 5 (15:45 - 17:25)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT4080')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT4080')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>IT3050</td>
+          <td>Mạng máy tính</td>
+          <td>CNTT2021</td>
+          <td>38</td>
+          <td>B203</td>
+          <td>Thứ 6 (13:00 - 15:30)</td>
+          <td>
+            <button
+              class="action-btn small"
+              onclick="viewClassDetails('IT3050')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn small"
+              onclick="exportClassList('IT3050')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Thống kê giờ giảng -->
+<div class="teaching-stats">
+  <h2 class="section-title">Thống kê giờ giảng</h2>
+
+  <div class="stats-filters">
+    <div class="control-group">
+      <label for="stats-semester">Học kỳ:</label>
+      <select id="stats-semester" onchange="loadTeachingStats()">
+        <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+        <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+        <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+        <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="stats-summary">
+    <div class="stats-card">
+      <div class="stats-title">Tổng số tiết giảng dạy</div>
+      <div class="stats-value">240</div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-title">Số tiết đã hoàn thành</div>
+      <div class="stats-value">180</div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-title">Số tiết còn lại</div>
+      <div class="stats-value">60</div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-title">Tỷ lệ hoàn thành</div>
+      <div class="stats-value">75%</div>
+    </div>
+  </div>
+
+  <div class="stats-chart">
+    <h3>Biểu đồ giờ giảng theo tuần</h3>
+    <div class="chart-placeholder">
+      <!-- Đây sẽ là nơi hiển thị biểu đồ -->
+      <div class="chart-message">Biểu đồ đang được tải...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm tải lịch giảng dạy
+  function loadTeachingSchedule() {
+    // Trong thực tế, hàm này sẽ gọi API để lấy dữ liệu lịch giảng dạy
+    console.log("Đang tải lịch giảng dạy...");
+
+    // Lấy giá trị từ các bộ lọc
+    const semester = document.getElementById("semester-select").value;
+    const week = document.getElementById("week-select").value;
+    const teacher = document.getElementById("teacher-select").value;
+
+    console.log(`Học kỳ: ${semester}, Tuần: ${week}, Giảng viên: ${teacher}`);
+
+    // Mô phỏng việc tải dữ liệu
+    setTimeout(() => {
+      console.log("Đã tải xong lịch giảng dạy");
+    }, 500);
+  }
+
+  // Hàm chuyển đổi chế độ xem
+  function changeTeachingView(viewType) {
+    const weekView = document.getElementById("teaching-week-view");
+    const listView = document.getElementById("teaching-list-view");
+    const viewButtons = document.querySelectorAll(".view-btn");
+
+    // Xóa trạng thái active của tất cả các nút
+    viewButtons.forEach((btn) => btn.classList.remove("active"));
+
+    if (viewType === "week") {
+      weekView.classList.add("active");
+      listView.classList.remove("active");
+      viewButtons[0].classList.add("active");
+    } else {
+      weekView.classList.remove("active");
+      listView.classList.add("active");
+      viewButtons[1].classList.add("active");
+    }
+  }
+
+  // Hàm điều hướng tuần
+  function navigateTeachingWeek(direction) {
+    // Trong thực tế, hàm này sẽ tính toán tuần trước/sau và cập nhật giao diện
+    const currentWeekElement = document.querySelector(".current-week");
+    const currentText = currentWeekElement.textContent;
+
+    if (direction === "prev") {
+      alert("Đang chuyển đến tuần trước");
+      // Cập nhật hiển thị tuần
+      // currentWeekElement.textContent = "Tuần 14 (02/05 - 08/05/2024)";
+    } else {
+      alert("Đang chuyển đến tuần sau");
+      // Cập nhật hiển thị tuần
+      // currentWeekElement.textContent = "Tuần 16 (16/05 - 22/05/2024)";
+    }
+
+    // Sau đó tải lại lịch giảng dạy
+    loadTeachingSchedule();
+  }
+
+  // Hàm in lịch giảng dạy
+  function printTeachingSchedule() {
+    alert("Đang chuẩn bị in lịch giảng dạy");
+    // Trong thực tế, hàm này sẽ mở cửa sổ in
+    // window.print();
+  }
+
+  // Hàm xuất lịch giảng dạy
+  function exportTeachingSchedule() {
+    alert("Đang xuất lịch giảng dạy ra file");
+    // Trong thực tế, hàm này sẽ tạo và tải xuống file Excel hoặc PDF
+  }
+
+  // Hàm xem chi tiết lớp học
+  function viewClassDetails(courseId) {
+    alert(`Đang mở chi tiết lớp học ${courseId}`);
+    // Trong thực tế, hàm này sẽ mở trang chi tiết lớp học hoặc hiển thị modal
+  }
+
+  // Hàm xuất danh sách lớp
+  function exportClassList(courseId) {
+    alert(`Đang xuất danh sách lớp học ${courseId}`);
+    // Trong thực tế, hàm này sẽ tạo và tải xuống file Excel
+  }
+
+  // Hàm tải thống kê giờ giảng
+  function loadTeachingStats() {
+    const semester = document.getElementById("stats-semester").value;
+    console.log(`Đang tải thống kê giờ giảng cho học kỳ: ${semester}`);
+
+    // Trong thực tế, hàm này sẽ gọi API để lấy dữ liệu thống kê
+    setTimeout(() => {
+      console.log("Đã tải xong thống kê giờ giảng");
+      // Cập nhật biểu đồ
+      updateTeachingChart();
+    }, 500);
+  }
+
+  // Hàm cập nhật biểu đồ
+  function updateTeachingChart() {
+    // Trong thực tế, hàm này sẽ vẽ biểu đồ bằng thư viện như Chart.js
+    console.log("Đang cập nhật biểu đồ giờ giảng");
+
+    // Mô phỏng việc vẽ biểu đồ
+    const chartPlaceholder = document.querySelector(".chart-placeholder");
+    chartPlaceholder.innerHTML = `
+      <div class="chart-message">
+        <p>Biểu đồ giờ giảng theo tuần</p>
+        <p><i>(Trong ứng dụng thực tế, đây sẽ là biểu đồ thống kê giờ giảng)</i></p>
+      </div>
+    `;
+  }
+
+  // Khởi tạo trang khi tải xong
+  document.addEventListener("DOMContentLoaded", function () {
+    // Tải lịch giảng dạy ban đầu
+    loadTeachingSchedule();
+
+    // Tải thống kê giờ giảng ban đầu
+    loadTeachingStats();
+  });
+</script>

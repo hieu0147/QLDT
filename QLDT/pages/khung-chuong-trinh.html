@@ -1,0 +1,931 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-graduation-cap" style="color: #2196f3"></i> Khung chương trình
+  đào tạo
+</h1>
+
+<!-- Thông tin chung -->
+<div class="program-info">
+  <div class="info-item">
+    <div class="info-label">Ngành học:</div>
+    <div class="info-value">Công nghệ thông tin</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Chuyên ngành:</div>
+    <div class="info-value">Kỹ thuật phần mềm</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Khóa học:</div>
+    <div class="info-value">2020-2024</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Tổng số tín chỉ:</div>
+    <div class="info-value">150</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Thời gian đào tạo:</div>
+    <div class="info-value">4 năm</div>
+  </div>
+</div>
+
+<!-- Bộ lọc và điều khiển -->
+<div class="program-controls">
+  <div class="control-group">
+    <label for="year-filter">Năm học:</label>
+    <select id="year-filter" onchange="filterCourses()">
+      <option value="all">Tất cả</option>
+      <option value="1">Năm thứ nhất</option>
+      <option value="2">Năm thứ hai</option>
+      <option value="3">Năm thứ ba</option>
+      <option value="4">Năm thứ tư</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="semester-filter">Học kỳ:</label>
+    <select id="semester-filter" onchange="filterCourses()">
+      <option value="all">Tất cả</option>
+      <option value="1">Học kỳ 1</option>
+      <option value="2">Học kỳ 2</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="course-type-filter">Loại học phần:</label>
+    <select id="course-type-filter" onchange="filterCourses()">
+      <option value="all">Tất cả</option>
+      <option value="required">Bắt buộc</option>
+      <option value="elective">Tự chọn</option>
+      <option value="general">Đại cương</option>
+      <option value="specialized">Chuyên ngành</option>
+    </select>
+  </div>
+
+  <div class="search-group">
+    <input
+      type="text"
+      id="course-search"
+      placeholder="Tìm kiếm học phần..."
+      onkeyup="searchCourses()"
+    />
+    <button class="search-btn"><i class="fa fa-search"></i></button>
+  </div>
+
+  <div class="action-controls">
+    <button class="action-btn" onclick="printProgram()">
+      <i class="fa fa-print"></i> In
+    </button>
+    <button class="action-btn" onclick="exportProgram()">
+      <i class="fa fa-download"></i> Xuất file
+    </button>
+  </div>
+</div>
+
+<!-- Thống kê tín chỉ -->
+<div class="credit-summary">
+  <div class="summary-item">
+    <div class="summary-value">150</div>
+    <div class="summary-label">Tổng số tín chỉ</div>
+  </div>
+  <div class="summary-item">
+    <div class="summary-value">120</div>
+    <div class="summary-label">Bắt buộc</div>
+  </div>
+  <div class="summary-item">
+    <div class="summary-value">30</div>
+    <div class="summary-label">Tự chọn</div>
+  </div>
+  <div class="summary-item">
+    <div class="summary-value">45</div>
+    <div class="summary-label">Đại cương</div>
+  </div>
+  <div class="summary-item">
+    <div class="summary-value">105</div>
+    <div class="summary-label">Chuyên ngành</div>
+  </div>
+</div>
+
+<!-- Khung chương trình theo năm học -->
+<div class="program-framework">
+  <!-- Năm thứ nhất -->
+  <div class="academic-year" data-year="1">
+    <div class="year-header">
+      <h2 class="year-title">Năm thứ nhất</h2>
+      <div class="year-summary">
+        <div class="summary-item">
+          <div class="summary-label">Tổng số tín chỉ:</div>
+          <div class="summary-value">36</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Học kỳ 1 -->
+    <div class="semester" data-semester="1">
+      <h3 class="semester-title">Học kỳ 1</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row general required">
+            <td>1</td>
+            <td>MATH1001</td>
+            <td>Giải tích 1</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>2</td>
+            <td>MATH1002</td>
+            <td>Đại số tuyến tính</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>3</td>
+            <td>PHYS1001</td>
+            <td>Vật lý đại cương</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>4</td>
+            <td>COMP1001</td>
+            <td>Nhập môn lập trình</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>5</td>
+            <td>COMP1002</td>
+            <td>Nhập môn công nghệ thông tin</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>6</td>
+            <td>ENGL1001</td>
+            <td>Tiếng Anh 1</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Học kỳ 2 -->
+    <div class="semester" data-semester="2">
+      <h3 class="semester-title">Học kỳ 2</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row general required">
+            <td>1</td>
+            <td>MATH1003</td>
+            <td>Giải tích 2</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>MATH1001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>2</td>
+            <td>MATH1004</td>
+            <td>Xác suất thống kê</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>MATH1001</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>3</td>
+            <td>COMP1003</td>
+            <td>Kỹ thuật lập trình</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP1001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>4</td>
+            <td>COMP1004</td>
+            <td>Cấu trúc dữ liệu và giải thuật</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP1001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>5</td>
+            <td>ENGL1002</td>
+            <td>Tiếng Anh 2</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>ENGL1001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>6</td>
+            <td>POLI1001</td>
+            <td>Triết học Mác-Lênin</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Năm thứ hai -->
+  <div class="academic-year" data-year="2">
+    <div class="year-header">
+      <h2 class="year-title">Năm thứ hai</h2>
+      <div class="year-summary">
+        <div class="summary-item">
+          <div class="summary-label">Tổng số tín chỉ:</div>
+          <div class="summary-value">36</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Học kỳ 1 -->
+    <div class="semester" data-semester="1">
+      <h3 class="semester-title">Học kỳ 1</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row specialized required">
+            <td>1</td>
+            <td>COMP2001</td>
+            <td>Cơ sở dữ liệu</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP1004</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>2</td>
+            <td>COMP2002</td>
+            <td>Lập trình hướng đối tượng</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP1003</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>3</td>
+            <td>COMP2003</td>
+            <td>Kiến trúc máy tính</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>COMP1002</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>4</td>
+            <td>COMP2004</td>
+            <td>Hệ điều hành</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>COMP2003</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>5</td>
+            <td>ENGL2001</td>
+            <td>Tiếng Anh 3</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>ENGL1002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>6</td>
+            <td>POLI2001</td>
+            <td>Kinh tế chính trị Mác-Lênin</td>
+            <td>2</td>
+            <td>Bắt buộc</td>
+            <td>POLI1001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Học kỳ 2 -->
+    <div class="semester" data-semester="2">
+      <h3 class="semester-title">Học kỳ 2</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row specialized required">
+            <td>1</td>
+            <td>COMP2005</td>
+            <td>Mạng máy tính</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>COMP2003</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>2</td>
+            <td>COMP2006</td>
+            <td>Phân tích và thiết kế hệ thống</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP2001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>3</td>
+            <td>COMP2007</td>
+            <td>Lập trình Web</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP2002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>4</td>
+            <td>COMP2008</td>
+            <td>Lập trình Java</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP2002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>5</td>
+            <td>ENGL2002</td>
+            <td>Tiếng Anh 4</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>ENGL2001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>6</td>
+            <td>POLI2002</td>
+            <td>Chủ nghĩa xã hội khoa học</td>
+            <td>2</td>
+            <td>Bắt buộc</td>
+            <td>POLI2001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Năm thứ ba -->
+  <div class="academic-year" data-year="3">
+    <div class="year-header">
+      <h2 class="year-title">Năm thứ ba</h2>
+      <div class="year-summary">
+        <div class="summary-item">
+          <div class="summary-label">Tổng số tín chỉ:</div>
+          <div class="summary-value">39</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Học kỳ 1 -->
+    <div class="semester" data-semester="1">
+      <h3 class="semester-title">Học kỳ 1</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row specialized required">
+            <td>1</td>
+            <td>COMP3001</td>
+            <td>Công nghệ phần mềm</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP2006</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>2</td>
+            <td>COMP3002</td>
+            <td>Trí tuệ nhân tạo</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP1004</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>3</td>
+            <td>COMP3003</td>
+            <td>An toàn thông tin</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP2005</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>4</td>
+            <td>COMP3004</td>
+            <td>Lập trình di động</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP2008</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>5</td>
+            <td>COMP3005</td>
+            <td>Lập trình Web nâng cao</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP2007</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>6</td>
+            <td>POLI3001</td>
+            <td>Tư tưởng Hồ Chí Minh</td>
+            <td>2</td>
+            <td>Bắt buộc</td>
+            <td>POLI2002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Học kỳ 2 -->
+    <div class="semester" data-semester="2">
+      <h3 class="semester-title">Học kỳ 2</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row specialized required">
+            <td>1</td>
+            <td>COMP3006</td>
+            <td>Kiểm thử phần mềm</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP3001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>2</td>
+            <td>COMP3007</td>
+            <td>Quản lý dự án phần mềm</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP3001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>3</td>
+            <td>COMP3008</td>
+            <td>Học máy</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP3002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>4</td>
+            <td>COMP3009</td>
+            <td>Phát triển game</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP2002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>5</td>
+            <td>COMP3010</td>
+            <td>Điện toán đám mây</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP2005</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row general required">
+            <td>6</td>
+            <td>POLI3002</td>
+            <td>Lịch sử Đảng Cộng sản Việt Nam</td>
+            <td>2</td>
+            <td>Bắt buộc</td>
+            <td>POLI3001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized required">
+            <td>7</td>
+            <td>COMP3011</td>
+            <td>Thực tập doanh nghiệp</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Năm thứ tư -->
+  <div class="academic-year" data-year="4">
+    <div class="year-header">
+      <h2 class="year-title">Năm thứ tư</h2>
+      <div class="year-summary">
+        <div class="summary-item">
+          <div class="summary-label">Tổng số tín chỉ:</div>
+          <div class="summary-value">39</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Học kỳ 1 -->
+    <div class="semester" data-semester="1">
+      <h3 class="semester-title">Học kỳ 1</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row specialized required">
+            <td>1</td>
+            <td>COMP4001</td>
+            <td>Đồ án chuyên ngành</td>
+            <td>3</td>
+            <td>Bắt buộc</td>
+            <td>COMP3001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>2</td>
+            <td>COMP4002</td>
+            <td>Phát triển phần mềm hướng dịch vụ</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP3001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>3</td>
+            <td>COMP4003</td>
+            <td>Blockchain và ứng dụng</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP3003</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>4</td>
+            <td>COMP4004</td>
+            <td>Internet of Things</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP2005</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>5</td>
+            <td>COMP4005</td>
+            <td>Xử lý ngôn ngữ tự nhiên</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP3002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>6</td>
+            <td>COMP4006</td>
+            <td>Thị giác máy tính</td>
+            <td>3</td>
+            <td>Tự chọn</td>
+            <td>COMP3002</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Học kỳ 2 -->
+    <div class="semester" data-semester="2">
+      <h3 class="semester-title">Học kỳ 2</h3>
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã học phần</th>
+            <th>Tên học phần</th>
+            <th>Số tín chỉ</th>
+            <th>Loại học phần</th>
+            <th>Học phần tiên quyết</th>
+            <th>Học phần học trước</th>
+            <th>Học phần song hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="course-row specialized required">
+            <td>1</td>
+            <td>COMP4007</td>
+            <td>Khóa luận tốt nghiệp</td>
+            <td>10</td>
+            <td>Bắt buộc</td>
+            <td>COMP4001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>2</td>
+            <td>COMP4008</td>
+            <td>Chuyên đề tốt nghiệp 1</td>
+            <td>3</td>
+            <td>Tự chọn thay thế khóa luận</td>
+            <td>COMP4001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>3</td>
+            <td>COMP4009</td>
+            <td>Chuyên đề tốt nghiệp 2</td>
+            <td>3</td>
+            <td>Tự chọn thay thế khóa luận</td>
+            <td>COMP4001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr class="course-row specialized elective">
+            <td>4</td>
+            <td>COMP4010</td>
+            <td>Chuyên đề tốt nghiệp 3</td>
+            <td>4</td>
+            <td>Tự chọn thay thế khóa luận</td>
+            <td>COMP4001</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Ghi chú -->
+<div class="program-notes">
+  <h3 class="notes-title">Ghi chú</h3>
+  <ul class="notes-list">
+    <li>
+      Sinh viên phải hoàn thành tất cả các học phần bắt buộc và đủ số tín chỉ tự
+      chọn theo quy định.
+    </li>
+    <li>
+      Sinh viên có thể chọn học phần tự chọn thay thế khóa luận tốt nghiệp nếu
+      không đủ điều kiện làm khóa luận.
+    </li>
+    <li>
+      Điều kiện làm khóa luận tốt nghiệp: Điểm trung bình tích lũy từ 2.5 trở
+      lên và đã hoàn thành tất cả các học phần bắt buộc.
+    </li>
+    <li>
+      Học phần tiên quyết: Là học phần bắt buộc sinh viên phải học và thi đạt
+      trước khi học học phần này.
+    </li>
+    <li>
+      Học phần học trước: Là học phần bắt buộc sinh viên phải học trước (không
+      nhất thiết phải đạt) khi học học phần này.
+    </li>
+    <li>
+      Học phần song hành: Là học phần mà sinh viên phải học trước hoặc học cùng
+      với học phần này.
+    </li>
+  </ul>
+</div>
+
+<script>
+  // Hàm lọc học phần
+  function filterCourses() {
+    const yearFilter = document.getElementById("year-filter").value;
+    const semesterFilter = document.getElementById("semester-filter").value;
+    const courseTypeFilter =
+      document.getElementById("course-type-filter").value;
+
+    // Lọc theo năm học
+    const academicYears = document.querySelectorAll(".academic-year");
+    academicYears.forEach((year) => {
+      const yearValue = year.getAttribute("data-year");
+      if (yearFilter === "all" || yearFilter === yearValue) {
+        year.style.display = "block";
+      } else {
+        year.style.display = "none";
+      }
+    });
+
+    // Lọc theo học kỳ
+    const semesters = document.querySelectorAll(".semester");
+    semesters.forEach((semester) => {
+      const semesterValue = semester.getAttribute("data-semester");
+      if (semesterFilter === "all" || semesterFilter === semesterValue) {
+        semester.style.display = "block";
+      } else {
+        semester.style.display = "none";
+      }
+    });
+
+    // Lọc theo loại học phần
+    const courseRows = document.querySelectorAll(".course-row");
+    courseRows.forEach((row) => {
+      let showRow = true;
+
+      if (courseTypeFilter !== "all") {
+        if (
+          courseTypeFilter === "required" &&
+          !row.classList.contains("required")
+        ) {
+          showRow = false;
+        }
+        if (
+          courseTypeFilter === "elective" &&
+          !row.classList.contains("elective")
+        ) {
+          showRow = false;
+        }
+        if (
+          courseTypeFilter === "general" &&
+          !row.classList.contains("general")
+        ) {
+          showRow = false;
+        }
+        if (
+          courseTypeFilter === "specialized" &&
+          !row.classList.contains("specialized")
+        ) {
+          showRow = false;
+        }
+      }
+
+      row.style.display = showRow ? "" : "none";
+    });
+  }
+
+  // Hàm tìm kiếm học phần
+  function searchCourses() {
+    const searchText = document
+      .getElementById("course-search")
+      .value.toLowerCase();
+    const courseRows = document.querySelectorAll(".course-row");
+
+    courseRows.forEach((row) => {
+      const courseCode = row
+        .querySelector("td:nth-child(2)")
+        .textContent.toLowerCase();
+      const courseName = row
+        .querySelector("td:nth-child(3)")
+        .textContent.toLowerCase();
+
+      if (courseCode.includes(searchText) || courseName.includes(searchText)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  // Hàm in khung chương trình
+  function printProgram() {
+    window.print();
+  }
+
+  // Hàm xuất file khung chương trình
+  function exportProgram() {
+    alert("Đang xuất file khung chương trình...");
+    // Trong thực tế, đây sẽ là API call để xuất file
+  }
+</script>

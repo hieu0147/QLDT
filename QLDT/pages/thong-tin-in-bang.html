@@ -1,0 +1,867 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-certificate" style="color: #ff9800"></i> Thông tin in bằng
+</h1>
+
+<!-- Thông tin trạng thái -->
+<div class="certificate-status">
+  <div class="status-icon">
+    <i class="fa fa-hourglass-half"></i>
+  </div>
+  <div class="status-info">
+    <h3>Trạng thái: <span class="status-processing">Đang xử lý</span></h3>
+    <p>
+      Hồ sơ của bạn đang được xử lý để chuẩn bị in bằng. Vui lòng kiểm tra
+      thường xuyên để cập nhật trạng thái.
+    </p>
+  </div>
+</div>
+
+<!-- Thông tin cá nhân trên bằng -->
+<div class="certificate-info">
+  <h2 class="section-title">Thông tin cá nhân trên bằng</h2>
+
+  <div class="info-container">
+    <div class="info-section">
+      <div class="info-group">
+        <div class="info-label">Họ và tên:</div>
+        <div class="info-value">Nguyễn Văn A</div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-label">Ngày sinh:</div>
+        <div class="info-value">01/01/2000</div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-label">Nơi sinh:</div>
+        <div class="info-value">Đồng Nai</div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-label">Giới tính:</div>
+        <div class="info-value">Nam</div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-group">
+        <div class="info-label">Ngành đào tạo:</div>
+        <div class="info-value">Công nghệ thông tin</div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-label">Chuyên ngành:</div>
+        <div class="info-value">Công nghệ phần mềm</div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-label">Khóa học:</div>
+        <div class="info-value">2020 - 2024</div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-label">Hình thức đào tạo:</div>
+        <div class="info-value">Chính quy</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-verification">
+    <div class="verification-message">
+      <i class="fa fa-info-circle"></i>
+      <span
+        >Vui lòng kiểm tra kỹ thông tin cá nhân trên bằng. Nếu có sai sót, hãy
+        liên hệ phòng Đào tạo trước ngày 25/06/2024 để điều chỉnh.</span
+      >
+    </div>
+
+    <div class="verification-actions">
+      <button class="action-btn primary" onclick="confirmInfo()">
+        <i class="fa fa-check-circle"></i> Xác nhận thông tin chính xác
+      </button>
+      <button class="action-btn secondary" onclick="requestCorrection()">
+        <i class="fa fa-pencil"></i> Yêu cầu chỉnh sửa
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Thông tin bằng -->
+<div class="certificate-details">
+  <h2 class="section-title">Thông tin bằng</h2>
+
+  <div class="details-container">
+    <div class="detail-card">
+      <div class="detail-icon">
+        <i class="fa fa-graduation-cap"></i>
+      </div>
+      <div class="detail-content">
+        <h3>Loại bằng</h3>
+        <p>Bằng Kỹ sư</p>
+      </div>
+    </div>
+
+    <div class="detail-card">
+      <div class="detail-icon">
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="detail-content">
+        <h3>Xếp loại</h3>
+        <p>Giỏi</p>
+      </div>
+    </div>
+
+    <div class="detail-card">
+      <div class="detail-icon">
+        <i class="fa fa-calendar-check-o"></i>
+      </div>
+      <div class="detail-content">
+        <h3>Ngày cấp dự kiến</h3>
+        <p>30/06/2024</p>
+      </div>
+    </div>
+
+    <div class="detail-card">
+      <div class="detail-icon">
+        <i class="fa fa-barcode"></i>
+      </div>
+      <div class="detail-content">
+        <h3>Số hiệu bằng</h3>
+        <p>Chưa cấp</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tiến trình xử lý -->
+<div class="certificate-process">
+  <h2 class="section-title">Tiến trình xử lý</h2>
+
+  <div class="process-timeline">
+    <div class="timeline-item completed">
+      <div class="timeline-point"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">15/05/2024</div>
+        <div class="timeline-title">Xét duyệt tốt nghiệp</div>
+        <div class="timeline-desc">Hội đồng xét tốt nghiệp đã phê duyệt</div>
+      </div>
+    </div>
+
+    <div class="timeline-item completed">
+      <div class="timeline-point"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">20/05/2024</div>
+        <div class="timeline-title">Chuẩn bị thông tin in bằng</div>
+        <div class="timeline-desc">Thông tin đã được chuẩn bị và kiểm tra</div>
+      </div>
+    </div>
+
+    <div class="timeline-item active">
+      <div class="timeline-point"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">Đang xử lý</div>
+        <div class="timeline-title">In bằng</div>
+        <div class="timeline-desc">Đang trong quá trình in bằng</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-point"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">Chưa hoàn thành</div>
+        <div class="timeline-title">Ký và đóng dấu</div>
+        <div class="timeline-desc">Chờ ký và đóng dấu bằng</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-point"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">Chưa hoàn thành</div>
+        <div class="timeline-title">Cấp bằng</div>
+        <div class="timeline-desc">Bằng sẽ được cấp trong lễ tốt nghiệp</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hướng dẫn nhận bằng -->
+<div class="certificate-guide">
+  <h2 class="section-title">Hướng dẫn nhận bằng</h2>
+
+  <div class="guide-container">
+    <div class="guide-section">
+      <h3 class="subsection-title">Thời gian và địa điểm</h3>
+      <div class="guide-content">
+        <p><strong>Thời gian:</strong> 08:00 - 11:30, Ngày 30/06/2024</p>
+        <p>
+          <strong>Địa điểm:</strong> Hội trường lớn, Trường Đại học Công nghệ
+          Đồng Nai
+        </p>
+        <p>
+          <strong>Lưu ý:</strong> Sinh viên cần có mặt trước 07:30 để làm thủ
+          tục nhận bằng.
+        </p>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <h3 class="subsection-title">Giấy tờ cần mang theo</h3>
+      <div class="guide-content">
+        <ul class="document-list">
+          <li><i class="fa fa-id-card"></i> Thẻ sinh viên hoặc CMND/CCCD</li>
+          <li>
+            <i class="fa fa-file-text"></i> Giấy xác nhận hoàn thành chương
+            trình đào tạo
+          </li>
+          <li>
+            <i class="fa fa-money"></i> Biên lai đóng lệ phí cấp bằng (nếu có)
+          </li>
+          <li>
+            <i class="fa fa-check-square"></i> Giấy xác nhận đã hoàn thành nghĩa
+            vụ với nhà trường
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <h3 class="subsection-title">Quy trình nhận bằng</h3>
+      <div class="guide-content">
+        <ol class="process-list">
+          <li>Kiểm tra tên trong danh sách nhận bằng</li>
+          <li>Xuất trình giấy tờ tùy thân và các giấy tờ cần thiết</li>
+          <li>Ký xác nhận vào sổ cấp bằng</li>
+          <li>Nhận bằng và bảng điểm</li>
+          <li>Kiểm tra thông tin trên bằng</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-note">
+    <div class="note-icon">
+      <i class="fa fa-exclamation-triangle"></i>
+    </div>
+    <div class="note-content">
+      <h3>Lưu ý quan trọng</h3>
+      <p>
+        Trường hợp không thể trực tiếp đến nhận bằng, sinh viên có thể ủy quyền
+        cho người khác nhận thay. Người được ủy quyền cần mang theo giấy ủy
+        quyền có công chứng, CMND/CCCD của người được ủy quyền và bản sao
+        CMND/CCCD của người ủy quyền.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Thông tin bản sao bằng -->
+<div class="certificate-copy">
+  <h2 class="section-title">Đăng ký bản sao bằng</h2>
+
+  <div class="copy-info">
+    <p>
+      Nếu bạn cần đăng ký bản sao bằng tốt nghiệp có giá trị pháp lý, vui lòng
+      điền thông tin vào biểu mẫu dưới đây:
+    </p>
+
+    <div class="copy-form">
+      <div class="form-group">
+        <label for="copy-quantity">Số lượng bản sao:</label>
+        <select id="copy-quantity">
+          <option value="1">1 bản</option>
+          <option value="2">2 bản</option>
+          <option value="3">3 bản</option>
+          <option value="4">4 bản</option>
+          <option value="5">5 bản</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="copy-language">Ngôn ngữ:</label>
+        <select id="copy-language">
+          <option value="vi">Tiếng Việt</option>
+          <option value="en">Tiếng Anh</option>
+          <option value="both">Song ngữ Việt - Anh</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="copy-purpose">Mục đích sử dụng:</label>
+        <input
+          type="text"
+          id="copy-purpose"
+          placeholder="Nhập mục đích sử dụng bản sao"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="copy-receive">Hình thức nhận:</label>
+        <select id="copy-receive">
+          <option value="direct">Nhận trực tiếp tại trường</option>
+          <option value="post">Nhận qua đường bưu điện</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="address-group" style="display: none">
+        <label for="copy-address">Địa chỉ nhận bằng:</label>
+        <textarea
+          id="copy-address"
+          placeholder="Nhập địa chỉ nhận bằng qua đường bưu điện"
+        ></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="action-btn primary" onclick="registerCopy()">
+          <i class="fa fa-check-circle"></i> Đăng ký
+        </button>
+        <button class="action-btn secondary" onclick="resetForm()">
+          <i class="fa fa-refresh"></i> Làm mới
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-fee">
+    <h3 class="subsection-title">Lệ phí cấp bản sao</h3>
+    <div class="fee-table-container">
+      <table class="fee-table">
+        <thead>
+          <tr>
+            <th>Loại bản sao</th>
+            <th>Đơn giá</th>
+            <th>Thời gian xử lý</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bản sao tiếng Việt</td>
+            <td>50,000 VNĐ/bản</td>
+            <td>3-5 ngày làm việc</td>
+          </tr>
+          <tr>
+            <td>Bản sao tiếng Anh</td>
+            <td>100,000 VNĐ/bản</td>
+            <td>5-7 ngày làm việc</td>
+          </tr>
+          <tr>
+            <td>Bản sao song ngữ Việt - Anh</td>
+            <td>150,000 VNĐ/bản</td>
+            <td>7-10 ngày làm việc</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fee-note">
+      <p>
+        <i class="fa fa-info-circle"></i> Lệ phí cấp bản sao không bao gồm phí
+        vận chuyển nếu nhận qua đường bưu điện.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Định dạng cho trang Thông tin in bằng */
+  .certificate-status {
+    display: flex;
+    align-items: center;
+    background: #fff3e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .status-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .status-icon i {
+    font-size: 30px;
+    color: #ff9800;
+  }
+
+  .status-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+  }
+
+  .status-info p {
+    margin: 0;
+    color: #666;
+  }
+
+  .status-processing {
+    color: #ff9800;
+    font-weight: 600;
+  }
+
+  /* Thông tin cá nhân trên bằng */
+  .certificate-info {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .info-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .info-section {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .info-group {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #e0e0e0;
+  }
+
+  .info-label {
+    width: 150px;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .info-value {
+    flex: 1;
+    color: #333;
+  }
+
+  .info-verification {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e8f5e9;
+    border-radius: 8px;
+  }
+
+  .verification-message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .verification-message i {
+    font-size: 20px;
+    color: #4caf50;
+    margin-right: 10px;
+  }
+
+  .verification-actions {
+    display: flex;
+    gap: 15px;
+  }
+
+  .action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .action-btn i {
+    margin-right: 8px;
+  }
+
+  .action-btn.primary {
+    background: #4caf50;
+    color: white;
+  }
+
+  .action-btn.secondary {
+    background: #f5f5f5;
+    color: #333;
+  }
+
+  .action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  /* Thông tin bằng */
+  .certificate-details {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .details-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .detail-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+  }
+
+  .detail-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .detail-icon i {
+    font-size: 24px;
+    color: #ff9800;
+  }
+
+  .detail-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .detail-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+
+  /* Tiến trình xử lý */
+  .certificate-process {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .process-timeline {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 20px;
+  }
+
+  .process-timeline:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: #e0e0e0;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  .timeline-point {
+    position: absolute;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #ccc;
+  }
+
+  .timeline-item.completed .timeline-point {
+    background: #4caf50;
+    border-color: #4caf50;
+  }
+
+  .timeline-item.active .timeline-point {
+    background: #ff9800;
+    border-color: #ff9800;
+  }
+
+  .timeline-content {
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  .timeline-date {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+
+  .timeline-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  .timeline-desc {
+    font-size: 14px;
+    color: #666;
+  }
+
+  /* Hướng dẫn nhận bằng */
+  .certificate-guide {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .guide-container {
+    margin-top: 20px;
+  }
+
+  .guide-section {
+    margin-bottom: 20px;
+  }
+
+  .subsection-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+    border-left: 4px solid #ff9800;
+    padding-left: 10px;
+  }
+
+  .guide-content {
+    padding: 0 0 0 15px;
+  }
+
+  .document-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .document-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .document-list li i {
+    margin-right: 10px;
+    color: #ff9800;
+  }
+
+  .process-list {
+    padding-left: 20px;
+  }
+
+  .process-list li {
+    margin-bottom: 10px;
+  }
+
+  .guide-note {
+    display: flex;
+    align-items: flex-start;
+    background: #fff3e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .note-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  .note-icon i {
+    font-size: 20px;
+    color: #ff9800;
+  }
+
+  .note-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .note-content p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+  }
+
+  /* Thông tin bản sao bằng */
+  .certificate-copy {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .copy-info {
+    margin-top: 20px;
+  }
+
+  .copy-form {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .form-group select,
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .form-group textarea {
+    height: 80px;
+    resize: vertical;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .copy-fee {
+    margin-top: 30px;
+  }
+
+  .fee-table-container {
+    overflow-x: auto;
+  }
+
+  .fee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  .fee-table th {
+    background: #f5f5f5;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .fee-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .fee-note {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .fee-note i {
+    color: #ff9800;
+    margin-right: 5px;
+  }
+</style>
+
+<script>
+  // Hiển thị/ẩn trường địa chỉ khi chọn hình thức nhận bằng
+  document
+    .getElementById("copy-receive")
+    .addEventListener("change", function () {
+      var addressGroup = document.getElementById("address-group");
+      if (this.value === "post") {
+        addressGroup.style.display = "block";
+      } else {
+        addressGroup.style.display = "none";
+      }
+    });
+
+  function confirmInfo() {
+    alert("Bạn đã xác nhận thông tin cá nhân trên bằng là chính xác!");
+  }
+
+  function requestCorrection() {
+    alert(
+      "Yêu cầu chỉnh sửa thông tin đã được gửi. Phòng Đào tạo sẽ liên hệ với bạn trong thời gian sớm nhất!"
+    );
+  }
+
+  function registerCopy() {
+    var quantity = document.getElementById("copy-quantity").value;
+    var language = document.getElementById("copy-language").value;
+    var purpose = document.getElementById("copy-purpose").value;
+    var receiveMethod = document.getElementById("copy-receive").value;
+
+    if (!purpose) {
+      alert("Vui lòng nhập mục đích sử dụng bản sao!");
+      return;
+    }
+
+    if (receiveMethod === "post") {
+      var address = document.getElementById("copy-address").value;
+      if (!address) {
+        alert("Vui lòng nhập địa chỉ nhận bằng!");
+        return;
+      }
+    }
+
+    alert(
+      "Đăng ký bản sao bằng thành công! Bạn sẽ nhận được thông báo khi bản sao được chuẩn bị xong."
+    );
+  }
+
+  function resetForm() {
+    document.getElementById("copy-quantity").value = "1";
+    document.getElementById("copy-language").value = "vi";
+    document.getElementById("copy-purpose").value = "";
+    document.getElementById("copy-receive").value = "direct";
+    document.getElementById("address-group").style.display = "none";
+    document.getElementById("copy-address").value = "";
+  }
+</script>

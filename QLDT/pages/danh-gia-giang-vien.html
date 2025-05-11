@@ -1,0 +1,1259 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-star" style="color: #ff9800"></i> Đánh giá giảng viên
+</h1>
+
+<!-- Giới thiệu -->
+<div class="evaluation-intro">
+  <p>
+    Đánh giá của sinh viên là một phần quan trọng giúp nhà trường nâng cao chất
+    lượng giảng dạy. Vui lòng dành thời gian đánh giá các giảng viên của bạn một
+    cách khách quan và chân thực.
+  </p>
+  <div class="note-box">
+    <p>
+      <strong>Lưu ý:</strong> Thông tin đánh giá của bạn sẽ được giữ bí mật và
+      chỉ được sử dụng cho mục đích cải thiện chất lượng giảng dạy. Giảng viên
+      sẽ chỉ nhận được kết quả tổng hợp, không biết được đánh giá cụ thể của
+      từng sinh viên.
+    </p>
+  </div>
+</div>
+
+<!-- Thống kê đánh giá -->
+<div class="evaluation-stats">
+  <div class="stat-item">
+    <div class="stat-value">8</div>
+    <div class="stat-label">Tổng số học phần</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Đã đánh giá</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Chưa đánh giá</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">62.5%</div>
+    <div class="stat-label">Hoàn thành</div>
+  </div>
+</div>
+
+<!-- Bộ lọc học phần -->
+<div class="evaluation-filters">
+  <div class="control-group">
+    <label for="semester-select">Học kỳ:</label>
+    <select id="semester-select" onchange="loadCourses()">
+      <option value="2023-2024-2">Học kỳ 2, năm học 2023-2024</option>
+      <option value="2023-2024-1">Học kỳ 1, năm học 2023-2024</option>
+      <option value="2022-2023-2">Học kỳ 2, năm học 2022-2023</option>
+      <option value="2022-2023-1">Học kỳ 1, năm học 2022-2023</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="evaluation-status">Trạng thái:</label>
+    <select id="evaluation-status" onchange="loadCourses()">
+      <option value="all">Tất cả</option>
+      <option value="completed">Đã đánh giá</option>
+      <option value="pending">Chưa đánh giá</option>
+    </select>
+  </div>
+</div>
+
+<!-- Danh sách học phần cần đánh giá -->
+<div class="evaluation-list">
+  <h2 class="section-title">Danh sách học phần cần đánh giá</h2>
+
+  <div class="course-cards">
+    <!-- Học phần 1 - Chưa đánh giá -->
+    <div class="course-card pending">
+      <div class="course-header">
+        <div class="course-code">LTWNC01</div>
+        <div class="evaluation-badge pending">Chưa đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">Lập trình Web nâng cao</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Nguyễn Văn X
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button
+          class="evaluate-btn"
+          onclick="openEvaluationForm('LTWNC01', 'Lập trình Web nâng cao', 'TS. Nguyễn Văn X')"
+        >
+          <i class="fa fa-star"></i> Đánh giá ngay
+        </button>
+      </div>
+    </div>
+
+    <!-- Học phần 2 - Chưa đánh giá -->
+    <div class="course-card pending">
+      <div class="course-header">
+        <div class="course-code">TTNT02</div>
+        <div class="evaluation-badge pending">Chưa đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">Trí tuệ nhân tạo</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Trần Thị Z
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button
+          class="evaluate-btn"
+          onclick="openEvaluationForm('TTNT02', 'Trí tuệ nhân tạo', 'TS. Trần Thị Z')"
+        >
+          <i class="fa fa-star"></i> Đánh giá ngay
+        </button>
+      </div>
+    </div>
+
+    <!-- Học phần 3 - Chưa đánh giá -->
+    <div class="course-card pending">
+      <div class="course-header">
+        <div class="course-code">ATTT01</div>
+        <div class="evaluation-badge pending">Chưa đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">An toàn thông tin</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Phạm Văn W
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button
+          class="evaluate-btn"
+          onclick="openEvaluationForm('ATTT01', 'An toàn thông tin', 'TS. Phạm Văn W')"
+        >
+          <i class="fa fa-star"></i> Đánh giá ngay
+        </button>
+      </div>
+    </div>
+
+    <!-- Học phần 4 - Đã đánh giá -->
+    <div class="course-card completed">
+      <div class="course-header">
+        <div class="course-code">PTTKHT01</div>
+        <div class="evaluation-badge completed">Đã đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">Phân tích và thiết kế hệ thống</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Lê Văn Y
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+        <div class="evaluation-summary">
+          <div class="rating-stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <div class="rating-date">Đánh giá ngày: 01/06/2024</div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button class="view-btn" onclick="viewEvaluation('PTTKHT01')">
+          <i class="fa fa-eye"></i> Xem đánh giá
+        </button>
+        <button
+          class="edit-btn"
+          onclick="openEvaluationForm('PTTKHT01', 'Phân tích và thiết kế hệ thống', 'TS. Lê Văn Y', true)"
+        >
+          <i class="fa fa-edit"></i> Sửa
+        </button>
+      </div>
+    </div>
+
+    <!-- Học phần 5 - Đã đánh giá -->
+    <div class="course-card completed">
+      <div class="course-header">
+        <div class="course-code">JAVA03</div>
+        <div class="evaluation-badge completed">Đã đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">Lập trình Java</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Lê Văn Y
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+        <div class="evaluation-summary">
+          <div class="rating-stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <div class="rating-date">Đánh giá ngày: 02/06/2024</div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button class="view-btn" onclick="viewEvaluation('JAVA03')">
+          <i class="fa fa-eye"></i> Xem đánh giá
+        </button>
+        <button
+          class="edit-btn"
+          onclick="openEvaluationForm('JAVA03', 'Lập trình Java', 'TS. Lê Văn Y', true)"
+        >
+          <i class="fa fa-edit"></i> Sửa
+        </button>
+      </div>
+    </div>
+
+    <!-- Học phần 6 - Đã đánh giá -->
+    <div class="course-card completed">
+      <div class="course-header">
+        <div class="course-code">CSDL02</div>
+        <div class="evaluation-badge completed">Đã đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">Cơ sở dữ liệu</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Trần Thị Z
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+        <div class="evaluation-summary">
+          <div class="rating-stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <div class="rating-date">Đánh giá ngày: 03/06/2024</div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button class="view-btn" onclick="viewEvaluation('CSDL02')">
+          <i class="fa fa-eye"></i> Xem đánh giá
+        </button>
+        <button
+          class="edit-btn"
+          onclick="openEvaluationForm('CSDL02', 'Cơ sở dữ liệu', 'TS. Trần Thị Z', true)"
+        >
+          <i class="fa fa-edit"></i> Sửa
+        </button>
+      </div>
+    </div>
+
+    <!-- Học phần 7 - Đã đánh giá -->
+    <div class="course-card completed">
+      <div class="course-header">
+        <div class="course-code">MMT01</div>
+        <div class="evaluation-badge completed">Đã đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">Mạng máy tính</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Phạm Văn W
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+        <div class="evaluation-summary">
+          <div class="rating-stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <div class="rating-date">Đánh giá ngày: 04/06/2024</div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button class="view-btn" onclick="viewEvaluation('MMT01')">
+          <i class="fa fa-eye"></i> Xem đánh giá
+        </button>
+        <button
+          class="edit-btn"
+          onclick="openEvaluationForm('MMT01', 'Mạng máy tính', 'TS. Phạm Văn W', true)"
+        >
+          <i class="fa fa-edit"></i> Sửa
+        </button>
+      </div>
+    </div>
+
+    <!-- Học phần 8 - Đã đánh giá -->
+    <div class="course-card completed">
+      <div class="course-header">
+        <div class="course-code">KTPM02</div>
+        <div class="evaluation-badge completed">Đã đánh giá</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">Kiểm thử phần mềm</div>
+        <div class="course-info">
+          <div class="info-item">
+            <i class="fa fa-user"></i> GV: TS. Nguyễn Văn X
+          </div>
+          <div class="info-item"><i class="fa fa-users"></i> Lớp: CNTT2020</div>
+          <div class="info-item">
+            <i class="fa fa-calendar"></i> Học kỳ: 2, 2023-2024
+          </div>
+        </div>
+        <div class="evaluation-summary">
+          <div class="rating-stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <div class="rating-date">Đánh giá ngày: 05/06/2024</div>
+        </div>
+      </div>
+      <div class="course-footer">
+        <button class="view-btn" onclick="viewEvaluation('KTPM02')">
+          <i class="fa fa-eye"></i> Xem đánh giá
+        </button>
+        <button
+          class="edit-btn"
+          onclick="openEvaluationForm('KTPM02', 'Kiểm thử phần mềm', 'TS. Nguyễn Văn X', true)"
+        >
+          <i class="fa fa-edit"></i> Sửa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form đánh giá (Modal) -->
+<div id="evaluation-modal" class="modal">
+  <div class="modal-content evaluation-form-modal">
+    <div class="modal-header">
+      <h3>Đánh giá giảng viên</h3>
+      <span class="close-modal" onclick="closeEvaluationForm()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="course-info-header">
+        <div class="info-row">
+          <div class="info-label">Học phần:</div>
+          <div class="info-value" id="eval-course-name">
+            Lập trình Web nâng cao (LTWNC01)
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Giảng viên:</div>
+          <div class="info-value" id="eval-lecturer">TS. Nguyễn Văn X</div>
+        </div>
+      </div>
+
+      <form id="evaluation-form">
+        <input type="hidden" id="course-code" value="" />
+
+        <div class="evaluation-section">
+          <h4>1. Nội dung và phương pháp giảng dạy</h4>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              1.1. Giảng viên truyền đạt nội dung môn học rõ ràng, dễ hiểu
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q1_1" id="q1_1_1" value="1" />
+                <label for="q1_1_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_1" id="q1_1_2" value="2" />
+                <label for="q1_1_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_1" id="q1_1_3" value="3" />
+                <label for="q1_1_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_1" id="q1_1_4" value="4" />
+                <label for="q1_1_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_1" id="q1_1_5" value="5" />
+                <label for="q1_1_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              1.2. Giảng viên sử dụng các phương pháp giảng dạy phù hợp, hiệu
+              quả
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q1_2" id="q1_2_1" value="1" />
+                <label for="q1_2_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_2" id="q1_2_2" value="2" />
+                <label for="q1_2_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_2" id="q1_2_3" value="3" />
+                <label for="q1_2_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_2" id="q1_2_4" value="4" />
+                <label for="q1_2_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_2" id="q1_2_5" value="5" />
+                <label for="q1_2_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              1.3. Giảng viên cung cấp tài liệu học tập đầy đủ, phù hợp
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q1_3" id="q1_3_1" value="1" />
+                <label for="q1_3_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_3" id="q1_3_2" value="2" />
+                <label for="q1_3_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_3" id="q1_3_3" value="3" />
+                <label for="q1_3_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_3" id="q1_3_4" value="4" />
+                <label for="q1_3_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q1_3" id="q1_3_5" value="5" />
+                <label for="q1_3_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="evaluation-section">
+          <h4>2. Thái độ và sự hỗ trợ</h4>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              2.1. Giảng viên nhiệt tình, sẵn sàng giải đáp thắc mắc của sinh
+              viên
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q2_1" id="q2_1_1" value="1" />
+                <label for="q2_1_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_1" id="q2_1_2" value="2" />
+                <label for="q2_1_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_1" id="q2_1_3" value="3" />
+                <label for="q2_1_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_1" id="q2_1_4" value="4" />
+                <label for="q2_1_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_1" id="q2_1_5" value="5" />
+                <label for="q2_1_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              2.2. Giảng viên tôn trọng và đối xử công bằng với sinh viên
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q2_2" id="q2_2_1" value="1" />
+                <label for="q2_2_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_2" id="q2_2_2" value="2" />
+                <label for="q2_2_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_2" id="q2_2_3" value="3" />
+                <label for="q2_2_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_2" id="q2_2_4" value="4" />
+                <label for="q2_2_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_2" id="q2_2_5" value="5" />
+                <label for="q2_2_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              2.3. Giảng viên khuyến khích sinh viên tham gia thảo luận, đặt câu
+              hỏi
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q2_3" id="q2_3_1" value="1" />
+                <label for="q2_3_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_3" id="q2_3_2" value="2" />
+                <label for="q2_3_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_3" id="q2_3_3" value="3" />
+                <label for="q2_3_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_3" id="q2_3_4" value="4" />
+                <label for="q2_3_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q2_3" id="q2_3_5" value="5" />
+                <label for="q2_3_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="evaluation-section">
+          <h4>3. Kiểm tra, đánh giá</h4>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              3.1. Phương pháp kiểm tra, đánh giá phù hợp với nội dung môn học
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q3_1" id="q3_1_1" value="1" />
+                <label for="q3_1_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_1" id="q3_1_2" value="2" />
+                <label for="q3_1_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_1" id="q3_1_3" value="3" />
+                <label for="q3_1_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_1" id="q3_1_4" value="4" />
+                <label for="q3_1_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_1" id="q3_1_5" value="5" />
+                <label for="q3_1_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              3.2. Giảng viên đánh giá công bằng, khách quan
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q3_2" id="q3_2_1" value="1" />
+                <label for="q3_2_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_2" id="q3_2_2" value="2" />
+                <label for="q3_2_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_2" id="q3_2_3" value="3" />
+                <label for="q3_2_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_2" id="q3_2_4" value="4" />
+                <label for="q3_2_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q3_2" id="q3_2_5" value="5" />
+                <label for="q3_2_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không đồng ý</span>
+              <span>Rất đồng ý</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="evaluation-section">
+          <h4>4. Đánh giá chung</h4>
+
+          <div class="evaluation-item">
+            <div class="item-question">
+              4.1. Mức độ hài lòng chung về giảng viên
+            </div>
+            <div class="rating-group">
+              <div class="rating-option">
+                <input type="radio" name="q4_1" id="q4_1_1" value="1" />
+                <label for="q4_1_1">1</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q4_1" id="q4_1_2" value="2" />
+                <label for="q4_1_2">2</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q4_1" id="q4_1_3" value="3" />
+                <label for="q4_1_3">3</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q4_1" id="q4_1_4" value="4" />
+                <label for="q4_1_4">4</label>
+              </div>
+              <div class="rating-option">
+                <input type="radio" name="q4_1" id="q4_1_5" value="5" />
+                <label for="q4_1_5">5</label>
+              </div>
+            </div>
+            <div class="rating-labels">
+              <span>Rất không hài lòng</span>
+              <span>Rất hài lòng</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="evaluation-section">
+          <h4>5. Góp ý thêm</h4>
+
+          <div class="evaluation-item">
+            <div class="item-question">5.1. Điểm mạnh của giảng viên</div>
+            <textarea
+              name="strengths"
+              rows="3"
+              placeholder="Nhập điểm mạnh của giảng viên..."
+            ></textarea>
+          </div>
+
+          <div class="evaluation-item">
+            <div class="item-question">5.2. Điểm cần cải thiện</div>
+            <textarea
+              name="improvements"
+              rows="3"
+              placeholder="Nhập điểm cần cải thiện..."
+            ></textarea>
+          </div>
+
+          <div class="evaluation-item">
+            <div class="item-question">5.3. Góp ý khác</div>
+            <textarea
+              name="other_comments"
+              rows="3"
+              placeholder="Nhập góp ý khác (nếu có)..."
+            ></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" onclick="closeEvaluationForm()">Hủy</button>
+      <button class="save-btn" onclick="submitEvaluation()">
+        Gửi đánh giá
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal xem đánh giá -->
+<div id="view-evaluation-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Chi tiết đánh giá</h3>
+      <span class="close-modal" onclick="closeViewEvaluationModal()"
+        >&times;</span
+      >
+    </div>
+    <div class="modal-body">
+      <div class="course-info-header">
+        <div class="info-row">
+          <div class="info-label">Học phần:</div>
+          <div class="info-value" id="view-course-name">
+            Phân tích và thiết kế hệ thống (PTTKHT01)
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Giảng viên:</div>
+          <div class="info-value" id="view-lecturer">TS. Lê Văn Y</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Ngày đánh giá:</div>
+          <div class="info-value" id="view-date">01/06/2024</div>
+        </div>
+      </div>
+
+      <div class="evaluation-results">
+        <div class="result-section">
+          <h4>1. Nội dung và phương pháp giảng dạy</h4>
+
+          <div class="result-item">
+            <div class="item-question">
+              1.1. Giảng viên truyền đạt nội dung môn học rõ ràng, dễ hiểu
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <div class="rating-value">4/5</div>
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="item-question">
+              1.2. Giảng viên sử dụng các phương pháp giảng dạy phù hợp, hiệu
+              quả
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <div class="rating-value">4/5</div>
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="item-question">
+              1.3. Giảng viên cung cấp tài liệu học tập đầy đủ, phù hợp
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <div class="rating-value">4/5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-section">
+          <h4>2. Thái độ và sự hỗ trợ</h4>
+
+          <div class="result-item">
+            <div class="item-question">
+              2.1. Giảng viên nhiệt tình, sẵn sàng giải đáp thắc mắc của sinh
+              viên
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="rating-value">5/5</div>
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="item-question">
+              2.2. Giảng viên tôn trọng và đối xử công bằng với sinh viên
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="rating-value">5/5</div>
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="item-question">
+              2.3. Giảng viên khuyến khích sinh viên tham gia thảo luận, đặt câu
+              hỏi
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <div class="rating-value">4/5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-section">
+          <h4>3. Kiểm tra, đánh giá</h4>
+
+          <div class="result-item">
+            <div class="item-question">
+              3.1. Phương pháp kiểm tra, đánh giá phù hợp với nội dung môn học
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <div class="rating-value">3/5</div>
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="item-question">
+              3.2. Giảng viên đánh giá công bằng, khách quan
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <div class="rating-value">4/5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-section">
+          <h4>4. Đánh giá chung</h4>
+
+          <div class="result-item">
+            <div class="item-question">
+              4.1. Mức độ hài lòng chung về giảng viên
+            </div>
+            <div class="item-rating">
+              <div class="rating-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <div class="rating-value">4/5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-section">
+          <h4>5. Góp ý thêm</h4>
+
+          <div class="result-item">
+            <div class="item-question">5.1. Điểm mạnh của giảng viên</div>
+            <div class="item-comment">
+              Giảng viên có kiến thức chuyên môn tốt, giảng bài rõ ràng, dễ
+              hiểu. Nhiệt tình giải đáp thắc mắc của sinh viên.
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="item-question">5.2. Điểm cần cải thiện</div>
+            <div class="item-comment">
+              Nên có thêm các bài tập thực hành và ví dụ thực tế để sinh viên
+              hiểu rõ hơn về môn học.
+            </div>
+          </div>
+
+          <div class="result-item">
+            <div class="item-question">5.3. Góp ý khác</div>
+            <div class="item-comment">Không có</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="close-btn" onclick="closeViewEvaluationModal()">
+        Đóng
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm tải danh sách học phần
+  function loadCourses() {
+    const selectedSemester = document.getElementById("semester-select").value;
+    const selectedStatus = document.getElementById("evaluation-status").value;
+    console.log(
+      "Đang tải danh sách học phần cho học kỳ: " +
+        selectedSemester +
+        ", trạng thái: " +
+        selectedStatus
+    );
+
+    // Trong thực tế, đây sẽ là API call để lấy dữ liệu học phần
+    // fetchCoursesData(selectedSemester, selectedStatus);
+  }
+
+  // Hàm mở form đánh giá
+  function openEvaluationForm(
+    courseCode,
+    courseName,
+    lecturer,
+    isEdit = false
+  ) {
+    // Cập nhật thông tin học phần
+    document.getElementById("course-code").value = courseCode;
+    document.getElementById("eval-course-name").textContent =
+      courseName + " (" + courseCode + ")";
+    document.getElementById("eval-lecturer").textContent = lecturer;
+
+    // Nếu là chỉnh sửa, tải dữ liệu đánh giá cũ
+    if (isEdit) {
+      // Trong thực tế, đây sẽ là API call để lấy dữ liệu đánh giá cũ
+      // fetchEvaluationData(courseCode);
+
+      // Giả lập dữ liệu đánh giá cũ
+      document.querySelector('input[name="q1_1"][value="4"]').checked = true;
+      document.querySelector('input[name="q1_2"][value="4"]').checked = true;
+      document.querySelector('input[name="q1_3"][value="4"]').checked = true;
+      document.querySelector('input[name="q2_1"][value="5"]').checked = true;
+      document.querySelector('input[name="q2_2"][value="5"]').checked = true;
+      document.querySelector('input[name="q2_3"][value="4"]').checked = true;
+      document.querySelector('input[name="q3_1"][value="3"]').checked = true;
+      document.querySelector('input[name="q3_2"][value="4"]').checked = true;
+      document.querySelector('input[name="q4_1"][value="4"]').checked = true;
+
+      document.querySelector('textarea[name="strengths"]').value =
+        "Giảng viên có kiến thức chuyên môn tốt, giảng bài rõ ràng, dễ hiểu. Nhiệt tình giải đáp thắc mắc của sinh viên.";
+      document.querySelector('textarea[name="improvements"]').value =
+        "Nên có thêm các bài tập thực hành và ví dụ thực tế để sinh viên hiểu rõ hơn về môn học.";
+      document.querySelector('textarea[name="other_comments"]').value =
+        "Không có";
+    } else {
+      // Reset form
+      document.getElementById("evaluation-form").reset();
+    }
+
+    // Hiển thị modal
+    document.getElementById("evaluation-modal").style.display = "block";
+  }
+
+  // Hàm đóng form đánh giá
+  function closeEvaluationForm() {
+    document.getElementById("evaluation-modal").style.display = "none";
+  }
+
+  // Hàm gửi đánh giá
+  function submitEvaluation() {
+    const courseCode = document.getElementById("course-code").value;
+
+    // Kiểm tra các trường bắt buộc
+    const requiredQuestions = [
+      "q1_1",
+      "q1_2",
+      "q1_3",
+      "q2_1",
+      "q2_2",
+      "q2_3",
+      "q3_1",
+      "q3_2",
+      "q4_1",
+    ];
+    let isValid = true;
+
+    requiredQuestions.forEach((question) => {
+      const selectedOption = document.querySelector(
+        `input[name="${question}"]:checked`
+      );
+      if (!selectedOption) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      alert("Vui lòng trả lời tất cả các câu hỏi!");
+      return;
+    }
+
+    // Thu thập dữ liệu đánh giá
+    const evaluationData = {
+      courseCode: courseCode,
+      ratings: {},
+    };
+
+    // Thu thập điểm đánh giá
+    requiredQuestions.forEach((question) => {
+      const selectedOption = document.querySelector(
+        `input[name="${question}"]:checked`
+      );
+      evaluationData.ratings[question] = selectedOption.value;
+    });
+
+    // Thu thập góp ý
+    evaluationData.strengths = document.querySelector(
+      'textarea[name="strengths"]'
+    ).value;
+    evaluationData.improvements = document.querySelector(
+      'textarea[name="improvements"]'
+    ).value;
+    evaluationData.otherComments = document.querySelector(
+      'textarea[name="other_comments"]'
+    ).value;
+
+    console.log("Dữ liệu đánh giá:", evaluationData);
+
+    // Trong thực tế, đây sẽ là API call để gửi đánh giá
+    // submitEvaluationData(evaluationData);
+
+    // Hiển thị thông báo
+    alert("Gửi đánh giá thành công!");
+
+    // Đóng modal
+    closeEvaluationForm();
+
+    // Cập nhật giao diện
+    updateCourseStatus(courseCode);
+  }
+
+  // Hàm cập nhật trạng thái học phần
+  function updateCourseStatus(courseCode) {
+    // Tìm thẻ học phần
+    const courseCard = document
+      .querySelector(
+        `.course-card .course-header .course-code:contains('${courseCode}')`
+      )
+      .closest(".course-card");
+
+    if (courseCard) {
+      // Cập nhật trạng thái
+      courseCard.classList.remove("pending");
+      courseCard.classList.add("completed");
+
+      // Cập nhật badge
+      const badge = courseCard.querySelector(".evaluation-badge");
+      badge.classList.remove("pending");
+      badge.classList.add("completed");
+      badge.textContent = "Đã đánh giá";
+
+      // Thêm thông tin đánh giá
+      const courseBody = courseCard.querySelector(".course-body");
+
+      // Kiểm tra xem đã có thông tin đánh giá chưa
+      let evaluationSummary = courseBody.querySelector(".evaluation-summary");
+
+      if (!evaluationSummary) {
+        // Tạo mới nếu chưa có
+        evaluationSummary = document.createElement("div");
+        evaluationSummary.className = "evaluation-summary";
+
+        // Tạo sao đánh giá
+        const ratingStars = document.createElement("div");
+        ratingStars.className = "rating-stars";
+        ratingStars.innerHTML = `
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i>
+        `;
+
+        // Tạo ngày đánh giá
+        const ratingDate = document.createElement("div");
+        ratingDate.className = "rating-date";
+
+        // Lấy ngày hiện tại
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, "0");
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const year = today.getFullYear();
+
+        ratingDate.textContent = `Đánh giá ngày: ${day}/${month}/${year}`;
+
+        // Thêm vào summary
+        evaluationSummary.appendChild(ratingStars);
+        evaluationSummary.appendChild(ratingDate);
+
+        // Thêm vào course body
+        courseBody.appendChild(evaluationSummary);
+      }
+
+      // Cập nhật footer
+      const courseFooter = courseCard.querySelector(".course-footer");
+      courseFooter.innerHTML = `
+        <button class="view-btn" onclick="viewEvaluation('${courseCode}')">
+          <i class="fa fa-eye"></i> Xem đánh giá
+        </button>
+        <button class="edit-btn" onclick="openEvaluationForm('${courseCode}', '${
+        courseCard.querySelector(".course-name").textContent
+      }', '${courseCard
+        .querySelector(".info-item:first-child")
+        .textContent.replace("GV: ", "")}', true)">
+          <i class="fa fa-edit"></i> Sửa
+        </button>
+      `;
+
+      // Cập nhật thống kê
+      updateStatistics();
+    }
+  }
+
+  // Hàm xem đánh giá
+  function viewEvaluation(courseCode) {
+    // Tìm thẻ học phần
+    const courseCard = document
+      .querySelector(
+        `.course-card .course-header .course-code:contains('${courseCode}')`
+      )
+      .closest(".course-card");
+
+    if (courseCard) {
+      // Lấy thông tin học phần
+      const courseName = courseCard.querySelector(".course-name").textContent;
+      const lecturer = courseCard
+        .querySelector(".info-item:first-child")
+        .textContent.replace("GV: ", "");
+      const evaluationDate = courseCard
+        .querySelector(".rating-date")
+        .textContent.replace("Đánh giá ngày: ", "");
+
+      // Cập nhật thông tin trong modal
+      document.getElementById("view-course-name").textContent =
+        courseName + " (" + courseCode + ")";
+      document.getElementById("view-lecturer").textContent = lecturer;
+      document.getElementById("view-date").textContent = evaluationDate;
+
+      // Trong thực tế, đây sẽ là API call để lấy chi tiết đánh giá
+      // fetchEvaluationDetails(courseCode);
+
+      // Hiển thị modal
+      document.getElementById("view-evaluation-modal").style.display = "block";
+    }
+  }
+
+  // Hàm đóng modal xem đánh giá
+  function closeViewEvaluationModal() {
+    document.getElementById("view-evaluation-modal").style.display = "none";
+  }
+
+  // Hàm cập nhật thống kê
+  function updateStatistics() {
+    const totalCourses = document.querySelectorAll(".course-card").length;
+    const completedCourses = document.querySelectorAll(
+      ".course-card.completed"
+    ).length;
+    const pendingCourses = totalCourses - completedCourses;
+    const completionRate = ((completedCourses / totalCourses) * 100).toFixed(1);
+
+    // Cập nhật thống kê
+    document.querySelector(
+      ".evaluation-stats .stat-item:nth-child(1) .stat-value"
+    ).textContent = totalCourses;
+    document.querySelector(
+      ".evaluation-stats .stat-item:nth-child(2) .stat-value"
+    ).textContent = completedCourses;
+    document.querySelector(
+      ".evaluation-stats .stat-item:nth-child(3) .stat-value"
+    ).textContent = pendingCourses;
+    document.querySelector(
+      ".evaluation-stats .stat-item:nth-child(4) .stat-value"
+    ).textContent = completionRate + "%";
+  }
+
+  // Đóng modal khi click bên ngoài
+  window.onclick = function (event) {
+    const evaluationModal = document.getElementById("evaluation-modal");
+    const viewEvaluationModal = document.getElementById(
+      "view-evaluation-modal"
+    );
+
+    if (event.target == evaluationModal) {
+      closeEvaluationForm();
+    }
+
+    if (event.target == viewEvaluationModal) {
+      closeViewEvaluationModal();
+    }
+  };
+
+  // Hỗ trợ tìm kiếm text trong element
+  jQuery.expr[":"].contains = function (a, i, m) {
+    return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+  };
+</script>

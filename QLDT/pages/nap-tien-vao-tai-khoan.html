@@ -1,0 +1,594 @@
+<!-- Tiêu đề trang -->
+<h1 class="page-title">
+  <i class="fa fa-credit-card" style="color: #4caf50"></i> Nạp tiền vào tài
+  khoản
+</h1>
+
+<!-- Thông tin tài khoản -->
+<div class="account-info">
+  <div class="info-card">
+    <div class="info-header">
+      <h2>Thông tin tài khoản</h2>
+    </div>
+    <div class="info-body">
+      <div class="info-row">
+        <div class="info-label">Mã sinh viên:</div>
+        <div class="info-value">SV20200001</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Họ và tên:</div>
+        <div class="info-value">Nguyễn Văn A</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Số dư tài khoản:</div>
+        <div class="info-value balance">500,000 VNĐ</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Cập nhật lần cuối:</div>
+        <div class="info-value">15/05/2024 10:30</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Nạp tiền vào tài khoản -->
+<div class="deposit-section">
+  <h2 class="section-title">Nạp tiền vào tài khoản</h2>
+
+  <div class="deposit-form">
+    <div class="form-group">
+      <label for="deposit-amount">Số tiền nạp:</label>
+      <div class="amount-input">
+        <input
+          type="text"
+          id="deposit-amount"
+          placeholder="Nhập số tiền"
+          onkeyup="formatCurrency(this)"
+        />
+        <span class="currency">VNĐ</span>
+      </div>
+    </div>
+
+    <div class="amount-suggestions">
+      <button class="amount-btn" onclick="selectAmount(100000)">100,000</button>
+      <button class="amount-btn" onclick="selectAmount(200000)">200,000</button>
+      <button class="amount-btn" onclick="selectAmount(500000)">500,000</button>
+      <button class="amount-btn" onclick="selectAmount(1000000)">
+        1,000,000
+      </button>
+      <button class="amount-btn" onclick="selectAmount(2000000)">
+        2,000,000
+      </button>
+      <button class="amount-btn" onclick="selectAmount(5000000)">
+        5,000,000
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label>Chọn phương thức thanh toán:</label>
+      <div class="payment-methods">
+        <div class="payment-method">
+          <input
+            type="radio"
+            id="method-card"
+            name="payment-method"
+            value="card"
+            checked
+          />
+          <label for="method-card">
+            <div class="method-icon"><i class="fa fa-credit-card"></i></div>
+            <div class="method-info">
+              <div class="method-name">Thẻ ATM/Thẻ tín dụng</div>
+              <div class="method-desc">Thanh toán qua cổng VNPAY</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="payment-method">
+          <input
+            type="radio"
+            id="method-momo"
+            name="payment-method"
+            value="momo"
+          />
+          <label for="method-momo">
+            <div class="method-icon"><i class="fa fa-mobile"></i></div>
+            <div class="method-info">
+              <div class="method-name">Ví MoMo</div>
+              <div class="method-desc">Thanh toán qua ví điện tử MoMo</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="payment-method">
+          <input
+            type="radio"
+            id="method-zalopay"
+            name="payment-method"
+            value="zalopay"
+          />
+          <label for="method-zalopay">
+            <div class="method-icon"><i class="fa fa-money"></i></div>
+            <div class="method-info">
+              <div class="method-name">ZaloPay</div>
+              <div class="method-desc">Thanh toán qua ví điện tử ZaloPay</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="payment-method">
+          <input
+            type="radio"
+            id="method-bank"
+            name="payment-method"
+            value="bank"
+          />
+          <label for="method-bank">
+            <div class="method-icon"><i class="fa fa-university"></i></div>
+            <div class="method-info">
+              <div class="method-name">Chuyển khoản ngân hàng</div>
+              <div class="method-desc">
+                Chuyển khoản trực tiếp vào tài khoản trường
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="cancel-btn" onclick="resetForm()">Hủy</button>
+      <button class="deposit-btn" onclick="processDeposit()">Nạp tiền</button>
+    </div>
+  </div>
+
+  <!-- Thông tin chuyển khoản (hiển thị khi chọn phương thức chuyển khoản) -->
+  <div id="bank-transfer-info" class="bank-transfer-info" style="display: none">
+    <h3>Thông tin chuyển khoản</h3>
+
+    <div class="transfer-details">
+      <div class="detail-row">
+        <div class="detail-label">Tên tài khoản:</div>
+        <div class="detail-value">Trường Đại học Công nghệ Đồng Nai</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Số tài khoản:</div>
+        <div class="detail-value">1234567890</div>
+        <button class="copy-btn" onclick="copyToClipboard('1234567890')">
+          <i class="fa fa-copy"></i>
+        </button>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Ngân hàng:</div>
+        <div class="detail-value">Vietcombank - Chi nhánh Đồng Nai</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Nội dung chuyển khoản:</div>
+        <div class="detail-value">SV20200001 NAP TIEN</div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('SV20200001 NAP TIEN')"
+        >
+          <i class="fa fa-copy"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="qr-code">
+      <img src="assets/images/bank-qr.png" alt="QR Code chuyển khoản" />
+      <p>Quét mã QR để chuyển khoản</p>
+    </div>
+
+    <div class="transfer-note">
+      <h4><i class="fa fa-exclamation-circle"></i> Lưu ý quan trọng</h4>
+      <ul>
+        <li>
+          Vui lòng ghi đúng nội dung chuyển khoản để hệ thống có thể xác nhận
+          giao dịch của bạn.
+        </li>
+        <li>Thời gian xử lý giao dịch: 5-15 phút trong giờ hành chính.</li>
+        <li>
+          Sau khi chuyển khoản, vui lòng chụp lại biên lai/màn hình xác nhận và
+          tải lên hệ thống bên dưới.
+        </li>
+      </ul>
+    </div>
+
+    <div class="upload-receipt">
+      <h4>Tải lên biên lai chuyển khoản</h4>
+      <div class="upload-area" id="upload-area">
+        <i class="fa fa-cloud-upload"></i>
+        <p>Kéo và thả file hoặc click để chọn file</p>
+        <input
+          type="file"
+          id="receipt-file"
+          accept="image/*,.pdf"
+          style="display: none"
+        />
+      </div>
+      <div class="upload-actions">
+        <button class="upload-btn" onclick="uploadReceipt()">Tải lên</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lịch sử nạp tiền -->
+<div class="deposit-history">
+  <h2 class="section-title">Lịch sử nạp tiền</h2>
+
+  <div class="history-filters">
+    <div class="filter-group">
+      <label for="date-range">Thời gian:</label>
+      <select id="date-range" onchange="filterHistory()">
+        <option value="all">Tất cả</option>
+        <option value="today">Hôm nay</option>
+        <option value="week">7 ngày qua</option>
+        <option value="month">30 ngày qua</option>
+        <option value="year">Năm nay</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="status-filter">Trạng thái:</label>
+      <select id="status-filter" onchange="filterHistory()">
+        <option value="all">Tất cả</option>
+        <option value="success">Thành công</option>
+        <option value="pending">Đang xử lý</option>
+        <option value="failed">Thất bại</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="history-table-container">
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Mã giao dịch</th>
+          <th>Ngày giao dịch</th>
+          <th>Số tiền</th>
+          <th>Phương thức</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="history-row success">
+          <td>DEP20240515001</td>
+          <td>15/05/2024 10:30</td>
+          <td>500,000 VNĐ</td>
+          <td>Thẻ ATM</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewTransaction('DEP20240515001')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadTransactionReceipt('DEP20240515001')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="history-row success">
+          <td>DEP20240410002</td>
+          <td>10/04/2024 14:15</td>
+          <td>1,000,000 VNĐ</td>
+          <td>Chuyển khoản ngân hàng</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewTransaction('DEP20240410002')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadTransactionReceipt('DEP20240410002')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="history-row success">
+          <td>DEP20240305003</td>
+          <td>05/03/2024 09:45</td>
+          <td>2,000,000 VNĐ</td>
+          <td>Ví MoMo</td>
+          <td><span class="status-badge success">Thành công</span></td>
+          <td>
+            <button
+              class="action-btn view-btn"
+              title="Xem chi tiết"
+              onclick="viewTransaction('DEP20240305003')"
+            >
+              <i class="fa fa-eye"></i>
+            </button>
+            <button
+              class="action-btn download-btn"
+              title="Tải biên lai"
+              onclick="downloadTransactionReceipt('DEP20240305003')"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">&raquo;</a>
+  </div>
+</div>
+
+<!-- Modal xem chi tiết giao dịch -->
+<div id="transaction-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Chi tiết giao dịch</h3>
+      <span class="close-modal" onclick="closeTransactionModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="transaction-details">
+        <div class="detail-row">
+          <div class="detail-label">Mã giao dịch:</div>
+          <div class="detail-value">DEP20240515001</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Loại giao dịch:</div>
+          <div class="detail-value">Nạp tiền vào tài khoản</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ngày giao dịch:</div>
+          <div class="detail-value">15/05/2024 10:30</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Số tiền:</div>
+          <div class="detail-value">500,000 VNĐ</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Phương thức:</div>
+          <div class="detail-value">Thẻ ATM</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Thông tin thanh toán:</div>
+          <div class="detail-value">Thẻ: **** **** **** 5678</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Trạng thái:</div>
+          <div class="detail-value">
+            <span class="status-badge success">Thành công</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Mã giao dịch đối tác:</div>
+          <div class="detail-value">VNPAY123456789</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Ghi chú:</div>
+          <div class="detail-value">Nạp tiền vào tài khoản sinh viên</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        class="download-btn"
+        onclick="downloadTransactionReceipt('DEP20240515001')"
+      >
+        <i class="fa fa-download"></i> Tải biên lai
+      </button>
+      <button class="close-btn" onclick="closeTransactionModal()">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hàm định dạng số tiền
+  function formatCurrency(input) {
+    // Xóa tất cả các ký tự không phải số
+    let value = input.value.replace(/[^\d]/g, "");
+
+    // Định dạng số với dấu phẩy ngăn cách hàng nghìn
+    if (value) {
+      value = parseInt(value, 10).toLocaleString("vi-VN");
+    }
+
+    // Cập nhật giá trị input
+    input.value = value;
+  }
+
+  // Hàm chọn số tiền từ các nút gợi ý
+  function selectAmount(amount) {
+    document.getElementById("deposit-amount").value =
+      amount.toLocaleString("vi-VN");
+  }
+
+  // Hàm xử lý nạp tiền
+  function processDeposit() {
+    // Lấy số tiền nạp
+    const amountStr = document
+      .getElementById("deposit-amount")
+      .value.replace(/[^\d]/g, "");
+    const amount = parseInt(amountStr, 10);
+
+    // Kiểm tra số tiền
+    if (!amount || amount < 10000) {
+      alert("Vui lòng nhập số tiền nạp tối thiểu 10,000 VNĐ");
+      return;
+    }
+
+    // Lấy phương thức thanh toán
+    const paymentMethod = document.querySelector(
+      'input[name="payment-method"]:checked'
+    ).value;
+
+    // Xử lý theo phương thức thanh toán
+    if (paymentMethod === "bank") {
+      // Hiển thị thông tin chuyển khoản
+      document.getElementById("bank-transfer-info").style.display = "block";
+
+      // Cuộn xuống phần thông tin chuyển khoản
+      document
+        .getElementById("bank-transfer-info")
+        .scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Chuyển hướng đến trang thanh toán tương ứng
+      alert(
+        `Đang chuyển hướng đến trang thanh toán ${paymentMethod} với số tiền ${amount.toLocaleString(
+          "vi-VN"
+        )} VNĐ`
+      );
+
+      // Trong thực tế, đây sẽ là chuyển hướng đến trang thanh toán
+      // window.location.href = `payment-gateway.html?method=${paymentMethod}&amount=${amount}`;
+    }
+  }
+
+  // Hàm reset form
+  function resetForm() {
+    document.getElementById("deposit-amount").value = "";
+    document.getElementById("method-card").checked = true;
+    document.getElementById("bank-transfer-info").style.display = "none";
+  }
+
+  // Hàm sao chép vào clipboard
+  function copyToClipboard(text) {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert("Đã sao chép: " + text);
+      })
+      .catch((err) => {
+        console.error("Không thể sao chép: ", err);
+      });
+  }
+
+  // Hàm tải lên biên lai
+  function uploadReceipt() {
+    document.getElementById("receipt-file").click();
+  }
+
+  // Hàm lọc lịch sử nạp tiền
+  function filterHistory() {
+    const dateRange = document.getElementById("date-range").value;
+    const statusFilter = document.getElementById("status-filter").value;
+
+    console.log(
+      `Lọc lịch sử nạp tiền: Thời gian=${dateRange}, Trạng thái=${statusFilter}`
+    );
+
+    // Trong thực tế, đây sẽ là API call để lọc lịch sử nạp tiền
+    // filterDepositHistory(dateRange, statusFilter);
+
+    // Mô phỏng lọc
+    const historyRows = document.querySelectorAll(".history-row");
+
+    historyRows.forEach((row) => {
+      let showRow = true;
+
+      // Lọc theo trạng thái
+      if (statusFilter !== "all" && !row.classList.contains(statusFilter)) {
+        showRow = false;
+      }
+
+      // Hiển thị hoặc ẩn hàng
+      row.style.display = showRow ? "" : "none";
+    });
+  }
+
+  // Hàm xem chi tiết giao dịch
+  function viewTransaction(transactionId) {
+    console.log("Xem chi tiết giao dịch: " + transactionId);
+
+    // Trong thực tế, đây sẽ là API call để lấy chi tiết giao dịch
+    // getTransactionDetails(transactionId);
+
+    // Hiển thị modal
+    document.getElementById("transaction-modal").style.display = "block";
+  }
+
+  // Hàm đóng modal chi tiết giao dịch
+  function closeTransactionModal() {
+    document.getElementById("transaction-modal").style.display = "none";
+  }
+
+  // Hàm tải biên lai giao dịch
+  function downloadTransactionReceipt(transactionId) {
+    console.log("Tải biên lai giao dịch: " + transactionId);
+
+    // Trong thực tế, đây sẽ là API call để tải biên lai
+    alert("Đang tải biên lai giao dịch " + transactionId);
+  }
+
+  // Khởi tạo trang
+  document.addEventListener("DOMContentLoaded", function () {
+    // Xử lý sự kiện thay đổi phương thức thanh toán
+    const paymentMethods = document.querySelectorAll(
+      'input[name="payment-method"]'
+    );
+    paymentMethods.forEach((method) => {
+      method.addEventListener("change", function () {
+        // Ẩn thông tin chuyển khoản khi chọn phương thức khác
+        if (this.value !== "bank") {
+          document.getElementById("bank-transfer-info").style.display = "none";
+        }
+      });
+    });
+
+    // Xử lý sự kiện kéo và thả file
+    const uploadArea = document.getElementById("upload-area");
+    const receiptFile = document.getElementById("receipt-file");
+
+    uploadArea.addEventListener("click", function () {
+      receiptFile.click();
+    });
+
+    uploadArea.addEventListener("dragover", function (e) {
+      e.preventDefault();
+      uploadArea.classList.add("dragover");
+    });
+
+    uploadArea.addEventListener("dragleave", function () {
+      uploadArea.classList.remove("dragover");
+    });
+
+    uploadArea.addEventListener("drop", function (e) {
+      e.preventDefault();
+      uploadArea.classList.remove("dragover");
+
+      if (e.dataTransfer.files.length) {
+        receiptFile.files = e.dataTransfer.files;
+        const fileName = e.dataTransfer.files[0].name;
+        uploadArea.innerHTML = `<i class="fa fa-file"></i><p>${fileName}</p>`;
+      }
+    });
+
+    receiptFile.addEventListener("change", function () {
+      if (this.files.length) {
+        const fileName = this.files[0].name;
+        uploadArea.innerHTML = `<i class="fa fa-file"></i><p>${fileName}</p>`;
+      }
+    });
+
+    // Đóng modal khi click bên ngoài
+    window.onclick = function (event) {
+      const modal = document.getElementById("transaction-modal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
+</script>
